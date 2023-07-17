@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+    <html>
+    <h2>Listas de empresas</h2>
+    <head>
+    <title>Listas de empresas</title>
+    </head>
+    <div *ngFor="let empresa of empresas">
+        <!--col-md-2 -> crea 2 columnas, ngFor -> para recorrer todas las reservas-->
+        <body>
+        <h3>{{empresa.nombre_empresa}}</h3>
+        <button (click)="verEmpresa(empresa.nombre_empresa)">Ver</button> 
+        </body>
+    </div>
+</html>

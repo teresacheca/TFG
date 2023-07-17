@@ -1,0 +1,18 @@
+<p *ngIf="vacio else lista">
+    No hay administradores en esta empresa
+</p>
+
+<ng-template #lista>
+    <div class="col-md-2" *ngFor="let admi of administradores">
+        <!--col-md-2 -> crea 2 columnas, ngFor -> para recorrer todas las reservas-->
+        
+        <div>
+            <!--bg-dark: de color oscuro, text-white: para hacer el texto de color blanco-->
+            {{admi.nombre_usuario}}
+        </div>
+        <button (click)="editarAdministradorEmpresa(admi)">
+            Editar
+        </button>
+        
+    </div>
+</ng-template>

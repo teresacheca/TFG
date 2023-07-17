@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Iniciar sesión</title>
+</head>
+<body>
+  <h2>Iniciar sesión</h2>
+  <form>
+    <input type="text" placeholder="Nombre de usuario" #nombreUsuario required>
+    <input type="password" placeholder="Contraseña" #contrasenaUsuario required>
+    <button type="submit" (click)="inicioSesion(nombreUsuario.value, contrasenaUsuario.value)">Iniciar sesión</button>
+
+    <button type="submit" id="solicitud" (click)="irNuevaSolicitud()">Nueva solicitud</button>
+  </form>
+</body>
+</html>

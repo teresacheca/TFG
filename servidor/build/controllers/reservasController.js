@@ -164,6 +164,14 @@ class ReservasController {
             res.json({ message: 'el usuario fue eliminada' });
         });
     }
+    getUsuarioNombre(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log("23");
+            const usuario = yield basedatos_1.default.promise().query('SELECT * FROM usuarios WHERE nombre_usuario = ?', [req.params.nombre_usuario]);
+            const rows = usuario[0]; // Accede a los resultados utilizando la posición 0
+            res.json(rows);
+        });
+    }
 }
 const reservasController = new ReservasController();
 exports.default = reservasController;

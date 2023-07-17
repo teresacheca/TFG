@@ -16,6 +16,7 @@ import { ListaUsuariosComponent } from './lista-usuarios/lista-usuarios.componen
 import { EditarEmpresaComponent } from './editar-empresa/editar-empresa.component';
 import { AgEditaAdmiEmpresaComponent } from './ag-edita-admi-empresa/ag-edita-admi-empresa.component';
 import { VerSolicitudComponent } from './ver-solicitud/ver-solicitud.component';
+import { AgVeUsuarioComponent } from './ag-ve-usuario/ag-ve-usuario.component';
 
 //rutas para rederigir dentro de la página
 const routes: Routes = [
@@ -91,6 +92,10 @@ const routes: Routes = [
   {
     path: 'reservas/empresas/:nombre_empresa/lista_usuarios',
     component: ListaUsuariosComponent
+  },
+  {
+    path: 'reservas/empresas/:nombre_empresa/lista_usuarios/:nombre_usuario',
+    component: AgVeUsuarioComponent
   },
   {
     path: 'reservas/empresas/:nombre_empresa/editar_pefil',

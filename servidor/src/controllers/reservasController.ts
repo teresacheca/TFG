@@ -135,6 +135,13 @@ class ReservasController{
         const aux = await pool.promise().query('DELETE FROM Solicitud WHERE id_solicitud = ?', [req.params.id_solicitud]);
         res.json({message: 'el usuario fue eliminada'})
     }
+
+    public async getUsuarioNombre(req: Request, res: Response) { //listar todas las reservas
+        console.log("23")
+        const usuario = await pool.promise().query('SELECT * FROM usuarios WHERE nombre_usuario = ?', [req.params.nombre_usuario]);
+        const rows = usuario[0]; // Accede a los resultados utilizando la posición 0
+        res.json(rows);
+    }
 }
 
 const reservasController = new ReservasController();

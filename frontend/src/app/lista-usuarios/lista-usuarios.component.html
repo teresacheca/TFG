@@ -10,12 +10,9 @@
             <!--bg-dark: de color oscuro, text-white: para hacer el texto de color blanco-->
             {{usuario.nombre_usuario}}
         </div>
-        <button>
-            Editar
+        <button (click)="verUsuario(usuario.nombre_usuario)">
+            Ver
         </button>
         
     </div>
 </ng-template>
-
-
-

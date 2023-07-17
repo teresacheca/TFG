@@ -30,4 +30,11 @@ export class ListaUsuariosComponent {
       err => console.error(err)
     );
   }
+
+  verUsuario(nombre_usuario: string){
+    let url = this.router.url.split('/');
+    let empresa = url[3]
+    let ruta = '/reservas/empresas/' + empresa + '/lista_usuarios/' + nombre_usuario
+    this.router.navigate([ruta]);
+  }
 }

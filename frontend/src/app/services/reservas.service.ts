@@ -94,5 +94,9 @@ export class ReservasService {
   eliminarSolicitud(id_solicitud: number){  
     return this.http.delete(`${this.API_URI}/reservas/lista_solicitudes/${id_solicitud}/eliminar`);
   }
+
+  getUsuarioag(nombre_empresa: string, nombre_usuario: string){ 
+    return this.http.get(`${this.API_URI}/reservas/empresas/${nombre_empresa}/lista_usuarios/${nombre_usuario}`);
+  }
   
 }

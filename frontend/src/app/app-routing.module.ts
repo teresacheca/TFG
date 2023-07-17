@@ -150,6 +150,11 @@ const routes: Routes = [
     path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_usuarios/:id/eliminar',
     component: AeEditaUsuarioComponent
   },
+
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos',
+    component: AeEditaUsuarioComponent
+  },
   
   /*{
     path: 'reservas/admi_empresa/:nombre_usuario/lista_usuarios/:id',

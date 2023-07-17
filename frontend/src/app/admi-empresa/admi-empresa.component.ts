@@ -67,7 +67,10 @@ export class AdmiEmpresaComponent {
     this.router.navigate([ruta])
   }
 
-  
+  verListaRecurosAe(){
+    let ruta = this.router.url + '/' + this.admi_empresa.empresa + '/lista_recursos'
+    this.router.navigate([ruta])
+  }
 
   
 }

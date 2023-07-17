@@ -169,6 +169,31 @@ class ReservasController{
         console.log(rows)
         res.json(rows);
     }
+
+    public async getUsuarioId(req: Request, res: Response) { //listar todas las reservas
+        console.log(req.params.id)
+        const usuarios = await pool.promise().query('SELECT * FROM Usuarios WHERE id = ?', [req.params.id]);
+        const rows = usuarios[0]; // Accede a los resultados utilizando la posición 0
+        console.log(rows)
+        res.json(rows);
+    }
+
+    public async guardarCambiosUsuarioAe(req: Request, res: Response) { //listar todas las reservas
+        console.log("2")
+        await pool.promise().query('UPDATE Usuarios set ? WHERE id = ?', [req.body, req.params.id]);
+        res.json({message: 'La reserva fue actualizada'})
+    }
+
+    public async eliminarCuentaUsuarioAe(req: Request, res: Response){
+        const aux = await pool.promise().query('DELETE FROM Usuarios WHERE id= ?', [req.params.id]);
+        console.log("aux" + aux)
+        res.json({message: 'la reserva fue eliminada'}) 
+    }
+
+    public async AeaniadeUsuario(req: Request, res: Response) { 
+        pool.query('INSERT INTO Usuarios (nombre_usuario, contrasena, fecha_nacimiento, puesto_trabajo, empresa, tipo) VALUES (?, ?, ?, ?, ?, ?)', [req.body.nombre_usuario, req.body.contrasena, req.body.fecha_nacimiento, req.body.puesto_trabajo, req.body.empresa, 2]);
+        res.json({message: 'el usuario se ha creado'});
+    }
 }
 
 const reservasController = new ReservasController();

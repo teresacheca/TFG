@@ -55,7 +55,8 @@ CREATE TABLE RecursoServicio (
     descripcion VARCHAR(100),
     foto VARCHAR(100),
     datos VARCHAR(100),
-    aforo INT(10)
+    aforo INT(10),
+    nombre_empresa VARCHAR(100)
 );
 
 CREATE TABLE Reservas (
@@ -187,3 +188,24 @@ VALUES ('EmpresaX', 'contacto@empresa-x.com', 'Descripción de la Empresa X', 'l
        ('EmpresaZ', 'contacto@empresa-z.com', 'Descripción de la Empresa Z', 'logo-empresa-z.png', 'Administrador Z', 0, ' ', 'Rechazado');
 
 
+INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa)
+VALUES ('Recurso 1', 'Descripción del recurso 1', 'foto1.jpg', 'Datos del recurso 1', 100, 'EmpresaA');
+
+INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa)
+VALUES ('Recurso 2', 'Descripción del recurso 2', 'foto2.jpg', 'Datos del recurso 2', 50, 'EmpresaA');
+
+INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa)
+VALUES ('Recurso 3', 'Descripción del recurso 3', 'https://example.com/foto3.jpg', 'Datos del recurso 3', 80, 'EmpresaB');
+
+INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa)
+VALUES ('Recurso 4', 'Descripción del recurso 4', 'foto4.jpg', 'Datos del recurso 4', 120, 'EmpresaB');
+
+INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa)
+VALUES ('Recurso 5', 'Descripción del recurso 4', 'foto4.jpg', 'Datos del recurso 4',,80, 'EmpresaC');
+
+INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa)
+VALUES ('Recurso 6', 'Esta es una descripción muy larga que tiene más de 100 caracteres y se trunca para ajustarse a la restricción de longitud', 'foto6.jpg', 'Datos del recurso 6', 90, 'EmpresaC');
+
+
+INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa)
+VALUES ('Recurso 7', 'Descripción del recurso 7','foto7.jpg', 'Datos del recurso 4', 70, 'EmpresaA');

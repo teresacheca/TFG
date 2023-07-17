@@ -12,17 +12,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AeListaUsuariosComponent {
   usuarios: any = []
   vacio = false
+  empresa: string = ''
 
   constructor(private reservasServices: ReservasService, private router: Router, private activeRoute: ActivatedRoute){
 
   }
 
+
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
     console.log(params)
+    this.empresa = params["nombre_empresa"]
     this.reservasServices.getUsuariosEmpresaAe(params["nombre_usuario"], params["nombre_empresa"]).subscribe(
       res =>{
-        console.log(res)
         this.usuarios = res;
         if(this.usuarios.length == 0){
           this.vacio = true
@@ -30,5 +32,15 @@ export class AeListaUsuariosComponent {
       },
       err => console.error(err)
     );
+  }
+
+  AeEditaUsuario(id: number){
+    let ruta = this.router.url + '/' + id
+    this.router.navigate([ruta]);
+  }
+
+  AeAniadeUsuario(){
+    let ruta = this.router.url + '/aniade'
+    this.router.navigate([ruta]);
   }
 }

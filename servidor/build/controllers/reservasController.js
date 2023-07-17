@@ -203,6 +203,35 @@ class ReservasController {
             res.json(rows);
         });
     }
+    getUsuarioId(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log(req.params.id);
+            const usuarios = yield basedatos_1.default.promise().query('SELECT * FROM Usuarios WHERE id = ?', [req.params.id]);
+            const rows = usuarios[0]; // Accede a los resultados utilizando la posición 0
+            console.log(rows);
+            res.json(rows);
+        });
+    }
+    guardarCambiosUsuarioAe(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log("2");
+            yield basedatos_1.default.promise().query('UPDATE Usuarios set ? WHERE id = ?', [req.body, req.params.id]);
+            res.json({ message: 'La reserva fue actualizada' });
+        });
+    }
+    eliminarCuentaUsuarioAe(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const aux = yield basedatos_1.default.promise().query('DELETE FROM Usuarios WHERE id= ?', [req.params.id]);
+            console.log("aux" + aux);
+            res.json({ message: 'la reserva fue eliminada' });
+        });
+    }
+    AeaniadeUsuario(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            basedatos_1.default.query('INSERT INTO Usuarios (nombre_usuario, contrasena, fecha_nacimiento, puesto_trabajo, empresa, tipo) VALUES (?, ?, ?, ?, ?, ?)', [req.body.nombre_usuario, req.body.contrasena, req.body.fecha_nacimiento, req.body.puesto_trabajo, req.body.empresa, 2]);
+            res.json({ message: 'el usuario se ha creado' });
+        });
+    }
 }
 const reservasController = new ReservasController();
 exports.default = reservasController;

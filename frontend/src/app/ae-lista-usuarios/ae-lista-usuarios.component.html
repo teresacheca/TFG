@@ -10,10 +10,14 @@
             <!--bg-dark: de color oscuro, text-white: para hacer el texto de color blanco-->
             {{usuario.nombre_usuario}}
         </div>
-        <button>
+        <button (click)="AeEditaUsuario(usuario.id)">
             Ver
         </button>
-        
+    </div>
+    <div>
+        <button (click)="AeAniadeUsuario()">
+            Añadir
+        </button>
     </div>
 </ng-template>
 

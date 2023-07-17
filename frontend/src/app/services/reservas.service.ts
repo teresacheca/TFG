@@ -118,4 +118,24 @@ export class ReservasService {
   getUsuariosEmpresaAe(nombre_usuario: string, nombre_empresa: string){ //devuelve todas las reservas
     return this.http.get(`${this.API_URI}/reservas/admi_empresa/${nombre_usuario}/${nombre_empresa}/lista_usuarios`)
   }
+
+  getUsuarioId(nombre_usuario: string, nombre_empresa: string, id: number){ //devuelve todas las reservas
+    return this.http.get(`${this.API_URI}/reservas/admi_empresa/${nombre_usuario}/${nombre_empresa}/lista_usuarios/${id}`)
+  }
+
+  guardarCambiosUsuarioAe(nombre_admi: string, nombre_empresa: string, id: number, nuevoUsuario: Usuario){ //devuelve todas las reservas
+    return this.http.put(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_usuarios/${id}/editar`, nuevoUsuario)
+  }
+
+  eliminarCuentaUsuarioAe(nombre_admi: string, nombre_empresa: string, id: number){
+    return this.http.delete(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_usuarios/${id}/eliminar`)
+  }
+
+  AeaniadeUsuario(usuario: Usuario, nombre_admi: string, nombre_empresa: string){
+    console.log(usuario)
+    console.log(nombre_admi)
+    console.log(nombre_empresa)
+    return this.http.post(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_usuarios/aniade/guardar`, usuario)
+  }
+
 }

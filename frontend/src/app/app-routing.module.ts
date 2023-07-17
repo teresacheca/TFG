@@ -19,6 +19,8 @@ import { VerSolicitudComponent } from './ver-solicitud/ver-solicitud.component';
 import { AgVeUsuarioComponent } from './ag-ve-usuario/ag-ve-usuario.component';
 import { AeEditaPerfilComponent } from './ae-edita-perfil/ae-edita-perfil.component';
 import { AeListaUsuariosComponent } from './ae-lista-usuarios/ae-lista-usuarios.component';
+import { AeEditaUsuarioComponent } from './ae-edita-usuario/ae-edita-usuario.component';
+import { AeAniadeUsuarioComponent } from './ae-aniade-usuario/ae-aniade-usuario.component';
 
 //rutas para rederigir dentro de la página
 const routes: Routes = [
@@ -128,6 +130,27 @@ const routes: Routes = [
     path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_usuarios',
     component: AeListaUsuariosComponent
   },
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_usuarios/aniade',
+    component: AeAniadeUsuarioComponent
+  },
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_usuarios/aniade/guardar',
+    component: AeAniadeUsuarioComponent
+  },
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_usuarios/:id',
+    component: AeEditaUsuarioComponent
+  },
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_usuarios/:id/editar',
+    component: AeEditaUsuarioComponent
+  },
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_usuarios/:id/eliminar',
+    component: AeEditaUsuarioComponent
+  },
+  
   /*{
     path: 'reservas/admi_empresa/:nombre_usuario/lista_usuarios/:id',
     component: AeVeUsuarioComponent

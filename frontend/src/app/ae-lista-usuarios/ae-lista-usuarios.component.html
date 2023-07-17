@@ -1,0 +1,19 @@
+<p *ngIf="vacio else lista">
+    No hay usuarios en esta empresa
+</p>
+
+<ng-template #lista>
+    <div class="col-md-2" *ngFor="let usuario of usuarios">
+        <!--col-md-2 -> crea 2 columnas, ngFor -> para recorrer todas las reservas-->
+        
+        <div>
+            <!--bg-dark: de color oscuro, text-white: para hacer el texto de color blanco-->
+            {{usuario.nombre_usuario}}
+        </div>
+        <button>
+            Ver
+        </button>
+        
+    </div>
+</ng-template>
+

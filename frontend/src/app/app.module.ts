@@ -23,7 +23,9 @@ import { ListaUsuariosComponent } from './lista-usuarios/lista-usuarios.componen
 import { EditarEmpresaComponent } from './editar-empresa/editar-empresa.component';
 import { AgEditaAdmiEmpresaComponent } from './ag-edita-admi-empresa/ag-edita-admi-empresa.component';
 import { VerSolicitudComponent } from './ver-solicitud/ver-solicitud.component';
-import { AgVeUsuarioComponent } from './ag-ve-usuario/ag-ve-usuario.component'
+import { AgVeUsuarioComponent } from './ag-ve-usuario/ag-ve-usuario.component';
+import { AeEditaPerfilComponent } from './ae-edita-perfil/ae-edita-perfil.component';
+import { AeListaUsuariosComponent } from './ae-lista-usuarios/ae-lista-usuarios.component'
 
 
 @NgModule({
@@ -46,6 +48,8 @@ import { AgVeUsuarioComponent } from './ag-ve-usuario/ag-ve-usuario.component'
     AgEditaAdmiEmpresaComponent,
     VerSolicitudComponent,
     AgVeUsuarioComponent,
+    AeEditaPerfilComponent,
+    AeListaUsuariosComponent,
   ],
   imports: [
     BrowserModule,

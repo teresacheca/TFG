@@ -1,0 +1,41 @@
+<div class="col-md-4 offset-md-2"> <!--para que esté centrado-->
+
+    <div class="card">
+        <div class="card-body">
+            <form>
+                <div>
+                    Nombre:
+                    <input type="text" name="nombre_usuario" [(ngModel)]="admi_empresa.nombre_usuario">
+                </div>
+                <div>
+                    Contraseña:
+                    <input type="text" name="contrasena" [(ngModel)]="admi_empresa.contrasena">
+                </div>
+                <div>
+                    Fecha nacimiento:
+                    <input type="text" name="fecha_nacimiento" [(ngModel)]="admi_empresa.fecha_nacimiento">
+                </div>
+                <div>
+                    Puesto de trabajo:
+                    <input type="text" name="puesto_trabajo" [(ngModel)]="admi_empresa.puesto_trabajo">
+                </div>
+                <div>
+                    Empresa:
+                    <input type="text" name="empresa" [(ngModel)]="admi_empresa.empresa">
+                </div>
+                <div>
+                    Tipo:
+                    <input type="text" name="tipo" [(ngModel)]="admi_empresa.tipo">
+                </div>
+                <button (click)="eliminarCuentaAdmiEmpresaAe(admi_empresa.nombre_usuario)" > <!--  se crea un evento click, para que haga cosas cuando se pulse el botón-->
+                    Eliminar cuenta
+                </button>
+                <button (click)="guardarCambiosAdmiEmpresaAe(admi_empresa.nombre_usuario, admi_empresa)"> <!-- (click)="guardarCambiosAdmiEmpresa(admi_empresa.nombre_usuario, admi_empresa.empresa, admi_empresa)"se crea un evento click, para que haga cosas cuando se pulse el botón-->
+                    Guardar cambios
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+

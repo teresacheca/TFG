@@ -135,7 +135,7 @@ class ReservasController {
     guardarCambiosAdmiEmpresa(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log("2");
-            yield basedatos_1.default.promise().query('UPDATE Usuarios set ? WHERE id = ?', [req.body, req.params.id]);
+            yield basedatos_1.default.promise().query('UPDATE Usuarios set ? WHERE nombre_usuario', [req.body, req.params.nombre_usuario]);
             res.json({ message: 'La reserva fue actualizada' });
         });
     }
@@ -169,6 +169,37 @@ class ReservasController {
             console.log("23");
             const usuario = yield basedatos_1.default.promise().query('SELECT * FROM usuarios WHERE nombre_usuario = ?', [req.params.nombre_usuario]);
             const rows = usuario[0]; // Accede a los resultados utilizando la posición 0
+            res.json(rows);
+        });
+    }
+    getDatosAdministradorEmpresa(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log("!!!");
+            console.log(req.params.id);
+            const usuarios = yield basedatos_1.default.promise().query('SELECT * FROM Usuarios WHERE nombre_usuario = ?', [req.params.nombre_usuario]);
+            const rows = usuarios[0]; // Accede a los resultados utilizando la posición 0
+            res.json(rows);
+        });
+    }
+    guardarCambiosUsuario(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log("2");
+            yield basedatos_1.default.promise().query('UPDATE Usuarios set ? WHERE nombre_usuario = ?', [req.body, req.params.nombre_usuario]);
+            res.json({ message: 'La reserva fue actualizada' });
+        });
+    }
+    eliminarCuentaAdmiEmpresaAe(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const aux = yield basedatos_1.default.promise().query('DELETE FROM Usuarios WHERE nombre_usuario= ?', [req.params.nombre_usuario]);
+            console.log("aux" + aux);
+            res.json({ message: 'la reserva fue eliminada' });
+        });
+    }
+    getUsuariosEmpresaAe(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuarios = yield basedatos_1.default.promise().query('SELECT * FROM Usuarios WHERE empresa = ? and tipo = 2', [req.params.nombre_empresa]);
+            const rows = usuarios[0]; // Accede a los resultados utilizando la posición 0
+            console.log(rows);
             res.json(rows);
         });
     }

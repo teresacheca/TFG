@@ -17,6 +17,8 @@ import { EditarEmpresaComponent } from './editar-empresa/editar-empresa.componen
 import { AgEditaAdmiEmpresaComponent } from './ag-edita-admi-empresa/ag-edita-admi-empresa.component';
 import { VerSolicitudComponent } from './ver-solicitud/ver-solicitud.component';
 import { AgVeUsuarioComponent } from './ag-ve-usuario/ag-ve-usuario.component';
+import { AeEditaPerfilComponent } from './ae-edita-perfil/ae-edita-perfil.component';
+import { AeListaUsuariosComponent } from './ae-lista-usuarios/ae-lista-usuarios.component';
 
 //rutas para rederigir dentro de la página
 const routes: Routes = [
@@ -101,6 +103,7 @@ const routes: Routes = [
     path: 'reservas/empresas/:nombre_empresa/editar_pefil',
     component: EditarEmpresaComponent
   },
+  //ADMI Empresa
   {
     path: 'reservas/admi_general/:nombre_usuario',
     component: AdmiGeneralComponent
@@ -109,6 +112,38 @@ const routes: Routes = [
     path: 'reservas/admi_empresa/:nombre_usuario',
     component: AdmiEmpresaComponent
   },
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/editar',
+    component: AeEditaPerfilComponent
+  },
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/editar/guardar',
+    component: AeEditaPerfilComponent
+  },
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/editar/eliminar',
+    component: AeEditaPerfilComponent
+  },
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_usuarios',
+    component: AeListaUsuariosComponent
+  },
+  /*{
+    path: 'reservas/admi_empresa/:nombre_usuario/lista_usuarios/:id',
+    component: AeVeUsuarioComponent
+  },
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/lista_usuarios/:id/get',
+    component: AeVeUsuarioComponent
+  },
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/:id',
+    component: AeEditaPerfilComponent
+  },
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/lista_usuarios/:id/eliminar',
+    component: AeVeUsuarioComponent
+  },*/
   {
     path: 'reservas/usuario/:nombre_usuario',
     component: UsuariosComponent

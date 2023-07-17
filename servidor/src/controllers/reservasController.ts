@@ -110,7 +110,7 @@ class ReservasController{
 
     public async guardarCambiosAdmiEmpresa(req: Request, res: Response) { //listar todas las reservas
         console.log("2")
-        await pool.promise().query('UPDATE Usuarios set ? WHERE id = ?', [req.body, req.params.id]);
+        await pool.promise().query('UPDATE Usuarios set ? WHERE nombre_usuario', [req.body, req.params.nombre_usuario]);
         res.json({message: 'La reserva fue actualizada'})
     }
     public async getSolicitud(req: Request, res: Response) { 
@@ -140,6 +140,33 @@ class ReservasController{
         console.log("23")
         const usuario = await pool.promise().query('SELECT * FROM usuarios WHERE nombre_usuario = ?', [req.params.nombre_usuario]);
         const rows = usuario[0]; // Accede a los resultados utilizando la posición 0
+        res.json(rows);
+    }
+
+    public async getDatosAdministradorEmpresa(req: Request, res: Response) { //listar todas las reservas
+        console.log("!!!")
+        console.log(req.params.id)
+        const usuarios = await pool.promise().query('SELECT * FROM Usuarios WHERE nombre_usuario = ?', [req.params.nombre_usuario]);
+        const rows = usuarios[0]; // Accede a los resultados utilizando la posición 0
+        res.json(rows);
+    }
+
+    public async guardarCambiosUsuario(req: Request, res: Response) { //listar todas las reservas
+        console.log("2")
+        await pool.promise().query('UPDATE Usuarios set ? WHERE nombre_usuario = ?', [req.body, req.params.nombre_usuario]);
+        res.json({message: 'La reserva fue actualizada'})
+    }
+
+    public async eliminarCuentaAdmiEmpresaAe(req: Request, res: Response){
+        const aux = await pool.promise().query('DELETE FROM Usuarios WHERE nombre_usuario= ?', [req.params.nombre_usuario]);
+        console.log("aux" + aux)
+        res.json({message: 'la reserva fue eliminada'}) 
+    }
+
+    public async getUsuariosEmpresaAe(req: Request, res: Response) { //listar todas las reservas
+        const usuarios = await pool.promise().query('SELECT * FROM Usuarios WHERE empresa = ? and tipo = 2', [req.params.nombre_empresa]);
+        const rows = usuarios[0]; // Accede a los resultados utilizando la posición 0
+        console.log(rows)
         res.json(rows);
     }
 }

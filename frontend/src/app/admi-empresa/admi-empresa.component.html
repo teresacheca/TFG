@@ -6,8 +6,19 @@
             <form>
                 <div class="form-group">
                     <p>Nombre: {{ admi_empresa.nombre_usuario }} </p>
-                    
                 </div>  
+                <button (click)="verUsuarios()">
+                    Usuarios de la empresa
+                </button>
+                <button>
+                    Recursos/servicios
+                </button>
+                <button>
+                    Reservas
+                </button>
+                <button (click)="editarPerfil()">
+                    Editar perfil
+                </button>
             </form>
         </div>
     </div>

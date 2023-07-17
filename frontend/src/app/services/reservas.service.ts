@@ -72,8 +72,8 @@ export class ReservasService {
     return this.http.get(`${this.API_URI}/reservas/empresas/${nombre_empresa}/lista_usuarios`)
   }
 
-  getAdministradorEmpresa(id: number, empresa: string){ //devuelve todas las reservas
-    return this.http.get(`${this.API_URI}/reservas/empresas/${empresa}/lista_administradores/${id}`)
+  getAdministradorEmpresa(nombre_usuario: string, nombre_empresa: string){ //devuelve todas las reservas
+    return this.http.get(`${this.API_URI}/reservas/empresas/${nombre_empresa}/lista_administradores/${nombre_usuario}`)
   }
 
   eliminarCuentaAdmiEmpresa(id: number, empresa: string){ //devuelve todas las reservas
@@ -99,4 +99,23 @@ export class ReservasService {
     return this.http.get(`${this.API_URI}/reservas/empresas/${nombre_empresa}/lista_usuarios/${nombre_usuario}`);
   }
   
+  getUsuarioNombre(nombre: string){ //devuelve todas las reservas
+    return this.http.get(`${this.API_URI}/reservas/admi_empresa/${nombre}/get`)
+  }
+
+  getDatosAdministradorEmpresa(nombre_usuario: string, nombre_empresa: string){ //devuelve todas las reservas
+    return this.http.get(`${this.API_URI}/reservas/admi_empresa/${nombre_usuario}/editar`)
+  }
+
+  guardarCambiosAdmiEmpresaAe(nombre_usuario: string, nuevoAdmi: Usuario){ //devuelve todas las reservas
+    return this.http.put(`${this.API_URI}/reservas/admi_empresa/${nombre_usuario}/editar/guardar`, nuevoAdmi)
+  }
+
+  eliminarCuentaAdmiEmpresaAe(nombre_usuario: string){ //devuelve todas las reservas
+    return this.http.delete(`${this.API_URI}/reservas/admi_empresa/${nombre_usuario}/editar/eliminar`)
+  }
+
+  getUsuariosEmpresaAe(nombre_usuario: string, nombre_empresa: string){ //devuelve todas las reservas
+    return this.http.get(`${this.API_URI}/reservas/admi_empresa/${nombre_usuario}/${nombre_empresa}/lista_usuarios`)
+  }
 }

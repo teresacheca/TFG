@@ -21,6 +21,10 @@ import { AeEditaPerfilComponent } from './ae-edita-perfil/ae-edita-perfil.compon
 import { AeListaUsuariosComponent } from './ae-lista-usuarios/ae-lista-usuarios.component';
 import { AeEditaUsuarioComponent } from './ae-edita-usuario/ae-edita-usuario.component';
 import { AeAniadeUsuarioComponent } from './ae-aniade-usuario/ae-aniade-usuario.component';
+import { AeListaRecursosComponent } from './ae-lista-recursos/ae-lista-recursos.component';
+import { AeDatosRecursoComponent } from './ae-datos-recurso/ae-datos-recurso.component';
+import { AeEditaRecursoComponent } from './ae-edita-recurso/ae-edita-recurso.component';
+import { AeAniadeRecursoComponent } from './ae-aniade-recurso/ae-aniade-recurso.component';
 
 //rutas para rederigir dentro de la página
 const routes: Routes = [
@@ -150,28 +154,33 @@ const routes: Routes = [
     path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_usuarios/:id/eliminar',
     component: AeEditaUsuarioComponent
   },
-
   {
     path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos',
-    component: AeEditaUsuarioComponent
+    component: AeListaRecursosComponent
+  },
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos/get',
+    component: AeListaRecursosComponent
+  },
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos/aniade',
+    component: AeAniadeRecursoComponent
+  },
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos/:id_recursoservicio',
+    component: AeDatosRecursoComponent
+  },
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos/:id_recursoservicio/editar',
+    component: AeEditaRecursoComponent
+  },
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos/:id_recursoservicio/eliminar',
+    component: AeEditaRecursoComponent
   },
   
-  /*{
-    path: 'reservas/admi_empresa/:nombre_usuario/lista_usuarios/:id',
-    component: AeVeUsuarioComponent
-  },
-  {
-    path: 'reservas/admi_empresa/:nombre_usuario/lista_usuarios/:id/get',
-    component: AeVeUsuarioComponent
-  },
-  {
-    path: 'reservas/admi_empresa/:nombre_usuario/:id',
-    component: AeEditaPerfilComponent
-  },
-  {
-    path: 'reservas/admi_empresa/:nombre_usuario/lista_usuarios/:id/eliminar',
-    component: AeVeUsuarioComponent
-  },*/
+
+
   {
     path: 'reservas/usuario/:nombre_usuario',
     component: UsuariosComponent

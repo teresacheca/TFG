@@ -51,12 +51,13 @@ CREATE TABLE Usuarios (
 );
 
 CREATE TABLE RecursoServicio (
-    nombre_rs VARCHAR(100) NOT NULL PRIMARY KEY,
+    nombre_rs VARCHAR(100) NOT NULL,
     descripcion VARCHAR(100),
     foto VARCHAR(100),
     datos VARCHAR(100),
     aforo INT(10),
-    nombre_empresa VARCHAR(100)
+    nombre_empresa VARCHAR(100),
+    id_recursoservicio INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY
 );
 
 CREATE TABLE Reservas (
@@ -201,7 +202,7 @@ INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_
 VALUES ('Recurso 4', 'Descripción del recurso 4', 'foto4.jpg', 'Datos del recurso 4', 120, 'EmpresaB');
 
 INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa)
-VALUES ('Recurso 5', 'Descripción del recurso 4', 'foto4.jpg', 'Datos del recurso 4',,80, 'EmpresaC');
+VALUES ('Recurso 5', 'Descripción del recurso 5', 'foto5.jpg', 'Datos del recurso 5', 80, 'EmpresaC');
 
 INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa)
 VALUES ('Recurso 6', 'Esta es una descripción muy larga que tiene más de 100 caracteres y se trunca para ajustarse a la restricción de longitud', 'foto6.jpg', 'Datos del recurso 6', 90, 'EmpresaC');

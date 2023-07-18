@@ -232,6 +232,36 @@ class ReservasController {
             res.json({ message: 'el usuario se ha creado' });
         });
     }
+    getRecursosAe(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const recursos = yield basedatos_1.default.promise().query('SELECT * FROM RecursoServicio WHERE nombre_empresa = ?', [req.params.nombre_empresa]);
+            const rows = recursos[0]; // Accede a los resultados utilizando la posición 0
+            console.log(rows);
+            res.json(rows);
+        });
+    }
+    getDatosRecursoAe(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const recurso = yield basedatos_1.default.promise().query('SELECT * FROM RecursoServicio WHERE id_recursoservicio = ?', [req.params.id_recursoservicio]);
+            const rows = recurso[0]; // Accede a los resultados utilizando la posición 0
+            console.log(rows);
+            res.json(rows);
+        });
+    }
+    guardarCambiosRecursoAe(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log("2");
+            yield basedatos_1.default.promise().query('UPDATE RecursoServicio set ? WHERE id_recursoservicio = ?', [req.body, req.params.id_recursoservicio]);
+            res.json({ message: 'El recurso fue actualizada' });
+        });
+    }
+    eliminarRescursoAe(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const aux = yield basedatos_1.default.promise().query('DELETE FROM RecursoServicio WHERE id_recursoservicio= ?', [req.params.id_recursoservicio]);
+            console.log("aux" + aux);
+            res.json({ message: 'El recurso fue eliminada' });
+        });
+    }
 }
 const reservasController = new ReservasController();
 exports.default = reservasController;

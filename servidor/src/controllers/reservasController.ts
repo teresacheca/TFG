@@ -194,6 +194,32 @@ class ReservasController{
         pool.query('INSERT INTO Usuarios (nombre_usuario, contrasena, fecha_nacimiento, puesto_trabajo, empresa, tipo) VALUES (?, ?, ?, ?, ?, ?)', [req.body.nombre_usuario, req.body.contrasena, req.body.fecha_nacimiento, req.body.puesto_trabajo, req.body.empresa, 2]);
         res.json({message: 'el usuario se ha creado'});
     }
+
+    public async getRecursosAe(req: Request, res: Response) { //listar todas las reservas
+        const recursos = await pool.promise().query('SELECT * FROM RecursoServicio WHERE nombre_empresa = ?', [req.params.nombre_empresa]);
+        const rows = recursos[0]; // Accede a los resultados utilizando la posición 0
+        console.log(rows)
+        res.json(rows);
+    }
+
+    public async getDatosRecursoAe(req: Request, res: Response) { //listar todas las reservas
+        const recurso = await pool.promise().query('SELECT * FROM RecursoServicio WHERE id_recursoservicio = ?', [req.params.id_recursoservicio]);
+        const rows = recurso[0]; // Accede a los resultados utilizando la posición 0
+        console.log(rows)
+        res.json(rows);
+    }
+
+    public async guardarCambiosRecursoAe(req: Request, res: Response) { //listar todas las reservas
+        console.log("2")
+        await pool.promise().query('UPDATE RecursoServicio set ? WHERE id_recursoservicio = ?', [req.body, req.params.id_recursoservicio]);
+        res.json({message: 'El recurso fue actualizada'})
+    }
+
+    public async eliminarRescursoAe(req: Request, res: Response){
+        const aux = await pool.promise().query('DELETE FROM RecursoServicio WHERE id_recursoservicio= ?', [req.params.id_recursoservicio]);
+        console.log("aux" + aux)
+        res.json({message: 'El recurso fue eliminada'}) 
+    }
 }
 
 const reservasController = new ReservasController();

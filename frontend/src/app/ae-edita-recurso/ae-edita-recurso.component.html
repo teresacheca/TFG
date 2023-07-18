@@ -1,0 +1,35 @@
+<div class="col-md-4 offset-md-2"> <!--para que esté centrado-->
+
+    <div class="card">
+        <div class="card-body">
+            <form>
+                <div>
+                    Nombre:
+                    <input type="text" name="nombre_rs" [(ngModel)]="recurso.nombre_rs">
+                </div>
+                <div>
+                    Descripcion:
+                    <input type="text" name="descripcion" [(ngModel)]="recurso.descripcion">
+                </div>
+                <div>
+                    Foto:
+                    <input type="text" name="foto" [(ngModel)]="recurso.foto">
+                </div>
+                <div>
+                    Datos:
+                    <input type="text" name="datos" [(ngModel)]="recurso.datos">
+                </div>
+                <div>
+                    Aforo:
+                    <input type="text" name="aforo" [(ngModel)]="recurso.aforo">
+                </div>
+                <button  (click)="eliminarRescursoAe(recurso.id_recursoservicio)"> <!-- se crea un evento click, para que haga cosas cuando se pulse el botón-->
+                    Eliminar cuenta
+                </button>
+                <button (click)="guardarCambiosRecursoAe(recurso.id_recursoservicio, recurso)"> <!-- (click)="guardarCambiosAdmiEmpresa(admi_empresa.nombre_usuario, admi_empresa.empresa, admi_empresa)"se crea un evento click, para que haga cosas cuando se pulse el botón-->
+                    Guardar cambios
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

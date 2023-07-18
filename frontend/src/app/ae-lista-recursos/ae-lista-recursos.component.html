@@ -1,0 +1,28 @@
+<div class="col-md-2" *ngFor="let recurso of recursos">
+    <!--col-md-2 -> crea 2 columnas, ngFor -> para recorrer todas las reservas-->
+    <div class="card-text-center">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+            <!--bg-dark: de color oscuro, text-white: para hacer el texto de color blanco-->
+            {{recurso.nombre_rs}}
+            <button class=" btn-danger">
+                <i class="far fa-trash-alt"></i>
+            </button>
+        </div>
+        <div class="card-body">
+           <p>{{recurso.descripcion}}</p> 
+           <p>{{recurso.foto}}</p> 
+           <p>{{recurso.datos}}</p> 
+           <p>{{recurso.aforo}}</p> 
+        </div>
+        <button (click)="AeVeRecurso(recurso.id_recursoservicio)">
+            Ver
+        </button>
+        <button (click)="AeEditaRecurso(recurso.id_recursoservicio)">
+            Editar
+        </button>
+    </div>
+    
+</div>
+<button (click)="AeAnidadeRecurso()">
+    Añadir recurso o servicio
+</button>

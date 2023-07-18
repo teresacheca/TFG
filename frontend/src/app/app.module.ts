@@ -27,7 +27,11 @@ import { AgVeUsuarioComponent } from './ag-ve-usuario/ag-ve-usuario.component';
 import { AeEditaPerfilComponent } from './ae-edita-perfil/ae-edita-perfil.component';
 import { AeListaUsuariosComponent } from './ae-lista-usuarios/ae-lista-usuarios.component';
 import { AeEditaUsuarioComponent } from './ae-edita-usuario/ae-edita-usuario.component';
-import { AeAniadeUsuarioComponent } from './ae-aniade-usuario/ae-aniade-usuario.component'
+import { AeAniadeUsuarioComponent } from './ae-aniade-usuario/ae-aniade-usuario.component';
+import { AeListaRecursosComponent } from './ae-lista-recursos/ae-lista-recursos.component';
+import { AeDatosRecursoComponent } from './ae-datos-recurso/ae-datos-recurso.component';
+import { AeEditaRecursoComponent } from './ae-edita-recurso/ae-edita-recurso.component';
+import { AeAniadeRecursoComponent } from './ae-aniade-recurso/ae-aniade-recurso.component'
 
 
 @NgModule({
@@ -54,6 +58,10 @@ import { AeAniadeUsuarioComponent } from './ae-aniade-usuario/ae-aniade-usuario.
     AeListaUsuariosComponent,
     AeEditaUsuarioComponent,
     AeAniadeUsuarioComponent,
+    AeListaRecursosComponent,
+    AeDatosRecursoComponent,
+    AeEditaRecursoComponent,
+    AeAniadeRecursoComponent,
   ],
   imports: [
     BrowserModule,

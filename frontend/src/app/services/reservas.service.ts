@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http'; //para hacer peticiones http
 import {Reserva} from '../modelos/Reservas' ///importar la interfaz
 import {Empresa} from '../modelos/Empresas' ///importar la interfaz
 import {Usuario} from '../modelos/Usuarios' ///importar la interfaz
+import {Recurso} from '../modelos/Recursos'
 
 @Injectable({
   providedIn: 'root'
@@ -132,10 +133,23 @@ export class ReservasService {
   }
 
   AeaniadeUsuario(usuario: Usuario, nombre_admi: string, nombre_empresa: string){
-    console.log(usuario)
-    console.log(nombre_admi)
-    console.log(nombre_empresa)
     return this.http.post(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_usuarios/aniade/guardar`, usuario)
+  }
+
+  getRecursosAe(nombre_admi: string, nombre_empresa: string){
+    return this.http.get(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_recursos/get`)
+  }
+  
+  getDatosRecursoAe(nombre_admi: string, nombre_empresa: string, id_recursoservicio: number){
+    return this.http.get(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_recursos/${id_recursoservicio}`)
+  }
+
+  guardarCambiosRecursoAe(nombre_admi: string, nombre_empresa: string, id_recursoservicio: number, nuevoRecurso: Recurso){ //devuelve todas las reservas
+    return this.http.put(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_recursos/${id_recursoservicio}/editar`, nuevoRecurso)
+  }
+
+  eliminarRescursoAe(nombre_admi: string, nombre_empresa: string, id_recursoservicio: number){ //devuelve todas las reservas
+    return this.http.delete(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_recursos/${id_recursoservicio}/eliminar`)
   }
 
 }

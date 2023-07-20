@@ -35,7 +35,12 @@ import { AeAniadeRecursoComponent } from './ae-aniade-recurso/ae-aniade-recurso.
 import { AeListaReservasComponent } from './ae-lista-reservas/ae-lista-reservas.component';
 import { AeVeReservaComponent } from './ae-ve-reserva/ae-ve-reserva.component';
 import { AeEditaReservaComponent } from './ae-edita-reserva/ae-edita-reserva.component';
-import { UsuarioEditaPerfilComponent } from './usuario-edita-perfil/usuario-edita-perfil.component'
+import { UsuarioEditaPerfilComponent } from './usuario-edita-perfil/usuario-edita-perfil.component';
+import { UsuarioVeReservasComponent } from './usuario-ve-reservas/usuario-ve-reservas.component';
+import { UsuarioRealizaReservaComponent } from './usuario-realiza-reserva/usuario-realiza-reserva.component';
+import { UsuarioInfoReservaComponent } from './usuario-info-reserva/usuario-info-reserva.component';
+import { UsuarioEditaReservaComponent } from './usuario-edita-reserva/usuario-edita-reserva.component';
+import { UsuarioRealizaReservaRecursoComponent } from './usuario-realiza-reserva-recurso/usuario-realiza-reserva-recurso.component'
 
 
 @NgModule({
@@ -70,6 +75,11 @@ import { UsuarioEditaPerfilComponent } from './usuario-edita-perfil/usuario-edit
     AeVeReservaComponent,
     AeEditaReservaComponent,
     UsuarioEditaPerfilComponent,
+    UsuarioVeReservasComponent,
+    UsuarioRealizaReservaComponent,
+    UsuarioInfoReservaComponent,
+    UsuarioEditaReservaComponent,
+    UsuarioRealizaReservaRecursoComponent,
   ],
   imports: [
     BrowserModule,

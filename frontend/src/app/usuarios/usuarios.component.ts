@@ -34,5 +34,15 @@ export class UsuariosComponent {
     this.router.navigate([ruta])
   }
 
+  usuarioVeReservas(){
+    let ruta = this.router.url + '/reservas'
+    this.router.navigate([ruta])
+  }
+
+  usuarioRealizaReserva(){
+    let ruta = this.router.url + '/realiza_reserva'
+    this.router.navigate([ruta])
+  }
+
   
 }

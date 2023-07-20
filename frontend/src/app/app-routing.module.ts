@@ -27,6 +27,11 @@ import { AeListaReservasComponent } from './ae-lista-reservas/ae-lista-reservas.
 import { AeVeReservaComponent } from './ae-ve-reserva/ae-ve-reserva.component';
 import { AeEditaReservaComponent } from './ae-edita-reserva/ae-edita-reserva.component';
 import { UsuarioEditaPerfilComponent } from './usuario-edita-perfil/usuario-edita-perfil.component';
+import { UsuarioVeReservasComponent } from './usuario-ve-reservas/usuario-ve-reservas.component';
+import { UsuarioRealizaReservaComponent } from './usuario-realiza-reserva/usuario-realiza-reserva.component';
+import { UsuarioInfoReservaComponent } from './usuario-info-reserva/usuario-info-reserva.component';
+import { UsuarioEditaReservaComponent } from './usuario-edita-reserva/usuario-edita-reserva.component';
+import { UsuarioRealizaReservaRecursoComponent } from './usuario-realiza-reserva-recurso/usuario-realiza-reserva-recurso.component';
 
 //rutas para rederigir dentro de la página
 const routes: Routes = [
@@ -214,8 +219,51 @@ const routes: Routes = [
     path: 'reservas/usuario/:nombre_usuario/eliminar',
     component: UsuarioEditaPerfilComponent
   },
-
-
+  {
+    path: 'reservas/usuario/:nombre_usuario/reservas',
+    component: UsuarioVeReservasComponent
+  },
+  {
+    path: 'reservas/usuario/:nombre_usuario/reservas/ver/:id_reserva',
+    component: UsuarioInfoReservaComponent
+  },
+  {
+    path: 'reservas/usuario/:nombre_usuario/reservas/ver/:id_reserva/editar',
+    component: UsuarioEditaReservaComponent
+  },
+  {
+    path: 'reservas/usuario/:nombre_usuario/reservas/ver/:id_reserva/editar/guardar',
+    component: UsuarioEditaReservaComponent
+  },
+  {
+    path: 'reservas/usuario/:nombre_usuario/reservas/ver/:id_reserva/eliminar',
+    component: UsuarioEditaReservaComponent
+  },
+  {
+    path: 'reservas/usuario/:nombre_usuario/reservas/:nombre_empresa',
+    component: UsuarioVeReservasComponent
+  }, 
+  {
+    path: 'reservas/usuario/:nombre_usuario/realiza_reserva',
+    component: UsuarioRealizaReservaComponent
+  }, 
+  {
+    path: 'reservas/usuario/:nombre_usuario/realiza_reserva/recurso/:id_recursoservicio',
+    component: UsuarioRealizaReservaRecursoComponent
+  },
+  {
+    path: 'reservas/usuario/:nombre_usuario/realiza_reserva/recurso/:id_recursoservicio/get',
+    component: UsuarioRealizaReservaRecursoComponent
+  },
+  {
+    path: 'reservas/usuario/:nombre_usuario/realiza_reserva/recurso/:id_recursoservicio/reserva',
+    component: UsuarioRealizaReservaRecursoComponent
+  },
+  {
+    path: 'reservas/usuario/:nombre_usuario/realiza_reserva/:nombre_empresa',
+    component: UsuarioRealizaReservaComponent
+  }, 
+  
   
   {
     path: 'reservas/admi_general/:nombre_usuario/empresas',

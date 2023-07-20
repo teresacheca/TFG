@@ -1,0 +1,53 @@
+<p *ngIf="vacio else lista">
+    No hay reservas en esta empresa
+</p>
+
+<ng-template #lista>
+    <h1>MIS RESERVAS</h1>
+    <div class="col-md-2" *ngFor="let reserva of mis_reservas">
+        <!--col-md-2 -> crea 2 columnas, ngFor -> para recorrer todas las reservas-->
+        <div class="card-text-center">
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                <!--bg-dark: de color oscuro, text-white: para hacer el texto de color blanco-->
+                {{reserva.nombre_rs}}
+                <button class=" btn-danger">
+                    <i class="far fa-trash-alt"></i>
+                </button>
+            </div>
+            <div class="card-body">
+               <p>{{reserva.fecha}}</p> 
+               <p>{{reserva.hora}}</p> 
+               <p>{{reserva.nombre_usuario}}</p> 
+               <p>{{reserva.nombre_empresa}}</p> 
+            </div>
+            <button (click)="verReserva(reserva.id_reserva)">
+                Ver
+            </button>
+        </div>
+        
+    </div>
+    <h1>TODAS LAS RESERVAS</h1>
+    <div class="col-md-2" *ngFor="let reserva of reservas_empresa">
+        <!--col-md-2 -> crea 2 columnas, ngFor -> para recorrer todas las reservas-->
+        <div class="card-text-center">
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                <!--bg-dark: de color oscuro, text-white: para hacer el texto de color blanco-->
+                {{reserva.nombre_rs}}
+                <button class=" btn-danger">
+                    <i class="far fa-trash-alt"></i>
+                </button>
+            </div>
+            <div class="card-body">
+               <p>{{reserva.fecha}}</p> 
+               <p>{{reserva.hora}}</p> 
+               <p>{{reserva.nombre_usuario}}</p> 
+               <p>{{reserva.nombre_empresa}}</p> 
+            </div>
+            <button (click)="verReserva(reserva.id_reserva)">
+                Ver
+            </button>
+        </div>
+        
+    </div>
+    
+</ng-template>

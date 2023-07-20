@@ -197,7 +197,7 @@ class ReservasController {
             res.json({ message: 'el usuario se ha creado' });
         });
     }
-    getRecursosAe(req, res) {
+    getRecursos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const recursos = yield basedatos_1.default.promise().query('SELECT * FROM RecursoServicio WHERE nombre_empresa = ?', [req.params.nombre_empresa]);
             const rows = recursos[0]; // Accede a los resultados utilizando la posición 0
@@ -205,7 +205,7 @@ class ReservasController {
             res.json(rows);
         });
     }
-    getDatosRecursoAe(req, res) {
+    getDatosRecurso(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const recurso = yield basedatos_1.default.promise().query('SELECT * FROM RecursoServicio WHERE id_recursoservicio = ?', [req.params.id_recursoservicio]);
             const rows = recurso[0]; // Accede a los resultados utilizando la posición 0
@@ -249,13 +249,13 @@ class ReservasController {
             res.json(rows);
         });
     }
-    AeguardaCambiosReserva(req, res) {
+    guardaCambiosReserva(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             yield basedatos_1.default.promise().query('UPDATE Reservas set ? WHERE id_reserva = ?', [req.body, req.params.id_reserva]);
             res.json({ message: 'La reserva fue actualizada' });
         });
     }
-    AeEliminaReserva(req, res) {
+    eliminaReserva(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const aux = yield basedatos_1.default.promise().query('DELETE FROM Reservas WHERE id_reserva= ?', [req.params.id_reserva]);
             res.json({ message: 'La reserva fue eliminada' });
@@ -264,8 +264,10 @@ class ReservasController {
     getUsuario(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log("23");
-            const usuario = yield basedatos_1.default.promise().query('SELECT * FROM usuarios WHERE nombre_usuario = ?', [req.params.nombre_usuario]);
+            console.log(req.params);
+            const usuario = yield basedatos_1.default.promise().query('SELECT * FROM Usuarios WHERE nombre_usuario = ?', [req.params.nombre_usuario]);
             const rows = usuario[0]; // Accede a los resultados utilizando la posición 0
+            console.log(usuario[0]);
             res.json(rows);
         });
     }
@@ -279,7 +281,31 @@ class ReservasController {
     eliminarCuentaUsuarioUsu(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const aux = yield basedatos_1.default.promise().query('DELETE FROM Usuarios WHERE nombre_usuario= ?', [req.params.nombre_usuario]);
+            yield basedatos_1.default.promise().query('DELETE FROM Reservas WHERE nombre_usuario= ?', [req.params.nombre_usuario]);
             res.json({ message: 'el usuario fue eliminada' });
+        });
+    }
+    getReservasDelUsuario(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log("23");
+            const usuario = yield basedatos_1.default.promise().query('SELECT * FROM Reservas WHERE nombre_usuario = ?', [req.params.nombre_usuario]);
+            const rows = usuario[0]; // Accede a los resultados utilizando la posición 0
+            res.json(rows);
+        });
+    }
+    getReservasEmpresa(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log("23");
+            const reservas = yield basedatos_1.default.promise().query('SELECT * FROM Reservas WHERE nombre_empresa = ?', [req.params.nombre_empresa]);
+            const rows = reservas[0]; // Accede a los resultados utilizando la posición 0
+            res.json(rows);
+        });
+    }
+    crearReserva(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let fecha = new Date(req.body.fecha);
+            basedatos_1.default.query('INSERT INTO Reservas (nombre_rs, nombre_usuario, nombre_empresa, fecha, hora) VALUES (?, ?, ?, ?, ?)', [req.body.nombre_rs, req.body.nombre_usuario, req.body.nombre_empresa, fecha, req.body.hora]);
+            res.json({ message: 'la reserva se ha creado' });
         });
     }
 }

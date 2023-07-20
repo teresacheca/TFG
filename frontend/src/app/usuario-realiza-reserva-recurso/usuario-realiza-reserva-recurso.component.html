@@ -1,0 +1,29 @@
+<div class="col-md-4 offset-md-2"> <!--para que esté centrado-->
+
+    <div class="card">
+        <div class="card-body">
+            <form>
+                <div>
+                    Recurso:
+                    <input type="text" name="nombre_rs" [(ngModel)]="reserva.nombre_rs">
+                </div>
+                <div>
+                    Usuarios:
+                    <input type="text" name="nombre_usuario" [(ngModel)]="reserva.nombre_usuario">
+                </div>
+                <div>
+                    Fecha:
+                    <input type="text" name="fecha" [(ngModel)]="reserva.fecha">
+                </div>
+                <div>
+                    Hora:
+                    <input type="text" name="hora" [(ngModel)]="reserva.hora">
+                </div>
+                <button (click)="crearReserva(reserva)">
+                    Crear reserva
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+

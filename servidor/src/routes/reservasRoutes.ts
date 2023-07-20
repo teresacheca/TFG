@@ -22,20 +22,29 @@ class ReservasRoutes{
         this.router.delete('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_usuarios/:id/eliminar', reservasController.eliminarCuentaUsuarioAe);
         this.router.post('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_usuarios/aniade/guardar', reservasController.AeaniadeUsuario);
 
-        this.router.get('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos/get', reservasController.getRecursosAe);
-        this.router.get('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos/:id_recursoservicio', reservasController.getDatosRecursoAe);
+        this.router.get('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos/get', reservasController.getRecursos);
+        this.router.get('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos/:id_recursoservicio', reservasController.getDatosRecurso);
         this.router.put('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos/:id_recursoservicio/editar', reservasController.guardarCambiosRecursoAe);
         this.router.delete('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos/:id_recursoservicio/eliminar', reservasController.eliminarRescursoAe);
         this.router.post('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos/aniade/guardar', reservasController.AeaniadeRecurso);
 
         this.router.get('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_reservas/get', reservasController.getReservasAe);
         this.router.get('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_reservas/:id_reserva', reservasController.getReservaId);
-        this.router.put('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_reservas/:id_reserva/editar/guardar', reservasController.AeguardaCambiosReserva);
-        this.router.delete('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_reservas/:id_reserva/editar/guardar', reservasController.AeEliminaReserva);
+        this.router.put('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_reservas/:id_reserva/editar/guardar', reservasController.guardaCambiosReserva);
+        this.router.delete('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_reservas/:id_reserva/editar/guardar', reservasController.eliminaReserva);
 
         this.router.get('/usuario/:nombre_usuario/editar', reservasController.getUsuario); 
         this.router.put('/usuario/:nombre_usuario/editar/guardar', reservasController.guardarCambiosUsuarioUsu);
         this.router.delete('/usuario/:nombre_usuario/eliminar', reservasController.eliminarCuentaUsuarioUsu);
+        this.router.get('/usuario/:nombre_usuario/reservas', reservasController.getReservasDelUsuario);
+        this.router.get('/usuario/:nombre_usuario/reservas/:nombre_empresa', reservasController.getReservasEmpresa);
+        this.router.get('/usuario/:nombre_usuario/reservas/ver/:id_reserva', reservasController.getReservaId);
+        this.router.put('/usuario/:nombre_usuario/reservas/ver/:id_reserva/editar/guardar', reservasController.guardaCambiosReserva);
+        this.router.delete('/usuario/:nombre_usuario/reservas/ver/:id_reserva/eliminar', reservasController.eliminaReserva);
+
+        this.router.get('/usuario/:nombre_usuario/realiza_reserva/:nombre_empresa', reservasController.getRecursos);
+        this.router.get('/usuario/:nombre_usuario/realiza_reserva/recurso/:id_recursoservicio/get', reservasController.getDatosRecurso);
+        this.router.post('/usuario/:nombre_usuario/realiza_reserva/recurso/:id_recursoservicio/reserva', reservasController.crearReserva);
 
         this.router.get('/empresas', reservasController.getEmpresas); 
         this.router.get('/empresas/:nombre_empresa', reservasController.getEmpresa); 

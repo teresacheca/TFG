@@ -173,6 +173,8 @@ export class ReservasService {
   }
 
   getUsuario(nombre_usuario: string){
+    console.log("nombre")
+    console.log(nombre_usuario)
     return this.http.get(`${this.API_URI}/reservas/usuario/${nombre_usuario}/editar`)
   }
 
@@ -185,5 +187,39 @@ export class ReservasService {
     console.log(nombre_usuario)
     return this.http.delete(`${this.API_URI}/reservas/usuario/${nombre_usuario}/eliminar`)
   }
+
+  getReservasDelUsuario(nombre_usuario: string){
+    return this.http.get(`${this.API_URI}/reservas/usuario/${nombre_usuario}/reservas`)
+  }
+
+  getReservasEmpresa(nombre_usuario: string, nombre_empresa: string){
+    return this.http.get(`${this.API_URI}/reservas/usuario/${nombre_usuario}/reservas/${nombre_empresa}`)
+  }
+
+  getReservaIdUsu(nombre_usuario: string, id_reserva: number){
+    return this.http.get(`${this.API_URI}/reservas/usuario/${nombre_usuario}/reservas/ver/${id_reserva}`)
+  }
+
+  guardaCambiosReservaUsu(nombre_usuario: string, id_reserva: number, nuevaReserva: Reserva){
+    return this.http.put(`${this.API_URI}/reservas/usuario/${nombre_usuario}/reservas/ver/${id_reserva}/editar/guardar`, nuevaReserva)
+  }
+
+  eliminaReservaUsu(nombre_usuario: string, id_reserva: number){
+    return this.http.delete(`${this.API_URI}/reservas/usuario/${nombre_usuario}/reservas/ver/${id_reserva}/eliminar`)
+  }
+
+  getRecursos(nombre_usuario: string, nombre_empresa: string){
+    return this.http.get(`${this.API_URI}/reservas/usuario/${nombre_usuario}/realiza_reserva/${nombre_empresa}`)
+  }
+
+  getDatosRecursoUsu(nombre_usuario: string, id_recursoservicio: number){
+    return this.http.get(`${this.API_URI}/reservas/usuario/${nombre_usuario}/realiza_reserva/recurso/${id_recursoservicio}/get`)
+  }
+
+  crearReserva(nombre_usuario: string, id_recursoservicio: number, nuevaReserva: Reserva){
+    return this.http.post(`${this.API_URI}/reservas/usuario/${nombre_usuario}/realiza_reserva/recurso/${id_recursoservicio}/reserva`, nuevaReserva)
+  }
+
+
 
 }

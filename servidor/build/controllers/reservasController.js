@@ -14,42 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const basedatos_1 = __importDefault(require("../basedatos"));
 class ReservasController {
-    list(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const reservas = yield basedatos_1.default.promise().query('SELECT * FROM reservas');
-            const rows = reservas[0]; // Accede a los resultados utilizando la posición 0
-            res.json(rows);
-        });
-    }
-    getOne(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const reservas = yield basedatos_1.default.promise().query('SELECT * FROM reservas WHERE fecha = ?', [req.params.fecha]);
-            const rows = reservas[0];
-            return res.json(rows);
-            //res.status(404).json({text: 'la reserva no existe'});
-        });
-    }
-    create(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            basedatos_1.default.query('INSERT INTO reservas set ?', [req.body]);
-            res.json({ message: 'la reserva se ha creado' });
-        });
-    }
-    delete(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const reservas = yield basedatos_1.default.promise().query('SELECT * FROM reservas WHERE fecha = ?', [req.params.fecha]);
-            const rows = reservas[0];
-            yield basedatos_1.default.promise().query('DELETE FROM reservas WHERE fecha = ?', [req.params.fecha]);
-            res.json({ message: 'la reserva fue eliminada' });
-        });
-    }
-    update(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield basedatos_1.default.promise().query('UPDATE reservas set ? WHERE fecha = ?', [req.body, req.params.fecha]);
-            res.json({ message: 'La reserva fue actualizada' });
-        });
-    }
-    getUsuario(req, res) {
+    getUsuarioLogin(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const usuario = yield basedatos_1.default.promise().query('SELECT * FROM Usuarios WHERE nombre_usuario = ? and contrasena = ?', [req.params.nombre, req.params.contrasena]);
             //res.json({message: 'El usuario existe'})
@@ -294,6 +259,21 @@ class ReservasController {
         return __awaiter(this, void 0, void 0, function* () {
             const aux = yield basedatos_1.default.promise().query('DELETE FROM Reservas WHERE id_reserva= ?', [req.params.id_reserva]);
             res.json({ message: 'La reserva fue eliminada' });
+        });
+    }
+    getUsuario(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log("23");
+            const usuario = yield basedatos_1.default.promise().query('SELECT * FROM usuarios WHERE nombre_usuario = ?', [req.params.nombre_usuario]);
+            const rows = usuario[0]; // Accede a los resultados utilizando la posición 0
+            res.json(rows);
+        });
+    }
+    guardarCambiosUsuarioUsu(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log(req.params);
+            yield basedatos_1.default.promise().query('UPDATE Usuarios set ? WHERE nombre_usuario = ?', [req.body, req.params.nombre_usuario]);
+            res.json({ message: 'El usuario fue actualizada' });
         });
     }
 }

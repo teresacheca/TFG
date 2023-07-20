@@ -11,7 +11,6 @@ class ReservasRoutes {
         this.config();
     }
     config() {
-        this.router.get('/', reservasController_1.default.list); //listar todas las reservas
         this.router.get('/admi_empresa/:nombre_usuario/get', reservasController_1.default.getUsuarioNombre);
         this.router.get('/admi_empresa/:nombre_usuario/editar', reservasController_1.default.getDatosAdministradorEmpresa);
         this.router.put('/admi_empresa/:nombre_usuario/editar/guardar', reservasController_1.default.guardarCambiosUsuario);
@@ -29,7 +28,9 @@ class ReservasRoutes {
         this.router.get('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_reservas/get', reservasController_1.default.getReservasAe);
         this.router.get('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_reservas/:id_reserva', reservasController_1.default.getReservaId);
         this.router.put('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_reservas/:id_reserva/editar/guardar', reservasController_1.default.AeguardaCambiosReserva);
-        this.router.delete('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_reservas/:id_reserva/eliminar', reservasController_1.default.AeEliminaReserva);
+        this.router.delete('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_reservas/:id_reserva/editar/guardar', reservasController_1.default.AeEliminaReserva);
+        this.router.get('/usuario/:nombre_usuario/editar', reservasController_1.default.getUsuario);
+        this.router.put('/usuario/:nombre_usuario/editar/guardar', reservasController_1.default.guardarCambiosUsuarioUsu);
         this.router.get('/empresas', reservasController_1.default.getEmpresas);
         this.router.get('/empresas/:nombre_empresa', reservasController_1.default.getEmpresa);
         this.router.delete('/empresas/eliminar/:nombre_empresa', reservasController_1.default.eliminarEmpresa);
@@ -45,11 +46,7 @@ class ReservasRoutes {
         this.router.delete('/lista_solicitudes/:id_solicitud/eliminar', reservasController_1.default.eliminarSolicitud);
         this.router.post('/lista_solicitudes/:id_solicitud/:nombre_empresa', reservasController_1.default.nuevaEmpresa);
         this.router.get('/lista_solicitudes', reservasController_1.default.getSolicitudes);
-        this.router.get('/:fecha', reservasController_1.default.getOne); //mostrar una reserva
-        this.router.get('/:nombre/:contrasena', reservasController_1.default.getUsuario); //mostrar una reserva
-        this.router.post('/', reservasController_1.default.create); //crear una reserva
-        this.router.put('/:fecha', reservasController_1.default.update); //actualizar un dato
-        this.router.delete('/:fecha', reservasController_1.default.delete); //eliminar un dato
+        this.router.get('/:nombre/:contrasena', reservasController_1.default.getUsuarioLogin); //mostrar una reserva
         this.router.post('/empresas/:nombre_empresa', reservasController_1.default.crearEmpresa);
     }
 }

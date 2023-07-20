@@ -20,16 +20,18 @@ export class UsuariosComponent {
     empresa: ''
   }
 
+  aux: any = []
+
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
     
     this.usuario.nombre_usuario = params["nombre_usuario"]
-    this.usuario.contrasena = params["contrasena"]
-    this.usuario.id = params["id"]
-    this.usuario.empresa = params["empresa"]
-    console.log(this.usuario)
     
-    
+  }
+
+  editarPerfil(){
+    let ruta = this.router.url + '/editar'
+    this.router.navigate([ruta])
   }
 
   

@@ -2,39 +2,8 @@ import {Request, Response } from 'express';
 import pool from '../basedatos'
 
 class ReservasController{
-    public async list (req: Request, res: Response) { //listar todas las reservas
-        const reservas = await pool.promise().query('SELECT * FROM reservas');
-        const rows = reservas[0]; // Accede a los resultados utilizando la posición 0
-        res.json(rows);
-    } 
-
-    public async getOne (req: Request, res: Response) { 
-        const reservas = await pool.promise().query('SELECT * FROM reservas WHERE fecha = ?', [req.params.fecha]);
-        const rows = reservas[0];
-        return res.json(rows)
-        //res.status(404).json({text: 'la reserva no existe'});
-       
-    } 
-
-    public async create(req: Request, res: Response) {
-        pool.query('INSERT INTO reservas set ?', [req.body])
-        res.json({message: 'la reserva se ha creado'});
-
-    }
-
-    public async delete(req: Request, res: Response){
-        const reservas = await pool.promise().query('SELECT * FROM reservas WHERE fecha = ?', [req.params.fecha]);
-        const rows = reservas[0];
-        await pool.promise().query('DELETE FROM reservas WHERE fecha = ?', [req.params.fecha]);
-        res.json({message: 'la reserva fue eliminada'}) 
-    }
-
-    public async update(req: Request, res: Response){
-        await pool.promise().query('UPDATE reservas set ? WHERE fecha = ?', [req.body, req.params.fecha]);
-        res.json({message: 'La reserva fue actualizada'})
-    }
-
-    public async getUsuario(req: Request, res: Response){
+    
+    public async getUsuarioLogin(req: Request, res: Response){
         const usuario = await pool.promise().query('SELECT * FROM Usuarios WHERE nombre_usuario = ? and contrasena = ?', [req.params.nombre, req.params.contrasena]);
         //res.json({message: 'El usuario existe'})
         return res.json(usuario[0])
@@ -248,6 +217,19 @@ class ReservasController{
     public async AeEliminaReserva(req: Request, res: Response){
         const aux = await pool.promise().query('DELETE FROM Reservas WHERE id_reserva= ?', [req.params.id_reserva]);
         res.json({message: 'La reserva fue eliminada'}) 
+    }
+
+    public async getUsuario(req: Request, res: Response) { //listar todas las reservas
+        console.log("23")
+        const usuario = await pool.promise().query('SELECT * FROM usuarios WHERE nombre_usuario = ?', [req.params.nombre_usuario]);
+        const rows = usuario[0]; // Accede a los resultados utilizando la posición 0
+        res.json(rows);
+    }
+
+    public async guardarCambiosUsuarioUsu(req: Request, res: Response) { //listar todas las reservas
+        console.log(req.params)
+        await pool.promise().query('UPDATE Usuarios set ? WHERE nombre_usuario = ?', [req.body, req.params.nombre_usuario]);
+        res.json({message: 'El usuario fue actualizada'})
     }
 }
 

@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import {ReservasListComponent} from './components/reservas-list/reservas-list.component';
-import { ReservasFormComponent } from './components/reservas-form/reservas-form.component';
 import { LoginComponent } from './login/login.component';
 import { SolicitudComponent } from './solicitud/solicitud.component';
 import { EmpresasComponent } from './empresas/empresas.component';
@@ -28,7 +26,7 @@ import { AeAniadeRecursoComponent } from './ae-aniade-recurso/ae-aniade-recurso.
 import { AeListaReservasComponent } from './ae-lista-reservas/ae-lista-reservas.component';
 import { AeVeReservaComponent } from './ae-ve-reserva/ae-ve-reserva.component';
 import { AeEditaReservaComponent } from './ae-edita-reserva/ae-edita-reserva.component';
-
+import { UsuarioEditaPerfilComponent } from './usuario-edita-perfil/usuario-edita-perfil.component';
 
 //rutas para rederigir dentro de la página
 const routes: Routes = [
@@ -36,18 +34,6 @@ const routes: Routes = [
     path: '',
     redirectTo: '/reservas/login',
     pathMatch: 'full'
-  },
-  {
-    path: 'reservas',
-    component: ReservasListComponent
-  },
-  {
-    path: 'reservas/añadir',
-    component: ReservasFormComponent
-  },
-  {
-    path: 'reservas/editar/:fecha',
-    component: ReservasFormComponent
   },
   {
     path: 'reservas/login',
@@ -113,11 +99,11 @@ const routes: Routes = [
     path: 'reservas/empresas/:nombre_empresa/editar_pefil',
     component: EditarEmpresaComponent
   },
-  //ADMI Empresa
   {
     path: 'reservas/admi_general/:nombre_usuario',
     component: AdmiGeneralComponent
   },
+  //ADMI Empresa
   {
     path: 'reservas/admi_empresa/:nombre_usuario',
     component: AdmiEmpresaComponent
@@ -211,10 +197,22 @@ const routes: Routes = [
     component: AeEditaReservaComponent
   },
 
+  //USUARIOS
   {
     path: 'reservas/usuario/:nombre_usuario',
     component: UsuariosComponent
   },
+  {
+    path: 'reservas/usuario/:nombre_usuario/editar',
+    component: UsuarioEditaPerfilComponent
+  },
+  {
+    path: 'reservas/usuario/:nombre_usuario/editar/guardar',
+    component: UsuarioEditaPerfilComponent
+  },
+
+
+  
   {
     path: 'reservas/admi_general/:nombre_usuario/empresas',
     component: AdmiGeneralComponent

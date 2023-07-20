@@ -34,7 +34,8 @@ import { AeEditaRecursoComponent } from './ae-edita-recurso/ae-edita-recurso.com
 import { AeAniadeRecursoComponent } from './ae-aniade-recurso/ae-aniade-recurso.component';
 import { AeListaReservasComponent } from './ae-lista-reservas/ae-lista-reservas.component';
 import { AeVeReservaComponent } from './ae-ve-reserva/ae-ve-reserva.component';
-import { AeEditaReservaComponent } from './ae-edita-reserva/ae-edita-reserva.component'
+import { AeEditaReservaComponent } from './ae-edita-reserva/ae-edita-reserva.component';
+import { UsuarioEditaPerfilComponent } from './usuario-edita-perfil/usuario-edita-perfil.component'
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import { AeEditaReservaComponent } from './ae-edita-reserva/ae-edita-reserva.com
     AeListaReservasComponent,
     AeVeReservaComponent,
     AeEditaReservaComponent,
+    UsuarioEditaPerfilComponent,
   ],
   imports: [
     BrowserModule,

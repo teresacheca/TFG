@@ -276,6 +276,12 @@ class ReservasController {
             res.json({ message: 'El usuario fue actualizada' });
         });
     }
+    eliminarCuentaUsuarioUsu(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const aux = yield basedatos_1.default.promise().query('DELETE FROM Usuarios WHERE nombre_usuario= ?', [req.params.nombre_usuario]);
+            res.json({ message: 'el usuario fue eliminada' });
+        });
+    }
 }
 const reservasController = new ReservasController();
 exports.default = reservasController;

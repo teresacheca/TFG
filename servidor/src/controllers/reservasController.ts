@@ -231,6 +231,11 @@ class ReservasController{
         await pool.promise().query('UPDATE Usuarios set ? WHERE nombre_usuario = ?', [req.body, req.params.nombre_usuario]);
         res.json({message: 'El usuario fue actualizada'})
     }
+
+    public async eliminarCuentaUsuarioUsu(req: Request, res: Response){
+        const aux = await pool.promise().query('DELETE FROM Usuarios WHERE nombre_usuario= ?', [req.params.nombre_usuario]);
+        res.json({message: 'el usuario fue eliminada'}) 
+    }
 }
 
 const reservasController = new ReservasController();

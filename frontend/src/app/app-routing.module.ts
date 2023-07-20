@@ -210,6 +210,10 @@ const routes: Routes = [
     path: 'reservas/usuario/:nombre_usuario/editar/guardar',
     component: UsuarioEditaPerfilComponent
   },
+  {
+    path: 'reservas/usuario/:nombre_usuario/eliminar',
+    component: UsuarioEditaPerfilComponent
+  },
 
 
   

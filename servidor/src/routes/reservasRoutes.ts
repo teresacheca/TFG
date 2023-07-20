@@ -35,6 +35,7 @@ class ReservasRoutes{
 
         this.router.get('/usuario/:nombre_usuario/editar', reservasController.getUsuario); 
         this.router.put('/usuario/:nombre_usuario/editar/guardar', reservasController.guardarCambiosUsuarioUsu);
+        this.router.delete('/usuario/:nombre_usuario/eliminar', reservasController.eliminarCuentaUsuarioUsu);
 
         this.router.get('/empresas', reservasController.getEmpresas); 
         this.router.get('/empresas/:nombre_empresa', reservasController.getEmpresa); 

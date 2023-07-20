@@ -56,7 +56,14 @@ export class UsuarioEditaPerfilComponent {
     )
   }
 
-  eliminarCuentaUsuario(nombre_usuario: string){
+  eliminarCuentaUsuarioUsu(nombre_usuario: string){
+    this.reservaServices.eliminarCuentaUsuarioUsu(nombre_usuario).subscribe(
+      res => {
+        let ruta = '/reservas/login'
+        this.router.navigate([ruta]);
+      },
+      err=> console.error(err)
+    )
 
   }
 

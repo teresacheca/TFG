@@ -181,4 +181,9 @@ export class ReservasService {
     return this.http.put(`${this.API_URI}/reservas/usuario/${nombre_usuario}/editar/guardar`, nuevoUsuario)
   }
 
+  eliminarCuentaUsuarioUsu(nombre_usuario: string){
+    console.log(nombre_usuario)
+    return this.http.delete(`${this.API_URI}/reservas/usuario/${nombre_usuario}/eliminar`)
+  }
+
 }

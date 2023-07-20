@@ -152,4 +152,13 @@ export class ReservasService {
     return this.http.delete(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_recursos/${id_recursoservicio}/eliminar`)
   }
 
+  AeaniadeRecurso(nuevoRecurso: Recurso, nombre_admi: string, nombre_empresa: string){ //devuelve todas las reservas
+    console.log(nuevoRecurso)
+    console.log(nombre_admi)
+    console.log(nombre_empresa)
+    //return this.http.post(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_recursos/aniade/guardar`, nuevoRecurso)
+    return this.http.post(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_recursos/aniade/guardar`, nuevoRecurso)
+  }
+
+
 }

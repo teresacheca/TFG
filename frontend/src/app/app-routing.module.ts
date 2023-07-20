@@ -167,6 +167,10 @@ const routes: Routes = [
     component: AeAniadeRecursoComponent
   },
   {
+    path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos/aniade/guardar',
+    component: AeAniadeRecursoComponent
+  },
+  {
     path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos/:id_recursoservicio',
     component: AeDatosRecursoComponent
   },

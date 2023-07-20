@@ -220,6 +220,12 @@ class ReservasController{
         console.log("aux" + aux)
         res.json({message: 'El recurso fue eliminada'}) 
     }
+
+    public async AeaniadeRecurso(req: Request, res: Response) { 
+        console.log("holaaa")
+        pool.query('INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa) VALUES (?, ?, ?, ?, ?, ?)', [req.body.nombre_rs, req.body.descripcion, req.body.foto, req.body.datos, req.body.aforo, req.body.nombre_empresa]);
+        res.json({message: 'el recurso o servicio se ha creado'});
+    }
 }
 
 const reservasController = new ReservasController();

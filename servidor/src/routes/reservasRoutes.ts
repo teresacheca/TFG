@@ -27,6 +27,7 @@ class ReservasRoutes{
         this.router.get('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos/:id_recursoservicio', reservasController.getDatosRecursoAe);
         this.router.put('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos/:id_recursoservicio/editar', reservasController.guardarCambiosRecursoAe);
         this.router.delete('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos/:id_recursoservicio/eliminar', reservasController.eliminarRescursoAe);
+        this.router.post('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos/aniade/guardar', reservasController.AeaniadeRecurso);
 
         this.router.get('/empresas', reservasController.getEmpresas); 
         this.router.get('/empresas/:nombre_empresa', reservasController.getEmpresa); 

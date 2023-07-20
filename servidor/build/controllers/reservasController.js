@@ -262,6 +262,13 @@ class ReservasController {
             res.json({ message: 'El recurso fue eliminada' });
         });
     }
+    AeaniadeRecurso(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log("holaaa");
+            basedatos_1.default.query('INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa) VALUES (?, ?, ?, ?, ?, ?)', [req.body.nombre_rs, req.body.descripcion, req.body.foto, req.body.datos, req.body.aforo, req.body.nombre_empresa]);
+            res.json({ message: 'el recurso o servicio se ha creado' });
+        });
+    }
 }
 const reservasController = new ReservasController();
 exports.default = reservasController;

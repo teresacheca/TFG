@@ -153,12 +153,23 @@ export class ReservasService {
   }
 
   AeaniadeRecurso(nuevoRecurso: Recurso, nombre_admi: string, nombre_empresa: string){ //devuelve todas las reservas
-    console.log(nuevoRecurso)
-    console.log(nombre_admi)
-    console.log(nombre_empresa)
-    //return this.http.post(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_recursos/aniade/guardar`, nuevoRecurso)
     return this.http.post(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_recursos/aniade/guardar`, nuevoRecurso)
   }
 
+  getReservasAe(nombre_admi: string, nombre_empresa: string){ //devuelve todas las reservas
+    return this.http.get(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_reservas/get`)
+  }
+
+  getReservaId(nombre_admi: string, nombre_empresa: string, id_reserva: number){ //devuelve todas las reservas
+    return this.http.get(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_reservas/${id_reserva}`)
+  }
+
+  AeguardaCambiosReserva(nombre_admi: string, nombre_empresa: string, id_reserva: number, nuevaReserva: Reserva){ //devuelve todas las reservas
+    return this.http.put(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_reservas/${id_reserva}/editar/guardar`, nuevaReserva)
+  }
+
+  AeEliminaReserva(nombre_admi: string, nombre_empresa: string, id_reserva: number){ //devuelve todas las reservas
+    return this.http.delete(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_reservas/${id_reserva}/eliminar`)
+  }
 
 }

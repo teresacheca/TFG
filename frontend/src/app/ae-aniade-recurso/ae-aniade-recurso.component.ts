@@ -40,10 +40,10 @@ export class AeAniadeRecursoComponent {
       this.recurso.datos = datos
       this.recurso.aforo = Number(aforo);
       this.recurso.nombre_empresa = this.empresa
-      console.log(this.router.url)
       this.reservasServices.AeaniadeRecurso(this.recurso, this.nombre_admi, this.empresa).subscribe(
         res => {
-          console.log(res)
+          let ruta = "/reservas/admi_empresa/" + this.nombre_admi + '/' + this.empresa + '/lista_recursos'
+          this.router.navigate([ruta]);
         },
         err => console.error(err)
       )

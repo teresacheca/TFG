@@ -26,6 +26,10 @@ class ReservasRoutes {
         this.router.put('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos/:id_recursoservicio/editar', reservasController_1.default.guardarCambiosRecursoAe);
         this.router.delete('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos/:id_recursoservicio/eliminar', reservasController_1.default.eliminarRescursoAe);
         this.router.post('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos/aniade/guardar', reservasController_1.default.AeaniadeRecurso);
+        this.router.get('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_reservas/get', reservasController_1.default.getReservasAe);
+        this.router.get('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_reservas/:id_reserva', reservasController_1.default.getReservaId);
+        this.router.put('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_reservas/:id_reserva/editar/guardar', reservasController_1.default.AeguardaCambiosReserva);
+        this.router.delete('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_reservas/:id_reserva/eliminar', reservasController_1.default.AeEliminaReserva);
         this.router.get('/empresas', reservasController_1.default.getEmpresas);
         this.router.get('/empresas/:nombre_empresa', reservasController_1.default.getEmpresa);
         this.router.delete('/empresas/eliminar/:nombre_empresa', reservasController_1.default.eliminarEmpresa);

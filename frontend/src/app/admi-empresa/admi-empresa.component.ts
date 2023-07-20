@@ -72,5 +72,10 @@ export class AdmiEmpresaComponent {
     this.router.navigate([ruta])
   }
 
+  verReservasAe(){
+    let ruta = this.router.url + '/' + this.admi_empresa.empresa + '/lista_reservas'
+    this.router.navigate([ruta])
+  }
+
   
 }

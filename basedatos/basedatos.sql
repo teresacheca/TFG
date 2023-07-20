@@ -63,7 +63,10 @@ CREATE TABLE RecursoServicio (
 CREATE TABLE Reservas (
     fecha DATE, 
     hora TIME,
-    PRIMARY KEY (fecha, hora)
+    nombre_empresa VARCHAR(100),
+    nombre_usuario VARCHAR(100),
+    nombre_rs VARCHAR(100),
+    id_reserva INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY
 );
 
 CREATE TABLE crea_instancia (
@@ -180,6 +183,15 @@ VALUES ('Juan', 'password123', '1990-05-15', 'Desarrollador', 'EmpresaA', 1),
        ('Pedro', 'qwerty789', '1995-02-10', 'Analista de Datos', 'EmpresaC', 1),
        ('Luisa', 'abcd1234', '1992-11-30', 'Ejecutiva de Cuentas', 'EmpresaA', 0),
        ('Ana', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaC', 2),
+       ('Eva', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaA', 2),
+       ('Carla', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaB', 2),
+       ('Ramon', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaC', 2),
+       ('Elsa', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaA', 2),
+       ('Clara', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaB', 2),
+       ('Ivan', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaC', 2),
+       ('Antonio', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaA', 2),
+       ('David', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaB', 2),
+       ('Jesus', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaC', 2),
        ('Carlos', 'secure789', '1994-03-12', 'Desarrollador Full Stack', 'EmpresaB', 1);
 
 
@@ -210,3 +222,24 @@ VALUES ('Recurso 6', 'Esta es una descripción muy larga que tiene más de 100 c
 
 INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa)
 VALUES ('Recurso 7', 'Descripción del recurso 7','foto7.jpg', 'Datos del recurso 4', 70, 'EmpresaA');
+
+
+INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs)
+VALUES ('2023-07-20', '10:00:00', 'EmpresaA', 'Eva', 'Recurso 2');   
+
+INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs)
+VALUES ('2023-07-21', '15:30:00', 'EmpresaB', 'Carla', 'Recurso 3');
+
+INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs)
+VALUES ('2023-07-22', '14:45:00', 'EmpresaC', 'Ramon', 'Recurso 5');
+
+INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs)
+VALUES ('2023-07-23', '09:15:00', 'EmpresaA', 'Elsa', 'Recurso 2');
+
+INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs)
+VALUES ('2023-07-24', '12:00:00', 'EmpresaB', 'Clara', 'Recurso 3');
+
+INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs)
+VALUES ('2023-07-24', '16:00:00', 'EmpresaB', 'Clara', 'Recurso 3');
+
+

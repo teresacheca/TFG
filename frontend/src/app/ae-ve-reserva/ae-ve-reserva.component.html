@@ -1,0 +1,26 @@
+<div class="col-md-4 offset-md-2"> <!--para que esté centrado-->
+
+    <div class="card">
+        <div class="card-body">
+            <form>
+                <div>
+                    Recurso o servicio reservado: {{reserva.nombre_rs}}
+                </div>
+                <div>
+                    Usuarios: {{reserva.nombre_usuario}}
+                </div>
+                <div>
+                    Fecha: {{reserva.fecha}}
+                </div>
+                <div>
+                    Hora: {{reserva.hora}}
+                </div>
+            </form>
+            <button (click)="editarReserva()">
+                Editar
+            </button>
+        </div>
+    </div>
+</div>
+
+

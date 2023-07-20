@@ -16,7 +16,11 @@ export class ReservasFormComponent {
   //Definir un objeto reserva para poder guardarlo
   reserva: Reserva = {
     fecha: "2023-01-01",
-    hora: "00:00:00"
+    hora: "00:00:00",
+    nombre_empresa: '', 
+    nombre_usuario: '',
+    nombre_rs: '',
+    id_reserva: 0
   };
   
   edit: boolean = false;
@@ -108,7 +112,11 @@ export class ReservasFormComponent {
 
     let nueva_reserva:Reserva = {
       fecha: nueva_fecha,
-      hora: this.reserva.hora
+      hora: this.reserva.hora,
+      nombre_empresa: '', 
+      nombre_usuario: '',
+      nombre_rs: '',
+      id_reserva: 0
     };
 
     this.reservaServices.saveReserva(nueva_reserva).subscribe(

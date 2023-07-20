@@ -269,6 +269,33 @@ class ReservasController {
             res.json({ message: 'el recurso o servicio se ha creado' });
         });
     }
+    getReservasAe(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const reservas = yield basedatos_1.default.promise().query('SELECT * FROM reservas WHERE nombre_empresa = ?', [req.params.nombre_empresa]);
+            const rows = reservas[0]; // Accede a los resultados utilizando la posición 0
+            console.log(rows);
+            res.json(rows);
+        });
+    }
+    getReservaId(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuarios = yield basedatos_1.default.promise().query('SELECT * FROM Reservas WHERE id_reserva = ?', [req.params.id_reserva]);
+            const rows = usuarios[0]; // Accede a los resultados utilizando la posición 0
+            res.json(rows);
+        });
+    }
+    AeguardaCambiosReserva(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield basedatos_1.default.promise().query('UPDATE Reservas set ? WHERE id_reserva = ?', [req.body, req.params.id_reserva]);
+            res.json({ message: 'La reserva fue actualizada' });
+        });
+    }
+    AeEliminaReserva(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const aux = yield basedatos_1.default.promise().query('DELETE FROM Reservas WHERE id_reserva= ?', [req.params.id_reserva]);
+            res.json({ message: 'La reserva fue eliminada' });
+        });
+    }
 }
 const reservasController = new ReservasController();
 exports.default = reservasController;

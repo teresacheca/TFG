@@ -25,6 +25,10 @@ import { AeListaRecursosComponent } from './ae-lista-recursos/ae-lista-recursos.
 import { AeDatosRecursoComponent } from './ae-datos-recurso/ae-datos-recurso.component';
 import { AeEditaRecursoComponent } from './ae-edita-recurso/ae-edita-recurso.component';
 import { AeAniadeRecursoComponent } from './ae-aniade-recurso/ae-aniade-recurso.component';
+import { AeListaReservasComponent } from './ae-lista-reservas/ae-lista-reservas.component';
+import { AeVeReservaComponent } from './ae-ve-reserva/ae-ve-reserva.component';
+import { AeEditaReservaComponent } from './ae-edita-reserva/ae-edita-reserva.component';
+
 
 //rutas para rederigir dentro de la página
 const routes: Routes = [
@@ -182,8 +186,30 @@ const routes: Routes = [
     path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos/:id_recursoservicio/eliminar',
     component: AeEditaRecursoComponent
   },
-  
-
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_reservas',
+    component: AeListaReservasComponent
+  },
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_reservas/get',
+    component: AeListaReservasComponent
+  }, 
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_reservas/:id_reserva',
+    component: AeVeReservaComponent
+  },
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_reservas/:id_reserva/editar',
+    component: AeEditaReservaComponent
+  },
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_reservas/:id_reserva/editar/guardar',
+    component: AeEditaReservaComponent
+  },
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_reservas/:id_reserva/eliminar',
+    component: AeEditaReservaComponent
+  },
 
   {
     path: 'reservas/usuario/:nombre_usuario',

@@ -31,7 +31,10 @@ import { AeAniadeUsuarioComponent } from './ae-aniade-usuario/ae-aniade-usuario.
 import { AeListaRecursosComponent } from './ae-lista-recursos/ae-lista-recursos.component';
 import { AeDatosRecursoComponent } from './ae-datos-recurso/ae-datos-recurso.component';
 import { AeEditaRecursoComponent } from './ae-edita-recurso/ae-edita-recurso.component';
-import { AeAniadeRecursoComponent } from './ae-aniade-recurso/ae-aniade-recurso.component'
+import { AeAniadeRecursoComponent } from './ae-aniade-recurso/ae-aniade-recurso.component';
+import { AeListaReservasComponent } from './ae-lista-reservas/ae-lista-reservas.component';
+import { AeVeReservaComponent } from './ae-ve-reserva/ae-ve-reserva.component';
+import { AeEditaReservaComponent } from './ae-edita-reserva/ae-edita-reserva.component'
 
 
 @NgModule({
@@ -62,6 +65,9 @@ import { AeAniadeRecursoComponent } from './ae-aniade-recurso/ae-aniade-recurso.
     AeDatosRecursoComponent,
     AeEditaRecursoComponent,
     AeAniadeRecursoComponent,
+    AeListaReservasComponent,
+    AeVeReservaComponent,
+    AeEditaReservaComponent,
   ],
   imports: [
     BrowserModule,

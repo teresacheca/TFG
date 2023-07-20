@@ -1,37 +1,79 @@
-<div class="col-md-4 offset-md-2"> <!--para que esté centrado-->
+<p *ngIf="pendiente then estaPendiente else noPendiente">
+</p>
 
-    <div class="card">
-        <div class="card-body">
-            <form>
-                <div>
-                    Nombre empresa: {{solicitud.nombre_empresa}}
-                </div>
-                <div>
-                    Datos de contacot: {{solicitud.datos_de_contacto}}
-                </div>
-                <div>
-                    Descripcion: {{solicitud.descripcion}}
-                </div>
-                <div>
-                    Logo: {{solicitud.logo}}
-                </div>
-                <div>
-                    Direccion: {{solicitud.direccion}}
-                </div>
-                <div>
-                    Estado: {{solicitud.estado}}
-                </div>
-                <div>
-                    Identificador: {{solicitud.id_solicitud}}
-                </div>
-            </form>
+<ng-template #estaPendiente>
+    <div class="col-md-4 offset-md-2"> <!--para que esté centrado-->
+
+        <div class="card">
+            <div class="card-body">
+                <form>
+                    <div>
+                        Nombre empresa: {{solicitud.nombre_empresa}}
+                    </div>
+                    <div>
+                        Datos de contacot: {{solicitud.datos_de_contacto}}
+                    </div>
+                    <div>
+                        Descripcion: {{solicitud.descripcion}}
+                    </div>
+                    <div>
+                        Logo: {{solicitud.logo}}
+                    </div>
+                    <div>
+                        Direccion: {{solicitud.direccion}}
+                    </div>
+                    <div>
+                        Estado: {{solicitud.estado}}
+                    </div>
+                    <div>
+                        Identificador: {{solicitud.id_solicitud}}
+                    </div>
+                </form>
+            </div>
+        </div>
+        <button (click)="aceptarSolicitud()">
+            Aceptar
+        </button>
+        <button (click)="rechazarSolicitud()">
+            Rechazar
+        </button>
+    </div>
+    
+    
+</ng-template>
+
+
+<ng-template #noPendiente>
+    <div class="col-md-4 offset-md-2"> <!--para que esté centrado-->
+
+        <div class="card">
+            <div class="card-body">
+                <form>
+                    <div>
+                        Nombre empresa: {{solicitud.nombre_empresa}}
+                    </div>
+                    <div>
+                        Datos de contacot: {{solicitud.datos_de_contacto}}
+                    </div>
+                    <div>
+                        Descripcion: {{solicitud.descripcion}}
+                    </div>
+                    <div>
+                        Logo: {{solicitud.logo}}
+                    </div>
+                    <div>
+                        Direccion: {{solicitud.direccion}}
+                    </div>
+                    <div>
+                        Estado: {{solicitud.estado}}
+                    </div>
+                    <div>
+                        Identificador: {{solicitud.id_solicitud}}
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-    <button (click)="aceptarSolicitud()">
-        Aceptar
-    </button>
-    <button (click)="rechazarSolicitud()">
-        Rechazar
-    </button>
-</div>
-
+    
+    
+</ng-template>

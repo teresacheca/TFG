@@ -36,13 +36,15 @@ export class VerSolicitudComponent {
     nombre_usuario: ''
   }
 
+  pendiente = false
+
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
     console.log(params["id_solicitud"])
   
     this.reservaServices.getSolicitud(params["id_solicitud"]).subscribe(
       res => {
-        //this.reserva = res; //no funciona -> tiene que aparecer la información antigua para editar sobre ella
+
         this.aux = res
         console.log("!!")
         console.log(this.aux)
@@ -62,6 +64,9 @@ export class VerSolicitudComponent {
         this.solicitud.estado = this.aux[0].estado
         this.solicitud.id_solicitud = this.aux[0].id_solicitud
         this.solicitud.nombre_usuario = this.aux[0].nombre_usuario
+        if(this.solicitud.estado == 'Pendiente'){
+          this.pendiente = true
+        }
 
       },
       err=> console.error(err)
@@ -72,7 +77,8 @@ export class VerSolicitudComponent {
   aceptarSolicitud(){
     this.reservaServices.nuevaEmpresa(this.aux[0].id_solicitud, this.empresa.nombre_empresa, this.empresa).subscribe(
       res => {
-        this.reservaServices.eliminarSolicitud(this.aux[0].id_solicitud).subscribe( //borrar la solicitud cunado se ejecuta una accion
+        this.solicitud.estado = 'Aceptada'
+        this.reservaServices.actualizarSolicitud(this.aux[0].id_solicitud, this.solicitud).subscribe( //borrar la solicitud cunado se ejecuta una accion
           res => {
             this.router.navigate(['/reservas/lista_solicitudes']);
           },
@@ -84,7 +90,8 @@ export class VerSolicitudComponent {
   }
 
   rechazarSolicitud(){
-    this.reservaServices.eliminarSolicitud(this.aux[0].id_solicitud).subscribe(
+    this.solicitud.estado = 'rechazada'
+        this.reservaServices.actualizarSolicitud(this.aux[0].id_solicitud, this.solicitud).subscribe(
       res => {
         this.router.navigate(['/reservas/lista_solicitudes']);
       },

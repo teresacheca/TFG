@@ -1,13 +1,64 @@
-<div class="col-md-2" *ngFor="let solicitud of solicitudes">
-    <!--col-md-2 -> crea 2 columnas, ngFor -> para recorrer todas las reservas-->
-    <div class="card-text-center">
-        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-            <!--bg-dark: de color oscuro, text-white: para hacer el texto de color blanco-->
-            {{solicitud.nombre_empresa}}
-            
+
+<h2>PENDIENTES</h2>
+<p *ngIf="vacioPendientes else estanPendientes">
+    No hay solicitudes pendientes
+</p>
+<ng-template #estanPendientes>
+    <div class="col-md-2" *ngFor="let solicitud of pendientes">
+        <!--col-md-2 -> crea 2 columnas, ngFor -> para recorrer todas las reservas-->
+        <div class="card-text-center">
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                <!--bg-dark: de color oscuro, text-white: para hacer el texto de color blanco-->
+                {{solicitud.nombre_empresa}}
+                
+            </div>
+            <button (click)="verSolicitud(solicitud.id_solicitud)">
+                Ver
+            </button>
         </div>
-        <button (click)="verSolicitud(solicitud.id_solicitud)">
-            Ver
-        </button>
     </div>
-</div>
+</ng-template>
+
+
+<h2>ACEPTADAS</h2>
+<p *ngIf="vacioAceptadas else estanAceptadas">
+    No hay solicitudes aceptadas
+</p>
+<ng-template #estanAceptadas>
+    <div class="col-md-2" *ngFor="let solicitud of aceptadas">
+        <!--col-md-2 -> crea 2 columnas, ngFor -> para recorrer todas las reservas-->
+        <div class="card-text-center">
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                <!--bg-dark: de color oscuro, text-white: para hacer el texto de color blanco-->
+                {{solicitud.nombre_empresa}}
+                
+            </div>
+            <button (click)="verSolicitud(solicitud.id_solicitud)">
+                Ver
+            </button>
+        </div>
+    </div>
+</ng-template>
+
+<h2>RECHAZADAS</h2>
+<p *ngIf="vacioRechazadas else estanRechazadas">
+    No hay solicitudes rechazadas
+</p>
+<ng-template #estanRechazadas>
+    <div class="col-md-2" *ngFor="let solicitud of rechazadas">
+        <!--col-md-2 -> crea 2 columnas, ngFor -> para recorrer todas las reservas-->
+        <div class="card-text-center">
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                <!--bg-dark: de color oscuro, text-white: para hacer el texto de color blanco-->
+                {{solicitud.nombre_empresa}}
+                
+            </div>
+            <button (click)="verSolicitud(solicitud.id_solicitud)">
+                Ver
+            </button>
+        </div>
+    </div>
+</ng-template>
+    
+
+

@@ -19,6 +19,7 @@ class ReservasRoutes {
         this.router.get('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_usuarios/:id', reservasController_1.default.getUsuarioId);
         this.router.put('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_usuarios/:id/editar', reservasController_1.default.guardarCambiosUsuarioAe);
         this.router.delete('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_usuarios/:id/eliminar', reservasController_1.default.eliminarCuentaUsuarioAe);
+        this.router.delete('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_usuarios/:id_reserva/eliminar_reserva', reservasController_1.default.eliminaReserva);
         this.router.post('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_usuarios/aniade/guardar', reservasController_1.default.AeaniadeUsuario);
         this.router.get('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos/get', reservasController_1.default.getRecursos);
         this.router.get('/admi_empresa/:nombre_usuario/:nombre_empresa/lista_recursos/:id_recursoservicio', reservasController_1.default.getDatosRecurso);
@@ -51,7 +52,11 @@ class ReservasRoutes {
         this.router.get('/empresas/:nombre_empresa/lista_usuarios/:nombre_usuario', reservasController_1.default.getUsuarioNombre);
         this.router.put('/empresas/cambiar/:nombre_empresa', reservasController_1.default.guardarCambios);
         this.router.get('/lista_solicitudes', reservasController_1.default.getSolicitudes);
+        this.router.get('/lista_solicitudes/aceptadas', reservasController_1.default.getSolicitudesAceptadas);
+        this.router.get('/lista_solicitudes/rechazadas', reservasController_1.default.getSolicitudesRechazadas);
+        this.router.get('/lista_solicitudes/pendientes', reservasController_1.default.getSolicitudesPendientes);
         this.router.get('/lista_solicitudes/:id_solicitud', reservasController_1.default.getSolicitud);
+        this.router.put('/lista_solicitudes/:id_solicitud/actualizar', reservasController_1.default.actualizarSolicitud);
         this.router.delete('/lista_solicitudes/:id_solicitud/eliminar', reservasController_1.default.eliminarSolicitud);
         this.router.post('/lista_solicitudes/:id_solicitud/:nombre_empresa', reservasController_1.default.nuevaEmpresa);
         this.router.get('/lista_solicitudes', reservasController_1.default.getSolicitudes);

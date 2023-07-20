@@ -196,9 +196,16 @@ VALUES ('Juan', 'password123', '1990-05-15', 'Desarrollador', 'EmpresaA', 1),
 
 
 INSERT INTO solicitud (nombre_empresa, datos_de_contacto, descripcion, logo, nombre_admi_general, id_empresa, direccion, estado)
-VALUES ('EmpresaX', 'contacto@empresa-x.com', 'Descripción de la Empresa X', 'logo-empresa-x.png',  'Administrador X', 0, ' ', 'Pendiente'),
-       ('EmpresaY', 'contacto@empresa-y.com', 'Descripción de la Empresa Y', 'logo-empresa-y.png', 'Administrador Y', 0, ' ',  'Aprobado'),
-       ('EmpresaZ', 'contacto@empresa-z.com', 'Descripción de la Empresa Z', 'logo-empresa-z.png', 'Administrador Z', 0, ' ', 'Rechazado');
+VALUES ('EmpresaD', 'contacto@empresa-d.com', 'Descripción de la Empresa D', 'logo-empresa-x.png',  'Luisa', 0, ' ', 'Pendiente'),
+       ('EmpresaE', 'contacto@empresa-e.com', 'Descripción de la Empresa E', 'logo-empresa-y.png', 'Luisa', 0, ' ',  'Aceptada'),
+       ('EmpresaF', 'contacto@empresa-f.com', 'Descripción de la Empresa F', 'logo-empresa-x.png',  'Luisa', 0, ' ', 'Pendiente'),
+       ('EmpresaG', 'contacto@empresa-g.com', 'Descripción de la Empresa G', 'logo-empresa-y.png', 'Luisa', 0, ' ',  'Aceptada'),
+       ('EmpresaH', 'contacto@empresa-h.com', 'Descripción de la Empresa H', 'logo-empresa-x.png',  'Luisa', 0, ' ', 'Pendiente'),
+       ('EmpresaI', 'contacto@empresa-i.com', 'Descripción de la Empresa I', 'logo-empresa-y.png', 'Luisa', 0, ' ',  'Aceptada'),
+       ('EmpresaJ', 'contacto@empresa-j.com', 'Descripción de la Empresa J', 'logo-empresa-x.png',  'Luisa', 0, ' ', 'Pendiente'),
+       ('EmpresaK', 'contacto@empresa-k.com', 'Descripción de la Empresa K', 'logo-empresa-y.png', 'Luisa', 0, ' ',  'Aceptada'),
+       ('EmpresaL', 'contacto@empresa-l.com', 'Descripción de la Empresa L', 'logo-empresa-z.png', 'Luisa', 0, ' ', 'Rechazada'),
+       ('EmpresaM', 'contacto@empresa-m.com', 'Descripción de la Empresa M', 'logo-empresa-z.png', 'Luisa', 0, ' ', 'Rechazada');
 
 
 INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa)

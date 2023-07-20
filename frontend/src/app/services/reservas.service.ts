@@ -5,6 +5,7 @@ import {Reserva} from '../modelos/Reservas' ///importar la interfaz
 import {Empresa} from '../modelos/Empresas' ///importar la interfaz
 import {Usuario} from '../modelos/Usuarios' ///importar la interfaz
 import {Recurso} from '../modelos/Recursos'
+import {Solicitud} from '../modelos/Solicitud'
 
 @Injectable({
   providedIn: 'root'
@@ -47,12 +48,20 @@ export class ReservasService {
     return this.http.get(`${this.API_URI}/reservas/empresas`);
   }
 
-  getSolicitudes(){ //devuelve una reserva
-    console.log("sol")
-    return this.http.get(`${this.API_URI}/reservas/lista_solicitudes`); //da error
+  getSolicitudes(){ 
+    return this.http.get(`${this.API_URI}/reservas/lista_solicitudes`); 
+  }
+  getSolicitudesAceptadas(){ 
+    return this.http.get(`${this.API_URI}/reservas/lista_solicitudes/aceptadas`); 
+  }
+  getSolicitudesRechazadas(){ 
+    return this.http.get(`${this.API_URI}/reservas/lista_solicitudes/rechazadas`); 
+  }
+  getSolicitudesPendientes(){ 
+    return this.http.get(`${this.API_URI}/reservas/lista_solicitudes/pendientes`); 
   }
 
-  getEmpresa(empresa : string){ //devuelve una reserva
+  getEmpresa(empresa : string){
     return this.http.get(`${this.API_URI}/reservas/empresas/${empresa}`);
   }
 
@@ -96,6 +105,10 @@ export class ReservasService {
     return this.http.delete(`${this.API_URI}/reservas/lista_solicitudes/${id_solicitud}/eliminar`);
   }
 
+  actualizarSolicitud(id_solicitud: number, nuevaSolicitud: Solicitud){  
+    return this.http.put(`${this.API_URI}/reservas/lista_solicitudes/${id_solicitud}/actualizar`, nuevaSolicitud);
+  }
+
   getUsuarioag(nombre_empresa: string, nombre_usuario: string){ 
     return this.http.get(`${this.API_URI}/reservas/empresas/${nombre_empresa}/lista_usuarios/${nombre_usuario}`);
   }
@@ -130,6 +143,10 @@ export class ReservasService {
 
   eliminarCuentaUsuarioAe(nombre_admi: string, nombre_empresa: string, id: number){
     return this.http.delete(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_usuarios/${id}/eliminar`)
+  }
+
+  eliminarReservas(nombre_admi: string, nombre_empresa: string, id_reserva:number){
+    return this.http.delete(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_usuarios/${id_reserva}/eliminar_reserva`)
   }
 
   AeaniadeUsuario(usuario: Usuario, nombre_admi: string, nombre_empresa: string){

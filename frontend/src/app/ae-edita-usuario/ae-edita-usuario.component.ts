@@ -59,11 +59,31 @@ export class AeEditaUsuarioComponent {
   }
 
   eliminarCuentaUsuarioAe(id: number){
-    console.log("eliminar")
     this.reservaServices.eliminarCuentaUsuarioAe(this.nombre_admi, this.empresa, id).subscribe(
       res => {
         let ruta = '/reservas/admi_empresa/' + this.nombre_admi + '/' + this.empresa + '/lista_usuarios'
         this.router.navigate([ruta]);
+        this.aux = res
+        console.log("res")
+        console.log(res)
+        console.log(this.aux[0].nombre_usuario)
+        this.reservaServices.getReservasDelUsuario(this.aux[0].nombre_usuario).subscribe(
+          res => {
+            this.aux = res            
+            for(let i = 0 ; i < this.aux.length ; i++){
+              console.log(this.aux[i].id_reserva)
+              this.reservaServices.eliminarReservas(this.nombre_admi, this.empresa, this.aux[i].id_reserva).subscribe(
+                res => {
+                  this.aux = res
+                  console.log(this.aux)
+                },
+                err=> console.error(err)
+              )
+            }
+
+          },
+          err=> console.error(err)
+        )
       },
       err=> console.error(err)
     )

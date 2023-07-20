@@ -53,7 +53,23 @@ const routes: Routes = [
     component: ListaSolicitudesComponent
   },
   {
+    path: 'reservas/lista_solicitudes/aceptadas',
+    component: ListaSolicitudesComponent
+  },
+  {
+    path: 'reservas/lista_solicitudes/rechazadas',
+    component: ListaSolicitudesComponent
+  },
+  {
+    path: 'reservas/lista_solicitudes/pendientes',
+    component: ListaSolicitudesComponent
+  },
+  {
     path: 'reservas/lista_solicitudes/:id_solicitud',
+    component: VerSolicitudComponent
+  },
+  {
+    path: 'reservas/lista_solicitudes/:id_solicitud/actualizar',
     component: VerSolicitudComponent
   },
   {
@@ -147,6 +163,10 @@ const routes: Routes = [
   },
   {
     path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_usuarios/:id/eliminar',
+    component: AeEditaUsuarioComponent
+  },
+  {
+    path: 'reservas/admi_empresa/:nombre_usuario/:nombre_empresa/lista_usuarios/:id_reserva/eliminar_reserva',
     component: AeEditaUsuarioComponent
   },
   {

@@ -14,12 +14,12 @@ export class AeListaRecursosComponent {
   constructor(private reservasServices: ReservasService, private router: Router, private activeRoute: ActivatedRoute){}
 
   recursos: any = []
-  empresa: string = ''
+  empresa: number = 0
   admi: string = ''
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
-    this.empresa = params["nombre_empresa"]
+    this.empresa = params["id_empresa"]
     this.admi = params["nombre_usuario"]
     console.log(params)
     this.reservasServices.getRecursosAe(this.admi, this.empresa).subscribe(

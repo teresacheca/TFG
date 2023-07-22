@@ -20,12 +20,13 @@ export class AgEditaAdmiEmpresaComponent {
     id: 0,
     fecha_nacimiento: new Date,
     puesto_trabajo: '',
-    empresa: ''
+    empresa: '',
+    id_empresa: 0
   }
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
-    this.reservaServices.getAdministradorEmpresa(params["id"], params["nombre_empresa"]).subscribe(
+    this.reservaServices.getAdministradorEmpresa(params["id"], params["id_emrpesa"]).subscribe(
       res => {
         //this.reserva = res; //no funciona -> tiene que aparecer la información antigua para editar sobre ella
         this.aux = res
@@ -37,6 +38,7 @@ export class AgEditaAdmiEmpresaComponent {
         this.usuario.fecha_nacimiento = this.aux[0].fecha_nacimiento
         this.usuario.puesto_trabajo = this.aux[0].puesto_trabajo
         this.usuario.empresa = this.aux[0].empresa
+        this.usuario.id_empresa = this.aux[0].id_empresa
         console.log(this.usuario)
       },
       err=> console.error(err)
@@ -44,22 +46,22 @@ export class AgEditaAdmiEmpresaComponent {
   }
 
 
-  eliminarCuentaAdmiEmpresa(id: number, empresa: string){
+  eliminarCuentaAdmiEmpresa(id: number, id_empresa: number){
     
-    this.reservaServices.eliminarCuentaAdmiEmpresa(id, empresa).subscribe(
+    this.reservaServices.eliminarCuentaAdmiEmpresa(id, id_empresa).subscribe(
       res => {
-        let ruta = '/reservas/empresas/' + empresa
+        let ruta = '/reservas/empresas/' + id_empresa
         this.router.navigate([ruta]);
       },
       err => console.error(err)
     )
   }
 
-  guardarCambiosAdmiEmpresa(id: number, empresa: string, nuevousuario: Usuario){
+  guardarCambiosAdmiEmpresa(id: number, id_empresa: number, nuevousuario: Usuario){
     console.log("guardar cambios")
-    this.reservaServices.guardarCambiosAdmiEmpresa(id, empresa, nuevousuario).subscribe(
+    this.reservaServices.guardarCambiosAdmiEmpresa(id, id_empresa, nuevousuario).subscribe(
       res => {
-        let ruta = '/reservas/empresas/' + empresa + '/lista_administradores'
+        let ruta = '/reservas/empresas/' + id_empresa + '/lista_administradores'
         this.router.navigate([ruta]);
       },
       err=> console.error(err)

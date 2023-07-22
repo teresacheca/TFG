@@ -37,7 +37,8 @@ CREATE TABLE Empresas (
 CREATE TABLE Administradores_empresa (
     nombre_admi_empresa VARCHAR(100) NOT NULL PRIMARY KEY,
     contrasena VARCHAR(100),
-    empresa VARCHAR(100)
+    empresa VARCHAR(100),
+    id_empresa INT (10)
 );
 
 CREATE TABLE Usuarios (
@@ -46,6 +47,7 @@ CREATE TABLE Usuarios (
     fecha_nacimiento DATE,
     puesto_trabajo VARCHAR(100),
     empresa VARCHAR(100), 
+    id_empresa INT (10),
     tipo INT(10),
     id INT(10) AUTO_INCREMENT UNIQUE
 );
@@ -57,6 +59,7 @@ CREATE TABLE RecursoServicio (
     datos VARCHAR(100),
     aforo INT(10),
     nombre_empresa VARCHAR(100),
+    id_empresa INT (10),
     id_recursoservicio INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY
 );
 
@@ -64,8 +67,10 @@ CREATE TABLE Reservas (
     fecha DATE, 
     hora TIME,
     nombre_empresa VARCHAR(100),
+    id_empresa INT (10),
     nombre_usuario VARCHAR(100),
     nombre_rs VARCHAR(100),
+    id_recursoservicio INT (100),
     id_reserva INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY
 );
 
@@ -102,12 +107,11 @@ CREATE TABLE crea (
 );
 
 CREATE TABLE tiene (
-    nombre_rs VARCHAR(100),
-    fecha DATE,
-    hora TIME,
-    FOREIGN KEY (nombre_rs) REFERENCES RecursoServicio(nombre_rs),
-    FOREIGN KEY (fecha, hora) REFERENCES Reservas(fecha, hora),
-    PRIMARY KEY (nombre_rs, fecha, hora)
+    id_recursoservicio INT(10),
+    id_reserva INT(10),
+    FOREIGN KEY (id_recursoservicio) REFERENCES RecursoServicio(id_recursoservicio),
+    FOREIGN KEY (id_reserva) REFERENCES Reservas(id_reserva),
+    PRIMARY KEY (id_recursoservicio, id_reserva)
 );
 
 CREATE TABLE perteneceA (
@@ -177,22 +181,22 @@ VALUES ('EmpresaA', 'contacto@empresa-a.com', 'Descripción de la Empresa A', 'l
 
 
 
-INSERT INTO Usuarios (nombre_usuario, contrasena, fecha_nacimiento, puesto_trabajo, empresa, tipo)
-VALUES ('Juan', 'password123', '1990-05-15', 'Desarrollador', 'EmpresaA', 1),
-       ('María', 'secret456', '1985-08-20', 'Gerente de Ventas', 'EmpresaB', 2),
-       ('Pedro', 'qwerty789', '1995-02-10', 'Analista de Datos', 'EmpresaC', 1),
-       ('Luisa', 'abcd1234', '1992-11-30', 'Ejecutiva de Cuentas', 'EmpresaA', 0),
-       ('Ana', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaC', 2),
-       ('Eva', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaA', 2),
-       ('Carla', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaB', 2),
-       ('Ramon', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaC', 2),
-       ('Elsa', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaA', 2),
-       ('Clara', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaB', 2),
-       ('Ivan', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaC', 2),
-       ('Antonio', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaA', 2),
-       ('David', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaB', 2),
-       ('Jesus', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaC', 2),
-       ('Carlos', 'secure789', '1994-03-12', 'Desarrollador Full Stack', 'EmpresaB', 1);
+INSERT INTO Usuarios (nombre_usuario, contrasena, fecha_nacimiento, puesto_trabajo, empresa, tipo, id_empresa)
+VALUES ('Juan', 'password123', '1990-05-15', 'Desarrollador', 'EmpresaA', 1, 1),
+       ('María', 'secret456', '1985-08-20', 'Gerente de Ventas', 'EmpresaB', 2, 2),
+       ('Pedro', 'qwerty789', '1995-02-10', 'Analista de Datos', 'EmpresaC', 1, 3),
+       ('Luisa', 'abcd1234', '1992-11-30', 'Ejecutiva de Cuentas', 'EmpresaA', 0, 1),
+       ('Ana', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaC', 2, 3),
+       ('Eva', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaA', 2, 1),
+       ('Carla', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaB', 2, 2),
+       ('Ramon', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaC', 2, 3),
+       ('Elsa', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaA', 2, 1),
+       ('Clara', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaB', 2, 2),
+       ('Ivan', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaC', 2, 3),
+       ('Antonio', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaA', 2, 1),
+       ('David', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaB', 2, 2),
+       ('Jesus', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaC', 2, 3),
+       ('Carlos', 'secure789', '1994-03-12', 'Desarrollador Full Stack', 'EmpresaB', 1, 2);
 
 
 INSERT INTO solicitud (nombre_empresa, datos_de_contacto, descripcion, logo, nombre_admi_general, id_empresa, direccion, estado)
@@ -208,45 +212,45 @@ VALUES ('EmpresaD', 'contacto@empresa-d.com', 'Descripción de la Empresa D', 'l
        ('EmpresaM', 'contacto@empresa-m.com', 'Descripción de la Empresa M', 'logo-empresa-z.png', 'Luisa', 0, ' ', 'Rechazada');
 
 
-INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa)
-VALUES ('Recurso 1', 'Descripción del recurso 1', 'foto1.jpg', 'Datos del recurso 1', 100, 'EmpresaA');
+INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa, id_empresa)
+VALUES ('Recurso 1', 'Descripción del recurso 1', 'foto1.jpg', 'Datos del recurso 1', 100, 'EmpresaA', 1);
 
-INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa)
-VALUES ('Recurso 2', 'Descripción del recurso 2', 'foto2.jpg', 'Datos del recurso 2', 50, 'EmpresaA');
+INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa, id_empresa)
+VALUES ('Recurso 2', 'Descripción del recurso 2', 'foto2.jpg', 'Datos del recurso 2', 50, 'EmpresaA', 1);
 
-INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa)
-VALUES ('Recurso 3', 'Descripción del recurso 3', 'https://example.com/foto3.jpg', 'Datos del recurso 3', 80, 'EmpresaB');
+INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa, id_empresa)
+VALUES ('Recurso 3', 'Descripción del recurso 3', 'https://example.com/foto3.jpg', 'Datos del recurso 3', 80, 'EmpresaB', 2);
 
-INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa)
-VALUES ('Recurso 4', 'Descripción del recurso 4', 'foto4.jpg', 'Datos del recurso 4', 120, 'EmpresaB');
+INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa, id_empresa)
+VALUES ('Recurso 4', 'Descripción del recurso 4', 'foto4.jpg', 'Datos del recurso 4', 120, 'EmpresaB', 2);
 
-INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa)
-VALUES ('Recurso 5', 'Descripción del recurso 5', 'foto5.jpg', 'Datos del recurso 5', 80, 'EmpresaC');
+INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa, id_empresa)
+VALUES ('Recurso 5', 'Descripción del recurso 5', 'foto5.jpg', 'Datos del recurso 5', 80, 'EmpresaC', 3);
 
-INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa)
-VALUES ('Recurso 6', 'Esta es una descripción muy larga que tiene más de 100 caracteres y se trunca para ajustarse a la restricción de longitud', 'foto6.jpg', 'Datos del recurso 6', 90, 'EmpresaC');
-
-
-INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa)
-VALUES ('Recurso 7', 'Descripción del recurso 7','foto7.jpg', 'Datos del recurso 4', 70, 'EmpresaA');
+INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa, id_empresa)
+VALUES ('Recurso 6', 'Esta es una descripción muy larga que tiene más de 100 caracteres y se trunca para ajustarse a la restricción de longitud', 'foto6.jpg', 'Datos del recurso 6', 90, 'EmpresaC', 3);
 
 
-INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs)
-VALUES ('2023-07-20', '10:00:00', 'EmpresaA', 'Eva', 'Recurso 2');   
+INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa, id_empresa)
+VALUES ('Recurso 7', 'Descripción del recurso 7','foto7.jpg', 'Datos del recurso 4', 70, 'EmpresaA', 1);
 
-INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs)
-VALUES ('2023-07-21', '15:30:00', 'EmpresaB', 'Carla', 'Recurso 3');
 
-INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs)
-VALUES ('2023-07-22', '14:45:00', 'EmpresaC', 'Ramon', 'Recurso 5');
+INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id_recursoservicio, id_empresa)
+VALUES ('2023-07-20', '10:00:00', 'EmpresaA', 'Eva', 'Recurso 2', 2, 1);   
 
-INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs)
-VALUES ('2023-07-23', '09:15:00', 'EmpresaA', 'Elsa', 'Recurso 2');
+INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id_recursoservicio, id_empresa)
+VALUES ('2023-07-21', '15:30:00', 'EmpresaB', 'Carla', 'Recurso 3', 3, 2);
 
-INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs)
-VALUES ('2023-07-24', '12:00:00', 'EmpresaB', 'Clara', 'Recurso 3');
+INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id_recursoservicio, id_empresa)
+VALUES ('2023-07-22', '14:45:00', 'EmpresaC', 'Ramon', 'Recurso 5', 5, 3);
 
-INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs)
-VALUES ('2023-07-24', '16:00:00', 'EmpresaB', 'Clara', 'Recurso 3');
+INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id_recursoservicio, id_empresa)
+VALUES ('2023-07-23', '09:15:00', 'EmpresaA', 'Elsa', 'Recurso 2', 2, 1);
+
+INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id_recursoservicio, id_empresa)
+VALUES ('2023-07-24', '12:00:00', 'EmpresaB', 'Clara', 'Recurso 3',3, 2);
+
+INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id_recursoservicio, id_empresa)
+VALUES ('2023-07-24', '16:00:00', 'EmpresaB', 'Clara', 'Recurso 3', 3, 2);
 
 

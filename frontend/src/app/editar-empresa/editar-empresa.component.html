@@ -19,10 +19,10 @@
                     Logo:
                     <input type="text" name="logo" [(ngModel)]="empresa.logo">
                 </div>
-                <button (click)="eliminarCuentaEmpresa(empresa.nombre_empresa)"> <!--se crea un evento click, para que haga cosas cuando se pulse el botón-->
+                <button (click)="eliminarCuentaEmpresa(empresa.id_empresa)"> <!--se crea un evento click, para que haga cosas cuando se pulse el botón-->
                     Eliminar cuenta
                 </button>
-                <button (click)="guardarCambios(empresa.nombre_empresa, empresa)"> <!--se crea un evento click, para que haga cosas cuando se pulse el botón-->
+                <button (click)="guardarCambios(empresa.id_empresa, empresa)"> <!--se crea un evento click, para que haga cosas cuando se pulse el botón-->
                     Guardar cambios
                 </button>
             </form>

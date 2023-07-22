@@ -64,34 +64,37 @@ export class ReservasService {
   getEmpresa(empresa : string){
     return this.http.get(`${this.API_URI}/reservas/empresas/${empresa}`);
   }
+  getEmpresaId(id_empresa : string){
+    return this.http.get(`${this.API_URI}/reservas/empresas/${id_empresa}/id`);
+  }
 
-  eliminarEmpresa(empresa : string){ //devuelve una reserva
+  eliminarEmpresa(id_empresa : number){ //devuelve una reserva
     console.log("1")
-    return this.http.delete(`${this.API_URI}/reservas/empresas/eliminar/${empresa}`);
+    return this.http.delete(`${this.API_URI}/reservas/empresas/eliminar/${id_empresa}`);
   }
 
-  guardarCambios(empresa : string, nueva: Empresa){ //devuelve una reserva
-    return this.http.put(`${this.API_URI}/reservas/empresas/cambiar/${empresa}`, nueva);
+  guardarCambios(id_empresa : number, nueva: Empresa){ //devuelve una reserva
+    return this.http.put(`${this.API_URI}/reservas/empresas/cambiar/${id_empresa}`, nueva);
   }
 
-  getAdministradoresEmpresa(nombre_empresa: string){ 
-    return this.http.get(`${this.API_URI}/reservas/empresas/${nombre_empresa}/lista_administradores`)
+  getAdministradoresEmpresa(id_empresa: number){ 
+    return this.http.get(`${this.API_URI}/reservas/empresas/${id_empresa}/lista_administradores`)
   }
 
-  getUsuariosEmpresa(nombre_empresa: string){ 
-    return this.http.get(`${this.API_URI}/reservas/empresas/${nombre_empresa}/lista_usuarios`)
+  getUsuariosEmpresa(id_empresa: number){ 
+    return this.http.get(`${this.API_URI}/reservas/empresas/${id_empresa}/lista_usuarios`)
   }
 
-  getAdministradorEmpresa(nombre_usuario: string, nombre_empresa: string){ 
-    return this.http.get(`${this.API_URI}/reservas/empresas/${nombre_empresa}/lista_administradores/${nombre_usuario}`)
+  getAdministradorEmpresa(nombre_usuario: string, id_empresa: number){ 
+    return this.http.get(`${this.API_URI}/reservas/empresas/${id_empresa}/lista_administradores/${nombre_usuario}`)
   }
 
-  eliminarCuentaAdmiEmpresa(id: number, empresa: string){ 
-    return this.http.delete(`${this.API_URI}/reservas/empresas/${empresa}/lista_administradores/${id}/eliminar`)
+  eliminarCuentaAdmiEmpresa(id: number, id_empresa: number){ 
+    return this.http.delete(`${this.API_URI}/reservas/empresas/${id_empresa}/lista_administradores/${id}/eliminar`)
   }
 
-  guardarCambiosAdmiEmpresa(id: number, empresa: string, nuevoAdmi: Usuario){ 
-    return this.http.put(`${this.API_URI}/reservas/empresas/${empresa}/lista_administradores/${id}`, nuevoAdmi)
+  guardarCambiosAdmiEmpresa(id: number, id_empresa: number, nuevoAdmi: Usuario){ 
+    return this.http.put(`${this.API_URI}/reservas/empresas/${id_empresa}/lista_administradores/${id}`, nuevoAdmi)
   }
   getSolicitud(id: number){
     return this.http.get(`${this.API_URI}/reservas/lista_solicitudes/${id}`);
@@ -109,15 +112,15 @@ export class ReservasService {
     return this.http.put(`${this.API_URI}/reservas/lista_solicitudes/${id_solicitud}/actualizar`, nuevaSolicitud);
   }
 
-  getUsuarioag(nombre_empresa: string, nombre_usuario: string){ 
-    return this.http.get(`${this.API_URI}/reservas/empresas/${nombre_empresa}/lista_usuarios/${nombre_usuario}`);
+  getUsuarioag(id_empresa: number, nombre_usuario: string){ 
+    return this.http.get(`${this.API_URI}/reservas/empresas/${id_empresa}/lista_usuarios/${nombre_usuario}`);
   }
   
   getUsuarioNombre(nombre: string){ 
     return this.http.get(`${this.API_URI}/reservas/admi_empresa/${nombre}/get`)
   }
 
-  getDatosAdministradorEmpresa(nombre_usuario: string, nombre_empresa: string){ 
+  getDatosAdministradorEmpresa(nombre_usuario: string, id_empresa: number){ 
     return this.http.get(`${this.API_URI}/reservas/admi_empresa/${nombre_usuario}/editar`)
   }
 
@@ -129,64 +132,64 @@ export class ReservasService {
     return this.http.delete(`${this.API_URI}/reservas/admi_empresa/${nombre_usuario}/editar/eliminar`)
   }
 
-  getUsuariosEmpresaAe(nombre_usuario: string, nombre_empresa: string){ 
-    return this.http.get(`${this.API_URI}/reservas/admi_empresa/${nombre_usuario}/${nombre_empresa}/lista_usuarios`)
+  getUsuariosEmpresaAe(nombre_usuario: string, id_empresa: number){ 
+    return this.http.get(`${this.API_URI}/reservas/admi_empresa/${nombre_usuario}/${id_empresa}/lista_usuarios`)
   }
 
-  getUsuarioId(nombre_usuario: string, nombre_empresa: string, id: number){ 
-    return this.http.get(`${this.API_URI}/reservas/admi_empresa/${nombre_usuario}/${nombre_empresa}/lista_usuarios/${id}`)
+  getUsuarioId(nombre_usuario: string, id_empresa: number, id: number){ 
+    return this.http.get(`${this.API_URI}/reservas/admi_empresa/${nombre_usuario}/${id_empresa}/lista_usuarios/${id}`)
   }
 
-  guardarCambiosUsuarioAe(nombre_admi: string, nombre_empresa: string, id: number, nuevoUsuario: Usuario){ 
-    return this.http.put(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_usuarios/${id}/editar`, nuevoUsuario)
+  guardarCambiosUsuarioAe(nombre_admi: string, id_empresa: number, id: number, nuevoUsuario: Usuario){ 
+    return this.http.put(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${id_empresa}/lista_usuarios/${id}/editar`, nuevoUsuario)
   }
 
-  eliminarCuentaUsuarioAe(nombre_admi: string, nombre_empresa: string, id: number){
-    return this.http.delete(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_usuarios/${id}/eliminar`)
+  eliminarCuentaUsuarioAe(nombre_admi: string, id_empresa: number, id: number){
+    return this.http.delete(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${id_empresa}/lista_usuarios/${id}/eliminar`)
   }
 
-  eliminarReservas(nombre_admi: string, nombre_empresa: string, id_reserva:number){
-    return this.http.delete(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_usuarios/${id_reserva}/eliminar_reserva`)
+  eliminarReservas(nombre_admi: string, id_empresa: number, id_reserva:number){
+    return this.http.delete(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${id_empresa}/lista_usuarios/${id_reserva}/eliminar_reserva`)
   }
 
-  AeaniadeUsuario(usuario: Usuario, nombre_admi: string, nombre_empresa: string){
-    return this.http.post(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_usuarios/aniade/guardar`, usuario)
+  AeaniadeUsuario(usuario: Usuario, nombre_admi: string, id_empresa: number){
+    return this.http.post(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${id_empresa}/lista_usuarios/aniade/guardar`, usuario)
   }
 
-  getRecursosAe(nombre_admi: string, nombre_empresa: string){
-    return this.http.get(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_recursos/get`)
+  getRecursosAe(nombre_admi: string, id_empresa: number){
+    return this.http.get(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${id_empresa}/lista_recursos/get`)
   }
   
-  getDatosRecursoAe(nombre_admi: string, nombre_empresa: string, id_recursoservicio: number){
-    return this.http.get(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_recursos/${id_recursoservicio}`)
+  getDatosRecursoAe(nombre_admi: string, id_empresa: number, id_recursoservicio: number){
+    return this.http.get(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${id_empresa}/lista_recursos/${id_recursoservicio}`)
   }
 
-  guardarCambiosRecursoAe(nombre_admi: string, nombre_empresa: string, id_recursoservicio: number, nuevoRecurso: Recurso){ 
-    return this.http.put(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_recursos/${id_recursoservicio}/editar`, nuevoRecurso)
+  guardarCambiosRecursoAe(nombre_admi: string, id_empresa: number, id_recursoservicio: number, nuevoRecurso: Recurso){ 
+    return this.http.put(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${id_empresa}/lista_recursos/${id_recursoservicio}/editar`, nuevoRecurso)
   }
 
-  eliminarRescursoAe(nombre_admi: string, nombre_empresa: string, id_recursoservicio: number){ 
-    return this.http.delete(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_recursos/${id_recursoservicio}/eliminar`)
+  eliminarRescursoAe(nombre_admi: string, id_empresa: number, id_recursoservicio: number){ 
+    return this.http.delete(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${id_empresa}/lista_recursos/${id_recursoservicio}/eliminar`)
   }
 
-  AeaniadeRecurso(nuevoRecurso: Recurso, nombre_admi: string, nombre_empresa: string){ 
-    return this.http.post(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_recursos/aniade/guardar`, nuevoRecurso)
+  AeaniadeRecurso(nuevoRecurso: Recurso, nombre_admi: string, id_empresa: number){ 
+    return this.http.post(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${id_empresa}/lista_recursos/aniade/guardar`, nuevoRecurso)
   }
 
-  getReservasAe(nombre_admi: string, nombre_empresa: string){ 
-    return this.http.get(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_reservas/get`)
+  getReservasAe(nombre_admi: string, id_empresa: number){ 
+    return this.http.get(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${id_empresa}/lista_reservas/get`)
   }
 
-  getReservaId(nombre_admi: string, nombre_empresa: string, id_reserva: number){ 
-    return this.http.get(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_reservas/${id_reserva}`)
+  getReservaId(nombre_admi: string, id_empresa: number, id_reserva: number){ 
+    return this.http.get(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${id_empresa}/lista_reservas/${id_reserva}`)
   }
 
-  AeguardaCambiosReserva(nombre_admi: string, nombre_empresa: string, id_reserva: number, nuevaReserva: Reserva){ 
-    return this.http.put(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_reservas/${id_reserva}/editar/guardar`, nuevaReserva)
+  AeguardaCambiosReserva(nombre_admi: string, id_empresa: number, id_reserva: number, nuevaReserva: Reserva){ 
+    return this.http.put(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${id_empresa}/lista_reservas/${id_reserva}/editar/guardar`, nuevaReserva)
   }
 
-  AeEliminaReserva(nombre_admi: string, nombre_empresa: string, id_reserva: number){ 
-    return this.http.delete(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${nombre_empresa}/lista_reservas/${id_reserva}/eliminar`)
+  AeEliminaReserva(nombre_admi: string, id_empresa: number, id_reserva: number){ 
+    return this.http.delete(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${id_empresa}/lista_reservas/${id_reserva}/eliminar`)
   }
 
   getUsuario(nombre_usuario: string){
@@ -209,8 +212,8 @@ export class ReservasService {
     return this.http.get(`${this.API_URI}/reservas/usuario/${nombre_usuario}/reservas`)
   }
 
-  getReservasEmpresa(nombre_usuario: string, nombre_empresa: string){
-    return this.http.get(`${this.API_URI}/reservas/usuario/${nombre_usuario}/reservas/${nombre_empresa}`)
+  getReservasEmpresa(nombre_usuario: string, id_empresa: number){
+    return this.http.get(`${this.API_URI}/reservas/usuario/${nombre_usuario}/reservas/${id_empresa}`)
   }
 
   getReservaIdUsu(nombre_usuario: string, id_reserva: number){
@@ -225,8 +228,8 @@ export class ReservasService {
     return this.http.delete(`${this.API_URI}/reservas/usuario/${nombre_usuario}/reservas/ver/${id_reserva}/eliminar`)
   }
 
-  getRecursos(nombre_usuario: string, nombre_empresa: string){
-    return this.http.get(`${this.API_URI}/reservas/usuario/${nombre_usuario}/realiza_reserva/${nombre_empresa}`)
+  getRecursos(nombre_usuario: string, id_empresa: number){
+    return this.http.get(`${this.API_URI}/reservas/usuario/${nombre_usuario}/realiza_reserva/${id_empresa}`)
   }
 
   getDatosRecursoUsu(nombre_usuario: string, id_recursoservicio: number){

@@ -20,16 +20,17 @@ export class AgVeUsuarioComponent {
     fecha_nacimiento: new Date,
     puesto_trabajo: '',
     empresa: '',
-    id: 0
+    id: 0,
+    id_empresa: 0
   }
+
+  empresa: number = 0
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
     console.log(params["nombre_usuario"])
-    let url = this.router.url.split('/');
-    let empresa = url[3]
-    console.log(empresa)
-    this.reservaServices.getUsuarioag(empresa, params["nombre_usuario"]).subscribe(
+    this.empresa = params["id_empresa"]
+    this.reservaServices.getUsuarioag(this.empresa, params["nombre_usuario"]).subscribe(
       res => {
         //this.reserva = res; //no funciona -> tiene que aparecer la información antigua para editar sobre ella
         this.aux = res

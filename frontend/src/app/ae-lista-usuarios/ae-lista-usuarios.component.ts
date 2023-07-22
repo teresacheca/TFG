@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AeListaUsuariosComponent {
   usuarios: any = []
   vacio = false
-  empresa: string = ''
+  empresa: number = 0
 
   constructor(private reservasServices: ReservasService, private router: Router, private activeRoute: ActivatedRoute){
 
@@ -22,8 +22,8 @@ export class AeListaUsuariosComponent {
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
     console.log(params)
-    this.empresa = params["nombre_empresa"]
-    this.reservasServices.getUsuariosEmpresaAe(params["nombre_usuario"], params["nombre_empresa"]).subscribe(
+    this.empresa = params["id_empresa"]
+    this.reservasServices.getUsuariosEmpresaAe(params["nombre_usuario"], params["id_empresa"]).subscribe(
       res =>{
         this.usuarios = res;
         if(this.usuarios.length == 0){

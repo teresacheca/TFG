@@ -24,7 +24,7 @@ export class EmpresasComponent {
     );
   }
 
-  verEmpresa(nombre: string){
-    this.router.navigate(['/reservas/empresas', nombre]);
+  verEmpresa(id_empresa: string){
+    this.router.navigate(['/reservas/empresas', id_empresa]);
   }
 }

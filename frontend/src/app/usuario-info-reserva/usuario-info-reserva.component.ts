@@ -17,10 +17,12 @@ export class UsuarioInfoReservaComponent {
     nombre_empresa: '', 
     nombre_usuario: '',
     nombre_rs: '',
-    id_reserva: 0
+    id_reserva: 0,
+    id_recursoservicio: 0,
+    id_empresa: 0
   }
 
-  empresa: string = ''
+  empresa: number = 0
   usuario: string = ''
   id: number = 0
   aux: any= []
@@ -28,7 +30,7 @@ export class UsuarioInfoReservaComponent {
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
-    this.empresa = params["nombre_empresa"]
+    this.empresa = params["id_emrpesa"]
     this.usuario = params["nombre_usuario"]
     this.id = params["id_reserva"]
     
@@ -41,6 +43,8 @@ export class UsuarioInfoReservaComponent {
         this.reserva.nombre_empresa = this.aux[0].nombre_empresa
         this.reserva.nombre_usuario = this.aux[0].nombre_usuario
         this.reserva.nombre_rs = this.aux[0].nombre_rs
+        this.reserva.id_recursoservicio = this.aux[0].id_recursoservicio
+        this.reserva.id_empresa = this.aux[0].id_empresa
         if (this.reserva.nombre_usuario == this.usuario){
           this.mia = true
         }

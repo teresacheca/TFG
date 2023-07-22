@@ -17,7 +17,8 @@ export class AdmiGeneralComponent {
     contrasena: '',
     tipo: 0,
     id: 0,
-    empresa: ''
+    empresa: '',
+    id_empresa: 0
   }
 
   empresas: any = []

@@ -5,5 +5,6 @@ export interface Recurso{
     datos: string,
     aforo: number,
     nombre_empresa: string,
-    id_recursoservicio: number
+    id_recursoservicio: number,
+    id_empresa: number
 }

@@ -5,5 +5,6 @@ export interface Usuario{
     puesto_trabajo?: string,
     empresa: string, 
     tipo: number,
-    id: number
+    id: number,
+    id_empresa: number
 }

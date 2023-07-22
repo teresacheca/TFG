@@ -17,7 +17,8 @@ export class AdmiEmpresaComponent {
     contrasena: '',
     tipo: 1,
     empresa: '',
-    id: 0
+    id: 0,
+    id_empresa: 0
   }
   aux: any = {}
 
@@ -33,7 +34,7 @@ export class AdmiEmpresaComponent {
         //this.reservaServices.getUsuarioag().subscribe
         this.admi_empresa.nombre_usuario = params["nombre_usuario"]
         this.admi_empresa.contrasena = params["contrasena"]
-        this.admi_empresa.empresa = params["empresa"]
+        this.admi_empresa.id_empresa = params["id_empresa"]
         this.reservaServices.getUsuarioNombre(this.admi_empresa.nombre_usuario).subscribe(
           res => {
             //this.reserva = res; //no funciona -> tiene que aparecer la información antigua para editar sobre ella
@@ -46,6 +47,7 @@ export class AdmiEmpresaComponent {
             this.admi_empresa.puesto_trabajo = this.aux[0].puesto_trabajo
             this.admi_empresa.empresa = this.aux[0].empresa
             this.admi_empresa.id = this.aux[0].id
+            this.admi_empresa.id_empresa = this.aux[0].id_empresa
             console.log(this.admi_empresa)
           },
           err=> console.error(err)
@@ -63,17 +65,17 @@ export class AdmiEmpresaComponent {
   }
 
   verUsuarios(){
-    let ruta = this.router.url + '/' + this.admi_empresa.empresa + '/lista_usuarios'
+    let ruta = this.router.url + '/' + this.admi_empresa.id_empresa + '/lista_usuarios'
     this.router.navigate([ruta])
   }
 
   verListaRecurosAe(){
-    let ruta = this.router.url + '/' + this.admi_empresa.empresa + '/lista_recursos'
+    let ruta = this.router.url + '/' + this.admi_empresa.id_empresa + '/lista_recursos'
     this.router.navigate([ruta])
   }
 
   verReservasAe(){
-    let ruta = this.router.url + '/' + this.admi_empresa.empresa + '/lista_reservas'
+    let ruta = this.router.url + '/' + this.admi_empresa.id_empresa + '/lista_reservas'
     this.router.navigate([ruta])
   }
 

@@ -20,12 +20,13 @@ export class AeEditaPerfilComponent {
     fecha_nacimiento: new Date,
     puesto_trabajo: '',
     empresa: '',
-    id: 0
+    id: 0,
+    id_empresa: 0
   }
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
-    this.reservaServices.getDatosAdministradorEmpresa(params["nombre_usuario"], params["nombre_empresa"]).subscribe(
+    this.reservaServices.getDatosAdministradorEmpresa(params["nombre_usuario"], params["id_empresa"]).subscribe(
       res => {
         //this.reserva = res; //no funciona -> tiene que aparecer la información antigua para editar sobre ella
         this.aux = res
@@ -36,6 +37,7 @@ export class AeEditaPerfilComponent {
         this.admi_empresa.puesto_trabajo = this.aux[0].puesto_trabajo
         this.admi_empresa.empresa = this.aux[0].empresa
         this.admi_empresa.id = this.aux[0].id
+        this.admi_empresa.id_empresa = this.aux[0].id_empresa
       },
       err=> console.error(err)
     )

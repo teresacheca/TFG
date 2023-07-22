@@ -20,17 +20,18 @@ export class AeEditaUsuarioComponent {
     fecha_nacimiento: new Date,
     puesto_trabajo: '',
     empresa: '',
-    id: 0
+    id: 0,
+    id_empresa: 0
   }
 
   nombre_admi: string = ''
-  empresa: string = ''
+  empresa: number = 0
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
     this.nombre_admi = params["nombre_usuario"]
-    this.empresa = params["nombre_empresa"]
-    this.reservaServices.getUsuarioId(params["nombre_usuario"], params["nombre_empresa"], params["id"]).subscribe(
+    this.empresa = params["id_empresa"]
+    this.reservaServices.getUsuarioId(params["nombre_usuario"], params["id_empresa"], params["id"]).subscribe(
       res => {
         //this.reserva = res; //no funciona -> tiene que aparecer la información antigua para editar sobre ella
         
@@ -43,6 +44,7 @@ export class AeEditaUsuarioComponent {
         this.usuario.puesto_trabajo = this.aux[0].puesto_trabajo
         this.usuario.empresa = this.aux[0].empresa
         this.usuario.id = this.aux[0].id
+        this.usuario.id_empresa = this.aux[0].id_empresa
       },
       err=> console.error(err)
     )

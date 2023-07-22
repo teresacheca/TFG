@@ -17,10 +17,12 @@ export class ListaUsuariosComponent {
 
   }
 
+  empresa: number = 0
+
   ngOnInit(){
-    let url = this.router.url.split('/');
-    let empresa = url[3]
-    this.reservasServices.getUsuariosEmpresa(empresa).subscribe(
+    const params = this.activeRoute.snapshot.params;
+    this.empresa = params["id_empresa"]
+    this.reservasServices.getUsuariosEmpresa(this.empresa).subscribe(
       res =>{
         this.usuarios = res;
         if(this.usuarios.length == 0){

@@ -18,17 +18,19 @@ export class AeEditaReservaComponent {
     nombre_empresa: '', 
     nombre_usuario: '',
     nombre_rs: '',
-    id_reserva: 0
+    id_reserva: 0,
+    id_recursoservicio: 0,
+    id_empresa: 0
   }
 
-  empresa: string = ''
+  empresa: number = 0
   nombre_admi: string = ''
   id: number = 0
   aux: any= []
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
-    this.empresa = params["nombre_empresa"]
+    this.empresa = params["id_empresa"]
     this.nombre_admi = params["nombre_usuario"]
     this.id = params["id_reserva"]
     
@@ -42,6 +44,8 @@ export class AeEditaReservaComponent {
         this.reserva.nombre_usuario = this.aux[0].nombre_usuario
         this.reserva.nombre_rs = this.aux[0].nombre_rs
         this.reserva.id_reserva = this.aux[0].id_reserva
+        this.reserva.id_recursoservicio = this.aux[0].id_recursoservicio
+        this.reserva.id_empresa = this.aux[0].id_empresa
 
       },
       err => console.error(err)

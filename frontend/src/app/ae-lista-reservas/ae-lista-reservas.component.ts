@@ -10,14 +10,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AeListaReservasComponent {
   reservas: any = []
   vacio = false
-  empresa: string = ''
+  empresa: number = 0
   nombre_admi: string = ''
 
   constructor(private reservasServices: ReservasService, private router: Router, private activeRoute: ActivatedRoute){}
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
-    this.empresa = params["nombre_empresa"]
+    this.empresa = params["id_empresa"]
     this.nombre_admi = params["nombre_usuario"]
     this.reservasServices.getReservasAe(this.nombre_admi, this.empresa).subscribe(
       res =>{

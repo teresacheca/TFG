@@ -19,17 +19,18 @@ export class AeDatosRecursoComponent {
     datos: '',
     aforo: 0,
     nombre_empresa: '',
-    id_recursoservicio: 0
+    id_recursoservicio: 0,
+    id_empresa: 0
   }
 
-  empresa: string = ''
+  empresa: number = 0
   admi: string = ''
   id: number = 0
   aux: any
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
-    this.empresa = params["nombre_empresa"]
+    this.empresa = params["id_empresa"]
     this.admi = params["nombre_usuario"]
     this.id = params["id_recursoservicio"]
     this.reservasServices.getDatosRecursoAe(this.admi, this.empresa, this.id).subscribe(
@@ -42,6 +43,7 @@ export class AeDatosRecursoComponent {
        this.recurso.aforo = this.aux[0].aforo
        this.recurso.nombre_empresa = this.aux[0].nombre_empresa
        this.recurso.id_recursoservicio = this.aux[0].id_recursoservicio
+       this.recurso.id_empresa = this.aux[0].id_empresa
       },
       err => console.error(err)
     );

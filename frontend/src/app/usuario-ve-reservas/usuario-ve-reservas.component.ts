@@ -22,6 +22,7 @@ export class UsuarioVeReservasComponent {
     empresa: '',
     fecha_nacimiento: new Date,
     puesto_trabajo: '',
+    id_empresa: 0
   }
 
   aux: any = []
@@ -40,7 +41,8 @@ export class UsuarioVeReservasComponent {
         this.usuario.id = this.aux[0].id
         this.usuario.empresa = this.aux[0].empresa   
         this.usuario.puesto_trabajo = this.aux[0].puesto_trabajo 
-        this.usuario.fecha_nacimiento = this.aux[0].fecha_nacimiento   
+        this.usuario.fecha_nacimiento = this.aux[0].fecha_nacimiento  
+        this.usuario.id_empresa = this.aux[0].id_empresa  
         this.getReservasUsuario()
         this.getReservasEmpresa()
       },
@@ -58,7 +60,7 @@ export class UsuarioVeReservasComponent {
   }
 
   getReservasEmpresa(){
-    this.reservasServices.getReservasEmpresa(this.usuario.nombre_usuario, this.usuario.empresa).subscribe(
+    this.reservasServices.getReservasEmpresa(this.usuario.nombre_usuario, this.usuario.id_empresa).subscribe(
       res =>{
         this.reservas_empresa = res
       },

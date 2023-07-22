@@ -11,7 +11,7 @@ import {Recurso} from '../modelos/Recursos'
 export class AeAniadeRecursoComponent {
   constructor(private router: Router, private activeRoute: ActivatedRoute, private reservasServices: ReservasService){}
   
-  empresa: string = ''
+  id_empresa: number = 0
   nombre_admi: string = ''
 
   recurso: Recurso ={
@@ -21,12 +21,13 @@ export class AeAniadeRecursoComponent {
     datos: '',
     aforo: 0,
     nombre_empresa: '',
-    id_recursoservicio: 0
+    id_recursoservicio: 0,
+    id_empresa: 0
   }
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
-    this.empresa = params["nombre_empresa"]
+    this.id_empresa = params["id_empresa"]
     this.nombre_admi = params["nombre_usuario"]
   }
 
@@ -39,10 +40,10 @@ export class AeAniadeRecursoComponent {
       this.recurso.foto = foto
       this.recurso.datos = datos
       this.recurso.aforo = Number(aforo);
-      this.recurso.nombre_empresa = this.empresa
-      this.reservasServices.AeaniadeRecurso(this.recurso, this.nombre_admi, this.empresa).subscribe(
+      this.recurso.id_empresa = this.id_empresa
+      this.reservasServices.AeaniadeRecurso(this.recurso, this.nombre_admi, this.id_empresa).subscribe(
         res => {
-          let ruta = "/reservas/admi_empresa/" + this.nombre_admi + '/' + this.empresa + '/lista_recursos'
+          let ruta = "/reservas/admi_empresa/" + this.nombre_admi + '/' + this.id_empresa + '/lista_recursos'
           this.router.navigate([ruta]);
         },
         err => console.error(err)

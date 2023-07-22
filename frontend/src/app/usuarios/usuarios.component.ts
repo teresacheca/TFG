@@ -17,7 +17,8 @@ export class UsuariosComponent {
     contrasena: '',
     tipo: 2,
     id: 0,
-    empresa: ''
+    empresa: '',
+    id_empresa: 0
   }
 
   aux: any = []

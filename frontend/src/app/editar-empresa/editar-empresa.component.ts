@@ -25,7 +25,7 @@ export class EditarEmpresaComponent {
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
-    this.reservaServices.getEmpresa(params["nombre_empresa"]).subscribe(
+    this.reservaServices.getEmpresaId(params["id_empresa"]).subscribe(
       res => {
         //this.reserva = res; //no funciona -> tiene que aparecer la información antigua para editar sobre ella
         this.aux = res
@@ -40,9 +40,9 @@ export class EditarEmpresaComponent {
     )
   }
 
-  eliminarCuentaEmpresa(nombre_empresa: string){
+  eliminarCuentaEmpresa(id_empresa: number){
     
-    this.reservaServices.eliminarEmpresa(nombre_empresa).subscribe(
+    this.reservaServices.eliminarEmpresa(id_empresa).subscribe(
       res => {
         this.router.navigate(['/reservas/empresas']);
       },
@@ -50,11 +50,11 @@ export class EditarEmpresaComponent {
     )
   }
 
-  guardarCambios(nombre_empresa: string, empresa : Empresa){
+  guardarCambios(id_empresa: number, empresa : Empresa){
     console.log("guardar cambios")
-    this.reservaServices.guardarCambios(nombre_empresa, empresa).subscribe(
+    this.reservaServices.guardarCambios(id_empresa, empresa).subscribe(
       res => {
-        this.router.navigate(['/reservas/empresas', nombre_empresa]);
+        this.router.navigate(['/reservas/empresas', this.empresa.id_empresa]);
 
       },
       err=> console.error(err)

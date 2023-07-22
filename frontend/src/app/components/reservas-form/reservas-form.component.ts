@@ -20,7 +20,9 @@ export class ReservasFormComponent {
     nombre_empresa: '', 
     nombre_usuario: '',
     nombre_rs: '',
-    id_reserva: 0
+    id_reserva: 0,
+    id_recursoservicio: 0,
+    id_empresa: 0
   };
   
   edit: boolean = false;
@@ -116,7 +118,9 @@ export class ReservasFormComponent {
       nombre_empresa: '', 
       nombre_usuario: '',
       nombre_rs: '',
-      id_reserva: 0
+      id_reserva: 0,
+      id_recursoservicio:0 ,
+      id_empresa: 0
     };
 
     this.reservaServices.saveReserva(nueva_reserva).subscribe(

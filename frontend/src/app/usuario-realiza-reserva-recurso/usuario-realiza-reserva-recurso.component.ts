@@ -19,7 +19,8 @@ export class UsuarioRealizaReservaRecursoComponent {
     datos: '',
     aforo: 0,
     nombre_empresa: '',
-    id_recursoservicio: 0
+    id_recursoservicio: 0,
+    id_empresa: 0
   }
 
   usuario: string = ''
@@ -32,7 +33,9 @@ export class UsuarioRealizaReservaRecursoComponent {
     nombre_empresa: '', 
     nombre_usuario: '',
     nombre_rs: '',
-    id_reserva: 0
+    id_reserva: 0,
+    id_recursoservicio: 0,
+    id_empresa: 0
   }
 
   ngOnInit(){
@@ -50,10 +53,13 @@ export class UsuarioRealizaReservaRecursoComponent {
        this.recurso.aforo = this.aux[0].aforo
        this.recurso.nombre_empresa = this.aux[0].nombre_empresa
        this.recurso.id_recursoservicio = this.aux[0].id_recursoservicio
+       this.recurso.id_empresa = this.aux[0].id_empresa
 
        this.reserva.nombre_empresa = this.recurso.nombre_empresa
        this.reserva.nombre_usuario = this.usuario
        this.reserva.nombre_rs = this.recurso.nombre_rs
+       this.reserva.id_recursoservicio = this.recurso.id_recursoservicio
+       this.reserva.id_empresa = this.recurso.id_empresa
 
       },
       err => console.error(err)

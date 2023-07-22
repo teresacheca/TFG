@@ -12,7 +12,7 @@ export class AeAniadeUsuarioComponent {
 
   constructor(private router: Router, private activeRoute: ActivatedRoute, private reservasServices: ReservasService){}
   
-  empresa: string = ''
+  empresa: number = 0
   nombre_admi: string = ''
 
   usuario: Usuario={
@@ -22,12 +22,13 @@ export class AeAniadeUsuarioComponent {
     fecha_nacimiento: new Date,
     puesto_trabajo: '',
     empresa: '',
-    id: 0
+    id: 0,
+    id_empresa: 0
   }
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
-    this.empresa = params["nombre_empresa"]
+    this.empresa = params["id_empresa"]
     this.nombre_admi = params["nombre_usuario"]
   }
 
@@ -39,11 +40,12 @@ export class AeAniadeUsuarioComponent {
       this.usuario.contrasena = contrasena
       this.usuario.fecha_nacimiento = fecha_nacimiento
       this.usuario.puesto_trabajo = puesto_trabajo
-      this.usuario.empresa = this.empresa
+      this.usuario.id_empresa = this.empresa
       console.log(this.usuario)
       this.reservasServices.AeaniadeUsuario(this.usuario, this.nombre_admi, this.empresa).subscribe(
         res => {
-          this.router.navigate(['/reservas/login']);
+          let ruta = '/reservas/admi_empresa/' + this.nombre_admi + '/' + this.empresa + '/lista_usuarios'
+          this.router.navigate([ruta]);
         },
         err => console.error(err)
       )

@@ -11,7 +11,7 @@ class ReservasController{
     }
 
     public async crearEmpresa(req: Request, res: Response){
-        pool.query('INSERT INTO solicitud (nombre_empresa, datos_de_contacto, descripcion, logo, direccion, estado) VALUES (?, ?, ?, ?, ?, ?)', [req.body.nombre_empresa, req.body.datos_de_contacto, req.body.descripcion, req.body.logo, req.body.direccion,'pendiente'])
+        pool.query('INSERT INTO solicitud (nombre_empresa, datos_de_contacto, descripcion, logo, direccion, estado) VALUES (?, ?, ?, ?, ?, ?)', [req.body.nombre_empresa, req.body.datos_de_contacto, req.body.descripcion, req.body.logo, req.body.direccion,'Pendiente'])
         //res.json({message: 'El usuario existe'})
         res.json({message: 'la empresa se ha creado'});
     }
@@ -250,8 +250,7 @@ class ReservasController{
 
     public async crearReserva(req: Request, res: Response) { 
         let fecha = new Date(req.body.fecha)
-        console.log(req.params)
-        pool.query('INSERT INTO Reservas (nombre_rs, nombre_usuario, nombre_empresa, fecha, hora, id_recursoservicio, id_empresa) VALUES (?, ?, ?, ?, ?, ?)', [req.body.nombre_rs, req.body.nombre_usuario, req.body.nombre_empresa, fecha, req.body.hora, req.params.id_recursoservicio, req.params.id_empresa]);
+        pool.query('INSERT INTO Reservas (nombre_rs, nombre_usuario, nombre_empresa, fecha, hora, id_recursoservicio, id_empresa) VALUES (?, ?, ?, ?, ?, ?, ?)', [req.body.nombre_rs, req.params.nombre_usuario, req.body.nombre_empresa, fecha, req.body.hora, req.params.id_recursoservicio, req.body.id_empresa]);
         res.json({message: 'la reserva se ha creado'});
     }
 }

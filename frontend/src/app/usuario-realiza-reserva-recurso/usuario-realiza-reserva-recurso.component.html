@@ -11,10 +11,11 @@
                     Usuarios:
                     <input type="text" name="nombre_usuario" [(ngModel)]="reserva.nombre_usuario">
                 </div>
-                <div>
-                    Fecha:
-                    <input type="text" name="fecha" [(ngModel)]="reserva.fecha">
-                </div>
+
+                <input [matDatepicker]="basicDatepicker" name="fecha" [(ngModel)]="reserva.fecha">
+                <mat-datepicker-toggle [for]="basicDatepicker"></mat-datepicker-toggle>
+                <mat-datepicker #basicDatepicker></mat-datepicker>
+                  
                 <div>
                     Hora:
                     <input type="text" name="hora" [(ngModel)]="reserva.hora">

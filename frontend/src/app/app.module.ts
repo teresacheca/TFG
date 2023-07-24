@@ -40,7 +40,11 @@ import { UsuarioVeReservasComponent } from './usuario-ve-reservas/usuario-ve-res
 import { UsuarioRealizaReservaComponent } from './usuario-realiza-reserva/usuario-realiza-reserva.component';
 import { UsuarioInfoReservaComponent } from './usuario-info-reserva/usuario-info-reserva.component';
 import { UsuarioEditaReservaComponent } from './usuario-edita-reserva/usuario-edita-reserva.component';
-import { UsuarioRealizaReservaRecursoComponent } from './usuario-realiza-reserva-recurso/usuario-realiza-reserva-recurso.component'
+import { UsuarioRealizaReservaRecursoComponent } from './usuario-realiza-reserva-recurso/usuario-realiza-reserva-recurso.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -85,7 +89,11 @@ import { UsuarioRealizaReservaRecursoComponent } from './usuario-realiza-reserva
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule, 
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule
   ],
   providers: [ReservasService],
   bootstrap: [AppComponent]

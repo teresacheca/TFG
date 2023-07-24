@@ -33,6 +33,7 @@ import { UsuarioInfoReservaComponent } from './usuario-info-reserva/usuario-info
 import { UsuarioEditaReservaComponent } from './usuario-edita-reserva/usuario-edita-reserva.component';
 import { UsuarioRealizaReservaRecursoComponent } from './usuario-realiza-reserva-recurso/usuario-realiza-reserva-recurso.component';
 
+
 //rutas para rederigir dentro de la página
 const routes: Routes = [
   {

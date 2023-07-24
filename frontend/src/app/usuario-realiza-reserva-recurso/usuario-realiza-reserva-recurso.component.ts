@@ -9,6 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './usuario-realiza-reserva-recurso.component.html',
   styleUrls: ['./usuario-realiza-reserva-recurso.component.css']
 })
+
+
 export class UsuarioRealizaReservaRecursoComponent {
   constructor(private reservaServices: ReservasService, private router: Router, private activeRoute: ActivatedRoute){}
 
@@ -68,85 +70,72 @@ export class UsuarioRealizaReservaRecursoComponent {
 
   crearReserva(nuevaReserva: Reserva){
 
-    //Falla cuando el formato de la fecha cambia
-    console.log(nuevaReserva.fecha)
-    var dia = nuevaReserva.fecha.substring(0,2);
-    var mes = nuevaReserva.fecha.substring(3,5);
-    var anio = nuevaReserva.fecha.substring(6,12);
-    console.log(dia)
-    console.log(mes)
-    console.log(anio)
-    var fecha = mes + '-' + dia + '-' + anio
-    var fechaAuxiliar = anio + '-' + mes + '-' + dia
-    nuevaReserva.fecha = fechaAuxiliar
-    console.log(fecha)
-    const f = new Date(fecha)
-    f.setDate(f.getDate()+1)
-    console.log("f")
-    console.log(f)
-    //cosas para tener 2023-01-23
-    var str = f.toString();
-    var mes_str = str.substring(4,7);
-    var mes = '';
+
+    const faux = new Date(nuevaReserva.fecha)
    
-    switch(mes_str){
+    var straux = faux.toString();
+    var mes_str_aux = straux.substring(4,7);
+    var mesAux = ''
+ 
+    switch(mes_str_aux){
       case 'Jan':{
-        mes = '01';
+        mesAux = '01';
         break;
       }
       case 'Feb':{
-        mes = '02';
+        mesAux = '02';
         break;
       }
       case 'Mar':{
-        mes = '03';
+        mesAux = '03';
         break;
       }
       case 'Apr':{
-        mes = '04';
+        mesAux = '04';
         break;
       }
       case 'May':{
-        mes = '05';
+        mesAux = '05';
         break;
       }
       case 'Jun':{
-        mes = '06';
+        mesAux = '06';
         break;
       }
       case 'Jul':{
-        mes = '07';
+        mesAux = '07';
         break;
       }
       case 'Aug':{
-        mes = '08';
+        mesAux = '08';
         break;
       }
       case 'Sep':{
-        mes = '09';
+        mesAux = '09';
         break;
       }
       case 'Oct':{
-        mes = '10';
+        mesAux = '10';
         break;
       }
       case 'Nov':{
-        mes = '11';
+        mesAux = '11';
         break;
       }
       case 'Dec':{
-        mes = '12';
+        mesAux = '12';
         break;
       }
     }
-  
-    var dia = str.substring(8,10);
-    var anio = str.substring(11,15);
-  
-    var nueva_fecha = anio + '-' + mes + '-' + dia;
+    
+    
+    var diaAux = straux.substring(8,10);
+    var anioAux = straux.substring(11,15);
 
-    console.log(nueva_fecha)
+    
+    var fechaAuxiliar = anioAux + '-' + mesAux + '-' + diaAux;
 
+    console.log(fechaAuxiliar)
 
     let existe = false
     let coincide = false
@@ -169,17 +158,84 @@ export class UsuarioRealizaReservaRecursoComponent {
               
               for(let i=0; i<this.aux.length; i++){
                 var x = this.aux[i].fecha.toString().substring(0,10);
-                console.log("fechas")
-                  console.log(x)
-                  console.log(nuevaReserva.fecha)
-                if(nuevaReserva.nombre_rs == this.aux[i].nombre_rs && nuevaReserva.fecha == x && nuevaReserva.hora == this.aux[i].hora ){
+                console.log("x")
+                const x2 = new Date(x)
+               
+                x2.setDate(x2.getDate()+1)
+
+                var str = x2.toString();
+                var mes_str = str.substring(4,7);
+                var mes = '';
+              
+                switch(mes_str){
+                  case 'Jan':{
+                    mes = '01';
+                    break;
+                  }
+                  case 'Feb':{
+                    mes = '02';
+                    break;
+                  }
+                  case 'Mar':{
+                    mes = '03';
+                    break;
+                  }
+                  case 'Apr':{
+                    mes = '04';
+                    break;
+                  }
+                  case 'May':{
+                    mes = '05';
+                    break;
+                  }
+                  case 'Jun':{
+                    mes = '06';
+                    break;
+                  }
+                  case 'Jul':{
+                    mes = '07';
+                    break;
+                  }
+                  case 'Aug':{
+                    mes = '08';
+                    break;
+                  }
+                  case 'Sep':{
+                    mes = '09';
+                    break;
+                  }
+                  case 'Oct':{
+                    mes = '10';
+                    break;
+                  }
+                  case 'Nov':{
+                    mes = '11';
+                    break;
+                  }
+                  case 'Dec':{
+                    mes = '12';
+                    break;
+                  }
+                }
+
+                
+                var dia = str.substring(8,10);
+                var anio = str.substring(11,15);
+
+                var nueva_fechax = anio + '-' + mes + '-' + dia;
+
+                console.log(this.aux[i].id_reserva)
+                console.log(fechaAuxiliar)
+                console.log(nueva_fechax)
+                if(nuevaReserva.nombre_rs == this.aux[i].nombre_rs && fechaAuxiliar == nueva_fechax && nuevaReserva.hora == this.aux[i].hora ){
+                  console.log("!!")
                   coincide = true
                 }
               }
               if(coincide){
                 confirm("Ya existe una reserva en ese momento para dicho recurso");
               }else{
-                nuevaReserva.fecha = nueva_fecha
+                nuevaReserva.fecha = fechaAuxiliar
                 this.reservaServices.crearReserva(this.usuario, this.id, nuevaReserva).subscribe(
                   res =>{
                     let ruta = '/reservas/usuario/' + this.usuario + '/realiza_reserva'

@@ -3,6 +3,7 @@ import { Recurso} from '../modelos/Recursos';
 import { Reserva} from '../modelos/Reservas';
 import {ReservasService} from '../services/reservas.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-usuario-realiza-reserva-recurso',
@@ -13,6 +14,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class UsuarioRealizaReservaRecursoComponent {
   constructor(private reservaServices: ReservasService, private router: Router, private activeRoute: ActivatedRoute){}
+
+  currentMonth: any;
+  weeks: number[][] = [];
+  daysOfWeek: string[] = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+  reservasExistente: string[] = [];
+  horas: string[] = [];
 
   recurso: Recurso = {
     nombre_rs: '',
@@ -41,13 +48,14 @@ export class UsuarioRealizaReservaRecursoComponent {
   }
 
   ngOnInit(){
+    this.currentMonth = moment();
+    this.generateCalendar();
     const params = this.activeRoute.snapshot.params;
     this.usuario = params["nombre_usuario"]
     this.id = params["id_recursoservicio"]
     this.reservaServices.getDatosRecursoUsu(this.usuario, this.id).subscribe(
       res =>{
        this.aux = res
-       console.log(res)
        this.recurso.nombre_rs = this.aux[0].nombre_rs
        this.recurso.descripcion = this.aux[0].descripcion
        this.recurso.foto = this.aux[0].foto
@@ -63,9 +71,24 @@ export class UsuarioRealizaReservaRecursoComponent {
        this.reserva.id_recursoservicio = this.recurso.id_recursoservicio
        this.reserva.id_empresa = this.recurso.id_empresa
 
+       this.reservaServices.getReservasEmpresa(this.usuario, this.recurso.id_empresa).subscribe(
+        res =>{
+          this.aux = res;
+          for (const reserva of this.aux) {
+            this.reservasExistente.push(reserva.fecha);
+            this.horas.push(reserva.hora)
+          }
+          console.log(this.reservasExistente)
+          console.log(this.horas)
+        },
+        err => console.error(err)
+      );
+
       },
       err => console.error(err)
     );
+
+    
   }
 
   crearReserva(nuevaReserva: Reserva){
@@ -251,5 +274,89 @@ export class UsuarioRealizaReservaRecursoComponent {
       },
       err => console.error(err)
     );
+  }
+
+
+  get currentMonthDates(): number[] {
+      const firstDayOfMonth = this.currentMonth.clone().startOf('month').day();
+      const daysInMonth = this.currentMonth.daysInMonth();
+      const dates = Array.from({ length: 42 }, (_, i) =>
+        i >= firstDayOfMonth && i < firstDayOfMonth + daysInMonth
+          ? i - firstDayOfMonth + 1
+          : 0
+      );
+      return dates;
+  }
+
+  goToPreviousMonth() {
+    this.currentMonth = this.currentMonth.clone().subtract(1, 'month');
+    this.generateCalendar();
+  }
+
+  goToNextMonth() {
+    this.currentMonth = this.currentMonth.clone().add(1, 'month');
+    this.generateCalendar();
+  }
+
+  generateCalendar() {
+    const firstDayOfMonth = this.currentMonth.clone().startOf('month').day();
+    const daysInMonth = this.currentMonth.daysInMonth();
+    const weeks = [];
+
+    let week = new Array(7).fill(0);
+
+    let currentDay = 1;
+    for (let i = firstDayOfMonth-1; i < 7; i++) {
+      week[i] = currentDay;
+      currentDay++;
+    }
+
+    weeks.push(week);
+
+    while (currentDay <= daysInMonth) {
+      week = new Array(7).fill(0);
+      for (let i = 0; i < 7 && currentDay <= daysInMonth; i++) {
+        week[i] = currentDay;
+        currentDay++;
+      }
+      weeks.push(week);
+    }
+
+    this.weeks = weeks;
+
+    console.log(this.weeks)
+  }
+
+  getFormattedDate(day: number): string {
+    const year = this.currentMonth.year();
+    const month = this.currentMonth.month() + 1;
+    const dayFormatted = day < 10 ? `0${day}` : `${day}`;
+    return `${year}-${month < 10 ? `0${month}` : `${month}`}-${dayFormatted}`;
+  }
+
+  getFechasReservas(): string[] {
+    return this.reservasExistente.map(reserva => moment(reserva).format('YYYY-MM-DD'));
+  }
+
+  // Verificar si hay reservas en una fecha específica y devolver un booleano
+  tieneReserva(date: number): boolean {
+    const fecha = this.currentMonth.clone().date(date);
+    const fechaFormateada = fecha.format('YYYY-MM-DD');
+    return this.getFechasReservas().includes(fechaFormateada);
+  }
+
+  getFechasReservasConHora(): { fecha: string; hora: string }[] {
+    return this.reservasExistente.map(reserva => ({
+      fecha: moment(reserva).format('YYYY-MM-DD'),
+      hora: moment(reserva).format('HH:mm:ss')
+    }));
+  }
+
+  // Obtener la hora de la reserva en una fecha específica o cadena vacía si no hay reserva
+  getHoraReserva(date: number): string {
+    const fecha = this.currentMonth.clone().date(date);
+    const fechaFormateada = fecha.format('YYYY-MM-DD');
+    const reserva = this.getFechasReservasConHora().find(reserva => reserva.fecha === fechaFormateada);
+    return reserva ? reserva.hora : '';
   }
 }

@@ -1,30 +1,16 @@
-<div class="col-md-4 offset-md-2"> <!--para que esté centrado-->
-
-    <div class="card">
-        <div class="card-body">
-            <form>
-                <div>
-                    Recurso:
-                    <input type="text" name="nombre_rs" [(ngModel)]="reserva.nombre_rs">
-                </div>
-                <div>
-                    Usuarios:
-                    <input type="text" name="nombre_usuario" [(ngModel)]="reserva.nombre_usuario">
-                </div>
-
-                <input [matDatepicker]="basicDatepicker" name="fecha" [(ngModel)]="reserva.fecha">
-                <mat-datepicker-toggle [for]="basicDatepicker"></mat-datepicker-toggle>
-                <mat-datepicker #basicDatepicker></mat-datepicker>
-                  
-                <div>
-                    Hora:
-                    <input type="text" name="hora" [(ngModel)]="reserva.hora">
-                </div>
-                <button (click)="crearReserva(reserva)">
-                    Crear reserva
-                </button>
-            </form>
-        </div>
+<div class="calendar">
+    <div class="calendar-header">
+      <button (click)="goToPreviousMonth()">&lt;</button>
+      <h1>{{ currentMonth.format('MMMM YYYY') }}</h1>
+      <button (click)="goToNextMonth()">&gt;</button>
     </div>
-</div>
-
+    <div class="calendar-grid">
+      <div class="calendar-day" *ngFor="let day of daysOfWeek">{{ day }}</div>
+      <ng-container *ngFor="let week of weeks">
+        <div class="calendar-date" *ngFor="let date of week">
+          <span *ngIf="date !== 0">{{ date }}</span>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  

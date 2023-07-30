@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {ReservasService} from '../services/reservas.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Reserva} from 'src/app/modelos/Reservas';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-usuario-info-reserva',
@@ -27,7 +28,8 @@ export class UsuarioInfoReservaComponent {
   id: number = 0
   aux: any= []
   mia = false
-
+  fecha: any
+  
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
     this.empresa = params["id_emrpesa"]
@@ -39,6 +41,7 @@ export class UsuarioInfoReservaComponent {
         console.log(res)
         this.aux = res
         this.reserva.fecha = this.aux[0].fecha
+        this.fecha = moment(this.reserva.fecha).format('YYYY-MM-DD')
         this.reserva.hora = this.aux[0].hora
         this.reserva.nombre_empresa = this.aux[0].nombre_empresa
         this.reserva.nombre_usuario = this.aux[0].nombre_usuario

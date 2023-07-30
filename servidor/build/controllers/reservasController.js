@@ -297,7 +297,7 @@ class ReservasController {
     }
     getReservasEmpresa(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const reservas = yield basedatos_1.default.promise().query('SELECT * FROM Reservas WHERE id_empresa = ?', [req.params.id_empresa]);
+            const reservas = yield basedatos_1.default.promise().query('SELECT * FROM Reservas WHERE id_empresa = ? order by fecha', [req.params.id_empresa]);
             const rows = reservas[0]; // Accede a los resultados utilizando la posición 0
             res.json(rows);
         });

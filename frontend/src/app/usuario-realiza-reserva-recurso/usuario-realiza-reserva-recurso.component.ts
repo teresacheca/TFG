@@ -19,7 +19,10 @@ export class UsuarioRealizaReservaRecursoComponent {
   weeks: number[][] = [];
   daysOfWeek: string[] = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
   reservasExistente: string[] = [];
-  horas: string[] = [];
+  horas: string[][] = [];
+  i = 0
+  resultado: any
+  
 
   recurso: Recurso = {
     nombre_rs: '',
@@ -74,9 +77,20 @@ export class UsuarioRealizaReservaRecursoComponent {
        this.reservaServices.getReservasEmpresa(this.usuario, this.recurso.id_empresa).subscribe(
         res =>{
           this.aux = res;
+          let fecha = '0000-00-00'
           for (const reserva of this.aux) {
-            this.reservasExistente.push(reserva.fecha);
-            this.horas.push(reserva.hora)
+            let last = new Array()
+            if (fecha == reserva.fecha){
+              last = last.concat(this.horas[this.horas.length-1])
+              last = last.concat(reserva.hora)
+              this.horas[this.horas.length-1] = last
+            }else{
+              this.reservasExistente.push(reserva.fecha);
+              last.push(reserva.hora)
+              this.horas.push(last)
+            }
+            
+            fecha = reserva.fecha
           }
           console.log(this.reservasExistente)
           console.log(this.horas)
@@ -87,9 +101,39 @@ export class UsuarioRealizaReservaRecursoComponent {
       },
       err => console.error(err)
     );
-
     
   }
+
+  generarHorasDisponibles(): string[] {
+    let horasDisponibles: string[] = [];
+    let horaInicial = 8; // Hora inicial (8am)
+    let horaFinal = 22; // Hora final (10pm)
+  
+    for (let hora = horaInicial; hora <= horaFinal; hora++) {
+      for (let minuto = 0; minuto < 60; minuto += 30) {
+        let horaFormateada = `${hora.toString().padStart(2, '0')}:${minuto.toString().padStart(2, '0')}:00`;
+        horasDisponibles.push(horaFormateada);
+      }
+    }
+  
+    return horasDisponibles;
+  }
+
+  getHoras(){
+    let first: any = []
+    first = this.horas[this.i]
+    this.i++
+    if(this.i >= this.horas.length){
+      this.i = 0
+    }
+    let disponible = this.generarHorasDisponibles()
+    this.resultado = disponible.filter((hora) => !first.includes(hora));
+
+    return first
+  }
+
+
+
 
   crearReserva(nuevaReserva: Reserva){
 
@@ -358,5 +402,24 @@ export class UsuarioRealizaReservaRecursoComponent {
     const fechaFormateada = fecha.format('YYYY-MM-DD');
     const reserva = this.getFechasReservasConHora().find(reserva => reserva.fecha === fechaFormateada);
     return reserva ? reserva.hora : '';
+  }
+
+  seleccionDia(date: any){
+    console.log("seleccionado día " + date)
+    
+    const fecha = this.currentMonth.clone().date(date);
+    const fechaFormateada = fecha.format('YYYY-MM-DD');
+    let reservado: any = []
+    console.log(this.reservasExistente)
+    if (this.tieneReserva(date)){
+      let index = this.getFechasReservas().findIndex(reserva => reserva === fechaFormateada);
+      console.log(index)
+      reservado = this.horas[index]
+    }
+
+    let disponible = this.generarHorasDisponibles()
+    let resultado: any= disponible.filter((hora) => !reservado.includes(hora));
+    
+    console.log(resultado)
   }
 }

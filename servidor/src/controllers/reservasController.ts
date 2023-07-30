@@ -243,7 +243,7 @@ class ReservasController{
     }
 
     public async getReservasEmpresa(req: Request, res: Response) { //listar todas las reservas
-        const reservas = await pool.promise().query('SELECT * FROM Reservas WHERE id_empresa = ?', [req.params.id_empresa]);
+        const reservas = await pool.promise().query('SELECT * FROM Reservas WHERE id_empresa = ? order by fecha', [req.params.id_empresa]);
         const rows = reservas[0]; // Accede a los resultados utilizando la posición 0
         res.json(rows);
     }

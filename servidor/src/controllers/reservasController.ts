@@ -237,7 +237,7 @@ class ReservasController{
 
     public async getReservasDelUsuario(req: Request, res: Response) { //listar todas las reservas
         console.log(req.params.nombre_usuario)
-        const usuario = await pool.promise().query('SELECT * FROM Reservas WHERE nombre_usuario = ?', [req.params.nombre_usuario]);
+        const usuario = await pool.promise().query('SELECT * FROM Reservas WHERE nombre_usuario = ? order by fecha', [req.params.nombre_usuario]);
         const rows = usuario[0]; // Accede a los resultados utilizando la posición 0
         res.json(rows);
     }

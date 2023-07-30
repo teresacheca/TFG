@@ -81,18 +81,20 @@ export class UsuarioRealizaReservaRecursoComponent {
           let fecha = '0000-00-00'
           for (const reserva of this.aux) {
             let last = new Array()
-            if (fecha == reserva.fecha){
-              last = last.concat(this.horas[this.horas.length-1])
-              last = last.concat(reserva.hora)
-              last.sort();
-              this.horas[this.horas.length-1] = last
-            }else{
-              this.reservasExistente.push(reserva.fecha);
-              last.push(reserva.hora)
-              this.horas.push(last)
+            if(reserva.id_recursoservicio == this.recurso.id_recursoservicio){
+              if (fecha == reserva.fecha){
+                last = last.concat(this.horas[this.horas.length-1])
+                last = last.concat(reserva.hora)
+                last.sort();
+                this.horas[this.horas.length-1] = last
+              }else{
+                this.reservasExistente.push(reserva.fecha);
+                last.push(reserva.hora)
+                this.horas.push(last)
+              }
+              
+              fecha = reserva.fecha
             }
-            
-            fecha = reserva.fecha
           }
           console.log(this.reservasExistente)
           console.log(this.horas)

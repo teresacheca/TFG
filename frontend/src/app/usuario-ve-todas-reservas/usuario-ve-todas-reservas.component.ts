@@ -5,16 +5,15 @@ import { Usuario } from 'src/app/modelos/Usuarios';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-usuario-ve-reservas',
-  templateUrl: './usuario-ve-reservas.component.html',
-  styleUrls: ['./usuario-ve-reservas.component.css']
+  selector: 'app-usuario-ve-todas-reservas',
+  templateUrl: './usuario-ve-todas-reservas.component.html',
+  styleUrls: ['./usuario-ve-todas-reservas.component.css']
 })
-export class UsuarioVeReservasComponent {
+export class UsuarioVeTodasReservasComponent {
 
-  mis_reservas: any = []
-  mis_fechas: string[] = [];
-  mis_horas: string[][] = [];
-
+  reservas_empresa: any = []
+  todas_las_fechas: string[] = [];
+  todas_las_horas: string[][] = [];
 
   vacio = false
   currentMonth: any;
@@ -51,54 +50,42 @@ export class UsuarioVeReservasComponent {
         this.usuario.puesto_trabajo = this.aux[0].puesto_trabajo 
         this.usuario.fecha_nacimiento = this.aux[0].fecha_nacimiento  
         this.usuario.id_empresa = this.aux[0].id_empresa  
-        this.getReservasUsuario()
+        this.getReservasEmpresa()
         this.generateCalendar();
       },
       err => console.error(err)
     );
   }
 
-  getReservasUsuario(){
-    this.reservasServices.getReservasDelUsuario(this.usuario.nombre_usuario).subscribe(
+
+  getReservasEmpresa(){
+    this.reservasServices.getReservasEmpresa(this.usuario.nombre_usuario, this.usuario.id_empresa).subscribe(
       res =>{
-        this.mis_reservas = res
+        this.reservas_empresa = res
+
         let fecha = '0000-00-00'
-        for(const reserva of this.mis_reservas){
+        for(const reserva of this.reservas_empresa){
           let last = new Array()
           if (fecha == reserva.fecha){
-            last = last.concat(this.mis_horas[this.mis_horas.length-1])
+            last = last.concat(this.todas_las_horas[this.todas_las_horas.length-1])
             last = last.concat(reserva.hora)
             last.sort();
-            this.mis_horas[this.mis_horas.length-1] = last
+            this.todas_las_horas[this.todas_las_horas.length-1] = last
           }else{
-            this.mis_fechas.push(reserva.fecha);
+            this.todas_las_fechas.push(reserva.fecha);
             last.push(reserva.hora)
-            this.mis_horas.push(last)
+            this.todas_las_horas.push(last)
           }
+          
           fecha = reserva.fecha
         }
-
       },
       err => console.error(err)
     );
   }
 
-
-  verReserva(date: number, hora: string){
-    console.log("hola")
-    console.log(date)
-    console.log(hora)
-    const fecha = this.currentMonth.clone().date(date);
-    const fechaFormateada = fecha.format('YYYY-MM-DD');
-    let id = 0
-    for(const reserva of this.mis_reservas){
-      const fechaFormateadaActual =  moment(reserva.fecha).format('YYYY-MM-DD')
-      if(fechaFormateadaActual == fechaFormateada && reserva.hora == hora){
-        console.log(reserva.id_reserva)
-        id = reserva.id_reserva
-      }
-    }
-    let ruta = this.router.url + '/ver/' + id
+  verReserva(id_reserva: number){
+    let ruta = this.router.url + '/ver/' + id_reserva
     this.router.navigate([ruta])
   }
 
@@ -152,39 +139,45 @@ generateCalendar() {
   console.log(this.weeks)
 }
 
+getFormattedDate(day: number): string {
+  const year = this.currentMonth.year();
+  const month = this.currentMonth.month() + 1;
+  const dayFormatted = day < 10 ? `0${day}` : `${day}`;
+  return `${year}-${month < 10 ? `0${month}` : `${month}`}-${dayFormatted}`;
+}
+
 getFechasReservas(fechas: string[]): string[] {
   return fechas.map(reserva => moment(reserva).format('YYYY-MM-DD'));
 }
 
-// Verificar si hay reservas en una fecha específica y devolver un booleano
-tengoReserva(date: number): boolean {
+
+tienenReserva(date: number): boolean {
   const fecha = this.currentMonth.clone().date(date);
   const fechaFormateada = fecha.format('YYYY-MM-DD');
-  return this.getFechasReservas(this.mis_fechas).includes(fechaFormateada);
+  return this.getFechasReservas(this.todas_las_fechas).includes(fechaFormateada);
 }
 
-
-i: number = 0
 j: number = 0
 
-getMisHoras(){
+
+getTodasLasHoras(){
   let first: any = []
-  first = this.mis_horas[this.i]
-  this.i++
-  if(this.i >= this.mis_horas.length){
-    this.i = 0
+  first = this.todas_las_horas[this.j]
+  this.j++
+  if(this.j >= this.todas_las_horas.length){
+    this.j = 0
   }
   return first
 }
 
 
 irAmisReservas(){
-  window.location.reload();
+  let ruta = 'reservas/usuario/' + this.usuario.nombre_usuario + '/reservas'
+  this.router.navigate([ruta])
 }
 
 verTodasLasReservas(){
-  console.log(this.usuario.nombre_usuario)
-  let ruta = 'reservas/usuario/' + this.usuario.nombre_usuario + '/todas_reservas'
-  this.router.navigate([ruta])
+  
+  window.location.reload();
 }
 }

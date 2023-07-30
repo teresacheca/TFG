@@ -32,7 +32,7 @@ import { UsuarioRealizaReservaComponent } from './usuario-realiza-reserva/usuari
 import { UsuarioInfoReservaComponent } from './usuario-info-reserva/usuario-info-reserva.component';
 import { UsuarioEditaReservaComponent } from './usuario-edita-reserva/usuario-edita-reserva.component';
 import { UsuarioRealizaReservaRecursoComponent } from './usuario-realiza-reserva-recurso/usuario-realiza-reserva-recurso.component';
-
+import { UsuarioVeTodasReservasComponent } from './usuario-ve-todas-reservas/usuario-ve-todas-reservas.component';
 
 //rutas para rederigir dentro de la página
 const routes: Routes = [
@@ -271,6 +271,10 @@ const routes: Routes = [
   {
     path: 'reservas/usuario/:nombre_usuario/reservas/:id_empresa',
     component: UsuarioVeReservasComponent
+  }, 
+  {
+    path: 'reservas/usuario/:nombre_usuario/todas_reservas',
+    component: UsuarioVeTodasReservasComponent
   }, 
   {
     path: 'reservas/usuario/:nombre_usuario/realiza_reserva',

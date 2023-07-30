@@ -47,6 +47,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule  } from '@angular/material/dialog';
+import { UsuarioVeTodasReservasComponent } from './usuario-ve-todas-reservas/usuario-ve-todas-reservas.component';
 
 
 @NgModule({
@@ -86,6 +87,7 @@ import { MatDialogModule  } from '@angular/material/dialog';
     UsuarioInfoReservaComponent,
     UsuarioEditaReservaComponent,
     UsuarioRealizaReservaRecursoComponent,
+    UsuarioVeTodasReservasComponent,
   ],
   imports: [
     BrowserModule,

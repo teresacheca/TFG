@@ -290,7 +290,7 @@ class ReservasController {
     getReservasDelUsuario(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(req.params.nombre_usuario);
-            const usuario = yield basedatos_1.default.promise().query('SELECT * FROM Reservas WHERE nombre_usuario = ?', [req.params.nombre_usuario]);
+            const usuario = yield basedatos_1.default.promise().query('SELECT * FROM Reservas WHERE nombre_usuario = ? order by fecha', [req.params.nombre_usuario]);
             const rows = usuario[0]; // Accede a los resultados utilizando la posición 0
             res.json(rows);
         });

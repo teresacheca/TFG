@@ -45,6 +45,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDialogModule  } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -93,7 +95,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     BrowserAnimationsModule, 
     MatDatepickerModule,
     MatFormFieldModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatExpansionModule,
+    MatDialogModule 
   ],
   providers: [ReservasService],
   bootstrap: [AppComponent]

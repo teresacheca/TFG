@@ -4,6 +4,7 @@ import { Reserva} from '../modelos/Reservas';
 import {ReservasService} from '../services/reservas.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
+import { MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-usuario-realiza-reserva-recurso',
@@ -13,7 +14,7 @@ import * as moment from 'moment';
 
 
 export class UsuarioRealizaReservaRecursoComponent {
-  constructor(private reservaServices: ReservasService, private router: Router, private activeRoute: ActivatedRoute){}
+  constructor(private reservaServices: ReservasService, private router: Router, private activeRoute: ActivatedRoute, private dialog: MatDialog){}
 
   currentMonth: any;
   weeks: number[][] = [];
@@ -83,6 +84,7 @@ export class UsuarioRealizaReservaRecursoComponent {
             if (fecha == reserva.fecha){
               last = last.concat(this.horas[this.horas.length-1])
               last = last.concat(reserva.hora)
+              last.sort();
               this.horas[this.horas.length-1] = last
             }else{
               this.reservasExistente.push(reserva.fecha);
@@ -305,8 +307,7 @@ export class UsuarioRealizaReservaRecursoComponent {
                 nuevaReserva.fecha = fechaAuxiliar
                 this.reservaServices.crearReserva(this.usuario, this.id, nuevaReserva).subscribe(
                   res =>{
-                    let ruta = '/reservas/usuario/' + this.usuario + '/realiza_reserva'
-                    this.router.navigate([ruta])
+                    window.location.reload();
                   },
                   err => console.error(err)
                 );
@@ -405,21 +406,38 @@ export class UsuarioRealizaReservaRecursoComponent {
   }
 
   seleccionDia(date: any){
-    console.log("seleccionado día " + date)
+    
     
     const fecha = this.currentMonth.clone().date(date);
     const fechaFormateada = fecha.format('YYYY-MM-DD');
     let reservado: any = []
-    console.log(this.reservasExistente)
     if (this.tieneReserva(date)){
       let index = this.getFechasReservas().findIndex(reserva => reserva === fechaFormateada);
-      console.log(index)
       reservado = this.horas[index]
     }
 
     let disponible = this.generarHorasDisponibles()
     let resultado: any= disponible.filter((hora) => !reservado.includes(hora));
     
-    console.log(resultado)
+    return resultado
   }
+
+  hacerReserva(hora: string, date: number){
+    const fecha = this.currentMonth.clone().date(date);
+    const fechaFormateada = fecha.format('YYYY-MM-DD');
+    let nuevaReserva: Reserva ={
+      fecha: fechaFormateada,
+      hora: hora,
+      nombre_empresa: this.recurso.nombre_empresa, 
+      nombre_usuario: this.usuario,
+      nombre_rs: this.reserva.nombre_rs,
+      id_reserva: 0,
+      id_recursoservicio: this.recurso.id_recursoservicio,
+      id_empresa: this.recurso.id_empresa
+    }
+
+    this.crearReserva(nuevaReserva)
+  }
+
+  
 }

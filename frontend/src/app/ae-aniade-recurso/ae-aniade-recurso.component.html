@@ -11,7 +11,8 @@
     <label for="descripcion">Descripcion:</label>
     <input type="descripcion" id="descripcion" name="descripcion" #descripcion required><br>
     <label for="foto">Foto:</label>
-    <input type="foto" id="foto" name="foto" #foto required><br>
+    <input type="text" name="foto" [(ngModel)]="recurso.foto">
+    <img [src]="recurso.foto === '' ? '/assets/img/camara.png' : recurso.foto" class="card-img-top">
     <label for="datos">Datos:</label>
     <input type="datos" id="datos" name="datos" #datos required><br>
     <label for="aforo">Aforo o cantidad de personas que usaran el recurso o servicio:</label>
@@ -19,7 +20,7 @@
     <div>
         Empresa:
     </div>
-    <button (click)="AeaniadeRecurso(nombre_rs.value, descripcion.value, foto.value, datos.value, aforo.value)">
+    <button (click)="AeaniadeRecurso(nombre_rs.value, descripcion.value, recurso.foto, datos.value, aforo.value)">
         Añadir recurso o servicio
     </button>
     </form>

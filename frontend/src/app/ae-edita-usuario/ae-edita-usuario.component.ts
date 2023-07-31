@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Usuario} from '../modelos/Usuarios';
 import {ReservasService} from '../services/reservas.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-ae-edita-usuario',
@@ -26,6 +27,7 @@ export class AeEditaUsuarioComponent {
 
   nombre_admi: string = ''
   empresa: number = 0
+  fecha_nacimiento: any
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
@@ -45,12 +47,14 @@ export class AeEditaUsuarioComponent {
         this.usuario.empresa = this.aux[0].empresa
         this.usuario.id = this.aux[0].id
         this.usuario.id_empresa = this.aux[0].id_empresa
+        this.fecha_nacimiento = moment(this.usuario.fecha_nacimiento).format('YYYY-MM-DD')
       },
       err=> console.error(err)
     )
   }
 
-  guardarCambiosUsuarioAe(id: number, nuevoUsuario: Usuario){
+  guardarCambiosUsuarioAe(id: number, nuevoUsuario: Usuario, fecha_nacimiento: any){
+    nuevoUsuario.fecha_nacimiento = fecha_nacimiento;
     this.reservaServices.guardarCambiosUsuarioAe(this.nombre_admi, this.empresa, id, nuevoUsuario).subscribe(
       res => {
         let ruta = '/reservas/admi_empresa/' + this.nombre_admi + '/' + this.empresa + '/lista_usuarios'

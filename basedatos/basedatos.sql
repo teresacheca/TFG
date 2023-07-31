@@ -213,26 +213,26 @@ VALUES ('EmpresaD', 'contacto@empresa-d.com', 'Descripción de la Empresa D', 'l
 
 
 INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa, id_empresa)
-VALUES ('Recurso 1', 'Descripción del recurso 1', 'foto1.jpg', 'Datos del recurso 1', 100, 'EmpresaA', 1);
+VALUES ('Recurso 1', 'Descripción del recurso 1', '/assets/img/foto1.png', 'Datos del recurso 1', 100, 'EmpresaA', 1);
 
 INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa, id_empresa)
-VALUES ('Recurso 2', 'Descripción del recurso 2', 'foto2.jpg', 'Datos del recurso 2', 50, 'EmpresaA', 1);
+VALUES ('Recurso 2', 'Descripción del recurso 2', '/assets/img/foto2.jpg', 'Datos del recurso 2', 50, 'EmpresaA', 1);
 
 INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa, id_empresa)
-VALUES ('Recurso 3', 'Descripción del recurso 3', 'https://example.com/foto3.jpg', 'Datos del recurso 3', 80, 'EmpresaB', 2);
+VALUES ('Recurso 3', 'Descripción del recurso 3', '/assets/img/foto3.jpg', 'Datos del recurso 3', 80, 'EmpresaB', 2);
 
 INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa, id_empresa)
-VALUES ('Recurso 4', 'Descripción del recurso 4', 'foto4.jpg', 'Datos del recurso 4', 120, 'EmpresaB', 2);
+VALUES ('Recurso 4', 'Descripción del recurso 4', '/assets/img/foto4.png', 'Datos del recurso 4', 120, 'EmpresaB', 2);
 
 INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa, id_empresa)
-VALUES ('Recurso 5', 'Descripción del recurso 5', 'foto5.jpg', 'Datos del recurso 5', 80, 'EmpresaC', 3);
+VALUES ('Recurso 5', 'Descripción del recurso 5', '/assets/img/foto5.png', 'Datos del recurso 5', 80, 'EmpresaC', 3);
 
 INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa, id_empresa)
-VALUES ('Recurso 6', 'Esta es una descripción muy larga que tiene más de 100 caracteres y se trunca para ajustarse a la restricción de longitud', 'foto6.jpg', 'Datos del recurso 6', 90, 'EmpresaC', 3);
+VALUES ('Recurso 6', 'Esta es una descripción muy larga que tiene más de 100 caracteres y se trunca para ajustarse a la restricción de longitud', '/assets/img/foto6.png', 'Datos del recurso 6', 90, 'EmpresaC', 3);
 
 
 INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa, id_empresa)
-VALUES ('Recurso 7', 'Descripción del recurso 7','foto7.jpg', 'Datos del recurso 4', 70, 'EmpresaA', 1);
+VALUES ('Recurso 7', 'Descripción del recurso 7','/assets/img/foto7.png', 'Datos del recurso 4', 70, 'EmpresaA', 1);
 
 
 INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id_recursoservicio, id_empresa)

@@ -26,10 +26,21 @@ export class AeAniadeUsuarioComponent {
     id_empresa: 0
   }
 
+  nombre_empresa: string = ""
+  aux: any = []
+
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
     this.empresa = params["id_empresa"]
     this.nombre_admi = params["nombre_usuario"]
+    this.reservasServices.getEmpresaId(this.empresa).subscribe(
+      res => {
+        this.aux = res
+        this.usuario.empresa = this.aux[0].nombre_empresa
+      },
+      err => console.error(err)
+    )
+    
   }
 
   AeaniadeUsuario(nombre_usuario: any, contrasena: any, fecha_nacimiento: any, puesto_trabajo: any){
@@ -42,13 +53,24 @@ export class AeAniadeUsuarioComponent {
       this.usuario.puesto_trabajo = puesto_trabajo
       this.usuario.id_empresa = this.empresa
       console.log(this.usuario)
-      this.reservasServices.AeaniadeUsuario(this.usuario, this.nombre_admi, this.empresa).subscribe(
+      this.reservasServices.getUsuarioNombre(this.usuario.nombre_usuario).subscribe(
         res => {
-          let ruta = '/reservas/admi_empresa/' + this.nombre_admi + '/' + this.empresa + '/lista_usuarios'
-          this.router.navigate([ruta]);
+          this.aux = res
+          if(this.aux.length > 0){
+            confirm("Ese nombre ya está en uso");
+          }else{
+            this.reservasServices.AeaniadeUsuario(this.usuario, this.nombre_admi, this.empresa).subscribe(
+              res => {
+                let ruta = '/reservas/admi_empresa/' + this.nombre_admi + '/' + this.empresa + '/lista_usuarios'
+                this.router.navigate([ruta]);
+              },
+              err => console.error(err)
+            )
+          }
         },
         err => console.error(err)
       )
+      
     }
   }
 

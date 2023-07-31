@@ -12,7 +12,11 @@
                     <input type="text" name="descripcion" [(ngModel)]="recurso.descripcion">
                 </div>
                 <div>
-                    Foto:
+                    <!--<label for="foto">Foto:</label>
+                    <input type="file" id="foto" (change)="onFileSelected($event)">
+                    <img *ngIf="selectedFile" [src]="selectedFile" alt="Vista previa de la foto">-->
+                    Foto: (inserta el enlace url)
+                    <img [src]="recurso.foto === '' ? '/assets/img/camara.png' : recurso.foto" class="card-img-top">
                     <input type="text" name="foto" [(ngModel)]="recurso.foto">
                 </div>
                 <div>

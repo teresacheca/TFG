@@ -64,7 +64,7 @@ export class ReservasService {
   getEmpresa(empresa : string){
     return this.http.get(`${this.API_URI}/reservas/empresas/${empresa}`);
   }
-  getEmpresaId(id_empresa : string){
+  getEmpresaId(id_empresa : number){
     return this.http.get(`${this.API_URI}/reservas/empresas/${id_empresa}/id`);
   }
 

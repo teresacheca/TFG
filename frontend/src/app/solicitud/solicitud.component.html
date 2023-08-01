@@ -12,9 +12,10 @@
     <input type="direccion" id="direccion" name="direccion" #direccion required><br>
     <label for="datos_de_contacto">Datos de contacto:</label>
     <input type="datos_de_contacto" id="datos_de_contacto" name="datos_de_contacto" #datos_de_contacto required><br>
-    <label for="logo">Logo:</label>
-    <input type="logo" id="logo" name="logo" #logo required><br>
-    <input type="submit" value="Crear solicitud" (click)="crearSolicitud(nombreEmpresa.value, direccion.value, datos_de_contacto.value, logo.value)">
+    Logo: (inserta el enlace url)
+    <img [src]="empresa.logo === '' ? '/assets/img/upload.png' : empresa.logo" class="card-img-top">
+    <input type="text" name="foto" [(ngModel)]="empresa.logo">
+    <input type="submit" value="Crear solicitud" (click)="crearSolicitud(nombreEmpresa.value, direccion.value, datos_de_contacto.value, empresa.logo)">
   </form>
 </body>
 </html>

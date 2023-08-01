@@ -14,6 +14,7 @@ export class UsuarioVeReservasComponent {
   mis_reservas: any = []
   mis_fechas: string[] = [];
   mis_horas: string[][] = [];
+  recurso: string[] = []
 
 
   vacio = false
@@ -74,6 +75,7 @@ export class UsuarioVeReservasComponent {
             this.mis_fechas.push(reserva.fecha);
             last.push(reserva.hora)
             this.mis_horas.push(last)
+            this.recurso.push(reserva.nombre_rs)
           }
           fecha = reserva.fecha
         }
@@ -84,16 +86,19 @@ export class UsuarioVeReservasComponent {
   }
 
 
-  verReserva(date: number, hora: string){
-    console.log("hola")
-    console.log(date)
-    console.log(hora)
-    const fecha = this.currentMonth.clone().date(date);
-    const fechaFormateada = fecha.format('YYYY-MM-DD');
+  verReserva(date: number, hora: string, month: string){
+
+    let fecha = "";
+    if(date < 10){
+      fecha = month + '-0' + date;
+    }else{
+      fecha = month + '-' + date;
+    }
+
     let id = 0
     for(const reserva of this.mis_reservas){
       const fechaFormateadaActual =  moment(reserva.fecha).format('YYYY-MM-DD')
-      if(fechaFormateadaActual == fechaFormateada && reserva.hora == hora){
+      if(fechaFormateadaActual == fecha && reserva.hora == hora){
         console.log(reserva.id_reserva)
         id = reserva.id_reserva
       }
@@ -167,16 +172,58 @@ tengoReserva(date: number): boolean {
 i: number = 0
 j: number = 0
 
-getMisHoras(){
+getMisHoras(date: number, month: string){
   let first: any = []
+  let fecha = "";
+  if(date < 10){
+    fecha = month + '-0' + date;
+  }else{
+    fecha = month + '-' + date;
+  }
+
+  let index = 0
+  for (const fechaReserva of this.getFechasReservas(this.mis_fechas)){
+    if(fechaReserva == fecha){
+      this.i = index
+    }
+    index++
+  }
   first = this.mis_horas[this.i]
   this.i++
   if(this.i >= this.mis_horas.length){
     this.i = 0
   }
+  
+
   return first
 }
 
+
+getRecurso(date: number, month: string){
+  let first: any = []
+  let fecha = "";
+  if(date < 10){
+    fecha = month + '-0' + date;
+  }else{
+    fecha = month + '-' + date;
+  }
+
+  let index = 0
+  for (const fechaReserva of this.getFechasReservas(this.mis_fechas)){
+    if(fechaReserva == fecha){
+      this.i = index
+    }
+    index++
+  }
+  first = this.recurso[this.i]
+  this.i++
+  if(this.i >= this.recurso.length){
+    this.i = 0
+  }
+  
+
+  return first
+}
 
 irAmisReservas(){
   window.location.reload();

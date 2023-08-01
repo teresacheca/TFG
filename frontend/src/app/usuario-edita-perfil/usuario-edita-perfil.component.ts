@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {ReservasService} from '../services/reservas.service';
 import { Usuario } from 'src/app/modelos/Usuarios';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-usuario-edita-perfil',
@@ -22,6 +23,7 @@ export class UsuarioEditaPerfilComponent {
     puesto_trabajo: '',
     id_empresa: 0
   }
+  fecha_nacimiento: string = ""
 
   aux: any = []
 
@@ -42,13 +44,16 @@ export class UsuarioEditaPerfilComponent {
         this.usuario.puesto_trabajo = this.aux[0].puesto_trabajo 
         this.usuario.fecha_nacimiento = this.aux[0].fecha_nacimiento  
         this.usuario.id_empresa = this.aux[0].id_empresa      
+
+        this.fecha_nacimiento = moment(this.usuario.fecha_nacimiento).format('YYYY-MM-DD')
       },
       err => console.error(err)
     )
     
   }
 
-  guardarCambiosUsuario(nombre_usuario: string, nuevoUsuario: Usuario){
+  guardarCambiosUsuario(nombre_usuario: string, nuevoUsuario: Usuario, fecha: string){
+    nuevoUsuario.fecha_nacimiento = new Date(fecha)
     this.reservaServices.guardarCambiosUsuario(nombre_usuario, nuevoUsuario).subscribe(
       res => {
         let ruta = '/reservas/usuario/' + nombre_usuario

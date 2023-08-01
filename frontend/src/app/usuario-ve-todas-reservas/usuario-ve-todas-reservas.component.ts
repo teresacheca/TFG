@@ -14,6 +14,7 @@ export class UsuarioVeTodasReservasComponent {
   reservas_empresa: any = []
   todas_las_fechas: string[] = [];
   todas_las_horas: string[][] = [];
+  recurso: string[] = []
 
   vacio = false
   currentMonth: any;
@@ -75,6 +76,7 @@ export class UsuarioVeTodasReservasComponent {
             this.todas_las_fechas.push(reserva.fecha);
             last.push(reserva.hora)
             this.todas_las_horas.push(last)
+            this.recurso.push(reserva.nombre_rs)
           }
           
           fecha = reserva.fecha
@@ -84,9 +86,51 @@ export class UsuarioVeTodasReservasComponent {
     );
   }
 
-  verReserva(id_reserva: number){
-    let ruta = this.router.url + '/ver/' + id_reserva
+  verReserva(date: number, hora: string, month: string){
+
+    let fecha = "";
+    if(date < 10){
+      fecha = month + '-0' + date;
+    }else{
+      fecha = month + '-' + date;
+    }
+
+    let id = 0
+    for(const reserva of this.reservas_empresa){
+      const fechaFormateadaActual =  moment(reserva.fecha).format('YYYY-MM-DD')
+      if(fechaFormateadaActual == fecha && reserva.hora == hora){
+        console.log(reserva.id_reserva)
+        id = reserva.id_reserva
+      }
+    }
+    let ruta = '/reservas/usuario/' + this.usuario.nombre_usuario + '/reservas/ver/' + id
     this.router.navigate([ruta])
+  }
+
+  getRecurso(date: number, month: string){
+    let first: any = []
+    let fecha = "";
+    if(date < 10){
+      fecha = month + '-0' + date;
+    }else{
+      fecha = month + '-' + date;
+    }
+  
+    let index = 0
+    for (const fechaReserva of this.getFechasReservas(this.todas_las_fechas)){
+      if(fechaReserva == fecha){
+        this.j = index
+      }
+      index++
+    }
+    first = this.recurso[this.j]
+    this.j++
+    if(this.j >= this.recurso.length){
+      this.j = 0
+    }
+    
+  
+    return first
   }
 
   get currentMonthDates(): number[] {
@@ -160,13 +204,29 @@ tienenReserva(date: number): boolean {
 j: number = 0
 
 
-getTodasLasHoras(){
+getTodasLasHoras(date: number, month: string){
   let first: any = []
+  let fecha = "";
+  if(date < 10){
+    fecha = month + '-0' + date;
+  }else{
+    fecha = month + '-' + date;
+  }
+
+  let index = 0
+  for (const fechaReserva of this.getFechasReservas(this.todas_las_fechas)){
+    if(fechaReserva == fecha){
+      this.j = index
+    }
+    index++
+  }
   first = this.todas_las_horas[this.j]
   this.j++
   if(this.j >= this.todas_las_horas.length){
     this.j = 0
   }
+  
+
   return first
 }
 

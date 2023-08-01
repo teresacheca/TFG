@@ -1,12 +1,6 @@
 
 <div>
     <h3>Horas reservadas</h3>
-    <button >
-        Mis reservas
-    </button>
-    <button >
-        Todas las reservas
-    </button>
 </div>
   
   
@@ -31,12 +25,12 @@
                       </mat-panel-title>
                     </mat-expansion-panel-header>
                     Horas disponibles:
-                    <div *ngFor="let hora of seleccionDia(date)"> <button (click)="hacerReserva(hora, date)">{{hora}}</button> </div>
+                    <div *ngFor="let hora of seleccionDia(date)"> <button (click)="hacerReserva(hora, date, currentMonth.format('YYYY-MM'))">{{hora}}</button> </div>
                   </mat-expansion-panel> 
             </span> 
             <div *ngIf="date !== 0 && tieneReserva(date)">
                 Reservado:
-                <div *ngFor="let hora of getHoras()"> {{ hora }} </div>
+                <div *ngFor="let hora of getHoras(date, currentMonth.format('YYYY-MM'))"> {{ hora }} </div>
             </div> 
         </div>
       </ng-container>

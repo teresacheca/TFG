@@ -96,8 +96,6 @@ export class UsuarioRealizaReservaRecursoComponent {
               fecha = reserva.fecha
             }
           }
-          console.log(this.reservasExistente)
-          console.log(this.horas)
         },
         err => console.error(err)
       );
@@ -123,8 +121,24 @@ export class UsuarioRealizaReservaRecursoComponent {
     return horasDisponibles;
   }
 
-  getHoras(){
+  getHoras(date: number, month: string){
+    //console.log(date)
+    console.log()
     let first: any = []
+    let fecha = "";
+    if(date < 10){
+      fecha = month + '-0' + date;
+    }else{
+      fecha = month + '-' + date;
+    }
+
+    let index = 0
+    for (const fechaReserva of this.getFechasReservas()){
+      if(fechaReserva == fecha){
+        this.i = index
+      }
+      index++
+    }
     first = this.horas[this.i]
     this.i++
     if(this.i >= this.horas.length){
@@ -206,8 +220,6 @@ export class UsuarioRealizaReservaRecursoComponent {
     
     var fechaAuxiliar = anioAux + '-' + mesAux + '-' + diaAux;
 
-    console.log(fechaAuxiliar)
-
     let existe = false
     let coincide = false
     this.reservaServices.getRecursos(this.usuario, this.recurso.id_empresa).subscribe(
@@ -229,7 +241,6 @@ export class UsuarioRealizaReservaRecursoComponent {
               
               for(let i=0; i<this.aux.length; i++){
                 var x = this.aux[i].fecha.toString().substring(0,10);
-                console.log("x")
                 const x2 = new Date(x)
                
                 x2.setDate(x2.getDate()+1)
@@ -295,11 +306,7 @@ export class UsuarioRealizaReservaRecursoComponent {
 
                 var nueva_fechax = anio + '-' + mes + '-' + dia;
 
-                console.log(this.aux[i].id_reserva)
-                console.log(fechaAuxiliar)
-                console.log(nueva_fechax)
                 if(nuevaReserva.nombre_rs == this.aux[i].nombre_rs && fechaAuxiliar == nueva_fechax && nuevaReserva.hora == this.aux[i].hora ){
-                  console.log("!!")
                   coincide = true
                 }
               }
@@ -309,6 +316,8 @@ export class UsuarioRealizaReservaRecursoComponent {
                 nuevaReserva.fecha = fechaAuxiliar
                 this.reservaServices.crearReserva(this.usuario, this.id, nuevaReserva).subscribe(
                   res =>{
+                    /*let ruta= '/reservas/usuario/' + this.usuario + '/realiza_reserva'
+                    this.router.navigate([ruta])*/
                     window.location.reload();
                   },
                   err => console.error(err)
@@ -370,8 +379,6 @@ export class UsuarioRealizaReservaRecursoComponent {
     }
 
     this.weeks = weeks;
-
-    console.log(this.weeks)
   }
 
   getFormattedDate(day: number): string {
@@ -424,11 +431,19 @@ export class UsuarioRealizaReservaRecursoComponent {
     return resultado
   }
 
-  hacerReserva(hora: string, date: number){
-    const fecha = this.currentMonth.clone().date(date);
-    const fechaFormateada = fecha.format('YYYY-MM-DD');
+  hacerReserva(hora: string, date: number, month: string){
+    let fecha = "";
+    if(date < 10){
+      fecha = month + '-0' + date;
+    }else{
+      fecha = month + '-' + date;
+    }
+    
+    console.log("month")
+    console.log(fecha)
+    //const fechaFormateada = fecha.format('YYYY-MM-DD');
     let nuevaReserva: Reserva ={
-      fecha: fechaFormateada,
+      fecha: fecha,
       hora: hora,
       nombre_empresa: this.recurso.nombre_empresa, 
       nombre_usuario: this.usuario,
@@ -437,7 +452,6 @@ export class UsuarioRealizaReservaRecursoComponent {
       id_recursoservicio: this.recurso.id_recursoservicio,
       id_empresa: this.recurso.id_empresa
     }
-
     this.crearReserva(nuevaReserva)
   }
 

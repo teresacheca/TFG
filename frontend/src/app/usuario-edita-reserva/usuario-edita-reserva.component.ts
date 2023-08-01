@@ -54,11 +54,11 @@ export class UsuarioEditaReservaComponent {
   }
 
 
-  guardaCambiosReservaUsu(id_reserva: number, nuevaReserva: Reserva){
+  guardaCambiosReservaUsu(id_reserva: number, nuevaReserva: Reserva, fecha:string){
     console.log(id_reserva)
     console.log(nuevaReserva)
 
-    const faux = new Date(nuevaReserva.fecha)
+    const faux = new Date(fecha)
    
     var straux = faux.toString();
     var mes_str_aux = straux.substring(4,7);

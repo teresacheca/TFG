@@ -23,8 +23,10 @@
                 {{date}}      
             </span> 
             <div *ngIf="date !== 0 && tengoReserva(date)">
-                <div *ngFor="let hora of getMisHoras()"> {{ hora }} 
-                    <button (click)="verReserva(date, hora)">
+                <div *ngFor="let hora of getMisHoras(date, currentMonth.format('YYYY-MM'))"> 
+                    {{getRecurso(date, currentMonth.format('YYYY-MM'))}}
+                    {{ hora }}
+                    <button (click)="verReserva(date, hora, currentMonth.format('YYYY-MM'))">
                         ver
                     </button>
                 </div>

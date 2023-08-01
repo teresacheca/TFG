@@ -25,7 +25,6 @@ export class ListaSolicitudesComponent {
     this.reservaServices.getSolicitudesAceptadas().subscribe(
       res =>{
         this.aceptadas = res;
-        console.log(this.aceptadas)
         if(this.aceptadas.length == 0){
           this.vacioAceptadas = true
         }
@@ -35,7 +34,6 @@ export class ListaSolicitudesComponent {
     this.reservaServices.getSolicitudesRechazadas().subscribe(
       res =>{
         this.rechazadas = res;
-        console.log(this.rechazadas)
         if(this.rechazadas.length == 0){
           this.vacioRechazadas = true
         }
@@ -46,7 +44,6 @@ export class ListaSolicitudesComponent {
     this.reservaServices.getSolicitudesPendientes().subscribe(
       res =>{
         this.pendientes = res;
-        console.log(this.pendientes)
         if(this.pendientes.length == 0){
           this.vacioPendientes = true
         }

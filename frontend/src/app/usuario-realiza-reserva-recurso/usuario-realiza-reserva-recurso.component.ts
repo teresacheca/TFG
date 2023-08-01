@@ -122,8 +122,7 @@ export class UsuarioRealizaReservaRecursoComponent {
   }
 
   getHoras(date: number, month: string){
-    //console.log(date)
-    console.log()
+
     let first: any = []
     let fecha = "";
     if(date < 10){
@@ -438,9 +437,7 @@ export class UsuarioRealizaReservaRecursoComponent {
     }else{
       fecha = month + '-' + date;
     }
-    
-    console.log("month")
-    console.log(fecha)
+
     //const fechaFormateada = fecha.format('YYYY-MM-DD');
     let nuevaReserva: Reserva ={
       fecha: fecha,

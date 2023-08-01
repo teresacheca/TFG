@@ -32,7 +32,6 @@ export class AgEditaAdmiEmpresaComponent {
       res => {
         //this.reserva = res; //no funciona -> tiene que aparecer la información antigua para editar sobre ella
         this.aux = res
-        console.log(this.aux)
         this.usuario.nombre_usuario = this.aux[0].nombre_usuario
         this.usuario.contrasena = this.aux[0].contrasena
         this.usuario.tipo = this.aux[0].tipo

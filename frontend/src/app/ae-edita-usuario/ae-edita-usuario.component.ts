@@ -38,7 +38,6 @@ export class AeEditaUsuarioComponent {
         //this.reserva = res; //no funciona -> tiene que aparecer la información antigua para editar sobre ella
         
         this.aux = res
-        console.log(this.aux)
         this.usuario.nombre_usuario = this.aux[0].nombre_usuario
         this.usuario.contrasena = this.aux[0].contrasena
         this.usuario.tipo = this.aux[0].tipo
@@ -70,18 +69,13 @@ export class AeEditaUsuarioComponent {
         let ruta = '/reservas/admi_empresa/' + this.nombre_admi + '/' + this.empresa + '/lista_usuarios'
         this.router.navigate([ruta]);
         this.aux = res
-        console.log("res")
-        console.log(res)
-        console.log(this.aux[0].nombre_usuario)
         this.reservaServices.getReservasDelUsuario(this.aux[0].nombre_usuario).subscribe(
           res => {
             this.aux = res            
             for(let i = 0 ; i < this.aux.length ; i++){
-              console.log(this.aux[i].id_reserva)
               this.reservaServices.eliminarReservas(this.nombre_admi, this.empresa, this.aux[i].id_reserva).subscribe(
                 res => {
                   this.aux = res
-                  console.log(this.aux)
                 },
                 err=> console.error(err)
               )

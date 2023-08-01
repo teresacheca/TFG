@@ -37,10 +37,9 @@ export class ReservasListComponent  {
   deleteReserva(fecha: string){
     this.reservasServices.deleteReserva(fecha).subscribe(
       res =>{
-        console.log(res);
         this.getReservas();
       },
-      err => console.log(err)
+      err => console.error(err)
     )
   }
 

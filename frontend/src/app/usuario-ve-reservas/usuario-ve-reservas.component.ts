@@ -99,7 +99,6 @@ export class UsuarioVeReservasComponent {
     for(const reserva of this.mis_reservas){
       const fechaFormateadaActual =  moment(reserva.fecha).format('YYYY-MM-DD')
       if(fechaFormateadaActual == fecha && reserva.hora == hora){
-        console.log(reserva.id_reserva)
         id = reserva.id_reserva
       }
     }
@@ -116,7 +115,7 @@ export class UsuarioVeReservasComponent {
         : 0
     );
     return dates;
-}
+  }
 
 goToPreviousMonth() {
   this.currentMonth = this.currentMonth.clone().subtract(1, 'month');
@@ -154,7 +153,6 @@ generateCalendar() {
 
   this.weeks = weeks;
 
-  console.log(this.weeks)
 }
 
 getFechasReservas(fechas: string[]): string[] {
@@ -170,7 +168,6 @@ tengoReserva(date: number): boolean {
 
 
 i: number = 0
-j: number = 0
 
 getMisHoras(date: number, month: string){
   let first: any = []
@@ -230,7 +227,6 @@ irAmisReservas(){
 }
 
 verTodasLasReservas(){
-  console.log(this.usuario.nombre_usuario)
   let ruta = 'reservas/usuario/' + this.usuario.nombre_usuario + '/todas_reservas'
   this.router.navigate([ruta])
 }

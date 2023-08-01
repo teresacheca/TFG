@@ -29,8 +29,6 @@ export class AdmiEmpresaComponent {
     this.reservaServices.getLogin(params["nombre_usuario"], params["contrasena"]).subscribe(
       res => {
         //this.reserva = res; //no funciona -> tiene que aparecer la información antigua para editar sobre ella
-        console.log("!!")
-        console.log(params)
         //this.reservaServices.getUsuarioag().subscribe
         this.admi_empresa.nombre_usuario = params["nombre_usuario"]
         this.admi_empresa.contrasena = params["contrasena"]
@@ -39,7 +37,7 @@ export class AdmiEmpresaComponent {
           res => {
             //this.reserva = res; //no funciona -> tiene que aparecer la información antigua para editar sobre ella
             this.aux = res
-            console.log(this.aux)
+
             this.admi_empresa.nombre_usuario = this.aux[0].nombre_usuario
             this.admi_empresa.contrasena = this.aux[0].contrasena
             this.admi_empresa.tipo = this.aux[0].tipo
@@ -48,11 +46,10 @@ export class AdmiEmpresaComponent {
             this.admi_empresa.empresa = this.aux[0].empresa
             this.admi_empresa.id = this.aux[0].id
             this.admi_empresa.id_empresa = this.aux[0].id_empresa
-            console.log(this.admi_empresa)
+
           },
           err=> console.error(err)
         )
-        console.log(this.admi_empresa)
       },
       err=> console.error(err)
     )

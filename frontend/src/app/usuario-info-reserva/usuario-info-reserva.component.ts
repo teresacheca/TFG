@@ -38,7 +38,6 @@ export class UsuarioInfoReservaComponent {
     
     this.reservasServices.getReservaIdUsu(this.usuario, this.id).subscribe(
       res =>{
-        console.log(res)
         this.aux = res
         this.reserva.fecha = this.aux[0].fecha
         this.fecha = moment(this.reserva.fecha).format('YYYY-MM-DD')

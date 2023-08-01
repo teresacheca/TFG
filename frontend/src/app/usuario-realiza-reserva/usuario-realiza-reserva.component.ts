@@ -31,7 +31,6 @@ export class UsuarioRealizaReservaComponent {
     this.usuario.nombre_usuario = params["nombre_usuario"]
     this.reservasServices.getUsuario(params["nombre_usuario"]).subscribe(
       res =>{
-        console.log(res)
         this.aux = res
         this.usuario.nombre_usuario = this.aux[0].nombre_usuario
         this.usuario.contrasena = this.aux[0].contrasena
@@ -50,7 +49,6 @@ export class UsuarioRealizaReservaComponent {
   getRecursos(nombre_usuario: string){
     this.reservasServices.getRecursos(nombre_usuario, this.usuario.id_empresa).subscribe(
       res =>{
-        console.log(res)
         this.recursos = res
         
       },

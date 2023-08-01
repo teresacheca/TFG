@@ -30,13 +30,11 @@ export class AgVeUsuarioComponent {
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
-    console.log(params["nombre_usuario"])
     this.empresa = params["id_empresa"]
     this.reservaServices.getUsuarioag(this.empresa, params["nombre_usuario"]).subscribe(
       res => {
         //this.reserva = res; //no funciona -> tiene que aparecer la información antigua para editar sobre ella
         this.aux = res
-        console.log(this.aux)
         this.usuario.nombre_usuario = this.aux[0].nombre_usuario
         this.usuario.contrasena = this.aux[0].contrasena
         this.usuario.tipo = this.aux[0].tipo

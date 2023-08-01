@@ -21,19 +21,15 @@ export class AeListaRecursosComponent {
     const params = this.activeRoute.snapshot.params;
     this.empresa = params["id_empresa"]
     this.admi = params["nombre_usuario"]
-    console.log(params)
     this.reservasServices.getRecursosAe(this.admi, this.empresa).subscribe(
       res =>{
-       console.log(res)
        this.recursos = res
-       console.log(this.recursos)
       },
       err => console.error(err)
     );
   }
 
   AeVeRecurso(id_recursoservicio: number){
-    console.log(id_recursoservicio)
     let ruta = this.router.url + '/' + id_recursoservicio
     this.router.navigate([ruta]);
   }

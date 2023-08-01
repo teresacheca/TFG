@@ -1,30 +1,29 @@
-<p *ngIf="vacio else lista">
-    No hay reservas en esta empresa
-</p>
-
-<ng-template #lista>
-    <div class="col-md-2" *ngFor="let reserva of reservas">
-        <!--col-md-2 -> crea 2 columnas, ngFor -> para recorrer todas las reservas-->
-        <div class="card-text-center">
-            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-                <!--bg-dark: de color oscuro, text-white: para hacer el texto de color blanco-->
-                {{reserva.nombre_rs}}
-                <button class=" btn-danger">
-                    <i class="far fa-trash-alt"></i>
-                </button>
-            </div>
-            <div class="card-body">
-               <p>{{reserva.fecha}}</p> 
-               <p>{{reserva.hora}}</p> 
-               <p>{{reserva.nombre_usuario}}</p> 
-               <p>{{reserva.nombre_empresa}}</p> 
-            </div>
-            <button (click)="veReservaAe(reserva.id_reserva)">
-                Ver
-            </button>
-        </div>
-        
+<div class="calendar">
+    <div class="calendar-header">
+        <button (click)="goToPreviousMonth()">&lt;</button>
+        <h1>{{ currentMonth.format('MMMM YYYY') }}</h1>
+        <button (click)="goToNextMonth()">&gt;</button>
     </div>
-   
-    
-</ng-template>
+    <div class="calendar-grid">
+        <div class="calendar-day" *ngFor="let dayOfWeek of daysOfWeek">{{ dayOfWeek }}</div>
+        <ng-container *ngFor="let week of weeks">
+        <div class="calendar-date" *ngFor="let date of week">   
+            <span *ngIf="date !== 0">
+                {{date}}      
+            </span> 
+            <div *ngIf="date !== 0 && tengoReserva(date)">
+                <div *ngFor="let hora of getHoras(date, currentMonth.format('YYYY-MM'))"> 
+                    {{getRecurso(date, currentMonth.format('YYYY-MM'))}}
+                    {{ hora }}
+                    <button (click)="veReservaAe(date, hora, currentMonth.format('YYYY-MM'))">
+                        ver
+                    </button>
+                </div>
+            </div>
+        </div>
+        </ng-container>
+    </div>
+    </div>
+
+
+

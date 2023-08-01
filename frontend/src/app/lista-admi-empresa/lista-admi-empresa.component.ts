@@ -28,7 +28,6 @@ export class ListaAdmiEmpresaComponent {
         if(this.administradores.length == 0){
           this.vacio = true
         }
-        console.log(this.administradores.length)
       },
       err => console.error(err)
     );

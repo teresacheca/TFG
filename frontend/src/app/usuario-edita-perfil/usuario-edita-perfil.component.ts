@@ -31,8 +31,6 @@ export class UsuarioEditaPerfilComponent {
     const params = this.activeRoute.snapshot.params;
     
     this.usuario.nombre_usuario = params["nombre_usuario"]
-
-    console.log(this.usuario)
     this.reservaServices.getUsuario(this.usuario.nombre_usuario).subscribe(
       res => {
         this.aux = res

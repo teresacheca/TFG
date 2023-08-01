@@ -21,7 +21,6 @@ export class AeListaUsuariosComponent {
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
-    console.log(params)
     this.empresa = params["id_empresa"]
     this.reservasServices.getUsuariosEmpresaAe(params["nombre_usuario"], params["id_empresa"]).subscribe(
       res =>{

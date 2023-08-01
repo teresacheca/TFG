@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {ReservasService} from '../services/reservas.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Reserva} from 'src/app/modelos/Reservas';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-ae-ve-reserva',
@@ -26,6 +27,7 @@ export class AeVeReservaComponent {
   nombre_admi: string = ''
   id: number = 0
   aux: any= []
+  fecha: string = ""
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
@@ -35,7 +37,6 @@ export class AeVeReservaComponent {
     
     this.reservasServices.getReservaId(this.nombre_admi, this.empresa, this.id).subscribe(
       res =>{
-        console.log(res)
         this.aux = res
         this.reserva.fecha = this.aux[0].fecha
         this.reserva.hora = this.aux[0].hora
@@ -44,6 +45,8 @@ export class AeVeReservaComponent {
         this.reserva.nombre_rs = this.aux[0].nombre_rs
         this.reserva.id_recursoservicio = this.aux[0].id_recursoservicio
         this.reserva.id_empresa = this.aux[0].id_empresa
+
+        this.fecha = moment(this.reserva.fecha).format('YYYY-MM-DD')
 
       },
       err => console.error(err)

@@ -52,7 +52,6 @@ export class AeAniadeUsuarioComponent {
       this.usuario.fecha_nacimiento = fecha_nacimiento
       this.usuario.puesto_trabajo = puesto_trabajo
       this.usuario.id_empresa = this.empresa
-      console.log(this.usuario)
       this.reservasServices.getUsuarioNombre(this.usuario.nombre_usuario).subscribe(
         res => {
           this.aux = res

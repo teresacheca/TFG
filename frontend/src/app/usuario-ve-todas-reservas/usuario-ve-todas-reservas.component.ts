@@ -99,7 +99,6 @@ export class UsuarioVeTodasReservasComponent {
     for(const reserva of this.reservas_empresa){
       const fechaFormateadaActual =  moment(reserva.fecha).format('YYYY-MM-DD')
       if(fechaFormateadaActual == fecha && reserva.hora == hora){
-        console.log(reserva.id_reserva)
         id = reserva.id_reserva
       }
     }
@@ -180,7 +179,6 @@ generateCalendar() {
 
   this.weeks = weeks;
 
-  console.log(this.weeks)
 }
 
 getFormattedDate(day: number): string {

@@ -28,7 +28,6 @@ export class LoginComponent {
       this.reservasServices.getLogin(nombreUsuario, contrasenaUsuario).subscribe(
         res => {
           this.usuario = res;
-          console.log(this.usuario[0])
           if(this.usuario[0]!=null){
             if(this.usuario[0].tipo == '0'){
               this.router.navigate(['/reservas/admi_general', this.usuario[0].nombre_usuario]);

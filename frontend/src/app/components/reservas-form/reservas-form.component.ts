@@ -48,7 +48,6 @@ export class ReservasFormComponent {
     //Al principio es un string, lo pasamos a tipo fecha, le añadimos un día, lo pasamos a tipo string
     const f = new Date(this.reserva.fecha)
     f.setDate(f.getDate()+1)
-    console.log(f)
     //cosas para tener 2023-01-23
     var str = f.toString();
     var mes_str = str.substring(4,7);
@@ -110,7 +109,6 @@ export class ReservasFormComponent {
 
     var nueva_fecha = anio + '-' + mes + '-' + dia;
     //this.reserva.fecha = nueva_fecha;
-    console.log(this.reserva);
 
     let nueva_reserva:Reserva = {
       fecha: nueva_fecha,
@@ -125,8 +123,6 @@ export class ReservasFormComponent {
 
     this.reservaServices.saveReserva(nueva_reserva).subscribe(
       res => {
-        console.log('in');
-        console.log(nueva_reserva);
         this.router.navigate(['/reservas']);
       },
       err =>console.error(err)
@@ -136,8 +132,6 @@ export class ReservasFormComponent {
   updateReserva(){
     /*this.reservaServices.updateReserva(this.reserva["fecha"], this.reserva).subscribe(
       res=> {
-        console.log("reserva");
-        console.log(this.reserva);
         this.router.navigate(['/reservas']) //no funciona -> no se actualiza
       },
       err => console.error(err)

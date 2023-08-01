@@ -36,7 +36,6 @@ export class UsuarioEditaReservaComponent {
     
     this.reservasServices.getReservaIdUsu(this.usuario, this.id).subscribe(
       res =>{
-        console.log(res)
         this.aux = res
         this.reserva.fecha = this.aux[0].fecha
         this.fecha = moment(this.reserva.fecha).format('YYYY-MM-DD')
@@ -55,9 +54,6 @@ export class UsuarioEditaReservaComponent {
 
 
   guardaCambiosReservaUsu(id_reserva: number, nuevaReserva: Reserva, fecha:string){
-    console.log(id_reserva)
-    console.log(nuevaReserva)
-
     const faux = new Date(fecha)
    
     var straux = faux.toString();
@@ -122,8 +118,6 @@ export class UsuarioEditaReservaComponent {
     
     var fechaAuxiliar = anioAux + '-' + mesAux + '-' + diaAux;
 
-    console.log(fechaAuxiliar)
-
     let existe = false
     let coincide = false
     this.reservasServices.getRecursos(this.usuario, this.reserva.id_empresa).subscribe(
@@ -145,7 +139,6 @@ export class UsuarioEditaReservaComponent {
               
               for(let i=0; i<this.aux.length; i++){
                 var x = this.aux[i].fecha.toString().substring(0,10);
-                console.log("x")
                 const x2 = new Date(x)
                
                 x2.setDate(x2.getDate()+1)
@@ -211,11 +204,7 @@ export class UsuarioEditaReservaComponent {
 
                 var nueva_fechax = anio + '-' + mes + '-' + dia;
 
-                console.log(this.aux[i].id_reserva)
-                console.log(fechaAuxiliar)
-                console.log(nueva_fechax)
                 if(nuevaReserva.nombre_rs == this.aux[i].nombre_rs && fechaAuxiliar == nueva_fechax && nuevaReserva.hora == this.aux[i].hora ){
-                  console.log("!!")
                   coincide = true
                 }
               }

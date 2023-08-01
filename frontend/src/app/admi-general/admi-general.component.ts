@@ -33,7 +33,6 @@ export class AdmiGeneralComponent {
         this.admi_general.contrasena = params["contrasena"]
         this.admi_general.id = params["id"]
         this.admi_general.empresa = params["empresa"]
-        console.log(this.admi_general)
       },
       err=> console.error(err)
     )

@@ -51,7 +51,6 @@ export class EditarEmpresaComponent {
   }
 
   guardarCambios(id_empresa: number, empresa : Empresa){
-    console.log("guardar cambios")
     this.reservaServices.guardarCambios(id_empresa, empresa).subscribe(
       res => {
         this.router.navigate(['/reservas/empresas', this.empresa.id_empresa]);

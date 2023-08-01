@@ -69,7 +69,6 @@ export class ReservasService {
   }
 
   eliminarEmpresa(id_empresa : number){ //devuelve una reserva
-    console.log("1")
     return this.http.delete(`${this.API_URI}/reservas/empresas/eliminar/${id_empresa}`);
   }
 
@@ -193,18 +192,14 @@ export class ReservasService {
   }
 
   getUsuario(nombre_usuario: string){
-    console.log("nombre")
-    console.log(nombre_usuario)
     return this.http.get(`${this.API_URI}/reservas/usuario/${nombre_usuario}/editar`)
   }
 
   guardarCambiosUsuario(nombre_usuario: string, nuevoUsuario: Usuario){
-    console.log(nombre_usuario)
     return this.http.put(`${this.API_URI}/reservas/usuario/${nombre_usuario}/editar/guardar`, nuevoUsuario)
   }
 
   eliminarCuentaUsuarioUsu(nombre_usuario: string){
-    console.log(nombre_usuario)
     return this.http.delete(`${this.API_URI}/reservas/usuario/${nombre_usuario}/eliminar`)
   }
 

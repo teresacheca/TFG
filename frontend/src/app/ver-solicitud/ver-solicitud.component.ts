@@ -40,14 +40,10 @@ export class VerSolicitudComponent {
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
-    console.log(params["id_solicitud"])
-  
     this.reservaServices.getSolicitud(params["id_solicitud"]).subscribe(
       res => {
 
         this.aux = res
-        console.log("!!")
-        console.log(this.aux)
         this.empresa.nombre_empresa = this.aux[0].nombre_empresa
         this.empresa.datos_de_contacto = this.aux[0].datos_de_contacto
         this.empresa.descripcion = this.aux[0].descripcion

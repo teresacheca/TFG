@@ -13,7 +13,7 @@
                 </div>
                 <div>
                     Fecha nacimiento:
-                    <input type="text" name="fecha_nacimiento" [(ngModel)]="usuario.fecha_nacimiento">
+                    <input type="text" name="fecha_nacimiento" [(ngModel)]="fecha_nacimiento">
                 </div>
                 <div>
                     Puesto de trabajo:
@@ -34,7 +34,7 @@
                 <button (click)="eliminarCuentaAdmiEmpresa(usuario.id, usuario.id_empresa)"> <!--se crea un evento click, para que haga cosas cuando se pulse el botón-->
                     Eliminar cuenta
                 </button>
-                <button (click)="guardarCambiosAdmiEmpresa(usuario.id, usuario.id_empresa, usuario)"> <!--se crea un evento click, para que haga cosas cuando se pulse el botón-->
+                <button (click)="guardarCambiosAdmiEmpresa(usuario.id, usuario.id_empresa, usuario, fecha_nacimiento)"> <!--se crea un evento click, para que haga cosas cuando se pulse el botón-->
                     Guardar cambios
                 </button>
             </form>

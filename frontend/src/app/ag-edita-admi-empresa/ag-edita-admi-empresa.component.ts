@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Usuario} from '../modelos/Usuarios';
 import {ReservasService} from '../services/reservas.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-ag-edita-admi-empresa',
@@ -23,6 +24,7 @@ export class AgEditaAdmiEmpresaComponent {
     empresa: '',
     id_empresa: 0
   }
+  fecha_nacimiento: string = ""
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
@@ -39,7 +41,7 @@ export class AgEditaAdmiEmpresaComponent {
         this.usuario.puesto_trabajo = this.aux[0].puesto_trabajo
         this.usuario.empresa = this.aux[0].empresa
         this.usuario.id_empresa = this.aux[0].id_empresa
-        console.log(this.usuario)
+        this.fecha_nacimiento = moment(this.usuario.fecha_nacimiento).format('YYYY-MM-DD')
       },
       err=> console.error(err)
     )
@@ -57,8 +59,8 @@ export class AgEditaAdmiEmpresaComponent {
     )
   }
 
-  guardarCambiosAdmiEmpresa(id: number, id_empresa: number, nuevousuario: Usuario){
-    console.log("guardar cambios")
+  guardarCambiosAdmiEmpresa(id: number, id_empresa: number, nuevousuario: Usuario, fecha: string){
+    nuevousuario.fecha_nacimiento = new Date(fecha)
     this.reservaServices.guardarCambiosAdmiEmpresa(id, id_empresa, nuevousuario).subscribe(
       res => {
         let ruta = '/reservas/empresas/' + id_empresa + '/lista_administradores'

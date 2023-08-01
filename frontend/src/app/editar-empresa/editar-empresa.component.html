@@ -16,8 +16,9 @@
                     <input type="text" name="descripcion" [(ngModel)]="empresa.descripcion">
                 </div>
                 <div>
-                    Logo:
-                    <input type="text" name="logo" [(ngModel)]="empresa.logo">
+                    Logo: (inserta el enlace url)
+                    <img [src]="empresa.logo === '' ? '/assets/img/upload.png' : empresa.logo" class="card-img-top">
+                    <input type="text" name="foto" [(ngModel)]="empresa.logo">
                 </div>
                 <button (click)="eliminarCuentaEmpresa(empresa.id_empresa)"> <!--se crea un evento click, para que haga cosas cuando se pulse el botón-->
                     Eliminar cuenta

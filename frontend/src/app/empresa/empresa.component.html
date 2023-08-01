@@ -1,4 +1,7 @@
 <div class="col-md-4 offset-md-2"> <!--para que esté centrado-->
+    <body>
+        <img [src]="empresa.logo === '' ? '/assets/img/upload.png' : empresa.logo" class="card-img-top">
+    </body>
     <div>
         <div>
             {{empresa.nombre_empresa}}

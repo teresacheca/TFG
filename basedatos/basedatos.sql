@@ -175,82 +175,82 @@ CREATE TABLE solicitud (
 
 
 INSERT INTO Empresas (nombre_empresa, datos_de_contacto, descripcion, logo, direccion)
-VALUES ('EmpresaA', 'contacto@empresa-a.com', 'Descripción de la Empresa A', 'logo-empresa-a.png', 'Calle Principal 123'),
-       ('EmpresaB', 'contacto@empresa-b.com', 'Descripción de la Empresa B', 'logo-empresa-b.png', 'Avenida Principal 456'),
-       ('EmpresaC', 'contacto@empresa-c.com', 'Descripción de la Empresa C', 'logo-empresa-c.png', 'Carrera Principal 789');
+VALUES ('Apple', 'contacto@empresa-a.com', 'Descripción de la Empresa A', '/assets/img/apple.jpg', 'Calle Principal 123'),
+       ('Bic', 'contacto@empresa-b.com', 'Descripción de la Empresa B', '/assets/img/bic.png', 'Avenida Principal 456'),
+       ('Disney', 'contacto@empresa-c.com', 'Descripción de la Empresa C', '/assets/img/disney.png', 'Carrera Principal 789');
 
 
 
 INSERT INTO Usuarios (nombre_usuario, contrasena, fecha_nacimiento, puesto_trabajo, empresa, tipo, id_empresa)
-VALUES ('Juan', 'password123', '1990-05-15', 'Desarrollador', 'EmpresaA', 1, 1),
-       ('María', 'secret456', '1985-08-20', 'Gerente de Ventas', 'EmpresaB', 2, 2),
-       ('Pedro', 'qwerty789', '1995-02-10', 'Analista de Datos', 'EmpresaC', 1, 3),
-       ('Luisa', 'abcd1234', '1992-11-30', 'Ejecutiva de Cuentas', 'EmpresaA', 0, 1),
-       ('Ana', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaC', 2, 3),
-       ('Eva', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaA', 2, 1),
-       ('Carla', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaB', 2, 2),
-       ('Ramon', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaC', 2, 3),
-       ('Elsa', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaA', 2, 1),
-       ('Clara', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaB', 2, 2),
-       ('Ivan', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaC', 2, 3),
-       ('Antonio', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaA', 2, 1),
-       ('David', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaB', 2, 2),
-       ('Jesus', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'EmpresaC', 2, 3),
-       ('Carlos', 'secure789', '1994-03-12', 'Desarrollador Full Stack', 'EmpresaB', 1, 2);
+VALUES ('Juan', 'password123', '1990-05-15', 'Desarrollador', 'Apple', 1, 1),
+       ('María', 'secret456', '1985-08-20', 'Gerente de Ventas', 'Bic', 2, 2),
+       ('Pedro', 'qwerty789', '1995-02-10', 'Analista de Datos', 'Disney', 1, 3),
+       ('Luisa', 'passw0rd', '1992-11-30', 'Ejecutiva de Cuentas', 'Apple', 0, 1),
+       ('Ana', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Disney', 2, 3),
+       ('Eva', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Apple', 2, 1),
+       ('Carla', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Bic', 2, 2),
+       ('Ramon', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Disney', 2, 3),
+       ('Elsa', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Apple', 2, 1),
+       ('Clara', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Bic', 2, 2),
+       ('Ivan', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Disney', 2, 3),
+       ('Antonio', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Apple', 2, 1),
+       ('David', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Bic', 2, 2),
+       ('Jesus', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Disney', 2, 3),
+       ('Carlos', 'secure789', '1994-03-12', 'Desarrollador Full Stack', 'Bic', 1, 2);
 
 
 INSERT INTO solicitud (nombre_empresa, datos_de_contacto, descripcion, logo, nombre_admi_general, id_empresa, direccion, estado)
-VALUES ('EmpresaD', 'contacto@empresa-d.com', 'Descripción de la Empresa D', 'logo-empresa-x.png',  'Luisa', 0, ' ', 'Pendiente'),
-       ('EmpresaE', 'contacto@empresa-e.com', 'Descripción de la Empresa E', 'logo-empresa-y.png', 'Luisa', 0, ' ',  'Aceptada'),
-       ('EmpresaF', 'contacto@empresa-f.com', 'Descripción de la Empresa F', 'logo-empresa-x.png',  'Luisa', 0, ' ', 'Pendiente'),
-       ('EmpresaG', 'contacto@empresa-g.com', 'Descripción de la Empresa G', 'logo-empresa-y.png', 'Luisa', 0, ' ',  'Aceptada'),
-       ('EmpresaH', 'contacto@empresa-h.com', 'Descripción de la Empresa H', 'logo-empresa-x.png',  'Luisa', 0, ' ', 'Pendiente'),
-       ('EmpresaI', 'contacto@empresa-i.com', 'Descripción de la Empresa I', 'logo-empresa-y.png', 'Luisa', 0, ' ',  'Aceptada'),
-       ('EmpresaJ', 'contacto@empresa-j.com', 'Descripción de la Empresa J', 'logo-empresa-x.png',  'Luisa', 0, ' ', 'Pendiente'),
-       ('EmpresaK', 'contacto@empresa-k.com', 'Descripción de la Empresa K', 'logo-empresa-y.png', 'Luisa', 0, ' ',  'Aceptada'),
-       ('EmpresaL', 'contacto@empresa-l.com', 'Descripción de la Empresa L', 'logo-empresa-z.png', 'Luisa', 0, ' ', 'Rechazada'),
-       ('EmpresaM', 'contacto@empresa-m.com', 'Descripción de la Empresa M', 'logo-empresa-z.png', 'Luisa', 0, ' ', 'Rechazada');
+VALUES ('Pepsi', 'contacto@empresa-d.com', 'Descripción de la Empresa D', '/assets/img/pepsi.png',  'Luisa', 0, ' ', 'Pendiente'),
+       ('Hp', 'contacto@empresa-e.com', 'Descripción de la Empresa E', '/assets/img/hp.png', 'Luisa', 0, ' ',  'Aceptada'),
+       ('Starbucks', 'contacto@empresa-f.com', 'Descripción de la Empresa F', '/assets/img/starbucks.png',  'Luisa', 0, ' ', 'Pendiente'),
+       ('Android', 'contacto@empresa-g.com', 'Descripción de la Empresa G', '/assets/img/android.png', 'Luisa', 0, ' ',  'Aceptada'),
+       ('Amazon', 'contacto@empresa-h.com', 'Descripción de la Empresa H', '/assets/img/amazon.png',  'Luisa', 0, ' ', 'Pendiente'),
+       ('Coca-Cola', 'contacto@empresa-i.com', 'Descripción de la Empresa I', '/assets/img/Coca-Cola.png', 'Luisa', 0, ' ',  'Aceptada'),
+       ('McDonalds', 'contacto@empresa-j.com', 'Descripción de la Empresa J', '/assets/img/McDonalds.png',  'Luisa', 0, ' ', 'Pendiente'),
+       ('Warner', 'contacto@empresa-k.com', 'Descripción de la Empresa K', '/assets/img/warner.png', 'Luisa', 0, ' ',  'Aceptada'),
+       ('Facebook', 'contacto@empresa-l.com', 'Descripción de la Empresa L', '/assets/img/facebook.png', 'Luisa', 0, ' ', 'Rechazada'),
+       ('Carrefour', 'contacto@empresa-m.com', 'Descripción de la Empresa M', '/assets/img/carrefour.png', 'Luisa', 0, ' ', 'Rechazada');
 
 
 INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa, id_empresa)
-VALUES ('Recurso 1', 'Descripción del recurso 1', '/assets/img/foto1.png', 'Datos del recurso 1', 100, 'EmpresaA', 1);
+VALUES ('Recurso 1', 'Descripción del recurso 1', '/assets/img/foto1.png', 'Datos del recurso 1', 100, 'Apple', 1);
 
 INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa, id_empresa)
-VALUES ('Recurso 2', 'Descripción del recurso 2', '/assets/img/foto2.jpg', 'Datos del recurso 2', 50, 'EmpresaA', 1);
+VALUES ('Recurso 2', 'Descripción del recurso 2', '/assets/img/foto2.jpg', 'Datos del recurso 2', 50, 'Apple', 1);
 
 INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa, id_empresa)
-VALUES ('Recurso 3', 'Descripción del recurso 3', '/assets/img/foto3.jpg', 'Datos del recurso 3', 80, 'EmpresaB', 2);
+VALUES ('Recurso 3', 'Descripción del recurso 3', '/assets/img/foto3.jpg', 'Datos del recurso 3', 80, 'Bic', 2);
 
 INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa, id_empresa)
-VALUES ('Recurso 4', 'Descripción del recurso 4', '/assets/img/foto4.png', 'Datos del recurso 4', 120, 'EmpresaB', 2);
+VALUES ('Recurso 4', 'Descripción del recurso 4', '/assets/img/foto4.png', 'Datos del recurso 4', 120, 'Bic', 2);
 
 INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa, id_empresa)
-VALUES ('Recurso 5', 'Descripción del recurso 5', '/assets/img/foto5.png', 'Datos del recurso 5', 80, 'EmpresaC', 3);
+VALUES ('Recurso 5', 'Descripción del recurso 5', '/assets/img/foto5.png', 'Datos del recurso 5', 80, 'Disney', 3);
 
 INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa, id_empresa)
-VALUES ('Recurso 6', 'Esta es una descripción muy larga que tiene más de 100 caracteres y se trunca para ajustarse a la restricción de longitud', '/assets/img/foto6.png', 'Datos del recurso 6', 90, 'EmpresaC', 3);
+VALUES ('Recurso 6', 'Esta es una descripción muy larga que tiene más de 100 caracteres y se trunca para ajustarse a la restricción de longitud', '/assets/img/foto6.png', 'Datos del recurso 6', 90, 'Disney', 3);
 
 
 INSERT INTO RecursoServicio (nombre_rs, descripcion, foto, datos, aforo, nombre_empresa, id_empresa)
-VALUES ('Recurso 7', 'Descripción del recurso 7','/assets/img/foto7.png', 'Datos del recurso 4', 70, 'EmpresaA', 1);
+VALUES ('Recurso 7', 'Descripción del recurso 7','/assets/img/foto7.png', 'Datos del recurso 4', 70, 'Apple', 1);
 
 
 INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id_recursoservicio, id_empresa)
-VALUES ('2023-07-20', '10:00:00', 'EmpresaA', 'Eva', 'Recurso 2', 2, 1);   
+VALUES ('2023-07-20', '10:00:00', 'Apple', 'Eva', 'Recurso 2', 2, 1);   
 
 INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id_recursoservicio, id_empresa)
-VALUES ('2023-07-21', '15:30:00', 'EmpresaB', 'Carla', 'Recurso 3', 3, 2);
+VALUES ('2023-07-21', '15:30:00', 'Bic', 'Carla', 'Recurso 3', 3, 2);
 
 INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id_recursoservicio, id_empresa)
-VALUES ('2023-07-22', '14:45:00', 'EmpresaC', 'Ramon', 'Recurso 5', 5, 3);
+VALUES ('2023-07-22', '14:45:00', 'Disney', 'Ramon', 'Recurso 5', 5, 3);
 
 INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id_recursoservicio, id_empresa)
-VALUES ('2023-07-23', '09:15:00', 'EmpresaA', 'Elsa', 'Recurso 2', 2, 1);
+VALUES ('2023-07-23', '09:15:00', 'Apple', 'Elsa', 'Recurso 2', 2, 1);
 
 INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id_recursoservicio, id_empresa)
-VALUES ('2023-07-24', '12:00:00', 'EmpresaB', 'Clara', 'Recurso 3',3, 2);
+VALUES ('2023-07-24', '12:00:00', 'Bic', 'Clara', 'Recurso 3',3, 2);
 
 INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id_recursoservicio, id_empresa)
-VALUES ('2023-07-24', '16:00:00', 'EmpresaB', 'Clara', 'Recurso 3', 3, 2);
+VALUES ('2023-07-24', '16:00:00', 'Bic', 'Clara', 'Recurso 3', 3, 2);
 
 

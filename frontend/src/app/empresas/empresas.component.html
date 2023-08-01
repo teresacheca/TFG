@@ -6,9 +6,12 @@
     </head>
     <div *ngFor="let empresa of empresas">
         <!--col-md-2 -> crea 2 columnas, ngFor -> para recorrer todas las reservas-->
-        <body>
-        <h3>{{empresa.nombre_empresa}}</h3>
-        <button (click)="verEmpresa(empresa.id_empresa)">Ver</button> 
-        </body>
+        <div class="col-md-2">
+            <body>
+                <img [src]="empresa.logo === '' ? '/assets/img/upload.png' : empresa.logo" class="card-img-top">
+                <h3>{{empresa.nombre_empresa}}</h3>
+                <button (click)="verEmpresa(empresa.id_empresa)">Ver</button> 
+            </body>
+        </div>
     </div>
 </html>

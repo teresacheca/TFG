@@ -5,6 +5,7 @@
 </p>
 <ng-template #estanPendientes>
     <div class="col-md-2" *ngFor="let solicitud of pendientes">
+        <img [src]="solicitud.logo === '' ? '/assets/img/upload.png' : solicitud.logo" class="card-img-top">
         <!--col-md-2 -> crea 2 columnas, ngFor -> para recorrer todas las reservas-->
         <div class="card-text-center">
             <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
@@ -27,6 +28,7 @@
 <ng-template #estanAceptadas>
     <div class="col-md-2" *ngFor="let solicitud of aceptadas">
         <!--col-md-2 -> crea 2 columnas, ngFor -> para recorrer todas las reservas-->
+        <img [src]="solicitud.logo === '' ? '/assets/img/upload.png' : solicitud.logo" class="card-img-top">
         <div class="card-text-center">
             <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
                 <!--bg-dark: de color oscuro, text-white: para hacer el texto de color blanco-->
@@ -47,6 +49,7 @@
 <ng-template #estanRechazadas>
     <div class="col-md-2" *ngFor="let solicitud of rechazadas">
         <!--col-md-2 -> crea 2 columnas, ngFor -> para recorrer todas las reservas-->
+        <img [src]="solicitud.logo === '' ? '/assets/img/upload.png' : solicitud.logo" class="card-img-top">
         <div class="card-text-center">
             <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
                 <!--bg-dark: de color oscuro, text-white: para hacer el texto de color blanco-->

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Usuario} from '../modelos/Usuarios';
 import {ReservasService} from '../services/reservas.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-ag-ve-usuario',
@@ -25,6 +26,7 @@ export class AgVeUsuarioComponent {
   }
 
   empresa: number = 0
+  fecha_nacimiento: string = ""
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
@@ -42,7 +44,7 @@ export class AgVeUsuarioComponent {
         this.usuario.puesto_trabajo = this.aux[0].puesto_trabajo
         this.usuario.empresa = this.aux[0].empresa
         this.usuario.id = this.aux[0].id
-        console.log(this.usuario)
+        this.fecha_nacimiento = moment(this.usuario.fecha_nacimiento).format('YYYY-MM-DD')
       },
       err=> console.error(err)
     )

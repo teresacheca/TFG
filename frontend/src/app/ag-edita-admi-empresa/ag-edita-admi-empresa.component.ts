@@ -25,6 +25,7 @@ export class AgEditaAdmiEmpresaComponent {
     id_empresa: 0
   }
   fecha_nacimiento: string = ""
+  nombre: string = ""
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
@@ -33,6 +34,7 @@ export class AgEditaAdmiEmpresaComponent {
         //this.reserva = res; //no funciona -> tiene que aparecer la información antigua para editar sobre ella
         this.aux = res
         this.usuario.nombre_usuario = this.aux[0].nombre_usuario
+        this.nombre = this.usuario.nombre_usuario
         this.usuario.contrasena = this.aux[0].contrasena
         this.usuario.tipo = this.aux[0].tipo
         this.usuario.id = this.aux[0].id
@@ -58,14 +60,25 @@ export class AgEditaAdmiEmpresaComponent {
     )
   }
 
-  guardarCambiosAdmiEmpresa(id: number, id_empresa: number, nuevousuario: Usuario, fecha: string){
-    nuevousuario.fecha_nacimiento = new Date(fecha)
-    this.reservaServices.guardarCambiosAdmiEmpresa(id, id_empresa, nuevousuario).subscribe(
+  guardarCambiosAdmiEmpresa(id: number, id_empresa: number, nuevoUsuario: Usuario, fecha: string){
+    nuevoUsuario.fecha_nacimiento = new Date(fecha)
+
+    this.reservaServices.getUsuarioNombre(this.usuario.nombre_usuario).subscribe(
       res => {
-        let ruta = '/reservas/empresas/' + id_empresa + '/lista_administradores'
-        this.router.navigate([ruta]);
+        this.aux = res
+        if(this.aux.length > 0 && this.nombre != nuevoUsuario.nombre_usuario){
+          confirm("Ese nombre ya está en uso");
+        }else{
+          this.reservaServices.guardarCambiosAdmiEmpresa(id, id_empresa, nuevoUsuario).subscribe(
+            res => {
+              let ruta = '/reservas/empresas/' + id_empresa + '/lista_administradores'
+              this.router.navigate([ruta]);
+            },
+            err=> console.error(err)
+          )
+        }
       },
-      err=> console.error(err)
+      err => console.error(err)
     )
   }
 

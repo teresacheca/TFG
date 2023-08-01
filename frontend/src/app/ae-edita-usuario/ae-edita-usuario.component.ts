@@ -28,6 +28,7 @@ export class AeEditaUsuarioComponent {
   nombre_admi: string = ''
   empresa: number = 0
   fecha_nacimiento: any
+  nombre: string = ""
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
@@ -39,6 +40,7 @@ export class AeEditaUsuarioComponent {
         
         this.aux = res
         this.usuario.nombre_usuario = this.aux[0].nombre_usuario
+        this.nombre = this.usuario.nombre_usuario
         this.usuario.contrasena = this.aux[0].contrasena
         this.usuario.tipo = this.aux[0].tipo
         this.usuario.fecha_nacimiento = this.aux[0].fecha_nacimiento
@@ -54,13 +56,24 @@ export class AeEditaUsuarioComponent {
 
   guardarCambiosUsuarioAe(id: number, nuevoUsuario: Usuario, fecha_nacimiento: any){
     nuevoUsuario.fecha_nacimiento = fecha_nacimiento;
-    this.reservaServices.guardarCambiosUsuarioAe(this.nombre_admi, this.empresa, id, nuevoUsuario).subscribe(
+    this.reservaServices.getUsuarioNombre(this.usuario.nombre_usuario).subscribe(
       res => {
-        let ruta = '/reservas/admi_empresa/' + this.nombre_admi + '/' + this.empresa + '/lista_usuarios'
-        this.router.navigate([ruta]);
+        this.aux = res
+        if(this.aux.length > 0 && this.nombre != nuevoUsuario.nombre_usuario){
+          confirm("Ese nombre ya está en uso");
+        }else{
+          this.reservaServices.guardarCambiosUsuarioAe(this.nombre_admi, this.empresa, id, nuevoUsuario).subscribe(
+            res => {
+              let ruta = '/reservas/admi_empresa/' + this.nombre_admi + '/' + this.empresa + '/lista_usuarios'
+              this.router.navigate([ruta]);
+            },
+            err=> console.error(err)
+          )
+        }
       },
-      err=> console.error(err)
+      err => console.error(err)
     )
+   
   }
 
   eliminarCuentaUsuarioAe(id: number){

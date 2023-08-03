@@ -69,7 +69,12 @@ export class AeEditaUsuarioComponent {
              if(this.aux.length == 0){
               confirm("La empresa seleccionada no existe")
              }else{
-              nuevoUsuario.id_empresa = this.aux[0].id_empresa
+
+              console.log(this.empresa)
+              if(this.empresa != this.aux[0].id_empresa){
+                this.reservaServices.eliminarReservasUsuario(nuevoUsuario.nombre_usuario, this.empresa).subscribe(
+                  res => {
+                    nuevoUsuario.id_empresa = this.aux[0].id_empresa
               this.reservaServices.guardarCambiosUsuarioAe(this.nombre_admi, this.empresa, id, nuevoUsuario).subscribe(
                 res => {
                   let ruta = '/reservas/admi_empresa/' + this.nombre_admi + '/' + this.empresa + '/lista_usuarios'
@@ -77,6 +82,11 @@ export class AeEditaUsuarioComponent {
                 },
                 err=> console.error(err)
               )
+                  },
+                  err=> console.error(err)
+                )
+              }
+              
              }
             },
             err=> console.error(err)

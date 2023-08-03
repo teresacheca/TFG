@@ -69,13 +69,25 @@ export class AgEditaAdmiEmpresaComponent {
         if(this.aux.length > 0 && this.nombre != nuevoUsuario.nombre_usuario){
           confirm("Ese nombre ya está en uso");
         }else{
-          this.reservaServices.guardarCambiosAdmiEmpresa(id, id_empresa, nuevoUsuario).subscribe(
+          this.reservaServices.getEmpresa(nuevoUsuario.empresa).subscribe(
             res => {
-              let ruta = '/reservas/empresas/' + id_empresa + '/lista_administradores'
-              this.router.navigate([ruta]);
+             this.aux = res
+             if(this.aux.length == 0){
+              confirm("La empresa seleccionada no existe")
+             }else{
+              nuevoUsuario.id_empresa = this.aux[0].id_empresa
+              this.reservaServices.guardarCambiosAdmiEmpresa(id, id_empresa, nuevoUsuario).subscribe(
+                res => {
+                  let ruta = '/reservas/empresas/' + id_empresa + '/lista_administradores'
+                  this.router.navigate([ruta]);
+                },
+                err=> console.error(err)
+              )
+             }
             },
             err=> console.error(err)
           )
+          
         }
       },
       err => console.error(err)

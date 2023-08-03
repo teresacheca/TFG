@@ -96,11 +96,11 @@ export class UsuarioVeReservasComponent {
     }else{
       fecha = month + '-' + date;
     }
-
+    let partes = hora.split(">")
     let id = 0
     for(const reserva of this.mis_reservas){
       const fechaFormateadaActual =  moment(reserva.fecha).format('YYYY-MM-DD')
-      if(fechaFormateadaActual == fecha && reserva.hora == hora){
+      if(fechaFormateadaActual == fecha && reserva.hora == partes[1]){
         id = reserva.id_reserva
       }
     }

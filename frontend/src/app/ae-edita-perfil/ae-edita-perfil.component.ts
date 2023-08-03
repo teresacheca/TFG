@@ -27,7 +27,7 @@ export class AeEditaPerfilComponent {
 
   fecha_nacimiento: any
   nombre: string = ""
-
+  id_empresa: number = 0
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
     this.reservaServices.getDatosAdministradorEmpresa(params["nombre_usuario"], params["id_empresa"]).subscribe(
@@ -44,6 +44,7 @@ export class AeEditaPerfilComponent {
         this.admi_empresa.id = this.aux[0].id
         this.admi_empresa.id_empresa = this.aux[0].id_empresa
         this.fecha_nacimiento = moment(this.admi_empresa.fecha_nacimiento).format('YYYY-MM-DD')
+        this.id_empresa = this.admi_empresa.id_empresa
       },
       err=> console.error(err)
     )
@@ -74,14 +75,22 @@ export class AeEditaPerfilComponent {
              if(this.aux.length == 0){
               confirm("La empresa seleccionada no existe")
              }else{
-              nuevoUsuario.id_empresa = this.aux[0].id_empresa
-              this.reservaServices.guardarCambiosAdmiEmpresaAe(nombre, nuevoUsuario).subscribe(
-                res => {
-                  let ruta = '/reservas/admi_empresa/' + nombre
-                  this.router.navigate([ruta]);
-                },
-                err=> console.error(err)
-              )
+              console.log(this.id_empresa)
+              if(this.id_empresa != this.aux[0].id_empresa){
+                this.reservaServices.eliminarReservasUsuario(nombre, this.id_empresa).subscribe(
+                  res => {
+                    nuevoUsuario.id_empresa = this.aux[0].id_empresa
+                    this.reservaServices.guardarCambiosAdmiEmpresaAe(nombre, nuevoUsuario).subscribe(
+                      res => {
+                        let ruta = '/reservas/admi_empresa/' + nombre
+                        this.router.navigate([ruta]);
+                      },
+                      err=> console.error(err)
+                    )
+                  },
+                  err=> console.error(err)
+                )
+              }
              }
             },
             err=> console.error(err)

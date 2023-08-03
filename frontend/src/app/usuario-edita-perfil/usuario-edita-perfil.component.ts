@@ -27,6 +27,7 @@ export class UsuarioEditaPerfilComponent {
 
   aux: any = []
   nombre: string = ""
+  id_empresa: number = 0
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
@@ -44,7 +45,7 @@ export class UsuarioEditaPerfilComponent {
         this.usuario.puesto_trabajo = this.aux[0].puesto_trabajo 
         this.usuario.fecha_nacimiento = this.aux[0].fecha_nacimiento  
         this.usuario.id_empresa = this.aux[0].id_empresa      
-
+        this.id_empresa = this.usuario.id_empresa
         this.fecha_nacimiento = moment(this.usuario.fecha_nacimiento).format('YYYY-MM-DD')
       },
       err => console.error(err)
@@ -67,14 +68,26 @@ export class UsuarioEditaPerfilComponent {
              if(this.aux.length == 0){
               confirm("La empresa seleccionada no existe")
              }else{
-              nuevoUsuario.id_empresa = this.aux[0].id_empresa
-              this.reservaServices.guardarCambiosUsuario(nombre_usuario, nuevoUsuario).subscribe(
-                res => {
-                  let ruta = '/reservas/usuario/' + nombre_usuario
-                  this.router.navigate([ruta]);
-                },
-                err=> console.error(err)
-              )
+
+              console.log(this.id_empresa)
+              if(this.id_empresa != this.aux[0].id_empresa){
+                this.reservaServices.eliminarReservasUsuario(nuevoUsuario.nombre_usuario, this.id_empresa).subscribe(
+                  res => {
+                    nuevoUsuario.id_empresa = this.aux[0].id_empresa
+                    this.reservaServices.guardarCambiosUsuario(nombre_usuario, nuevoUsuario).subscribe(
+                      res => {
+                        let ruta = '/reservas/usuario/' + nombre_usuario
+                        this.router.navigate([ruta]);
+                      },
+                      err=> console.error(err)
+                    )
+                  },
+                  err=> console.error(err)
+                )
+              }
+
+
+              
              }
             },
             err=> console.error(err)

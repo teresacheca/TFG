@@ -60,6 +60,7 @@ export class UsuarioVeTodasReservasComponent {
 
 
   getReservasEmpresa(){
+    console.log(this.usuario)
     this.reservasServices.getReservasEmpresa(this.usuario.nombre_usuario, this.usuario.id_empresa).subscribe(
       res =>{
         this.reservas_empresa = res
@@ -96,11 +97,11 @@ export class UsuarioVeTodasReservasComponent {
     }else{
       fecha = month + '-' + date;
     }
-
+    let partes = hora.split(">")
     let id = 0
     for(const reserva of this.reservas_empresa){
       const fechaFormateadaActual =  moment(reserva.fecha).format('YYYY-MM-DD')
-      if(fechaFormateadaActual == fecha && reserva.hora == hora){
+      if(fechaFormateadaActual == fecha && reserva.hora == partes[1]){
         id = reserva.id_reserva
       }
     }
@@ -108,32 +109,6 @@ export class UsuarioVeTodasReservasComponent {
     this.router.navigate([ruta])
   }
 
-  
-  /*getRecurso(date: number, month: string){
-    let first: any = []
-    let fecha = "";
-    if(date < 10){
-      fecha = month + '-0' + date;
-    }else{
-      fecha = month + '-' + date;
-    }
-  
-    let index = 0
-    for (const fechaReserva of this.getFechasReservas(this.todas_las_fechas)){
-      if(fechaReserva == fecha){
-        this.j = index
-      }
-      index++
-    }
-    first = this.recurso[this.j]
-    this.j++
-    if(this.j >= this.recurso.length){
-      this.j = 0
-    }
-    
-  
-    return first
-  }*/
 
   get currentMonthDates(): number[] {
     const firstDayOfMonth = this.currentMonth.clone().startOf('month').day();

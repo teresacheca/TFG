@@ -64,7 +64,6 @@ export class AeListaReservasComponent {
   }
 
   veReservaAe(date: number, hora: string, month: string){
-
     let fecha = "";
     if(date < 10){
       fecha = month + '-0' + date;
@@ -72,13 +71,17 @@ export class AeListaReservasComponent {
       fecha = month + '-' + date;
     }
 
+    let partes = hora.split(">")
+
     let id = 0
     for(const reserva of this.reservas){
       const fechaFormateadaActual =  moment(reserva.fecha).format('YYYY-MM-DD')
-      if(fechaFormateadaActual == fecha && reserva.hora == hora){
+
+      if(fechaFormateadaActual == fecha && reserva.hora == partes[1]){
         id = reserva.id_reserva
       }
     }
+    console.log(id)
     let ruta = this.router.url + '/' + id
     this.router.navigate([ruta])
   }

@@ -65,6 +65,13 @@ class ReservasController{
         res.json({message: 'la reserva fue eliminada'}) 
     }
 
+    public async eliminarReservasUsuario(req: Request, res: Response){
+        const aux = await pool.promise().query('DELETE FROM Reservas WHERE id_empresa = ? and nombre_usuario=?', [req.params.id_empresa, req.params.nombre_usuario]);
+        res.json({message: 'la reserva fue eliminada'}) 
+    }
+
+
+
     public async guardarCambios(req: Request, res: Response){
         await pool.promise().query('UPDATE Empresas set ? WHERE id_empresa = ?', [req.body, req.params.id_empresa]);
         res.json({message: 'La reserva fue actualizada'})

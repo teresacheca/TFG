@@ -152,6 +152,11 @@ export class ReservasService {
     return this.http.delete(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${id_empresa}/lista_usuarios/${id_reserva}/eliminar_reserva`)
   }
 
+  eliminarReservasUsuario(nombre_usuario: string, id_empresa: number){
+    console.log("entrs")
+    return this.http.delete(`${this.API_URI}/reservas/admi_empresa/${nombre_usuario}/${id_empresa}/eliminar_reservas_usuario`)
+  }
+
   AeaniadeUsuario(usuario: Usuario, nombre_admi: string, id_empresa: number){
     return this.http.post(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${id_empresa}/lista_usuarios/aniade/guardar`, usuario)
   }

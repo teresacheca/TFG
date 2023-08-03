@@ -15,6 +15,7 @@ class ReservasRoutes {
         this.router.get('/admi_empresa/:nombre_usuario/editar', reservasController_1.default.getDatosAdministradorEmpresa);
         this.router.put('/admi_empresa/:nombre_usuario/editar/guardar', reservasController_1.default.guardarCambiosUsuario);
         this.router.delete('/admi_empresa/:nombre_usuario/editar/eliminar', reservasController_1.default.eliminarCuentaAdmiEmpresaAe);
+        this.router.delete('/admi_empresa/:nombre_usuario/:id_empresa/eliminar_reservas_usuario', reservasController_1.default.eliminarReservasUsuario);
         this.router.get('/admi_empresa/:nombre_usuario/:id_empresa/lista_usuarios', reservasController_1.default.getUsuariosEmpresaAe);
         this.router.post('/admi_empresa/:nombre_usuario/:id_empresa/lista_usuarios/aniade/guardar', reservasController_1.default.AeaniadeUsuario);
         this.router.get('/admi_empresa/:nombre_usuario/:id_empresa/lista_usuarios/:id', reservasController_1.default.getUsuarioId);

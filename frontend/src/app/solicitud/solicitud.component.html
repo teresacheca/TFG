@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Iniciar sesión</title>
-</head>
 <body>
-  <h2>Pagina de solicitud de nueva empresa (por hacer)</h2>
-  <form>
-    <label for="nombre_empresa">Nombre empresa:</label>
-    <input type="text" id="nombreEmpresa" name="nombreEmpresa" #nombreEmpresa required><br>
-    <label for="direccion">Dirección:</label>
-    <input type="direccion" id="direccion" name="direccion" #direccion required><br>
-    <label for="datos_de_contacto">Datos de contacto:</label>
-    <input type="datos_de_contacto" id="datos_de_contacto" name="datos_de_contacto" #datos_de_contacto required><br>
-    Logo: (inserta el enlace url)
-    <img [src]="empresa.logo === '' ? '/assets/img/upload.png' : empresa.logo" class="card-img-top">
-    <input type="text" name="foto" [(ngModel)]="empresa.logo">
-    <input type="submit" value="Crear solicitud" (click)="crearSolicitud(nombreEmpresa.value, direccion.value, datos_de_contacto.value, empresa.logo)">
-  </form>
+  <div class="col-md-2" >
+    <!--col-md-2 -> crea 2 columnas, ngFor -> para recorrer todas las reservas-->
+    <div class="card-text-center">
+      <form>
+        <label for="nombre_empresa">Nombre empresa:</label>
+        <input type="text" id="nombreEmpresa" name="nombreEmpresa" #nombreEmpresa required><br>
+        <label for="direccion">Dirección:</label>
+        <input type="direccion" id="direccion" name="direccion" #direccion required><br>
+        <label for="datos_de_contacto">Datos de contacto:</label>
+        <input type="datos_de_contacto" id="datos_de_contacto" name="datos_de_contacto" #datos_de_contacto required><br>
+        Logo: (inserta el enlace url)
+        <img [src]="empresa.logo === '' ? '/assets/img/upload.png' : empresa.logo" class="card-img-top">
+        <input type="text" name="foto" [(ngModel)]="empresa.logo">
+        <input type="submit" value="Crear solicitud" (click)="crearSolicitud(nombreEmpresa.value, direccion.value, datos_de_contacto.value, empresa.logo)">
+      </form>
+    </div>
+  </div>
 </body>
 </html>
+
+

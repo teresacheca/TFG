@@ -85,6 +85,12 @@ class ReservasController {
             res.json({ message: 'la reserva fue eliminada' });
         });
     }
+    eliminarReservasUsuario(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const aux = yield basedatos_1.default.promise().query('DELETE FROM Reservas WHERE id_empresa = ? and nombre_usuario=?', [req.params.id_empresa, req.params.nombre_usuario]);
+            res.json({ message: 'la reserva fue eliminada' });
+        });
+    }
     guardarCambios(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             yield basedatos_1.default.promise().query('UPDATE Empresas set ? WHERE id_empresa = ?', [req.body, req.params.id_empresa]);

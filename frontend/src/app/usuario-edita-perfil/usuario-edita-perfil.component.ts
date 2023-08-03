@@ -26,6 +26,7 @@ export class UsuarioEditaPerfilComponent {
   fecha_nacimiento: string = ""
 
   aux: any = []
+  nombre: string = ""
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
@@ -35,6 +36,7 @@ export class UsuarioEditaPerfilComponent {
       res => {
         this.aux = res
         this.usuario.nombre_usuario = this.aux[0].nombre_usuario
+        this.nombre = this.usuario.nombre_usuario
         this.usuario.contrasena = this.aux[0].contrasena
         this.usuario.tipo = this.aux[0].tipo
         this.usuario.id = this.aux[0].id
@@ -52,13 +54,39 @@ export class UsuarioEditaPerfilComponent {
 
   guardarCambiosUsuario(nombre_usuario: string, nuevoUsuario: Usuario, fecha: string){
     nuevoUsuario.fecha_nacimiento = new Date(fecha)
-    this.reservaServices.guardarCambiosUsuario(nombre_usuario, nuevoUsuario).subscribe(
+
+    this.reservaServices.getUsuarioNombre(this.usuario.nombre_usuario).subscribe(
       res => {
-        let ruta = '/reservas/usuario/' + nombre_usuario
-        this.router.navigate([ruta]);
+        this.aux = res
+        if(this.aux.length > 0 && this.nombre != nuevoUsuario.nombre_usuario){
+          confirm("Ese nombre ya está en uso");
+        }else{
+          this.reservaServices.getEmpresa(nuevoUsuario.empresa).subscribe(
+            res => {
+             this.aux = res
+             if(this.aux.length == 0){
+              confirm("La empresa seleccionada no existe")
+             }else{
+              nuevoUsuario.id_empresa = this.aux[0].id_empresa
+              this.reservaServices.guardarCambiosUsuario(nombre_usuario, nuevoUsuario).subscribe(
+                res => {
+                  let ruta = '/reservas/usuario/' + nombre_usuario
+                  this.router.navigate([ruta]);
+                },
+                err=> console.error(err)
+              )
+             }
+            },
+            err=> console.error(err)
+          )
+          
+        }
       },
-      err=> console.error(err)
+      err => console.error(err)
     )
+
+
+    
   }
 
   eliminarCuentaUsuarioUsu(nombre_usuario: string){

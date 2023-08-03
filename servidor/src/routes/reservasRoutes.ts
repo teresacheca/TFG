@@ -50,7 +50,7 @@ class ReservasRoutes{
 
         this.router.get('/empresas', reservasController.getEmpresas); 
         this.router.put('/empresas/cambiar/:id_empresa', reservasController.guardarCambios); 
-        this.router.get('/empresas/:id_empresa', reservasController.getEmpresa); 
+        this.router.get('/empresas/:nombre_empresa', reservasController.getEmpresa); 
         this.router.get('/empresas/:id_empresa/id', reservasController.getEmpresaId);
         this.router.delete('/empresas/eliminar/:id_empresa', reservasController.eliminarEmpresa);
         this.router.get('/empresas/:id_empresa/lista_administradores', reservasController.getAdministradoresEmpresa); 

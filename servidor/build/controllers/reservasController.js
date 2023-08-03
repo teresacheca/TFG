@@ -65,8 +65,10 @@ class ReservasController {
     }
     getEmpresa(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            console.log(req.params.nombre_empresa);
             const empresa = yield basedatos_1.default.promise().query('SELECT * FROM Empresas WHERE nombre_empresa = ?', [req.params.nombre_empresa]);
             const rows = empresa[0]; // Accede a los resultados utilizando la posición 0
+            console.log(rows);
             res.json(rows);
         });
     }

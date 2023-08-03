@@ -26,6 +26,7 @@ export class AeEditaPerfilComponent {
   }
 
   fecha_nacimiento: any
+  nombre: string = ""
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
@@ -34,6 +35,7 @@ export class AeEditaPerfilComponent {
         //this.reserva = res; //no funciona -> tiene que aparecer la información antigua para editar sobre ella
         this.aux = res
         this.admi_empresa.nombre_usuario = this.aux[0].nombre_usuario
+        this.nombre = this.admi_empresa.nombre_usuario
         this.admi_empresa.contrasena = this.aux[0].contrasena
         this.admi_empresa.tipo = this.aux[0].tipo
         this.admi_empresa.fecha_nacimiento = this.aux[0].fecha_nacimiento
@@ -57,15 +59,39 @@ export class AeEditaPerfilComponent {
     )
   }
 
-  guardarCambiosAdmiEmpresaAe(nombre: string, nuevousuario: Usuario, fecha_nacimiento: any){
-    nuevousuario.fecha_nacimiento = fecha_nacimiento;
-    this.reservaServices.guardarCambiosAdmiEmpresaAe(nombre, nuevousuario).subscribe(
+  guardarCambiosAdmiEmpresaAe(nombre: string, nuevoUsuario: Usuario, fecha_nacimiento: any){
+    nuevoUsuario.fecha_nacimiento = fecha_nacimiento;
+
+    this.reservaServices.getUsuarioNombre(this.admi_empresa.nombre_usuario).subscribe(
       res => {
-        let ruta = '/reservas/admi_empresa/' + nombre
-        this.router.navigate([ruta]);
-      },
-      err=> console.error(err)
+        this.aux = res
+        if(this.aux.length > 0 && this.nombre != nuevoUsuario.nombre_usuario){
+          confirm("Ese nombre ya está en uso");
+        }else{
+          this.reservaServices.getEmpresa(nuevoUsuario.empresa).subscribe(
+            res => {
+             this.aux = res
+             if(this.aux.length == 0){
+              confirm("La empresa seleccionada no existe")
+             }else{
+              nuevoUsuario.id_empresa = this.aux[0].id_empresa
+              this.reservaServices.guardarCambiosAdmiEmpresaAe(nombre, nuevoUsuario).subscribe(
+                res => {
+                  let ruta = '/reservas/admi_empresa/' + nombre
+                  this.router.navigate([ruta]);
+                },
+                err=> console.error(err)
+              )
+             }
+            },
+            err=> console.error(err)
+          )
+        }
+          
+        },
+      err => console.error(err)
     )
+    
   }
   
 

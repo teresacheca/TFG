@@ -43,7 +43,7 @@ class ReservasRoutes {
         this.router.post('/usuario/:nombre_usuario/realiza_reserva/recurso/:id_recursoservicio/reserva', reservasController_1.default.crearReserva);
         this.router.get('/empresas', reservasController_1.default.getEmpresas);
         this.router.put('/empresas/cambiar/:id_empresa', reservasController_1.default.guardarCambios);
-        this.router.get('/empresas/:id_empresa', reservasController_1.default.getEmpresa);
+        this.router.get('/empresas/:nombre_empresa', reservasController_1.default.getEmpresa);
         this.router.get('/empresas/:id_empresa/id', reservasController_1.default.getEmpresaId);
         this.router.delete('/empresas/eliminar/:id_empresa', reservasController_1.default.eliminarEmpresa);
         this.router.get('/empresas/:id_empresa/lista_administradores', reservasController_1.default.getAdministradoresEmpresa);

@@ -25,10 +25,21 @@ export class AeAniadeRecursoComponent {
     id_empresa: 0
   }
 
+  aux: any = []
+  nombre_empresa: string = ""
+
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
     this.id_empresa = params["id_empresa"]
     this.nombre_admi = params["nombre_usuario"]
+    this.reservasServices.getEmpresaId(this.id_empresa).subscribe(
+      res => {
+        this.aux =res
+       console.log(this.aux[0].nombre_empresa)
+       this.nombre_empresa = this.aux[0].nombre_empresa
+      },
+      err=> console.error(err)
+    )
   }
 
   AeaniadeRecurso(nombre_rs: string, descripcion: string, foto: string, datos: string, aforo: string){
@@ -41,12 +52,29 @@ export class AeAniadeRecursoComponent {
       this.recurso.datos = datos
       this.recurso.aforo = Number(aforo);
       this.recurso.id_empresa = this.id_empresa
-      this.reservasServices.AeaniadeRecurso(this.recurso, this.nombre_admi, this.id_empresa).subscribe(
+      this.recurso.nombre_empresa = this.nombre_empresa
+      this.reservasServices.getRecursos(this.nombre_admi, this.id_empresa).subscribe(
         res => {
-          let ruta = "/reservas/admi_empresa/" + this.nombre_admi + '/' + this.id_empresa + '/lista_recursos'
-          this.router.navigate([ruta]);
+          this.aux = res
+          let encontrado = false
+          for(const nombre of this.aux){
+            if(nombre.nombre_rs == nombre_rs){
+              encontrado = true
+            }
+          }
+          if(encontrado){
+            confirm("Ya existe un recurso o servicio con ese nombre en la empresa");
+          }else{
+            this.reservasServices.AeaniadeRecurso(this.recurso, this.nombre_admi, this.id_empresa).subscribe(
+              res => {
+                let ruta = "/reservas/admi_empresa/" + this.nombre_admi + '/' + this.id_empresa + '/lista_recursos'
+                this.router.navigate([ruta]);
+              },
+              err => console.error(err)
+            )
+          }
         },
-        err => console.error(err)
+        err=> console.error(err)
       )
     }
   }

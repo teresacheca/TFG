@@ -27,6 +27,7 @@ export class AeEditaRecursoComponent {
   id: number = 0
   aux: any
   selectedFile: File | null = null;
+  nombre_recurso: string = ""
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
@@ -43,10 +44,12 @@ export class AeEditaRecursoComponent {
        this.recurso.aforo = this.aux[0].aforo
        this.recurso.nombre_empresa = this.aux[0].nombre_empresa
        this.recurso.id_recursoservicio = this.aux[0].id_recursoservicio
-       this.recurso.id_empresa = this.aux[0].id_emrpesa
+       this.recurso.id_empresa = this.aux[0].id_empresa
+       this.nombre_recurso = this.recurso.nombre_rs
       },
       err => console.error(err)
     );
+    
   }
 
   eliminarRescursoAe(id_recursoservicio: number){
@@ -61,13 +64,31 @@ export class AeEditaRecursoComponent {
   
 
   guardarCambiosRecursoAe(id_recursoservicio: number, recurso: Recurso){
-    this.reservaServices.guardarCambiosRecursoAe(this.admi, this.empresa, id_recursoservicio, recurso).subscribe(
+
+    this.reservaServices.getRecursos(this.admi, this.empresa).subscribe(
       res => {
-        let ruta = '/reservas/admi_empresa/' + this.admi + '/' + this.empresa + '/lista_recursos'
-        this.router.navigate([ruta]);
+        this.aux = res
+        let encontrado = false
+        for(const nombre of this.aux){
+          if(nombre.nombre_rs == recurso.nombre_rs && this.nombre_recurso != recurso.nombre_rs){
+            encontrado = true
+          }
+        }
+        if(encontrado){
+          confirm("Ya existe un recurso o servicio con ese nombre en la empresa");
+        }else{
+          this.reservaServices.guardarCambiosRecursoAe(this.admi, this.empresa, id_recursoservicio, recurso).subscribe(
+            res => {
+              let ruta = '/reservas/admi_empresa/' + this.admi + '/' + this.empresa + '/lista_recursos'
+              this.router.navigate([ruta]);
+            },
+            err=> console.error(err)
+          )
+        }
       },
       err=> console.error(err)
     )
+   
   }
 
   onFileSelected(event: any) {

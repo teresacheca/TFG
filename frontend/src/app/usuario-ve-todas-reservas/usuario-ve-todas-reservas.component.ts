@@ -68,15 +68,17 @@ export class UsuarioVeTodasReservasComponent {
         for(const reserva of this.reservas_empresa){
           let last = new Array()
           if (fecha == reserva.fecha){
+            let s = reserva.nombre_rs + "<br>" + reserva.hora;
+
             last = last.concat(this.todas_las_horas[this.todas_las_horas.length-1])
-            last = last.concat(reserva.hora)
+            last = last.concat(s)
             last.sort();
             this.todas_las_horas[this.todas_las_horas.length-1] = last
           }else{
             this.todas_las_fechas.push(reserva.fecha);
-            last.push(reserva.hora)
+            let s = reserva.nombre_rs + "<br>" + reserva.hora;
+            last.push(s)
             this.todas_las_horas.push(last)
-            this.recurso.push(reserva.nombre_rs)
           }
           
           fecha = reserva.fecha
@@ -106,7 +108,8 @@ export class UsuarioVeTodasReservasComponent {
     this.router.navigate([ruta])
   }
 
-  getRecurso(date: number, month: string){
+  
+  /*getRecurso(date: number, month: string){
     let first: any = []
     let fecha = "";
     if(date < 10){
@@ -130,7 +133,7 @@ export class UsuarioVeTodasReservasComponent {
     
   
     return first
-  }
+  }*/
 
   get currentMonthDates(): number[] {
     const firstDayOfMonth = this.currentMonth.clone().startOf('month').day();
@@ -199,33 +202,25 @@ tienenReserva(date: number): boolean {
   return this.getFechasReservas(this.todas_las_fechas).includes(fechaFormateada);
 }
 
-j: number = 0
+i: number = 0
 
 
 getTodasLasHoras(date: number, month: string){
-  let first: any = []
   let fecha = "";
-  if(date < 10){
-    fecha = month + '-0' + date;
-  }else{
-    fecha = month + '-' + date;
-  }
-
-  let index = 0
-  for (const fechaReserva of this.getFechasReservas(this.todas_las_fechas)){
-    if(fechaReserva == fecha){
-      this.j = index
+    if (date < 10) {
+      fecha = month + '-0' + date;
+    } else {
+      fecha = month + '-' + date;
     }
-    index++
-  }
-  first = this.todas_las_horas[this.j]
-  this.j++
-  if(this.j >= this.todas_las_horas.length){
-    this.j = 0
-  }
   
-
-  return first
+    let index = 0;
+    for (const fechaReserva of this.getFechasReservas(this.todas_las_fechas)) {
+      if (fechaReserva == fecha) {
+        this.i = index;
+      }
+      index++;
+    }
+    return this.todas_las_horas[this.i];
 }
 
 

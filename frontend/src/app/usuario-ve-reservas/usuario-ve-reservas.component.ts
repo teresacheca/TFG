@@ -67,15 +67,17 @@ export class UsuarioVeReservasComponent {
         for(const reserva of this.mis_reservas){
           let last = new Array()
           if (fecha == reserva.fecha){
+            let s = reserva.nombre_rs + "<br>" + reserva.hora;
+
             last = last.concat(this.mis_horas[this.mis_horas.length-1])
-            last = last.concat(reserva.hora)
+            last = last.concat(s)
             last.sort();
             this.mis_horas[this.mis_horas.length-1] = last
           }else{
             this.mis_fechas.push(reserva.fecha);
-            last.push(reserva.hora)
+            let s = reserva.nombre_rs + "<br>" + reserva.hora;
+            last.push(s)
             this.mis_horas.push(last)
-            this.recurso.push(reserva.nombre_rs)
           }
           fecha = reserva.fecha
         }
@@ -170,29 +172,21 @@ tengoReserva(date: number): boolean {
 i: number = 0
 
 getMisHoras(date: number, month: string){
-  let first: any = []
   let fecha = "";
-  if(date < 10){
+  if (date < 10) {
     fecha = month + '-0' + date;
-  }else{
+  } else {
     fecha = month + '-' + date;
   }
 
-  let index = 0
-  for (const fechaReserva of this.getFechasReservas(this.mis_fechas)){
-    if(fechaReserva == fecha){
-      this.i = index
+  let index = 0;
+  for (const fechaReserva of this.getFechasReservas(this.mis_fechas)) {
+    if (fechaReserva == fecha) {
+      this.i = index;
     }
-    index++
+    index++;
   }
-  first = this.mis_horas[this.i]
-  this.i++
-  if(this.i >= this.mis_horas.length){
-    this.i = 0
-  }
-  
-
-  return first
+  return this.mis_horas[this.i];
 }
 
 

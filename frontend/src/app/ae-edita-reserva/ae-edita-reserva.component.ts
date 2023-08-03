@@ -29,6 +29,7 @@ export class AeEditaReservaComponent {
   id: number = 0
   aux: any= []
   fecha: string = ""
+  nombre_recurso: string = ""
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
@@ -47,7 +48,6 @@ export class AeEditaReservaComponent {
         this.reserva.id_reserva = this.aux[0].id_reserva
         this.reserva.id_recursoservicio = this.aux[0].id_recursoservicio
         this.reserva.id_empresa = this.aux[0].id_empresa
-
         this.fecha = moment(this.reserva.fecha).format('YYYY-MM-DD')
 
       },
@@ -57,13 +57,40 @@ export class AeEditaReservaComponent {
 
   AeguardaCambiosReserva(id_reserva: number, nuevaReserva: Reserva, fecha: string){
     nuevaReserva.fecha = fecha
-    this.reservasServices.AeguardaCambiosReserva(this.nombre_admi, this.empresa, id_reserva, nuevaReserva).subscribe(
+    this.reservasServices.getUsuarioNombre(nuevaReserva.nombre_usuario).subscribe(
       res => {
-        let ruta = '/reservas/admi_empresa/' + this.nombre_admi + '/' + this.empresa + '/lista_reservas'
-        this.router.navigate([ruta]);
+        this.aux = res
+        if(this.aux.length == 0){
+          confirm("Ese usuario no existe")
+        }else{
+          this.reservasServices.getRecursos(this.nombre_admi, this.empresa).subscribe(
+            res => {
+              this.aux = res
+              let encontrado = false
+              for(const nombre of this.aux){
+                if(nombre.nombre_rs == nuevaReserva.nombre_rs){
+                  encontrado = true
+                }
+              }
+              if(encontrado == false){
+                confirm("El recurso no existe");
+              }else{
+                this.reservasServices.AeguardaCambiosReserva(this.nombre_admi, this.empresa, id_reserva, nuevaReserva).subscribe(
+                  res => {
+                    let ruta = '/reservas/admi_empresa/' + this.nombre_admi + '/' + this.empresa + '/lista_reservas'
+                    this.router.navigate([ruta]);
+                  },
+                  err=> console.error(err)
+                )
+              }
+            },
+            err=> console.error(err)
+          )
+        }
       },
       err=> console.error(err)
     )
+    
   }
 
   AeEliminaReserva(id_reserva: number){

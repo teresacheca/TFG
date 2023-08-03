@@ -21,7 +21,7 @@ export class AeListaReservasComponent {
 
   fechasExistentes: string[] = [];
   horas: string[][] = [];
-  recurso: string[] = []
+  recurso: string[][] = []
 
   constructor(private reservasServices: ReservasService, private router: Router, private activeRoute: ActivatedRoute){}
 
@@ -40,20 +40,22 @@ export class AeListaReservasComponent {
         let fecha = '0000-00-00'
         for(const reserva of this.reservas){
           let last = new Array()
+          let r = new Array()
           if (fecha == reserva.fecha){
+            let s = reserva.nombre_rs + "<br>" + reserva.hora;
+
             last = last.concat(this.horas[this.horas.length-1])
-            last = last.concat(reserva.hora)
+            last = last.concat(s)
             last.sort();
             this.horas[this.horas.length-1] = last
           }else{
             this.fechasExistentes.push(reserva.fecha);
-            last.push(reserva.hora)
+            let s = reserva.nombre_rs + "<br>" + reserva.hora;
+            last.push(s)
             this.horas.push(last)
-            this.recurso.push(reserva.nombre_rs)
           }
           fecha = reserva.fecha
         }
-
         this.generateCalendar();
 
       },
@@ -144,34 +146,27 @@ export class AeListaReservasComponent {
 
   i: number = 0
 
-getHoras(date: number, month: string){
-  let first: any = []
-  let fecha = "";
-  if(date < 10){
-    fecha = month + '-0' + date;
-  }else{
-    fecha = month + '-' + date;
-  }
-
-  let index = 0
-  for (const fechaReserva of this.getFechasReservas(this.fechasExistentes)){
-    if(fechaReserva == fecha){
-      this.i = index
+  getHoras(date: number, month: string): string[] {
+    let fecha = "";
+    if (date < 10) {
+      fecha = month + '-0' + date;
+    } else {
+      fecha = month + '-' + date;
     }
-    index++
-  }
-  first = this.horas[this.i]
-  this.i++
-  if(this.i >= this.horas.length){
-    this.i = 0
+  
+    let index = 0;
+    for (const fechaReserva of this.getFechasReservas(this.fechasExistentes)) {
+      if (fechaReserva == fecha) {
+        this.i = index;
+      }
+      index++;
+    }
+    return this.horas[this.i];
   }
   
 
-  return first
-}
-
-
 getRecurso(date: number, month: string){
+  console.log(date)
   let first: any = []
   let fecha = "";
   if(date < 10){
@@ -193,7 +188,7 @@ getRecurso(date: number, month: string){
     this.i = 0
   }
   
-
+  console.log(first)
   return first
 }
 

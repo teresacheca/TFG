@@ -49,4 +49,9 @@ export class AeDatosRecursoComponent {
     );
   }
 
+  volver(){
+    let ruta = '/reservas/admi_empresa/' + this.admi + '/' + this.empresa + '/lista_recursos'
+    this.router.navigate([ruta])
+  }
+
 }

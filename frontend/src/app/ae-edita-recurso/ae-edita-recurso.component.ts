@@ -91,32 +91,10 @@ export class AeEditaRecursoComponent {
    
   }
 
-  onFileSelected(event: any) {
-    if (event.target.files && event.target.files.length > 0) {
-      const file = event.target.files[0];
-      const fileType = file.type;
-      if (fileType.startsWith('image/')) {
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-          this.selectedFile = e.target.result;
-        };
-        reader.readAsDataURL(file);
-      } else {
-        // Si el archivo seleccionado no es una imagen, mostrar un mensaje de error o realizar alguna otra acción
-        confirm('El archivo seleccionado no es una imagen.');
-      }
-    }
-  }
 
-  dataURItoBlob(dataURI: string, callback: (blob: Blob) => void) {
-    const byteString = atob(dataURI.split(',')[1]);
-    const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-    const ab = new ArrayBuffer(byteString.length);
-    const ia = new Uint8Array(ab);
-    for (let i = 0; i < byteString.length; i++) {
-      ia[i] = byteString.charCodeAt(i);
-    }
-    const blob = new Blob([ab], { type: mimeString });
-    callback(blob);
+
+  volver(){
+    let ruta = '/reservas/admi_empresa/' + this.admi + '/' + this.empresa + '/lista_recursos'
+    this.router.navigate([ruta])
   }
 }

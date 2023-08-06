@@ -73,5 +73,9 @@ export class AeAniadeUsuarioComponent {
     }
   }
 
+  volver(){
+    let ruta = '/reservas/admi_empresa/' + this.nombre_admi + '/' + this.empresa + '/lista_usuarios'
+    this.router.navigate([ruta])
+  }
   
 }

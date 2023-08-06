@@ -103,5 +103,9 @@ export class AeEditaReservaComponent {
     )
   }
   
+  volver(){
+    let ruta = '/reservas/admi_empresa/' + this.nombre_admi + '/' +  this.empresa + '/lista_reservas'
+    this.router.navigate([ruta])
+  }
 
 }

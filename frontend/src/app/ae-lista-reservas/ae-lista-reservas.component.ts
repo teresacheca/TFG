@@ -195,4 +195,9 @@ getRecurso(date: number, month: string){
   return first
 }
 
+volver(){
+  let ruta = '/reservas/admi_empresa/' + this.nombre_admi
+  this.router.navigate([ruta])
+}
+
 }

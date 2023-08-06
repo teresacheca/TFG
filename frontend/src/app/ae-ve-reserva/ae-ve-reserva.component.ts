@@ -57,4 +57,9 @@ export class AeVeReservaComponent {
     let ruta = this.router.url + '/editar'
     this.router.navigate([ruta])
   }
+
+  volver(){
+    let ruta = '/reservas/admi_empresa/' + this.nombre_admi + '/' +  this.empresa + '/lista_reservas'
+    this.router.navigate([ruta])
+  }
 }

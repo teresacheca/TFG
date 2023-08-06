@@ -43,4 +43,9 @@ export class AeListaRecursosComponent {
     let ruta = this.router.url + '/aniade'
     this.router.navigate([ruta]);
   }
+
+  volver(){
+    let ruta = '/reservas/admi_empresa/' + this.admi
+    this.router.navigate([ruta])
+  }
 }

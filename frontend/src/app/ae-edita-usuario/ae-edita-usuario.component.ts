@@ -122,4 +122,11 @@ export class AeEditaUsuarioComponent {
       err=> console.error(err)
     )
   }
+
+  volver(){
+    let ruta = '/reservas/admi_empresa/' + this.nombre_admi + '/' + this.empresa + '/lista_usuarios'
+    this.router.navigate([ruta])
+  }
+
+
 }

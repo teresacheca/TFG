@@ -79,4 +79,9 @@ export class AeAniadeRecursoComponent {
     }
   }
 
+  volver(){
+    let ruta = '/reservas/admi_empresa/' + this.nombre_admi + '/' + this.id_empresa + '/lista_recursos'
+    this.router.navigate([ruta])
+  }
+
 }

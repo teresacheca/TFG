@@ -22,10 +22,10 @@ export class AdmiGeneralComponent {
   }
 
   empresas: any = []
-
+  nombre_admi: string = ""
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
-    
+    this.nombre_admi = params["nombre_usuario"]
     this.reservaServices.getLogin(params["nombre_usuario"], params["contrasena"]).subscribe(
       res => {
         //this.reserva = res; //no funciona -> tiene que aparecer la información antigua para editar sobre ella
@@ -40,11 +40,13 @@ export class AdmiGeneralComponent {
   }
 
   mostrarEmpresas(){
-    this.router.navigate(['/reservas/empresas']);
+    let ruta = '/reservas/' + this.nombre_admi + '/empresas'
+    this.router.navigate([ruta]);
   }
 
   mostrarSolicitudes(){
-    this.router.navigate(['/reservas/lista_solicitudes']);
+    let ruta = '/reservas/' + this.nombre_admi + '/lista_solicitudes'
+    this.router.navigate([ruta]);
   }
 
   

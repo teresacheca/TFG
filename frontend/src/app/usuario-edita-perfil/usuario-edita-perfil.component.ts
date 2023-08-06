@@ -62,7 +62,7 @@ export class UsuarioEditaPerfilComponent {
         if(this.aux.length > 0 && this.nombre != nuevoUsuario.nombre_usuario){
           confirm("Ese nombre ya está en uso");
         }else{
-          this.reservaServices.getEmpresa(nuevoUsuario.empresa).subscribe(
+          this.reservaServices.getEmpresa(nombre_usuario, nuevoUsuario.empresa).subscribe(
             res => {
              this.aux = res
              if(this.aux.length == 0){

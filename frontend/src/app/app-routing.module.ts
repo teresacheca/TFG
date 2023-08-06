@@ -50,83 +50,83 @@ const routes: Routes = [
     component: SolicitudComponent
   },
   {
-    path: 'reservas/lista_solicitudes',
+    path: 'reservas/:nombre_usuario/lista_solicitudes',
     component: ListaSolicitudesComponent
   },
   {
-    path: 'reservas/lista_solicitudes/aceptadas',
+    path: 'reservas/:nombre_usuario/lista_solicitudes/aceptadas',
     component: ListaSolicitudesComponent
   },
   {
-    path: 'reservas/lista_solicitudes/rechazadas',
+    path: 'reservas/:nombre_usuario/lista_solicitudes/rechazadas',
     component: ListaSolicitudesComponent
   },
   {
-    path: 'reservas/lista_solicitudes/pendientes',
+    path: 'reservas/:nombre_usuario/lista_solicitudes/pendientes',
     component: ListaSolicitudesComponent
   },
   {
-    path: 'reservas/lista_solicitudes/:id_solicitud',
+    path: 'reservas/:nombre_usuario/lista_solicitudes/:id_solicitud',
     component: VerSolicitudComponent
   },
   {
-    path: 'reservas/lista_solicitudes/:id_solicitud/actualizar',
+    path: 'reservas/:nombre_usuario/lista_solicitudes/:id_solicitud/actualizar',
     component: VerSolicitudComponent
   },
   {
-    path: 'reservas/lista_solicitudes/:id_solicitud/eliminar',
+    path: 'reservas/:nombre_usuario/lista_solicitudes/:id_solicitud/eliminar',
     component: VerSolicitudComponent
   },
   {
-    path: 'reservas/lista_solicitudes/:id_solicitud/:nombre_empresa',
+    path: 'reservas/:nombre_usuario/lista_solicitudes/:id_solicitud/:nombre_empresa',
     component: VerSolicitudComponent
   },
   {
-    path: 'reservas/empresas',
+    path: 'reservas/:nombre_usuario/empresas',
     component: EmpresasComponent
   },
   {
-    path: 'reservas/empresas/:id_empresa',
+    path: 'reservas/:nombre_usuario/empresas/:id_empresa',
     component: EmpresaComponent
   },
   {
-    path: 'reservas/empresas/:nombre_empresa',
+    path: 'reservas/:nombre_usuario/empresas/:nombre_empresa',
     component: EmpresaComponent
   },
   {
-    path: 'reservas/empresas/:id_empresa/id',
+    path: 'reservas/:nombre_usuario/empresas/:id_empresa/id',
     component: EmpresaComponent
   },
   {
-    path: 'reservas/empresas/eliminar/:id_empresa',
+    path: 'reservas/:nombre_usuario/empresas/eliminar/:id_empresa',
     component: EmpresaComponent
   },
   {
-    path: 'reservas/empresas/cambiar/:id_empresa',
+    path: 'reservas/:nombre_usuario/empresas/cambiar/:id_empresa',
     component: EmpresaComponent
   },
   {
-    path: 'reservas/empresas/:id_empresa/lista_administradores',
+    path: 'reservas/:nombre_usuario/empresas/:id_empresa/lista_administradores',
     component: ListaAdmiEmpresaComponent
   },
   {
-    path: 'reservas/empresas/:id_empresa/lista_administradores/:id',
+    path: 'reservas/:nombre_usuario/empresas/:id_empresa/lista_administradores/:id',
     component: AgEditaAdmiEmpresaComponent
   },
   {
-    path: 'reservas/empresas/:id_empresa/lista_administradores/:id/eliminar',
+    path: 'reservas/:nombre_usuario/empresas/:id_empresa/lista_administradores/:id/eliminar',
     component: AgEditaAdmiEmpresaComponent
   },
   {
-    path: 'reservas/empresas/:id_empresa/lista_usuarios',
+    path: 'reservas/:nombre_usuario/empresas/:id_empresa/lista_usuarios',
     component: ListaUsuariosComponent
   },
   {
-    path: 'reservas/empresas/:id_empresa/lista_usuarios/:nombre_usuario',
+    path: 'reservas/:nombre_usuario/empresas/:id_empresa/lista_usuarios/:id',
     component: AgVeUsuarioComponent
   },
   {
-    path: 'reservas/empresas/:id_empresa/editar_pefil',
+    path: 'reservas/:nombre_usuario/empresas/:id_empresa/editar_pefil',
     component: EditarEmpresaComponent
   },
   {
@@ -303,7 +303,7 @@ const routes: Routes = [
   
   
   {
-    path: 'reservas/admi_general/:nombre_usuario/empresas',
+    path: 'reservas/admi_general/:nombre_usuario/:nombre_usuario/empresas',
     component: AdmiGeneralComponent
   }
 

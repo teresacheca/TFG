@@ -13,6 +13,7 @@ export class AeListaUsuariosComponent {
   usuarios: any = []
   vacio = false
   empresa: number = 0
+  nombre_admi: string = ""
 
   constructor(private reservasServices: ReservasService, private router: Router, private activeRoute: ActivatedRoute){
 
@@ -22,6 +23,7 @@ export class AeListaUsuariosComponent {
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
     this.empresa = params["id_empresa"]
+    this.nombre_admi = params["nombre_usuario"]
     this.reservasServices.getUsuariosEmpresaAe(params["nombre_usuario"], params["id_empresa"]).subscribe(
       res =>{
         this.usuarios = res;
@@ -41,5 +43,10 @@ export class AeListaUsuariosComponent {
   AeAniadeUsuario(){
     let ruta = this.router.url + '/aniade'
     this.router.navigate([ruta]);
+  }
+
+  volver(){
+    let ruta = '/reservas/admi_empresa/' + this.nombre_admi
+    this.router.navigate([ruta])
   }
 }

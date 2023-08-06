@@ -1,5 +1,6 @@
 <p *ngIf="vacio else lista">
     No hay administradores en esta empresa
+    <button (click)="volver()">Volver</button>
 </p>
 
 <ng-template #lista>
@@ -15,4 +16,6 @@
         </button>
         
     </div>
+
+    <button (click)="volver()">Volver</button>
 </ng-template>

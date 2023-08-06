@@ -32,7 +32,7 @@ export class AeAniadeRecursoComponent {
     const params = this.activeRoute.snapshot.params;
     this.id_empresa = params["id_empresa"]
     this.nombre_admi = params["nombre_usuario"]
-    this.reservasServices.getEmpresaId(this.id_empresa).subscribe(
+    this.reservasServices.getEmpresaId(this.nombre_admi, this.id_empresa).subscribe(
       res => {
         this.aux =res
        console.log(this.aux[0].nombre_empresa)

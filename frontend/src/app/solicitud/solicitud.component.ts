@@ -28,7 +28,7 @@ export class SolicitudComponent {
       this.empresa.logo = logo;
       this.empresa.datos_de_contacto = datos_de_contacto;
       this.empresa.descripcion = descripcion;
-      this.reservasServices.crearSolicitud(this.empresa).subscribe(
+      this.reservasServices.crearSolicitud("", this.empresa).subscribe(
         res => {
           this.router.navigate(['/reservas/login']);
         },

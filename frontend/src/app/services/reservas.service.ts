@@ -40,80 +40,81 @@ export class ReservasService {
     return this.http.put(`${this.API_URI}/reservas/${fecha}`, updatedReserva);
   }
 
-  crearSolicitud(empresa: Empresa){  
-    return this.http.post(`${this.API_URI}/reservas/empresas/${empresa.nombre_empresa}`, empresa);
+  crearSolicitud(nombre_usuario: string, empresa: Empresa){  
+    return this.http.post(`${this.API_URI}/reservas/${nombre_usuario}/empresas/${empresa.nombre_empresa}`, empresa);
   }
 
-  getEmpresas(){ //devuelve una reserva
-    return this.http.get(`${this.API_URI}/reservas/empresas`);
+  getEmpresas(nombre_usuario: string){ //devuelve una reserva
+    console.log(nombre_usuario)
+    return this.http.get(`${this.API_URI}/reservas/${nombre_usuario}/empresas`);
   }
 
-  getSolicitudes(){ 
-    return this.http.get(`${this.API_URI}/reservas/lista_solicitudes`); 
+  getSolicitudes(nombre_usuario: string){ 
+    return this.http.get(`${this.API_URI}/reservas/${nombre_usuario}/lista_solicitudes`); 
   }
-  getSolicitudesAceptadas(){ 
-    return this.http.get(`${this.API_URI}/reservas/lista_solicitudes/aceptadas`); 
+  getSolicitudesAceptadas(nombre_usuario: string){ 
+    return this.http.get(`${this.API_URI}/reservas/${nombre_usuario}/lista_solicitudes/aceptadas`); 
   }
-  getSolicitudesRechazadas(){ 
-    return this.http.get(`${this.API_URI}/reservas/lista_solicitudes/rechazadas`); 
+  getSolicitudesRechazadas(nombre_usuario: string){ 
+    return this.http.get(`${this.API_URI}/reservas/${nombre_usuario}/lista_solicitudes/rechazadas`); 
   }
-  getSolicitudesPendientes(){ 
-    return this.http.get(`${this.API_URI}/reservas/lista_solicitudes/pendientes`); 
+  getSolicitudesPendientes(nombre_usuario: string){ 
+    return this.http.get(`${this.API_URI}/reservas/${nombre_usuario}/lista_solicitudes/pendientes`); 
   }
 
-  getEmpresa(empresa : string){
+  getEmpresa(nombre_usuario: string, empresa : string){
     console.log(empresa)
-    return this.http.get(`${this.API_URI}/reservas/empresas/${empresa}`);
+    return this.http.get(`${this.API_URI}/reservas/${nombre_usuario}/empresas/${empresa}`);
   }
-  getEmpresaId(id_empresa : number){
-    return this.http.get(`${this.API_URI}/reservas/empresas/${id_empresa}/id`);
-  }
-
-  eliminarEmpresa(id_empresa : number){ //devuelve una reserva
-    return this.http.delete(`${this.API_URI}/reservas/empresas/eliminar/${id_empresa}`);
+  getEmpresaId(nombre_usuario: string,id_empresa : number){
+    return this.http.get(`${this.API_URI}/reservas/${nombre_usuario}/empresas/${id_empresa}/id`);
   }
 
-  guardarCambios(id_empresa : number, nueva: Empresa){ //devuelve una reserva
-    return this.http.put(`${this.API_URI}/reservas/empresas/cambiar/${id_empresa}`, nueva);
+  eliminarEmpresa(nombre_usuario: string,id_empresa : number){ //devuelve una reserva
+    return this.http.delete(`${this.API_URI}/reservas/${nombre_usuario}/empresas/eliminar/${id_empresa}`);
   }
 
-  getAdministradoresEmpresa(id_empresa: number){ 
-    return this.http.get(`${this.API_URI}/reservas/empresas/${id_empresa}/lista_administradores`)
+  guardarCambios(nombre_usuario: string, id_empresa : number, nueva: Empresa){
+    return this.http.put(`${this.API_URI}/reservas/${nombre_usuario}/empresas/cambiar/${id_empresa}`, nueva);
   }
 
-  getUsuariosEmpresa(id_empresa: number){ 
-    return this.http.get(`${this.API_URI}/reservas/empresas/${id_empresa}/lista_usuarios`)
+  getAdministradoresEmpresa(nombre_usuario: string,id_empresa: number){ 
+    return this.http.get(`${this.API_URI}/reservas/${nombre_usuario}/empresas/${id_empresa}/lista_administradores`)
   }
 
-  getAdministradorEmpresa(nombre_usuario: string, id_empresa: number){ 
-    return this.http.get(`${this.API_URI}/reservas/empresas/${id_empresa}/lista_administradores/${nombre_usuario}`)
+  getUsuariosEmpresa(nombre_usuario: string, id_empresa: number){ 
+    return this.http.get(`${this.API_URI}/reservas/${nombre_usuario}/empresas/${id_empresa}/lista_usuarios`)
   }
 
-  eliminarCuentaAdmiEmpresa(id: number, id_empresa: number){ 
-    return this.http.delete(`${this.API_URI}/reservas/empresas/${id_empresa}/lista_administradores/${id}/eliminar`)
+  getAdministradorEmpresa(nombre_usuario: string, id: number, id_empresa: number){
+    return this.http.get(`${this.API_URI}/reservas/${nombre_usuario}/empresas/${id_empresa}/lista_administradores/${id}`)
   }
 
-  guardarCambiosAdmiEmpresa(id: number, id_empresa: number, nuevoAdmi: Usuario){ 
-    return this.http.put(`${this.API_URI}/reservas/empresas/${id_empresa}/lista_administradores/${id}`, nuevoAdmi)
-  }
-  getSolicitud(id: number){
-    return this.http.get(`${this.API_URI}/reservas/lista_solicitudes/${id}`);
+  eliminarCuentaAdmiEmpresa(nombre_usuario: string, id: number, id_empresa: number){ 
+    return this.http.delete(`${this.API_URI}/reservas/${nombre_usuario}/empresas/${id_empresa}/lista_administradores/${id}/eliminar`)
   }
 
-  nuevaEmpresa(id_solicitud: number, nombre_empresa: string, empresa: Empresa){  
-    return this.http.post(`${this.API_URI}/reservas/lista_solicitudes/${id_solicitud}/${nombre_empresa}`, empresa);
+  guardarCambiosAdmiEmpresa(nombre_usuario: string, id: number, id_empresa: number, nuevoAdmi: Usuario){ 
+    return this.http.put(`${this.API_URI}/reservas/${nombre_usuario}/empresas/${id_empresa}/lista_administradores/${id}`, nuevoAdmi)
+  }
+  getSolicitud(nombre_usuario: string,id: number){
+    return this.http.get(`${this.API_URI}/reservas/${nombre_usuario}/lista_solicitudes/${id}`);
   }
 
-  eliminarSolicitud(id_solicitud: number){  
-    return this.http.delete(`${this.API_URI}/reservas/lista_solicitudes/${id_solicitud}/eliminar`);
+  nuevaEmpresa(nombre_usuario: string,id_solicitud: number, nombre_empresa: string, empresa: Empresa){  
+    return this.http.post(`${this.API_URI}/reservas/${nombre_usuario}/lista_solicitudes/${id_solicitud}/${nombre_empresa}`, empresa);
   }
 
-  actualizarSolicitud(id_solicitud: number, nuevaSolicitud: Solicitud){  
-    return this.http.put(`${this.API_URI}/reservas/lista_solicitudes/${id_solicitud}/actualizar`, nuevaSolicitud);
+  eliminarSolicitud(nombre_usuario: string,id_solicitud: number){  
+    return this.http.delete(`${this.API_URI}/reservas/${nombre_usuario}/lista_solicitudes/${id_solicitud}/eliminar`);
   }
 
-  getUsuarioag(id_empresa: number, nombre_usuario: string){ 
-    return this.http.get(`${this.API_URI}/reservas/empresas/${id_empresa}/lista_usuarios/${nombre_usuario}`);
+  actualizarSolicitud(nombre_usuario: string,id_solicitud: number, nuevaSolicitud: Solicitud){  
+    return this.http.put(`${this.API_URI}/reservas/${nombre_usuario}/lista_solicitudes/${id_solicitud}/actualizar`, nuevaSolicitud);
+  }
+
+  getUsuarioag(id_empresa: number, id:number, nombre_usuario: string){ //soliucionar
+    return this.http.get(`${this.API_URI}/reservas/${nombre_usuario}/empresas/${id_empresa}/lista_usuarios/${id}`);
   }
   
   getUsuarioNombre(nombre: string){ 

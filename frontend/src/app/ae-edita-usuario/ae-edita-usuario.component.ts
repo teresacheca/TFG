@@ -63,7 +63,7 @@ export class AeEditaUsuarioComponent {
           confirm("Ese nombre ya está en uso");
         }else{
 
-          this.reservaServices.getEmpresa(nuevoUsuario.empresa).subscribe(
+          this.reservaServices.getEmpresa(this.nombre_admi, nuevoUsuario.empresa).subscribe(
             res => {
              this.aux = res
              if(this.aux.length == 0){

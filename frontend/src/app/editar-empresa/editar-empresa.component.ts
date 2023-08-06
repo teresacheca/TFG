@@ -22,10 +22,13 @@ export class EditarEmpresaComponent {
     direccion: '',
     id_empresa: 0
   }
-
+  id_empresa: number = 0
+  nombre_admi:string = ""
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
-    this.reservaServices.getEmpresaId(params["id_empresa"]).subscribe(
+    this.id_empresa = params["id_empresa"]
+    this.nombre_admi = params["nombre_usuario"]
+    this.reservaServices.getEmpresaId(this.nombre_admi, params["id_empresa"]).subscribe(
       res => {
         //this.reserva = res; //no funciona -> tiene que aparecer la información antigua para editar sobre ella
         this.aux = res
@@ -42,21 +45,28 @@ export class EditarEmpresaComponent {
 
   eliminarCuentaEmpresa(id_empresa: number){
     
-    this.reservaServices.eliminarEmpresa(id_empresa).subscribe(
+    this.reservaServices.eliminarEmpresa(this.nombre_admi, id_empresa).subscribe(
       res => {
-        this.router.navigate(['/reservas/empresas']);
+        let ruta = '/reservas/' + this.nombre_admi + '/empresas/'
+        this.router.navigate([ruta]);
       },
       err => console.error(err)
     )
   }
 
   guardarCambios(id_empresa: number, empresa : Empresa){
-    this.reservaServices.guardarCambios(id_empresa, empresa).subscribe(
+    this.reservaServices.guardarCambios(this.nombre_admi, id_empresa, empresa).subscribe(
       res => {
-        this.router.navigate(['/reservas/empresas', this.empresa.id_empresa]);
+        let ruta = '/reservas/' + this.nombre_admi + '/empresas/'+ this.empresa.id_empresa
+        this.router.navigate([ruta ]);
 
       },
       err=> console.error(err)
     )
+  }
+
+  volver(){
+    let ruta = '/reservas/' + this.nombre_admi + '/empresas/' + this.id_empresa 
+    this.router.navigate([ruta])
   }
 }

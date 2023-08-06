@@ -1,7 +1,8 @@
-
+<button (click)="volver()">Volver</button>
 <h2>PENDIENTES</h2>
 <p *ngIf="vacioPendientes else estanPendientes">
     No hay solicitudes pendientes
+    <button (click)="volver()">Volver</button>
 </p>
 <ng-template #estanPendientes>
     <div class="col-md-2" *ngFor="let solicitud of pendientes">

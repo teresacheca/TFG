@@ -19,10 +19,12 @@ export class ListaAdmiEmpresaComponent {
   }
 
   empresa: number = 0
+  nombre_admi: string = ""
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
     this.empresa = params["id_empresa"]
-    this.reservasServices.getAdministradoresEmpresa(this.empresa).subscribe(
+    this.nombre_admi = params["nombre_usuario"]
+    this.reservasServices.getAdministradoresEmpresa(this.nombre_admi, this.empresa).subscribe(
       res =>{
         this.administradores = res;
         if(this.administradores.length == 0){
@@ -34,7 +36,12 @@ export class ListaAdmiEmpresaComponent {
   }
 
   editarAdministradorEmpresa(admi: Usuario){
-    let ruta = 'reservas/empresas/' + admi.id_empresa + '/lista_administradores/' + admi.id;
+    let ruta = '/reservas/' + this.nombre_admi + '/empresas/' + admi.id_empresa + '/lista_administradores/' + admi.id;
+    this.router.navigate([ruta]);
+  }
+
+  volver(){
+    let ruta = '/reservas/' + this.nombre_admi + '/empresas/' + this.empresa 
     this.router.navigate([ruta]);
   }
 }

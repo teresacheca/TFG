@@ -18,11 +18,13 @@ export class ListaUsuariosComponent {
   }
 
   empresa: number = 0
+  nombre_admi: string = ""
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
     this.empresa = params["id_empresa"]
-    this.reservasServices.getUsuariosEmpresa(this.empresa).subscribe(
+    this.nombre_admi = params["nombre_usuario"]
+    this.reservasServices.getUsuariosEmpresa(this.nombre_admi, this.empresa).subscribe(
       res =>{
         this.usuarios = res;
         if(this.usuarios.length == 0){
@@ -33,10 +35,13 @@ export class ListaUsuariosComponent {
     );
   }
 
-  verUsuario(nombre_usuario: string){
-    let url = this.router.url.split('/');
-    let empresa = url[3]
-    let ruta = '/reservas/empresas/' + empresa + '/lista_usuarios/' + nombre_usuario
+  verUsuario(id: number){
+    let ruta = '/reservas/' + this.nombre_admi + '/empresas/' + this.empresa + '/lista_usuarios/' + id
     this.router.navigate([ruta]);
+  }
+
+  volver(){
+    let ruta = '/reservas/' + this.nombre_admi + '/empresas/' + this.empresa 
+    this.router.navigate([ruta])
   }
 }

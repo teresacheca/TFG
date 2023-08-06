@@ -14,10 +14,14 @@ export class EmpresasComponent {
   }
 
   empresas: any = []
+  nombre_admi: string = ""
 
   ngOnInit(){
-    this.reservasServices.getEmpresas().subscribe(
+    const params = this.activeRoute.snapshot.params;
+    this.nombre_admi = params["nombre_usuario"]
+    this.reservasServices.getEmpresas(this.nombre_admi).subscribe(
       res =>{
+        console.log(res)
         this.empresas = res;
       },
       err => console.error(err)
@@ -25,6 +29,12 @@ export class EmpresasComponent {
   }
 
   verEmpresa(id_empresa: string){
-    this.router.navigate(['/reservas/empresas', id_empresa]);
+    let ruta = '/reservas/' + this.nombre_admi + '/empresas/' + id_empresa
+    this.router.navigate([ruta]);
+  }
+
+  volver(){
+    let ruta = "reservas/admi_general/" + this.nombre_admi
+    this.router.navigate([ruta])
   }
 }

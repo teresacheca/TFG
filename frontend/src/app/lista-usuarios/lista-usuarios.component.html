@@ -1,8 +1,10 @@
 <p *ngIf="vacio else lista">
     No hay usuarios en esta empresa
+    <button (click)="volver()">Volver</button>
 </p>
 
 <ng-template #lista>
+    <button (click)="volver()">Volver</button>
     <div class="col-md-2" *ngFor="let usuario of usuarios">
         <!--col-md-2 -> crea 2 columnas, ngFor -> para recorrer todas las reservas-->
         
@@ -10,7 +12,7 @@
             <!--bg-dark: de color oscuro, text-white: para hacer el texto de color blanco-->
             {{usuario.nombre_usuario}}
         </div>
-        <button (click)="verUsuario(usuario.nombre_usuario)">
+        <button (click)="verUsuario(usuario.id)">
             Ver
         </button>
         

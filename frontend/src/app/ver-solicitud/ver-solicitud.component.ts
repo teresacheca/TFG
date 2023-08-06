@@ -37,10 +37,11 @@ export class VerSolicitudComponent {
   }
 
   pendiente = false
-
+  nombre_admi: string = ""
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
-    this.reservaServices.getSolicitud(params["id_solicitud"]).subscribe(
+    this.nombre_admi = params["nombre_usuario"]
+    this.reservaServices.getSolicitud(params["nombre_usuario"], params["id_solicitud"]).subscribe(
       res => {
 
         this.aux = res
@@ -71,12 +72,13 @@ export class VerSolicitudComponent {
   }
   
   aceptarSolicitud(){
-    this.reservaServices.nuevaEmpresa(this.aux[0].id_solicitud, this.empresa.nombre_empresa, this.empresa).subscribe(
+    this.reservaServices.nuevaEmpresa(this.nombre_admi, this.aux[0].id_solicitud, this.empresa.nombre_empresa, this.empresa).subscribe(
       res => {
         this.solicitud.estado = 'Aceptada'
-        this.reservaServices.actualizarSolicitud(this.aux[0].id_solicitud, this.solicitud).subscribe( //borrar la solicitud cunado se ejecuta una accion
+        this.reservaServices.actualizarSolicitud(this.nombre_admi,this.aux[0].id_solicitud, this.solicitud).subscribe( //borrar la solicitud cunado se ejecuta una accion
           res => {
-            this.router.navigate(['/reservas/lista_solicitudes']);
+            let ruta = '/reservas/' + this.nombre_admi + '/lista_solicitudes'
+            this.router.navigate([ruta]);
           },
           err=> console.error(err)
         )
@@ -87,12 +89,18 @@ export class VerSolicitudComponent {
 
   rechazarSolicitud(){
     this.solicitud.estado = 'rechazada'
-        this.reservaServices.actualizarSolicitud(this.aux[0].id_solicitud, this.solicitud).subscribe(
+        this.reservaServices.actualizarSolicitud(this.nombre_admi,this.aux[0].id_solicitud, this.solicitud).subscribe(
       res => {
-        this.router.navigate(['/reservas/lista_solicitudes']);
+        let ruta = '/reservas/' + this.nombre_admi + '/lista_solicitudes'
+        this.router.navigate([ruta]);
       },
       err=> console.error(err)
     )
   }
   
+
+  volver(){
+    let ruta = '/reservas/' + this.nombre_admi + '/lista_solicitudes'
+    this.router.navigate([ruta])
+  }
 }

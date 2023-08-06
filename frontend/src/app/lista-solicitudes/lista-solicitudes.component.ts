@@ -17,12 +17,15 @@ export class ListaSolicitudesComponent {
   vacioRechazadas = false
   vacioPendientes= false
   vacio = false
+  nombre_admi: string = ""
 
   constructor(private reservaServices: ReservasService, private router: Router, private activeRoute: ActivatedRoute){}
 
 
   ngOnInit(){
-    this.reservaServices.getSolicitudesAceptadas().subscribe(
+    const params = this.activeRoute.snapshot.params;
+    this.nombre_admi = params["nombre_usuario"]
+    this.reservaServices.getSolicitudesAceptadas(this.nombre_admi).subscribe(
       res =>{
         this.aceptadas = res;
         if(this.aceptadas.length == 0){
@@ -31,7 +34,7 @@ export class ListaSolicitudesComponent {
       },
       err => console.error(err)
     );
-    this.reservaServices.getSolicitudesRechazadas().subscribe(
+    this.reservaServices.getSolicitudesRechazadas(this.nombre_admi).subscribe(
       res =>{
         this.rechazadas = res;
         if(this.rechazadas.length == 0){
@@ -41,7 +44,7 @@ export class ListaSolicitudesComponent {
       },
       err => console.error(err)
     );
-    this.reservaServices.getSolicitudesPendientes().subscribe(
+    this.reservaServices.getSolicitudesPendientes(this.nombre_admi).subscribe(
       res =>{
         this.pendientes = res;
         if(this.pendientes.length == 0){
@@ -56,6 +59,11 @@ export class ListaSolicitudesComponent {
   verSolicitud(id: number){
     let ruta = this.router.url + '/' + id
     this.router.navigate([ruta]);
+  }
+
+  volver(){
+    let ruta = "reservas/admi_general/" + this.nombre_admi
+    this.router.navigate([ruta])
   }
   
 }

@@ -26,10 +26,14 @@ export class AgEditaAdmiEmpresaComponent {
   }
   fecha_nacimiento: string = ""
   nombre: string = ""
+  id_empresa: number = 0
+  nombre_admi_general: string = ""
 
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
-    this.reservaServices.getAdministradorEmpresa(params["id"], params["id_emrpesa"]).subscribe(
+    this.id_empresa = params["id_empresa"]
+    this.nombre_admi_general = params["nombre_usuario"]
+    this.reservaServices.getAdministradorEmpresa(this.nombre_admi_general, params["id"], params["id_emrpesa"]).subscribe(
       res => {
         //this.reserva = res; //no funciona -> tiene que aparecer la información antigua para editar sobre ella
         this.aux = res
@@ -51,9 +55,9 @@ export class AgEditaAdmiEmpresaComponent {
 
   eliminarCuentaAdmiEmpresa(id: number, id_empresa: number){
     
-    this.reservaServices.eliminarCuentaAdmiEmpresa(id, id_empresa).subscribe(
+    this.reservaServices.eliminarCuentaAdmiEmpresa(this.nombre_admi_general,id, id_empresa).subscribe(
       res => {
-        let ruta = '/reservas/empresas/' + id_empresa
+        let ruta = '/reservas/' + this.nombre_admi_general + '/empresas/' + id_empresa
         this.router.navigate([ruta]);
       },
       err => console.error(err)
@@ -69,16 +73,16 @@ export class AgEditaAdmiEmpresaComponent {
         if(this.aux.length > 0 && this.nombre != nuevoUsuario.nombre_usuario){
           confirm("Ese nombre ya está en uso");
         }else{
-          this.reservaServices.getEmpresa(nuevoUsuario.empresa).subscribe(
+          this.reservaServices.getEmpresa(this.nombre_admi_general, nuevoUsuario.empresa).subscribe(
             res => {
              this.aux = res
              if(this.aux.length == 0){
               confirm("La empresa seleccionada no existe")
              }else{
               nuevoUsuario.id_empresa = this.aux[0].id_empresa
-              this.reservaServices.guardarCambiosAdmiEmpresa(id, id_empresa, nuevoUsuario).subscribe(
+              this.reservaServices.guardarCambiosAdmiEmpresa(this.nombre_admi_general, id, id_empresa, nuevoUsuario).subscribe(
                 res => {
-                  let ruta = '/reservas/empresas/' + id_empresa + '/lista_administradores'
+                  let ruta = '/reservas/' + this.nombre_admi_general + '/empresas/' + id_empresa + '/lista_administradores'
                   this.router.navigate([ruta]);
                 },
                 err=> console.error(err)
@@ -92,6 +96,11 @@ export class AgEditaAdmiEmpresaComponent {
       },
       err => console.error(err)
     )
+  }
+
+  volver(){
+    let ruta = '/reservas/' + this.nombre_admi_general + '/empresas/'+ this.id_empresa + '/lista_administradores'
+    this.router.navigate([ruta])
   }
 
 }

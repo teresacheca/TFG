@@ -20,7 +20,7 @@ export class SolicitudComponent {
     id_empresa: 0
   }
 
-  crearSolicitud(nombre: any, logo: any, datos_de_contacto: any, descripcion: any){
+  crearSolicitud(nombre: any, datos_de_contacto: any, descripcion: any, logo: any){
     if(nombre=='' || logo==''|| datos_de_contacto==''|| descripcion==''){
       confirm("Faltan parámetros");
     }else{
@@ -28,7 +28,7 @@ export class SolicitudComponent {
       this.empresa.logo = logo;
       this.empresa.datos_de_contacto = datos_de_contacto;
       this.empresa.descripcion = descripcion;
-      this.reservasServices.crearSolicitud("", this.empresa).subscribe(
+      this.reservasServices.crearSolicitud("usuario", this.empresa).subscribe(
         res => {
           this.router.navigate(['/reservas/login']);
         },

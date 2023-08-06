@@ -2,8 +2,7 @@
 <html>
 <body>
   <h1>Nueva solicitud:</h1>
-  <div class="col-md-2" >
-    <!--col-md-2 -> crea 2 columnas, ngFor -> para recorrer todas las reservas-->
+  <div class="col-md-5" >
     <div class="card-text-center">
       <form>
         <label for="nombre_empresa">Nombre empresa:</label>
@@ -13,14 +12,16 @@
         <label for="datos_de_contacto">Datos de contacto:</label>
         <input type="datos_de_contacto" id="datos_de_contacto" name="datos_de_contacto" #datos_de_contacto required><br>
         Logo: (inserta el enlace url)
-        <img [src]="empresa.logo === '' ? '/assets/img/upload.png' : empresa.logo" class="card-img-top">
-        <input type="text" name="foto" [(ngModel)]="empresa.logo">
+        <img id="logo" [src]="empresa.logo === '' ? '/assets/img/upload.png' : empresa.logo" class="card-img-top">
+
+        <input type="text" id="logoInput" name="foto" [(ngModel)]="empresa.logo">
         <input type="submit" value="Crear solicitud" (click)="crearSolicitud(nombreEmpresa.value, direccion.value, datos_de_contacto.value, empresa.logo)">
       </form>
     </div>
+    
   </div>
-
-  <a class="btn btn-danger btn-sm mt-3" href="/">Cancelar</a>
+<a class="btn btn-danger btn-sm mt-3" href="/">Cancelar</a>
+  
 </body>
 </html>
 

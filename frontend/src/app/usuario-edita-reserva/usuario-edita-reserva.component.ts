@@ -28,6 +28,7 @@ export class UsuarioEditaReservaComponent {
   id: number = 0
   aux: any= []
   fecha: any
+  id_reserva: number = 0
   ngOnInit(){
     const params = this.activeRoute.snapshot.params;
     this.empresa = params["id_empresa"]
@@ -46,7 +47,7 @@ export class UsuarioEditaReservaComponent {
         this.reserva.id_reserva = this.aux[0].id_reserva
         this.reserva.id_recursoservicio = this.aux[0].id_recursoservicio
         this.reserva.id_empresa = this.aux[0].id_empresa
-
+        this.id_reserva = this.reserva.id_reserva
       },
       err => console.error(err)
     );
@@ -204,7 +205,7 @@ export class UsuarioEditaReservaComponent {
 
                 var nueva_fechax = anio + '-' + mes + '-' + dia;
 
-                if(nuevaReserva.nombre_rs == this.aux[i].nombre_rs && fechaAuxiliar == nueva_fechax && nuevaReserva.hora == this.aux[i].hora ){
+                if(nuevaReserva.nombre_rs == this.aux[i].nombre_rs && fechaAuxiliar == nueva_fechax && nuevaReserva.hora == this.aux[i].hora  && this.aux[i].id_reserva != nuevaReserva.id_reserva ){
                   coincide = true
                 }
               }
@@ -212,6 +213,7 @@ export class UsuarioEditaReservaComponent {
                 confirm("Ya existe una reserva en ese momento para dicho recurso");
               }else{
                 nuevaReserva.fecha = fechaAuxiliar
+                
                 this.reservasServices.guardaCambiosReservaUsu(this.usuario, id_reserva, nuevaReserva).subscribe(
                   res => {
                     let ruta = '/reservas/usuario/' + this.usuario + '/reservas'
@@ -219,6 +221,7 @@ export class UsuarioEditaReservaComponent {
                   },
                   err=> console.error(err)
                 )
+                
               }
             },
             err => console.error(err)
@@ -239,5 +242,10 @@ export class UsuarioEditaReservaComponent {
       },
       err=> console.error(err)
     )
+  }
+
+  volver(){
+    let ruta = '/reservas/usuario/' + this.usuario + '/reservas'
+    this.router.navigate([ruta])
   }
 }

@@ -106,6 +106,11 @@ export class UsuarioRealizaReservaRecursoComponent {
     
   }
 
+  volver(){
+    let ruta =  '/reservas/usuario/' + this.usuario
+    this.router.navigate([ruta])
+  }
+
   generarHorasDisponibles(): string[] {
     let horasDisponibles: string[] = [];
     let horaInicial = 8; // Hora inicial (8am)

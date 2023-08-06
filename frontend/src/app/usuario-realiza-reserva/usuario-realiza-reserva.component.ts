@@ -46,6 +46,11 @@ export class UsuarioRealizaReservaComponent {
     );
   }
 
+  volver(){
+    let ruta =  '/reservas/usuario/' + this.usuario.nombre_usuario
+    this.router.navigate([ruta])
+  }
+
   getRecursos(nombre_usuario: string){
     this.reservasServices.getRecursos(nombre_usuario, this.usuario.id_empresa).subscribe(
       res =>{

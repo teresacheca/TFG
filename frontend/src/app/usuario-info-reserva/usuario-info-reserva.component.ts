@@ -59,4 +59,16 @@ export class UsuarioInfoReservaComponent {
     let ruta = this.router.url + '/editar'
     this.router.navigate([ruta])
   }
+
+  volver(tipo: number = 0){
+    
+    let ruta = ""
+    if(tipo == 0){
+      ruta = '/reservas/usuario/' + this.usuario + '/reservas'
+    }else{
+      ruta = '/reservas/usuario/' + this.usuario + '/todas_reservas'
+    }
+      
+    this.router.navigate([ruta])
+  }
 }

@@ -68,12 +68,11 @@ export class UsuarioEditaPerfilComponent {
              if(this.aux.length == 0){
               confirm("La empresa seleccionada no existe")
              }else{
-
-              console.log(this.id_empresa)
               if(this.id_empresa != this.aux[0].id_empresa){
                 this.reservaServices.eliminarReservasUsuario(nuevoUsuario.nombre_usuario, this.id_empresa).subscribe(
                   res => {
                     nuevoUsuario.id_empresa = this.aux[0].id_empresa
+                    console.log(nuevoUsuario)
                     this.reservaServices.guardarCambiosUsuario(nombre_usuario, nuevoUsuario).subscribe(
                       res => {
                         let ruta = '/reservas/usuario/' + nombre_usuario
@@ -84,10 +83,15 @@ export class UsuarioEditaPerfilComponent {
                   },
                   err=> console.error(err)
                 )
+              }else{
+                this.reservaServices.guardarCambiosUsuario(nombre_usuario, nuevoUsuario).subscribe(
+                  res => {
+                    let ruta = '/reservas/usuario/' + nombre_usuario
+                    this.router.navigate([ruta]);
+                  },
+                  err=> console.error(err)
+                )
               }
-
-
-              
              }
             },
             err=> console.error(err)
@@ -111,6 +115,11 @@ export class UsuarioEditaPerfilComponent {
       err=> console.error(err)
     )
 
+  }
+
+  volver(){
+    let ruta = '/reservas/usuario/' + this.nombre 
+    this.router.navigate([ruta])
   }
 
 }

@@ -8,8 +8,7 @@
                     <input type="text" name="nombre_rs" [(ngModel)]="reserva.nombre_rs">
                 </div>
                 <div>
-                    Usuarios:
-                    <input type="text" name="nombre_usuario" [(ngModel)]="reserva.nombre_usuario">
+                    Usuarios: {{reserva.nombre_usuario}}
                 </div>
                 <div>
                     Fecha:
@@ -28,5 +27,6 @@
             </form>
         </div>
     </div>
+    <button (click)="volver()">Volver</button>
 </div>
 

@@ -38,7 +38,6 @@ export class AdmiGeneralComponent {
         this.admi_general.empresa = params["empresa"]
         this.reservaServices.getUsuarioNombre(this.admi_general.nombre_usuario).subscribe(
           res => {
-           console.log(res)
            this.aux = res
            this.admi_general.nombre_usuario = this.aux[0].nombre_usuario
             this.admi_general.contrasena = this.aux[0].contrasena

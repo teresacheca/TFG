@@ -11,6 +11,12 @@
     <input type="fecha_nacimiento" id="fecha_nacimiento" name="fecha_nacimiento" #fecha_nacimiento required><br>
     <label for="puesto_trabajo">Puesto de trabajo:</label>
     <input type="puesto_trabajo" id="puesto_trabajo" name="puesto_trabajo" #puesto_trabajo required><br>
+
+    Foto: (inserta el enlace url)
+    <img [src]="usuario.foto === '' ? '/assets/img/camara.png' : usuario.foto" class="card-img-top">
+    <input type="text" name="foto" [(ngModel)]="usuario.foto">
+
+    
     <div>
         Empresa: {{usuario.empresa}}
     </div>

@@ -59,7 +59,7 @@ export class AgEditaAdmiEmpresaComponent {
     
     this.reservaServices.eliminarCuentaAdmiEmpresa(this.nombre_admi_general,id, id_empresa).subscribe(
       res => {
-        let ruta = '/reservas/' + this.nombre_admi_general + '/empresas/' + id_empresa
+        let ruta = '/reservas/' + this.nombre_admi_general + '/empresas/' + id_empresa + '/lista_administradores'
         this.router.navigate([ruta]);
       },
       err => console.error(err)

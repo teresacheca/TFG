@@ -56,13 +56,13 @@ export class AgAniadeAdmiEmpresaComponent {
       this.usuario.puesto_trabajo = puesto_trabajo
       this.usuario.id_empresa = this.empresa
       this.usuario.tipo = 1
+      console.log(this.usuario)
       this.reservasServices.getUsuarioNombre(this.usuario.nombre_usuario).subscribe(
         res => {
           this.aux = res
           if(this.aux.length > 0){
             confirm("Ese nombre ya está en uso");
           }else{
-            console.log("!!!")
             this.reservasServices.AgAniadeAdmi(this.usuario, this.nombre_admi, this.empresa).subscribe(
               res => {
                 let ruta = '/reservas/' + this.nombre_admi + '/empresas/' + this.empresa + '/lista_administradores';
@@ -79,7 +79,7 @@ export class AgAniadeAdmiEmpresaComponent {
   }
 
   volver(){
-    let ruta = '/reservas/admi_empresa/' + this.nombre_admi + '/' + this.empresa + '/lista_usuarios'
+    let ruta = '/reservas/' + this.nombre_admi + '/empresas/' + this.empresa + '/lista_administradores';
     this.router.navigate([ruta])
   }
   

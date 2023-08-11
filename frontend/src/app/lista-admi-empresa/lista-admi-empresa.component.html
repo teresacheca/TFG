@@ -1,9 +1,11 @@
 <p *ngIf="vacio else lista">
     No hay administradores en esta empresa
-    <button (click)="volver()">Volver</button>
+    <button class="back-button" (click)="volver()"><i class="fas fa-chevron-circle-left"></i> Volver</button>
 </p>
 
 <ng-template #lista>
+    <button class="back-button" (click)="volver()"><i class="fas fa-chevron-circle-left"></i> Volver</button>
+    <h2>Administradores</h2>
     <div class="col-md-2" *ngFor="let admi of administradores">
         <!--col-md-2 -> crea 2 columnas, ngFor -> para recorrer todas las reservas-->
         <img [src]="admi.foto == '' ? '/assets/img/camara.png' : admi.foto" class="card-img-top">
@@ -12,12 +14,10 @@
             {{admi.nombre_usuario}}
         </div>
         <button (click)="editarAdministradorEmpresa(admi)">
-            Editar
+            <i class="fas fa-pencil-alt"></i> Editar
         </button>
         
     </div>
-    <button (click)="aniadir()">Añadir</button>
+    <button class="add-button" (click)="aniadir()"><i class="fas fa-plus"></i>Añadir</button>
 
-   
 </ng-template> 
-<button (click)="volver()">Volver</button>

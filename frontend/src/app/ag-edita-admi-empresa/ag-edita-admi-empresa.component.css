@@ -1,0 +1,139 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+  }
+  
+  .card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px; /* Cambia el valor de width según lo que desees */
+    padding: 20px;
+  }
+  
+  .card img {
+    display: block;
+    margin: 0 auto;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  
+  .card-body input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 5px 0; 
+  }
+  
+  
+  .card-button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  button {
+    background-color: #ccc;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: normal;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    font-size: 12px;
+    width: fit-content;
+    margin: 10px;
+  }
+  
+  .button-container button {
+    background-color: #ccc;
+    color: black;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: normal;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    width: 48%;
+  }
+
+  .back-button {
+    background-color: #ccc;
+    color: black;
+    border: none;
+    padding: 5px 5px 5px 5px;
+    cursor: pointer;
+    font-weight: normal;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    width: 80px;
+    position: absolute; /* Añade posición absoluta al botón */
+    top: 120px; /* Distancia desde la parte superior */
+    right: 10px; /* Distancia desde la derecha */
+  }
+  
+  .back-button:hover {
+    background-color: #999;
+  }
+
+
+  .button-container button:hover {
+    background-color: #999;
+  }
+
+
+
+  .deleteButton {
+    background-color: #cc0000; /* Cambia el color si lo deseas */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: normal;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    font-size: 12px;
+    width: fit-content;
+    margin: auto;
+    align-self: flex-start; /* Alinea el botón a la izquierda del contenedor */
+    margin-top: 10px
+  }
+  
+  .deleteButton:hover {
+    background-color: #990000; /* Cambia el color del hover si lo deseas */
+  }
+
+
+  .saveButton {
+    background-color:  #ccc; 
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: normal;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    font-size: 12px;
+    width: fit-content;
+    margin: auto;
+    align-self: flex-end; /* Alinea el botón a la derecha del contenedor */
+    margin-top: 10px
+  }
+  
+  .saveButton:hover {
+    background-color:  #ccc;
+  }
+  

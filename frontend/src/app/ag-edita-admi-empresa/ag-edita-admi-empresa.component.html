@@ -1,48 +1,47 @@
-<div class="col-md-4 offset-md-2"> <!--para que esté centrado-->
-    <button (click)="volver()">Volver</button>
-    <div class="card">
-        <div class="card-body">
-            <form>
-                <div>
-                    Foto: (inserta el enlace url)
-                    <img [src]="usuario.foto === '' ? '/assets/img/camara.png' : usuario.foto" class="card-img-top">
-                    <input type="text" name="foto" [(ngModel)]="usuario.foto">
-                </div>
-                <div>
-                    Nombre:
-                    <input type="text" name="nombre_usuario" [(ngModel)]="usuario.nombre_usuario">
-                </div>
-                <div>
-                    Contraseña:
-                    <input type="text" name="contrasena" [(ngModel)]="usuario.contrasena">
-                </div>
-                <div>
-                    Fecha nacimiento:
-                    <input type="text" name="fecha_nacimiento" [(ngModel)]="fecha_nacimiento">
-                </div>
-                <div>
-                    Puesto de trabajo:
-                    <input type="text" name="puesto_trabajo" [(ngModel)]="usuario.puesto_trabajo">
-                </div>
-                <div>
-                    Empresa:
-                    <input type="text" name="empresa" [(ngModel)]="usuario.empresa">
-                </div>
-                <div>
-                    Tipo:
-                    <input type="text" name="tipo" [(ngModel)]="usuario.tipo">
-                </div>
-                <div>
-                    Identificador:
-                    <input type="text" name="id" [(ngModel)]="usuario.id">
-                </div>
-                <button (click)="eliminarCuentaAdmiEmpresa(usuario.id, usuario.id_empresa)"> <!--se crea un evento click, para que haga cosas cuando se pulse el botón-->
-                    Eliminar cuenta
-                </button>
-                <button (click)="guardarCambiosAdmiEmpresa(usuario.id, usuario.id_empresa, usuario, fecha_nacimiento)"> <!--se crea un evento click, para que haga cosas cuando se pulse el botón-->
-                    Guardar cambios
-                </button>
-            </form>
-        </div>
+<button class="back-button" (click)="volver()"><i class="fas fa-chevron-circle-left"></i> Volver</button>
+<div class="card">
+    <div class="card-body">
+        <form>
+            <div>
+                <img [src]="usuario.foto === '' ? '/assets/img/camara.png' : usuario.foto" class="card-img-top">
+            </div>
+            <div>
+                Nombre:
+                <input type="text" name="nombre_usuario" [(ngModel)]="usuario.nombre_usuario">
+            </div>
+            <div>
+                Contraseña:
+                <input type="text" name="contrasena" [(ngModel)]="usuario.contrasena">
+            </div>
+            <div>
+                Foto:
+                <input type="text" name="foto" [(ngModel)]="usuario.foto">
+            </div>
+            <div>
+                Fecha nacimiento:
+                <input type="text" name="fecha_nacimiento" [(ngModel)]="fecha_nacimiento">
+            </div>
+            <div>
+                Puesto de trabajo:
+                <input type="text" name="puesto_trabajo" [(ngModel)]="usuario.puesto_trabajo">
+            </div>
+            <div>
+                Empresa:
+                <input type="text" name="empresa" [(ngModel)]="usuario.empresa">
+            </div>
+            <div>
+                Tipo:
+                <input type="text" name="tipo" [(ngModel)]="usuario.tipo">
+            </div>
+            <div>
+                Identificador: 1
+            </div>
+            <button class="deleteButton" (click)="eliminarCuentaAdmiEmpresa(usuario.id, usuario.id_empresa)">
+                <i class="fas fa-trash"></i> Eliminar cuenta
+            </button>
+            <button class="saveButton" (click)="guardarCambiosAdmiEmpresa(usuario.id, usuario.id_empresa, usuario, fecha_nacimiento)" style="float: right;">
+                <i class="fas fa-save"></i> Guardar cambios
+            </button>
+        </form>
     </div>
 </div>

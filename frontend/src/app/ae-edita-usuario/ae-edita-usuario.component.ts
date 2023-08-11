@@ -22,6 +22,7 @@ export class AeEditaUsuarioComponent {
     puesto_trabajo: '',
     empresa: '',
     id: 0,
+    foto: "",
     id_empresa: 0
   }
 
@@ -48,6 +49,7 @@ export class AeEditaUsuarioComponent {
         this.usuario.empresa = this.aux[0].empresa
         this.usuario.id = this.aux[0].id
         this.usuario.id_empresa = this.aux[0].id_empresa
+        this.usuario.foto = this.aux[0].foto
         this.fecha_nacimiento = moment(this.usuario.fecha_nacimiento).format('YYYY-MM-DD')
       },
       err=> console.error(err)
@@ -56,6 +58,7 @@ export class AeEditaUsuarioComponent {
 
   guardarCambiosUsuarioAe(id: number, nuevoUsuario: Usuario, fecha_nacimiento: any){
     nuevoUsuario.fecha_nacimiento = fecha_nacimiento;
+    
     this.reservaServices.getUsuarioNombre(this.usuario.nombre_usuario).subscribe(
       res => {
         this.aux = res
@@ -81,6 +84,14 @@ export class AeEditaUsuarioComponent {
                       },
                       err=> console.error(err)
                     )
+                  },
+                  err=> console.error(err)
+                )
+              }else{
+                this.reservaServices.guardarCambiosUsuarioAe(this.nombre_admi, this.empresa, id, nuevoUsuario).subscribe(
+                  res => {
+                    let ruta = '/reservas/admi_empresa/' + this.nombre_admi + '/' + this.empresa + '/lista_usuarios'
+                    this.router.navigate([ruta]);
                   },
                   err=> console.error(err)
                 )

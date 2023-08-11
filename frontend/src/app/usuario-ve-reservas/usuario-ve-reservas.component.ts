@@ -30,6 +30,7 @@ export class UsuarioVeReservasComponent {
     empresa: '',
     fecha_nacimiento: new Date,
     puesto_trabajo: '',
+    foto: "",
     id_empresa: 0
   }
 
@@ -51,7 +52,8 @@ export class UsuarioVeReservasComponent {
         this.usuario.empresa = this.aux[0].empresa   
         this.usuario.puesto_trabajo = this.aux[0].puesto_trabajo 
         this.usuario.fecha_nacimiento = this.aux[0].fecha_nacimiento  
-        this.usuario.id_empresa = this.aux[0].id_empresa  
+        this.usuario.id_empresa = this.aux[0].id_empresa 
+        this.usuario.foto = this.aux[0].foto  
         this.getReservasUsuario()
         this.generateCalendar();
       },

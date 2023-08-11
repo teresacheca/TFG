@@ -29,7 +29,8 @@ export class UsuarioVeTodasReservasComponent {
     empresa: '',
     fecha_nacimiento: new Date,
     puesto_trabajo: '',
-    id_empresa: 0
+    id_empresa: 0,
+    foto: ""
   }
 
   aux: any = []
@@ -51,6 +52,7 @@ export class UsuarioVeTodasReservasComponent {
         this.usuario.puesto_trabajo = this.aux[0].puesto_trabajo 
         this.usuario.fecha_nacimiento = this.aux[0].fecha_nacimiento  
         this.usuario.id_empresa = this.aux[0].id_empresa  
+        this.usuario.foto = this.aux[0].foto  
         this.getReservasEmpresa()
         this.generateCalendar();
       },

@@ -7,7 +7,7 @@
     <button (click)="volver()">Volver</button>
     <div class="col-md-2" *ngFor="let usuario of usuarios">
         <!--col-md-2 -> crea 2 columnas, ngFor -> para recorrer todas las reservas-->
-        
+        <img [src]="usuario.foto == '' ? '/assets/img/camara.png' : usuario.foto" class="card-img-top">
         <div>
             <!--bg-dark: de color oscuro, text-white: para hacer el texto de color blanco-->
             {{usuario.nombre_usuario}}

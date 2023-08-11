@@ -23,6 +23,7 @@ export class AeAniadeUsuarioComponent {
     puesto_trabajo: '',
     empresa: '',
     id: 0,
+    foto: "",
     id_empresa: 0
   }
 

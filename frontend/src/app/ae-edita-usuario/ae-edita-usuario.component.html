@@ -4,6 +4,11 @@
         <div class="card-body">
             <form>
                 <div>
+                    Foto: (inserta el enlace url)
+                    <img [src]="usuario.foto === '' ? '/assets/img/camara.png' : usuario.foto" class="card-img-top">
+                    <input type="text" name="foto" [(ngModel)]="usuario.foto">
+                </div>
+                <div>
                     Nombre:
                     <input type="text" name="nombre_usuario" [(ngModel)]="usuario.nombre_usuario">
                 </div>

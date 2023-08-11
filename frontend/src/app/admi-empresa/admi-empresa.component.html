@@ -2,10 +2,11 @@
 
 <div class="col-md-4 offset-md-2"> <!--para que esté centrado-->
     <div class="card">
+        <img [src]="admi_empresa.foto == '' ? '/assets/img/camara.png' : admi_empresa.foto" class="card-img-top">
         <div class="card-body">
             <form>
                 <div class="form-group">
-                    <p>Nombre: {{ admi_empresa.nombre_usuario }} </p>
+                <p>Nombre: {{ admi_empresa.nombre_usuario }} </p>
                 </div>  
                 <button (click)="verUsuarios()">
                     Usuarios de la empresa

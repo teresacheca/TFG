@@ -6,7 +6,7 @@
 <ng-template #lista>
     <div class="col-md-2" *ngFor="let admi of administradores">
         <!--col-md-2 -> crea 2 columnas, ngFor -> para recorrer todas las reservas-->
-        
+        <img [src]="admi.foto == '' ? '/assets/img/camara.png' : admi.foto" class="card-img-top">
         <div>
             <!--bg-dark: de color oscuro, text-white: para hacer el texto de color blanco-->
             {{admi.nombre_usuario}}

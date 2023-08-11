@@ -18,6 +18,7 @@ export class UsuariosComponent {
     tipo: 2,
     id: 0,
     empresa: '',
+    foto: "",
     id_empresa: 0
   }
 

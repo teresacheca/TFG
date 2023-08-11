@@ -22,6 +22,7 @@ export class AeEditaPerfilComponent {
     puesto_trabajo: '',
     empresa: '',
     id: 0,
+    foto: "",
     id_empresa: 0
   }
 
@@ -47,6 +48,7 @@ export class AeEditaPerfilComponent {
         this.admi_empresa.id_empresa = this.aux[0].id_empresa
         this.fecha_nacimiento = moment(this.admi_empresa.fecha_nacimiento).format('YYYY-MM-DD')
         this.id_empresa = this.admi_empresa.id_empresa
+        this.admi_empresa.foto = this.aux[0].foto
       },
       err=> console.error(err)
     )

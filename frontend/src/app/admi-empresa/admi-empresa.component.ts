@@ -18,6 +18,7 @@ export class AdmiEmpresaComponent {
     tipo: 1,
     empresa: '',
     id: 0,
+    foto: "",
     id_empresa: 0
   }
   aux: any = {}
@@ -46,6 +47,7 @@ export class AdmiEmpresaComponent {
             this.admi_empresa.empresa = this.aux[0].empresa
             this.admi_empresa.id = this.aux[0].id
             this.admi_empresa.id_empresa = this.aux[0].id_empresa
+            this.admi_empresa.foto = this.aux[0].foto
 
           },
           err=> console.error(err)

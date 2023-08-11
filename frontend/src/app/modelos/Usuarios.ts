@@ -6,5 +6,6 @@ export interface Usuario{
     empresa: string, 
     tipo: number,
     id: number,
+    foto: string
     id_empresa: number
 }

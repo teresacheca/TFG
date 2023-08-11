@@ -49,6 +49,7 @@ CREATE TABLE Usuarios (
     empresa VARCHAR(100), 
     id_empresa INT (10),
     tipo INT(10),
+    foto VARCHAR(1000),
     id INT(10) AUTO_INCREMENT UNIQUE
 );
 
@@ -181,22 +182,22 @@ VALUES ('Apple', 'contacto@empresa-a.com', 'Descripción de la Empresa A', '/ass
 
 
 
-INSERT INTO Usuarios (nombre_usuario, contrasena, fecha_nacimiento, puesto_trabajo, empresa, tipo, id_empresa)
-VALUES ('Juan', 'password123', '1990-05-15', 'Desarrollador', 'Apple', 1, 1),
-       ('María', 'secret456', '1985-08-20', 'Gerente de Ventas', 'Bic', 2, 2),
-       ('Pedro', 'qwerty789', '1995-02-10', 'Analista de Datos', 'Disney', 1, 3),
-       ('Luisa', 'passw0rd', '1992-11-30', 'Ejecutiva de Cuentas', 'Apple', 0, 1),
-       ('Ana', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Disney', 2, 3),
-       ('Eva', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Apple', 2, 1),
-       ('Carla', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Bic', 2, 2),
-       ('Ramon', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Disney', 2, 3),
-       ('Elsa', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Apple', 2, 1),
-       ('Clara', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Bic', 2, 2),
-       ('Ivan', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Disney', 2, 3),
-       ('Antonio', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Apple', 2, 1),
-       ('David', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Bic', 2, 2),
-       ('Jesus', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Disney', 2, 3),
-       ('Carlos', 'secure789', '1994-03-12', 'Desarrollador Full Stack', 'Bic', 1, 2);
+INSERT INTO Usuarios (nombre_usuario, contrasena, fecha_nacimiento, puesto_trabajo, empresa, tipo, id_empresa, foto)
+VALUES ('Mia', 'password123', '1990-05-15', 'Desarrollador', 'Apple', 1, 1, '/assets/img/usuario1.jpg'),
+       ('Margot', 'secret456', '1985-08-20', 'Gerente de Ventas', 'Bic', 2, 2, '/assets/img/usuario2.jpg'),
+       ('Brad', 'qwerty789', '1995-02-10', 'Analista de Datos', 'Disney', 1, 3, '/assets/img/usuario3.jpg'),
+       ('Homer', 'passw0rd', '1992-11-30', 'Ejecutiva de Cuentas', 'Apple', 0, 1, '/assets/img/usuario4.png'),
+       ('Steve', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Disney', 2, 3, '/assets/img/usuario5.jpg'),
+       ('Tom', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Apple', 2, 1, '/assets/img/usuario6.jpg'),
+       ('Carlk', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Bic', 2, 2, '/assets/img/usuario7.jpg'),
+       ('Zack', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Disney', 2, 3,'/assets/img/usuario8.jpg' ),
+       ('Anne', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Apple', 2, 1, '/assets/img/usuario9.jpg'),
+       ('Angelina', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Bic', 2, 2, '/assets/img/usuario10.png'),
+       ('Halle', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Disney', 2, 3, '/assets/img/usuario11.jpg'),
+       ('Viola', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Apple', 2, 1, '/assets/img/usuario12.jpg'),
+       ('Jennifer', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Bic', 2, 2, '/assets/img/usuario13.jpg'),
+       ('Courteney', 'passw0rd', '1998-07-25', 'Diseñadora Gráfica', 'Disney', 2, 3, '/assets/img/usuario14.jpg'),
+       ('Emma', 'secure789', '1994-03-12', 'Desarrollador Full Stack', 'Bic', 1, 2, '/assets/img/usuario15.jpg'); 
 
 
 INSERT INTO solicitud (nombre_empresa, datos_de_contacto, descripcion, logo, nombre_admi_general, id_empresa, direccion, estado)
@@ -236,21 +237,21 @@ VALUES ('Recurso 7', 'Descripción del recurso 7','/assets/img/foto7.png', 'Dato
 
 
 INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id_recursoservicio, id_empresa)
-VALUES ('2023-07-20', '10:00:00', 'Apple', 'Eva', 'Recurso 2', 2, 1);   
+VALUES ('2023-07-20', '10:00:00', 'Apple', 'Mia', 'Recurso 2', 2, 1);   
 
 INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id_recursoservicio, id_empresa)
-VALUES ('2023-07-21', '15:30:00', 'Bic', 'Carla', 'Recurso 3', 3, 2);
+VALUES ('2023-07-21', '15:30:00', 'Bic', 'Carlk', 'Recurso 3', 3, 2);
 
 INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id_recursoservicio, id_empresa)
-VALUES ('2023-07-22', '14:45:00', 'Disney', 'Ramon', 'Recurso 5', 5, 3);
+VALUES ('2023-07-22', '14:45:00', 'Disney', 'Halle', 'Recurso 5', 5, 3);
 
 INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id_recursoservicio, id_empresa)
-VALUES ('2023-07-23', '09:15:00', 'Apple', 'Elsa', 'Recurso 2', 2, 1);
+VALUES ('2023-07-23', '09:15:00', 'Apple', 'Mia', 'Recurso 2', 2, 1);
 
 INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id_recursoservicio, id_empresa)
-VALUES ('2023-07-24', '12:00:00', 'Bic', 'Clara', 'Recurso 3',3, 2);
+VALUES ('2023-07-24', '12:00:00', 'Bic', 'Carlk', 'Recurso 3',3, 2);
 
 INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id_recursoservicio, id_empresa)
-VALUES ('2023-07-24', '16:00:00', 'Bic', 'Clara', 'Recurso 3', 3, 2);
+VALUES ('2023-07-24', '16:00:00', 'Bic', 'Carlk', 'Recurso 3', 3, 2);
 
 

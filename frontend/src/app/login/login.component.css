@@ -24,7 +24,7 @@ input {
 }
 
 #solicitud {
-    color: orange;
+    color: rgb(255, 162, 0);
     border-radius: 200px;
-
+    margin-left: 52px;
 }

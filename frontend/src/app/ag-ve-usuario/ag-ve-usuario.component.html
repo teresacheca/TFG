@@ -1,6 +1,7 @@
 <div class="col-md-4 offset-md-2"> <!--para que esté centrado-->
     <button (click)="volver()">Volver</button>
     <div class="card">
+        <img [src]="usuario.foto == '' ? '/assets/img/camara.png' : usuario.foto" class="card-img-top">
         <div class="card-body">
             <form>
                 <div>

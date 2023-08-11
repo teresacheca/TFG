@@ -44,4 +44,9 @@ export class ListaAdmiEmpresaComponent {
     let ruta = '/reservas/' + this.nombre_admi + '/empresas/' + this.empresa 
     this.router.navigate([ruta]);
   }
+
+  aniadir(){
+    let ruta = '/reservas/' + this.nombre_admi + '/empresas/' + this.empresa + '/lista_administradores/aniadir'
+    this.router.navigate([ruta]);
+  }
 }

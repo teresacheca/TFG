@@ -48,6 +48,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule  } from '@angular/material/dialog';
 import { UsuarioVeTodasReservasComponent } from './usuario-ve-todas-reservas/usuario-ve-todas-reservas.component';
+import { AgAniadeAdmiEmpresaComponent } from './ag-aniade-admi-empresa/ag-aniade-admi-empresa.component';
 
 
 @NgModule({
@@ -88,6 +89,7 @@ import { UsuarioVeTodasReservasComponent } from './usuario-ve-todas-reservas/usu
     UsuarioEditaReservaComponent,
     UsuarioRealizaReservaRecursoComponent,
     UsuarioVeTodasReservasComponent,
+    AgAniadeAdmiEmpresaComponent,
   ],
   imports: [
     BrowserModule,

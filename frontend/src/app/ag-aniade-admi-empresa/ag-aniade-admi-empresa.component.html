@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <button (click)="volver()">Volver</button>
+  <form>
+    <label for="nombre_usuario">Nombre usuario:</label>
+    <input type="text" id="nombre_usuario" name="nombre_usuario" #nombre_usuario required><br>
+    <label for="contrasena">Contraseña:</label>
+    <input type="contrasena" id="contrasena" name="contrasena" #contrasena required><br>
+    <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+    <input type="fecha_nacimiento" id="fecha_nacimiento" name="fecha_nacimiento" #fecha_nacimiento required><br>
+    <label for="puesto_trabajo">Puesto de trabajo:</label>
+    <input type="puesto_trabajo" id="puesto_trabajo" name="puesto_trabajo" #puesto_trabajo required><br>
+    <div>
+        Empresa: {{usuario.empresa}}
+    </div>
+    <div>
+        Tipo: 1
+    </div>
+    <button (click)="AganiadeAdmi(nombre_usuario.value, contrasena.value, fecha_nacimiento.value, puesto_trabajo.value)">
+        Añadir administrador
+    </button>
+    </form>
+</body>
+</html>

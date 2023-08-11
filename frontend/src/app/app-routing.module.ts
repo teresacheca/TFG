@@ -33,7 +33,7 @@ import { UsuarioInfoReservaComponent } from './usuario-info-reserva/usuario-info
 import { UsuarioEditaReservaComponent } from './usuario-edita-reserva/usuario-edita-reserva.component';
 import { UsuarioRealizaReservaRecursoComponent } from './usuario-realiza-reserva-recurso/usuario-realiza-reserva-recurso.component';
 import { UsuarioVeTodasReservasComponent } from './usuario-ve-todas-reservas/usuario-ve-todas-reservas.component';
-
+import { AgAniadeAdmiEmpresaComponent } from './ag-aniade-admi-empresa/ag-aniade-admi-empresa.component';
 //rutas para rederigir dentro de la página
 const routes: Routes = [
   {
@@ -110,6 +110,10 @@ const routes: Routes = [
     component: ListaAdmiEmpresaComponent
   },
   {
+    path: 'reservas/:nombre_usuario/empresas/:id_empresa/lista_administradores/aniadir',
+    component: AgAniadeAdmiEmpresaComponent
+  },
+  {
     path: 'reservas/:nombre_usuario/empresas/:id_empresa/lista_administradores/:id',
     component: AgEditaAdmiEmpresaComponent
   },
@@ -117,6 +121,7 @@ const routes: Routes = [
     path: 'reservas/:nombre_usuario/empresas/:id_empresa/lista_administradores/:id/eliminar',
     component: AgEditaAdmiEmpresaComponent
   },
+  
   {
     path: 'reservas/:nombre_usuario/empresas/:id_empresa/lista_usuarios',
     component: ListaUsuariosComponent

@@ -1,0 +1,86 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ffffff;
+    margin-top: -100px;
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  
+  .card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    padding: 20px;
+    text-align: center;
+    position: relative; /* Agregamos posición relativa al contenedor */
+  }
+  
+  .card-img-top-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    position: absolute;
+    width: 100%;
+  }
+  
+  .card-img-top {
+    display: block;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+  }
+  
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .company-name {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  button {
+    background-color: #ccc;
+    color: black;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: normal;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    background-color: #999;
+  }
+  
+
+  .back-button {
+    background-color: #ccc;
+    color: black;
+    border: none;
+    padding: 5px 5px 5px 5px;
+    cursor: pointer;
+    font-weight: normal;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    width: 80px;
+    position: absolute; /* Añade posición absoluta al botón */
+    top: 120px; /* Distancia desde la parte superior */
+    right: 10px; /* Distancia desde la derecha */
+  }
+  
+  .back-button:hover {
+    background-color: #999;
+  }

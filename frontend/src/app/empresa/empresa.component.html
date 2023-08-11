@@ -1,28 +1,29 @@
-<div class="col-md-4 offset-md-2"> <!--para que esté centrado-->
-    <body>
-        <img [src]="empresa.logo === '' ? '/assets/img/upload.png' : empresa.logo" class="card-img-top">
-    </body>
-    <div>
-        <div>
-            {{empresa.nombre_empresa}}
-        </div>
-        <div>
-            <button (click)="getAdministradoresEmpresa()">
-                Administradores
-            </button>
-        </div>
-        <div>
-            <button (click)="editarPerfil()">
-                Editar perfil
-            </button>
-        </div>
-        <div>
-            <button (click)="getUsuariosEmpresa()">
-                Usuarios
-            </button>
-        </div>
-    </div>
 
-    <button (click)="volver()">Volver</button>
+<div class="container">
+    <button class="back-button" (click)="volver()"><i class="fas fa-chevron-circle-left"></i> Volver</button>
+        <div>
+            <div>
+                <img [src]="empresa.logo === '' ? '/assets/img/upload.png' : empresa.logo" class="card-img-top">
+            </div>
+            <div>
+               <h2>{{empresa.nombre_empresa}}</h2> 
+            </div>
+            <div>
+                <button (click)="getAdministradoresEmpresa()">
+                    Administradores
+                </button>
+            </div>
+            <div>
+                <button (click)="editarPerfil()">
+                    Editar perfil
+                </button>
+            </div>
+            <div>
+                <button (click)="getUsuariosEmpresa()">
+                    Usuarios
+                </button>
+            </div>
+        </div>
 </div>
-
+  
+ 

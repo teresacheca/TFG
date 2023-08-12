@@ -9,8 +9,13 @@
     background-color: white;
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    width: 400px; /* Cambia el valor de width según lo que desees */
+    width: 400px; 
     padding: 20px;
+
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   
   .card img {

@@ -121,8 +121,9 @@ class ReservasController {
     }
     eliminarCuentaAdmiEmpresa(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            console.log("hhhh");
             const aux = yield basedatos_1.default.promise().query('DELETE FROM Usuarios WHERE id = ?', [req.params.id]);
-            res.json({ message: 'el usuario fue eliminada' });
+            res.json({ message: 'el usuario fue eliminado' });
         });
     }
     guardarCambiosAdmiEmpresa(req, res) {
@@ -212,7 +213,14 @@ class ReservasController {
     }
     AeaniadeUsuario(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            basedatos_1.default.query('INSERT INTO Usuarios (nombre_usuario, contrasena, fecha_nacimiento, puesto_trabajo, empresa, tipo, id_empresa) VALUES (?, ?, ?, ?, ?, ?, ?)', [req.body.nombre_usuario, req.body.contrasena, req.body.fecha_nacimiento, req.body.puesto_trabajo, req.body.empresa, 2, req.body.id_empresa]);
+            basedatos_1.default.query('INSERT INTO Usuarios (nombre_usuario, contrasena, fecha_nacimiento, puesto_trabajo, empresa, tipo, id_empresa, foto) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [req.body.nombre_usuario, req.body.contrasena, req.body.fecha_nacimiento, req.body.puesto_trabajo, req.body.empresa, 2, req.body.id_empresa, req.body.foto]);
+            res.json({ message: 'el usuario se ha creado' });
+        });
+    }
+    AgAniadeAdmi(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log("hola");
+            basedatos_1.default.query('INSERT INTO Usuarios (nombre_usuario, contrasena, fecha_nacimiento, puesto_trabajo, empresa, tipo, id_empresa, foto) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [req.body.nombre_usuario, req.body.contrasena, req.body.fecha_nacimiento, req.body.puesto_trabajo, req.body.empresa, 1, req.body.id_empresa, req.body.foto]);
             res.json({ message: 'el usuario se ha creado' });
         });
     }

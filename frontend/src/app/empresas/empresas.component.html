@@ -5,13 +5,15 @@
 </head>
 <body>
   <button class="back-button" (click)="volver()"><i class="fas fa-chevron-circle-left"></i> Volver</button>
-  <h2>Lista de empresas</h2>
-  <div *ngFor="let empresa of empresas">
-    <div class="col-md-2">
+    <h2>Lista de empresas</h2>
+    <div class="centered-container">
+      <div *ngFor="let empresa of empresas"> 
         <img [src]="empresa.logo === '' ? '/assets/img/upload.png' : empresa.logo" class="card-img-top">
         <h3>{{empresa.nombre_empresa}}</h3>
-        <button (click)="verEmpresa(empresa.id_empresa)">Ver</button> 
-    </div>
+        <button (click)="verEmpresa(empresa.id_empresa)">
+          <i class="fas fa-eye"></i> Ver
+      </button>
+      </div>
   </div>
 </body>
 </html>

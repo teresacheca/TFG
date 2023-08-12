@@ -1,29 +1,29 @@
-<div class="col-md-4 offset-md-2"> <!--para que esté centrado-->
-    <button (click)="volver()">Volver</button>
-    <div class="card">
-        <img [src]="usuario.foto == '' ? '/assets/img/camara.png' : usuario.foto" class="card-img-top">
-        <div class="card-body">
-            <form>
-                <div>
-                    Nombre: {{usuario.nombre_usuario}}
-                </div>
-                <div>
-                    Contraseña: {{usuario.contrasena}}
-                </div>
-                <div>
-                    Fecha nacimiento: {{fecha_nacimiento}}
-                </div>
-                <div>
-                    Puesto de trabajo: {{usuario.puesto_trabajo}}
-                </div>
-                <div>
-                    Empresa: {{usuario.empresa}}
-                </div>
-                <div>
-                    Tipo: {{usuario.tipo}}
-                </div>
-            </form>
-        </div>
+
+<button class="back-button" (click)="volver()"><i class="fas fa-chevron-circle-left"></i> Volver</button>
+<div class="card">
+    <img [src]="usuario.foto == '' ? '/assets/img/camara.png' : usuario.foto" class="card-img-top">
+    <div class="card-body">
+        <form>
+            <div>
+                Nombre: {{usuario.nombre_usuario}}
+            </div>
+            <div>
+                Contraseña: {{usuario.contrasena}}
+            </div>
+            <div>
+                Fecha nacimiento: {{fecha_nacimiento}}
+            </div>
+            <div>
+                Puesto de trabajo: {{usuario.puesto_trabajo}}
+            </div>
+            <div>
+                Empresa: {{usuario.empresa}}
+            </div>
+            <div>
+                Tipo: {{usuario.tipo}}
+            </div>
+        </form>
     </div>
 </div>
+
 

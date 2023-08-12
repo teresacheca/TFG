@@ -124,4 +124,10 @@ export class UsuarioEditaPerfilComponent {
     this.router.navigate([ruta])
   }
 
+  mostrarContrasena = false;
+  
+  togglePasswordVisibility() {
+    this.mostrarContrasena = !this.mostrarContrasena;
+  }
+
 }

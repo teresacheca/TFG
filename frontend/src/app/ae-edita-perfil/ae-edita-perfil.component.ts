@@ -121,7 +121,6 @@ export class AeEditaPerfilComponent {
 
   mostrarContrasena = false;
   
-
   togglePasswordVisibility() {
     this.mostrarContrasena = !this.mostrarContrasena;
   }

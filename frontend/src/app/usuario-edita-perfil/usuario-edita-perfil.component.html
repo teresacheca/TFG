@@ -1,13 +1,11 @@
-<button (click)="volver()">Volver</button>
-<div class="col-md-4 offset-md-2"> <!--para que esté centrado-->
+<button class="back-button" (click)="volver()"><i class="fas fa-chevron-circle-left"></i> Volver</button>
+
 
     <div class="card">
         <div class="card-body">
             <form>
                 <div>
-                    Foto: (inserta el enlace url)
                     <img [src]="usuario.foto === '' ? '/assets/img/camara.png' : usuario.foto" class="card-img-top">
-                    <input type="text" name="foto" [(ngModel)]="usuario.foto">
                 </div>
                 <div>
                     Nombre:
@@ -15,7 +13,14 @@
                 </div>
                 <div>
                     Contraseña:
-                    <input type="text" name="contrasena" [(ngModel)]="usuario.contrasena">
+                    <input [type]="mostrarContrasena ? 'text' : 'password'" name="contrasena" [(ngModel)]="usuario.contrasena" id="passwordInput">
+                    <button (click)="togglePasswordVisibility()">
+                        <i [class]="mostrarContrasena ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+                    </button>
+                </div>
+                <div>
+                    Foto:
+                    <input type="text" name="foto" [(ngModel)]="usuario.foto">
                 </div>
                 <div>
                     Fecha nacimiento:
@@ -33,14 +38,16 @@
                     Tipo:
                     <input type="text" name="tipo" [(ngModel)]="usuario.tipo">
                 </div>
-                <button (click)="eliminarCuentaUsuarioUsu(usuario.nombre_usuario)" > <!--  se crea un evento click, para que haga cosas cuando se pulse el botón-->
-                    Eliminar cuenta
-                </button>
-                <button (click)="guardarCambiosUsuario(usuario.nombre_usuario, usuario, fecha_nacimiento)"> <!-- (click)="guardarCambiosAdmiEmpresa(admi_empresa.nombre_usuario, admi_empresa.empresa, admi_empresa)"se crea un evento click, para que haga cosas cuando se pulse el botón-->
-                    Guardar cambios
-                </button>
+                <div class="card-buttons">
+                    <button class="deleteButton" (click)="eliminarCuentaUsuarioUsu(usuario.nombre_usuario)">
+                        <i class="fas fa-trash"></i> Eliminar cuenta
+                    </button>
+                    <button class="saveButton" (click)="guardarCambiosUsuario(usuario.nombre_usuario, usuario, fecha_nacimiento)" style="float: right;">
+                        <i class="fas fa-save"></i> Guardar cambios
+                    </button>
+                </div>
             </form>
         </div>
     </div>
-</div>
+
 

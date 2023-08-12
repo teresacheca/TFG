@@ -2,11 +2,10 @@
 </p>
 
 <ng-template #estaPendiente>
-    <div class="col-md-4 offset-md-2"> <!--para que esté centrado-->
-        <img [src]="solicitud.logo === '' ? '/assets/img/upload.png' : solicitud.logo" class="card-img-top">
         <div class="card">
             <div class="card-body">
                 <form>
+                    <img [src]="solicitud.logo === '' ? '/assets/img/upload.png' : solicitud.logo" class="card-img-top">
                     <div>
                         Nombre empresa: {{solicitud.nombre_empresa}}
                     </div>
@@ -26,26 +25,21 @@
                         Identificador: {{solicitud.id_solicitud}}
                     </div>
                 </form>
+                <div class="card-buttons">
+                    <button class="rejectButton" (click)="rechazarSolicitud()">Rechazar</button>
+                    <button class="acceptButton" (click)="aceptarSolicitud()">Aceptar</button>
+                  </div>
             </div>
         </div>
-        <button (click)="aceptarSolicitud()">
-            Aceptar
-        </button>
-        <button (click)="rechazarSolicitud()">
-            Rechazar
-        </button>
-    </div>
-    <button (click)="volver()">Volver</button>
-    
+    <button class="back-button" (click)="volver()"><i class="fas fa-chevron-circle-left"></i> Volver</button>
 </ng-template>
 
 
 <ng-template #noPendiente>
-    <div class="col-md-4 offset-md-2"> <!--para que esté centrado-->
-        <img [src]="solicitud.logo === '' ? '/assets/img/upload.png' : solicitud.logo" class="card-img-top">
         <div class="card">
             <div class="card-body">
                 <form>
+                    <img [src]="solicitud.logo === '' ? '/assets/img/upload.png' : solicitud.logo" class="card-img-top">
                     <div>
                         Nombre empresa: {{solicitud.nombre_empresa}}
                     </div>
@@ -67,7 +61,6 @@
                 </form>
             </div>
         </div>
-    </div>
-    <button (click)="volver()">Volver</button>
+    <button class="back-button" (click)="volver()"><i class="fas fa-chevron-circle-left"></i> Volver</button>
     
 </ng-template>

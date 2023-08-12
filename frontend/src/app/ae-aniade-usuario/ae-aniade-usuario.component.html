@@ -1,31 +1,41 @@
 <!DOCTYPE html>
 <html>
 <body>
-  <button (click)="volver()">Volver</button>
-  <form>
-    <label for="nombre_usuario">Nombre usuario:</label>
-    <input type="text" id="nombre_usuario" name="nombre_usuario" #nombre_usuario required><br>
-    <label for="contrasena">Contraseña:</label>
-    <input type="contrasena" id="contrasena" name="contrasena" #contrasena required><br>
-    <label for="fecha_nacimiento">Fecha de nacimiento:</label>
-    <input type="fecha_nacimiento" id="fecha_nacimiento" name="fecha_nacimiento" #fecha_nacimiento required><br>
-    <label for="puesto_trabajo">Puesto de trabajo:</label>
-    <input type="puesto_trabajo" id="puesto_trabajo" name="puesto_trabajo" #puesto_trabajo required><br>
-
-    Foto: (inserta el enlace url)
-    <img [src]="usuario.foto === '' ? '/assets/img/camara.png' : usuario.foto" class="card-img-top">
-    <input type="text" name="foto" [(ngModel)]="usuario.foto">
-
+    <button class="back-button" (click)="volver()"><i class="fas fa-chevron-circle-left"></i> Volver</button>
+  <div class="container">
     
-    <div>
-        Empresa: {{usuario.empresa}}
+    <div class="card">
+      <form>
+        <h2>Nuevo usuario</h2>
+        <label for="nombre_usuario">Nombre usuario:</label>
+        <input type="text" id="nombre_usuario" name="nombre_usuario" #nombre_usuario required><br>
+        <div>
+          <label for="nombre_usuario">Contraseña:</label>
+          <input [type]="mostrarContrasena ? 'text' : 'password'" name="contrasena" [(ngModel)]="usuario.contrasena" id="passwordInput">
+          <button (click)="togglePasswordVisibility()">
+              <i [class]="mostrarContrasena ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+          </button>
+        </div>
+        <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" #fecha_nacimiento required><br>
+        <label for="puesto_trabajo">Puesto de trabajo:</label>
+        <input type="text" id="puesto_trabajo" name="puesto_trabajo" #puesto_trabajo required><br>
+
+        <label for="foto">Foto: (inserta el enlace url)</label>
+        <img [src]="usuario.foto === '' ? '/assets/img/camara.png' : usuario.foto" class="card-img-top">
+        <input type="text" name="foto" [(ngModel)]="usuario.foto">
+
+        <div>
+          Empresa: {{usuario.empresa}}
+        </div>
+        <div>
+          Tipo: 2
+        </div>
+        <button (click)="AeaniadeUsuario(nombre_usuario.value, fecha_nacimiento.value, puesto_trabajo.value)">
+          Añadir usuario
+        </button>
+      </form>
     </div>
-    <div>
-        Tipo: 2
-    </div>
-    <button (click)="AeaniadeUsuario(nombre_usuario.value, contrasena.value, fecha_nacimiento.value, puesto_trabajo.value)">
-        Añadir usuario
-    </button>
-    </form>
+  </div>
 </body>
 </html>

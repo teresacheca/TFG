@@ -46,12 +46,11 @@ export class AgAniadeAdmiEmpresaComponent {
     
   }
 
-  AganiadeAdmi(nombre_usuario: any, contrasena: any, fecha_nacimiento: any, puesto_trabajo: any){
-    if(nombre_usuario=='' || contrasena=='' || puesto_trabajo==''){
+  AganiadeAdmi(nombre_usuario: any, fecha_nacimiento: any, puesto_trabajo: any){
+    if(nombre_usuario=='' || puesto_trabajo==''|| this.usuario.contrasena ==''){
       confirm("Faltan parámetros");
     }else{
       this.usuario.nombre_usuario = nombre_usuario
-      this.usuario.contrasena = contrasena
       this.usuario.fecha_nacimiento = fecha_nacimiento
       this.usuario.puesto_trabajo = puesto_trabajo
       this.usuario.id_empresa = this.empresa
@@ -81,6 +80,13 @@ export class AgAniadeAdmiEmpresaComponent {
   volver(){
     let ruta = '/reservas/' + this.nombre_admi + '/empresas/' + this.empresa + '/lista_administradores';
     this.router.navigate([ruta])
+  }
+
+  mostrarContrasena = false;
+  
+
+  togglePasswordVisibility() {
+    this.mostrarContrasena = !this.mostrarContrasena;
   }
   
 }

@@ -13,7 +13,7 @@
     padding: 20px;
 
     position: absolute;
-    top: 75%;
+    top: 87%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
@@ -26,6 +26,12 @@
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 10px;
+  }
+
+  .card form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
   }
   
   .card-body {
@@ -73,7 +79,7 @@
     border-radius: 4px;
     transition: background-color 0.3s ease;
     width: 48%;
-  }
+}
 
   .back-button {
     background-color: #ccc;

@@ -11,7 +11,10 @@
             </div>
             <div>
                 Contraseña:
-                <input type="text" name="contrasena" [(ngModel)]="usuario.contrasena">
+                <input [type]="mostrarContrasena ? 'text' : 'password'" name="contrasena" [(ngModel)]="usuario.contrasena" id="passwordInput">
+                <button class="verContraseña" (click)="togglePasswordVisibility()">
+                    <i [class]="mostrarContrasena ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+                </button>
             </div>
             <div>
                 Foto:
@@ -36,12 +39,14 @@
             <div>
                 Identificador: 1
             </div>
-            <button class="deleteButton" (click)="eliminarCuentaAdmiEmpresa(usuario.id, usuario.id_empresa)">
-                <i class="fas fa-trash"></i> Eliminar cuenta
-            </button>
-            <button class="saveButton" (click)="guardarCambiosAdmiEmpresa(usuario.id, usuario.id_empresa, usuario, fecha_nacimiento)" style="float: right;">
-                <i class="fas fa-save"></i> Guardar cambios
-            </button>
+            <div class="card-buttons">
+                <button class="deleteButton" (click)="eliminarCuentaAdmiEmpresa(usuario.id, usuario.id_empresa)">
+                    <i class="fas fa-trash"></i> Eliminar cuenta
+                </button>
+                <button class="saveButton" (click)="guardarCambiosAdmiEmpresa(usuario.id, usuario.id_empresa, usuario, fecha_nacimiento)" style="float: right;">
+                    <i class="fas fa-save"></i> Guardar cambios
+                </button>
+            </div>
         </form>
     </div>
 </div>

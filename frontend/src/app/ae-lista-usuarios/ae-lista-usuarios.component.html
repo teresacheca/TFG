@@ -1,10 +1,12 @@
 <p *ngIf="vacio else lista">
     No hay usuarios en esta empresa
-    <button (click)="volver()">Volver</button>
+    <button class="back-button" (click)="volver()"><i class="fas fa-chevron-circle-left"></i> Volver</button>
 </p>
 
 <ng-template #lista>
-    <button (click)="volver()">Volver</button>
+    <button class="back-button" (click)="volver()"><i class="fas fa-chevron-circle-left"></i> Volver</button>
+    <div class="centered-container">
+    <h2>usuarios</h2>
     <div class="col-md-2" *ngFor="let usuario of usuarios">
         <!--col-md-2 -> crea 2 columnas, ngFor -> para recorrer todas las reservas-->
         <img [src]="usuario.foto == '' ? '/assets/img/camara.png' : usuario.foto" class="card-img-top">
@@ -13,13 +15,12 @@
             {{usuario.nombre_usuario}}
         </div>
         <button (click)="AeEditaUsuario(usuario.id)">
-            Editar
+            <i class="fas fa-pencil-alt"></i> Editar
         </button>
     </div>
     <div>
-        <button (click)="AeAniadeUsuario()">
-            Añadir
-        </button>
+        <button class="add-button" (click)="AeAniadeUsuario()"><i class="fas fa-plus"></i>Añadir</button>
     </div>
+</div>
 </ng-template>
 

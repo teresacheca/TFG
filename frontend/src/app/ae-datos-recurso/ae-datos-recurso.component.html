@@ -1,23 +1,24 @@
-<div class="col-md-4 offset-md-2"> <!--para que esté centrado-->
-    <img [src]="recurso.foto == '' ? '/assets/img/camara.png' : recurso.foto" class="card-img-top">
-    <div class="card">
-        <div class="card-body">
-            <form>
-                <div>
-                    Nombre: {{recurso.nombre_rs}}
-                </div>
-                <div>
-                    Descripcion: {{recurso.descripcion}}
-                </div>
-                <div>
-                    Datos: {{recurso.datos}}
-                </div>
-                <div>
-                    Aforo: {{recurso.aforo}}
-                </div>
-            </form>
-        </div>
+
+
+<div class="card">
+    <div class="card-body">
+        <img [src]="recurso.foto == '' ? '/assets/img/camara.png' : recurso.foto" class="card-img-top">
+        <form>
+            <div>
+                Nombre: {{recurso.nombre_rs}}
+            </div>
+            <div>
+                Descripcion: {{recurso.descripcion}}
+            </div>
+            <div>
+                Datos: {{recurso.datos}}
+            </div>
+            <div>
+                Aforo: {{recurso.aforo}}
+            </div>
+        </form>
     </div>
-    <button (click)="volver()">Volver</button>
 </div>
+<button class="back-button" (click)="volver()"><i class="fas fa-chevron-circle-left"></i> Volver</button>
+
 

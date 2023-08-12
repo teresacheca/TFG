@@ -1,0 +1,107 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #ffffff;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    padding: 20px;
+    position: relative;
+}
+
+h2 {
+    text-align: center;
+}
+
+
+.card img.card-img-top {
+    display: block;
+    margin: 0 auto;
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.card form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card form label {
+    font-weight: bold;
+}
+
+.card form input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.card form input[type="text"] {
+    width: 100%;
+}
+
+.card form button {
+    background-color: #ccc;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: normal;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    font-size: 12px;
+    width: fit-content;
+    margin: 10px auto;
+}
+
+.card form button:hover {
+    background-color: #999;
+}
+
+.card div {
+    margin-top: 10px;
+}
+
+.card div:first-child {
+    font-weight: bold;
+}
+
+.card img.card-img-top + input {
+    width: 100%;
+}
+
+.card img.card-img-top {
+    margin-top: 10px;
+}
+
+.back-button {
+    background-color: #ccc;
+    color: black;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    font-weight: normal;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    width: 80px;
+    position: absolute;
+    top: 120px;
+    right: 20px;
+}
+
+.back-button:hover {
+    background-color: #999;
+}
+
+#passwordInput {
+    margin: auto;
+}

@@ -1,39 +1,41 @@
-<div class="col-md-4 offset-md-2"> <!--para que esté centrado-->
-    <button (click)="volver()">Volver</button>
-    <div class="card">
-        <div class="card-body">
-            <form>
-                <div>
-                    Nombre:
-                    <input type="text" name="nombre_rs" [(ngModel)]="recurso.nombre_rs">
-                </div>
-                <div>
-                    Descripcion:
-                    <input type="text" name="descripcion" [(ngModel)]="recurso.descripcion">
-                </div>
-                <div>
-                    <!--<label for="foto">Foto:</label>
-                    <input type="file" id="foto" (change)="onFileSelected($event)">
-                    <img *ngIf="selectedFile" [src]="selectedFile" alt="Vista previa de la foto">-->
-                    Foto: (inserta el enlace url)
-                    <img [src]="recurso.foto === '' ? '/assets/img/camara.png' : recurso.foto" class="card-img-top">
-                    <input type="text" name="foto" [(ngModel)]="recurso.foto">
-                </div>
-                <div>
-                    Datos:
-                    <input type="text" name="datos" [(ngModel)]="recurso.datos">
-                </div>
-                <div>
-                    Aforo:
-                    <input type="text" name="aforo" [(ngModel)]="recurso.aforo">
-                </div>
-                <button  (click)="eliminarRescursoAe(recurso.id_recursoservicio)"> <!-- se crea un evento click, para que haga cosas cuando se pulse el botón-->
-                    Eliminar
+
+<button class="back-button" (click)="volver()"><i class="fas fa-chevron-circle-left"></i> Volver</button>
+<h2>Editar el recurso o servicio</h2>
+<div class="card">
+    <div class="card-body">
+        <form>
+            <div>
+                <img [src]="recurso.foto === '' ? '/assets/img/camara.png' : recurso.foto" class="card-img-top">
+            </div>
+            <div>
+                Nombre:
+                <input type="text" name="nombre_rs" [(ngModel)]="recurso.nombre_rs">
+            </div>
+            <div>
+                Descripcion:
+                <input type="text" name="descripcion" [(ngModel)]="recurso.descripcion">
+            </div>
+            <div>
+                Foto:
+                <input type="text" name="foto" [(ngModel)]="recurso.foto">
+            </div>
+            <div>
+                Datos:
+                <input type="text" name="datos" [(ngModel)]="recurso.datos">
+            </div>
+            <div>
+                Aforo:
+                <input type="text" name="aforo" [(ngModel)]="recurso.aforo">
+            </div>
+            <div class="card-buttons">
+                <button class="deleteButton" (click)="eliminarRescursoAe(recurso.id_recursoservicio)">
+                    <i class="fas fa-trash"></i> Eliminar cuenta
                 </button>
-                <button (click)="guardarCambiosRecursoAe(recurso.id_recursoservicio, recurso)"> <!-- (click)="guardarCambiosAdmiEmpresa(admi_empresa.nombre_usuario, admi_empresa.empresa, admi_empresa)"se crea un evento click, para que haga cosas cuando se pulse el botón-->
-                    Guardar cambios
+                <button class="saveButton" (click)="guardarCambiosRecursoAe(recurso.id_recursoservicio, recurso)" style="float: right;">
+                    <i class="fas fa-save"></i> Guardar cambios
                 </button>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </div>
+

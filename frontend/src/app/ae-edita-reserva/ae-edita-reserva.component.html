@@ -1,6 +1,4 @@
-<button (click)="volver()">Volver</button>
-<div class="col-md-4 offset-md-2">
-
+<button class="back-button" (click)="volver()"><i class="fas fa-chevron-circle-left"></i> Volver</button>
     <div class="card">
         <div class="card-body">
             <form>
@@ -20,13 +18,15 @@
                     Hora:
                     <input type="text" name="hora" [(ngModel)]="reserva.hora">
                 </div>
-                <button (click)="AeEliminaReserva(reserva.id_reserva)"> 
-                    Eliminar reserva
-                </button>
-                <button (click)="AeguardaCambiosReserva(reserva.id_reserva, reserva, fecha)"> 
-                    Guardar cambios
-                </button>
+                <div class="card-buttons">
+                    <button (click)="AeEliminaReserva(reserva.id_reserva)"> 
+                        Eliminar reserva
+                    </button>
+                    <button (click)="AeguardaCambiosReserva(reserva.id_reserva, reserva, fecha)"> 
+                        Guardar cambios
+                    </button>
+                </div>
             </form>
         </div>
     </div>
-</div>
+

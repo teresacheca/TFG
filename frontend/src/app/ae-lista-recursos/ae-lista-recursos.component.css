@@ -1,0 +1,124 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+  }
+
+  h2 {
+    text-align: center;
+  }
+  
+  .back-button:hover {
+    background-color: #999;
+  }
+  
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 50px;
+  }
+  
+  .card-text-center {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    width: 300px;
+    transition: transform 0.2s ease-in-out;
+
+    position: relative;
+    /*Para que esté en el centro de la pantalla*/
+    top: 50%;
+    left: 35%;
+    margin:10px
+  }
+
+  .card-body {
+    margin-top: 10px;
+    text-align: left;
+}
+
+.card-body p strong {
+    font-weight: bold;
+}
+
+ 
+  
+  .card-img-top {
+    width: 80px;
+  height: 80px;
+  object-fit: contain;
+  }
+  
+  .card-body {
+    margin-top: 10px;
+    text-align: left;
+  }
+
+  
+  .back-button {
+    background-color: #ccc;
+    color: black;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    font-weight: normal;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    width: 80px;
+    position: absolute;
+    top: 120px;
+    right: 10px;
+  }
+  
+  .back-button {
+    position: absolute;
+    top: 120px;
+    right: 20px;
+  }
+  
+  button {
+    background-color: #ccc;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: normal;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #999;
+  }
+  
+  button + button {
+    margin-left: 10px;
+  }
+
+
+  .add-button {
+    background-color: #ccc;
+    color: black;
+    border: none;
+    padding: 5px 10px; /* Ajusta el padding según tus preferencias */
+    cursor: pointer;
+    font-weight: normal;
+    border-radius: 4px; /* Cambia el valor para que no sea circular */
+    transition: background-color 0.3s ease;
+    font-size: 12px;
+    width: fit-content;
+    margin: auto;
+    position: absolute; /* Posición absoluta */
+    right: 10px; /* Distancia desde la derecha */
+  }
+  
+  .add-button:hover {
+    background-color: #999;
+  }
+
+  

@@ -1,28 +1,29 @@
-<button (click)="volver()">Volver</button>
-<div class="col-md-2" *ngFor="let recurso of recursos">
-    <!--col-md-2 -> crea 2 columnas, ngFor -> para recorrer todas las reservas-->
-    <div class="card-text-center">
-        <!--<img src="/assets/img/camara.png" height="100">-->
-        <img [src]="recurso.foto == '' ? '/assets/img/camara.png' : recurso.foto" class="card-img-top">
-        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-            <!--bg-dark: de color oscuro, text-white: para hacer el texto de color blanco-->
-            {{recurso.nombre_rs}}
-            
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lista de recursos y servicios</title>
+</head>
+<body>
+    <button class="back-button" (click)="volver()"><i class="fas fa-chevron-circle-left"></i> Volver</button>
+    <h2>Lista de recursos y servicios</h2>
+    <div *ngFor="let recurso of recursos">
+        
+        <div class="card-text-center">
+            <img [src]="recurso.foto == '' ? '/assets/img/camara.png' : recurso.foto" class="card-img-top">
+            <div class="card-body">
+               <p><strong>Nombre:</strong> {{recurso.nombre_rs}}</p> 
+               <p><strong>Descripción:</strong> {{recurso.descripcion}}</p> 
+               <p><strong>Datos adicionales:</strong> {{recurso.datos}}</p> 
+               <p><strong>Aforo:</strong> {{recurso.aforo}}</p> 
+            </div>
+            <button (click)="AeVeRecurso(recurso.id_recursoservicio)">
+                Ver
+            </button>
+            <button (click)="AeEditaRecurso(recurso.id_recursoservicio)">
+                Editar
+            </button>
         </div>
-        <div class="card-body">
-           <p>{{recurso.descripcion}}</p> 
-           <p>{{recurso.datos}}</p> 
-           <p>{{recurso.aforo}}</p> 
-        </div>
-        <button (click)="AeVeRecurso(recurso.id_recursoservicio)">
-            Ver
-        </button>
-        <button (click)="AeEditaRecurso(recurso.id_recursoservicio)">
-            Editar
-        </button>
     </div>
-    
-</div>
-<button (click)="AeAnidadeRecurso()">
-    Añadir recurso o servicio
-</button>
+    <button class="add-button" (click)="AeAnidadeRecurso()"><i class="fas fa-plus"></i>Añadir</button>
+</body>
+</html>

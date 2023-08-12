@@ -13,7 +13,7 @@
     width: 400px;
     padding: 20px;
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -72,8 +72,8 @@ button {
     transition: background-color 0.3s ease;
     width: 80px;
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 120px;
+    right: 20px;
 }
 
 .back-button i {
@@ -83,3 +83,40 @@ button {
 .back-button:hover {
     background-color: #999;
 }
+.deleteButton {
+    background-color: #cc0000; /* Cambia el color si lo deseas */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: normal;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    font-size: 12px;
+    width: fit-content;
+    align-self: flex-start; /* Alinea el botón a la izquierda del contenedor */
+  }
+  
+  .deleteButton:hover {
+    background-color: #990000; /* Cambia el color del hover si lo deseas */
+  }
+  
+  
+  .saveButton {
+    background-color:  #ccc; 
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: normal;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    font-size: 12px;
+    width: fit-content;
+    align-self: flex-end; /* Alinea el botón a la derecha del contenedor */
+  }
+  
+  .saveButton:hover {
+    background-color:  #ccc;
+  }
+

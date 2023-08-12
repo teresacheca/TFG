@@ -19,11 +19,11 @@
                     <input type="text" name="hora" [(ngModel)]="reserva.hora">
                 </div>
                 <div class="card-buttons">
-                    <button (click)="AeEliminaReserva(reserva.id_reserva)"> 
-                        Eliminar reserva
+                    <button class="deleteButton" (click)="AeEliminaReserva(reserva.id_reserva)">
+                        <i class="fas fa-trash"></i> Eliminar reserva
                     </button>
-                    <button (click)="AeguardaCambiosReserva(reserva.id_reserva, reserva, fecha)"> 
-                        Guardar cambios
+                    <button class="saveButton" (click)="AeguardaCambiosReserva(reserva.id_reserva, reserva, fecha)" style="float: right;">
+                        <i class="fas fa-save"></i> Guardar cambios
                     </button>
                 </div>
             </form>

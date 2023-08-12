@@ -118,4 +118,11 @@ export class AeEditaPerfilComponent {
     let ruta = '/reservas/admi_empresa/' + this.nombre_admi
     this.router.navigate([ruta])
   }
+
+  mostrarContrasena = false;
+  
+
+  togglePasswordVisibility() {
+    this.mostrarContrasena = !this.mostrarContrasena;
+  }
 }

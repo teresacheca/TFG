@@ -1,4 +1,4 @@
-<button (click)="volver()">Volver</button>
+<button class="back-button" (click)="volver()"><i class="fas fa-chevron-circle-left"></i> Volver</button>
 <div class="calendar">
     <div class="calendar-header">
         <button (click)="goToPreviousMonth()">&lt;</button>
@@ -15,8 +15,8 @@
             <div *ngIf="date !== 0 && tengoReserva(date)">
                 <div  class="content" *ngFor="let hora of getHoras(date, currentMonth.format('YYYY-MM'))"> 
                     <div [innerHTML]="hora"></div>
-                    <button (click)="veReservaAe(date, hora, currentMonth.format('YYYY-MM'))">
-                        ver
+                    <button id="verReserva" (click)="veReservaAe(date, hora, currentMonth.format('YYYY-MM'))">
+                        <i class="fas fa-eye"></i> Ver
                     </button>
                 </div>
             </div>

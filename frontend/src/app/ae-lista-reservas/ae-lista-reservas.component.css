@@ -43,5 +43,39 @@
     border: none;
     font-size: 20px;
     cursor: pointer;
+    background-color: #ffffff;
+    color: black;
+    border-radius: 4px;
+  }
+
+  #verReserva{
+    background: none;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+    background-color: #f2f2f2;
+    color: black;
+    border-radius: 4px;
+  }
+
+  .back-button {
+    background-color: #ccc;
+    color: black;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    font-weight: normal;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    width: 80px;
+    height: 30px;
+    position: absolute;
+    top: 120px;
+    right: 20px;
+    font-size: 14px;
+  }
+  
+  .back-button:hover {
+    background-color: #999;
   }
   

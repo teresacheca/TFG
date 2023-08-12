@@ -1,10 +1,10 @@
-<button (click)="volver()">Volver</button>
+<button class="back-button" (click)="volver()"><i class="fas fa-chevron-circle-left"></i> Volver</button>
 <div>
-    <button (click)="irAmisReservas()">
-        <h1>MIS RESERVAS</h1>
+    <button id="elegir" (click)="irAmisReservas()">
+        <strong>MIS RESERVAS</strong>
     </button>
-    <button (click)="verTodasLasReservas()">
-        <h1>TODAS LAS RESERVAS</h1>
+    <button id="elegir" (click)="verTodasLasReservas()">
+        <strong>TODAS LAS RESERVAS</strong>
     </button>
 </div>
 
@@ -25,8 +25,8 @@
             <div *ngIf="date !== 0 && tienenReserva(date)">
                 <div  class="content" *ngFor="let hora of getTodasLasHoras(date, currentMonth.format('YYYY-MM'))"> 
                     <div [innerHTML]="hora"></div>
-                    <button (click)="verReserva(date, hora, currentMonth.format('YYYY-MM'))">
-                        ver
+                    <button id="verReserva" (click)="verReserva(date, hora, currentMonth.format('YYYY-MM'))">
+                        <i class="fas fa-eye"></i> Ver
                     </button>
                 </div>
             </div> 

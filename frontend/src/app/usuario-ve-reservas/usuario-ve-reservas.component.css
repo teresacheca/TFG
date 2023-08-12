@@ -1,81 +1,91 @@
 .calendar {
-    max-width: 800px;
-    margin: 20px auto;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 20px;
-  }
-  
-  .calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-gap: 5px;
-  }
-  
-  .calendar-day {
-    text-align: center;
-    background-color: #f2f2f2;
-    padding: 10px;
-    border-radius: 4px;
-  }
-  
-  .calendar-date {
-    text-align: center;
-    padding: 10px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .empty {
-    visibility: hidden;
-  }
-  
-  button {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-  }
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+}
 
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
-  #elegir{
-    background: none;
-    border: none;
-    font-size: 10px;
-    cursor: pointer;
-    background-color: #f2f2f2;
-    color: black;
-    border-radius: 4px;
-    margin: 10px 10px 10px 10px ;
-  }
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 5px;
+}
 
-  .back-button {
-    background-color: #ccc;
-    color: black;
-    border: none;
-    padding: 5px;
-    cursor: pointer;
-    font-weight: normal;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-    width: 80px;
-    height: 30px;
-    position: absolute;
-    top: 120px;
-    right: 20px;
-    font-size: 14px;
-  }
-  
-  .back-button:hover {
-    background-color: #999;
-  }
+.calendar-day {
+  text-align: center;
+  background-color: #f2f2f2;
+  padding: 10px;
+  border-radius: 4px;
+}
 
-  
+.calendar-date {
+  text-align: center;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.empty {
+  visibility: hidden;
+}
+
+button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: black;
+  border-radius: 4px;
+}
+
+#verReserva{
+  background: none;
+  border: none;
+  font-size: 12px;
+  cursor: pointer;
+  background-color: #f2f2f2;
+  color: black;
+  border-radius: 4px;
+}
+
+#elegir{
+  background: none;
+  border: none;
+  font-size: 10px;
+  cursor: pointer;
+  background-color: #f2f2f2;
+  color: black;
+  border-radius: 4px;
+  margin: 10px 10px 10px 10px ;
+}
+
+.back-button {
+  background-color: #ccc;
+  color: black;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  font-weight: normal;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  width: 80px;
+  height: 30px;
+  position: absolute;
+  top: 120px;
+  right: 20px;
+  font-size: 14px;
+}
+
+.back-button:hover {
+  background-color: #999;
+}

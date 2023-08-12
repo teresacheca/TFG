@@ -1,13 +1,11 @@
-<button (click)="volver()">Volver</button>
-<div class="col-md-2" *ngFor="let recurso of recursos">
+<button class="back-button" (click)="volver()"><i class="fas fa-chevron-circle-left"></i> Volver</button>
+<h2>Selecciona un recurso o servicio</h2>
+<div *ngFor="let recurso of recursos">
     <!--col-md-2 -> crea 2 columnas, ngFor -> para recorrer todas las reservas-->
     <div class="card-text-center">
         <img [src]="recurso.foto == '' ? '/assets/img/camara.png' : recurso.foto" class="card-img-top">
-        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-            <!--bg-dark: de color oscuro, text-white: para hacer el texto de color blanco-->
-            {{recurso.nombre_rs}}
-        </div>
         <div class="card-body">
+            <p>{{recurso.nombre_rs}}</p> 
            <p>{{recurso.descripcion}}</p> 
            <p>{{recurso.datos}}</p> 
            <p>{{recurso.aforo}}</p> 

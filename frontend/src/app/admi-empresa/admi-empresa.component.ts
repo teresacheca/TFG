@@ -10,8 +10,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AdmiEmpresaComponent {
 
-   constructor(private reservaServices: ReservasService, private router: Router, private activeRoute: ActivatedRoute ){}
+  constructor(private reservaServices: ReservasService, private router: Router, private activeRoute: ActivatedRoute ){}
 
+  //Objeto de tipo usuario donde guardaremos los datos del usuario con el que estamos operando
   admi_empresa: Usuario = {
     nombre_usuario: '',
     contrasena: '',
@@ -25,20 +26,21 @@ export class AdmiEmpresaComponent {
 
 
   ngOnInit(){
+    //Cogemos los parámetros que se leen en la url
     const params = this.activeRoute.snapshot.params;
     
+    //Comprobamos que el usuario haya iniciado sesión
     this.reservaServices.getLogin(params["nombre_usuario"], params["contrasena"]).subscribe(
       res => {
-        //this.reserva = res; //no funciona -> tiene que aparecer la información antigua para editar sobre ella
-        //this.reservaServices.getUsuarioag().subscribe
+        //Guardamos los datos que nos interesan del usuario
         this.admi_empresa.nombre_usuario = params["nombre_usuario"]
         this.admi_empresa.contrasena = params["contrasena"]
         this.admi_empresa.id_empresa = params["id_empresa"]
+        //Obtenemos todos los datos del usuario para poder operar con estos a partir de su nombre
         this.reservaServices.getUsuarioNombre(this.admi_empresa.nombre_usuario).subscribe(
           res => {
-            //this.reserva = res; //no funciona -> tiene que aparecer la información antigua para editar sobre ella
+            //Copiamos todos los datos que nos devuelve la función en un objeto de tipo usuario que hemos llamado admi_empresa
             this.aux = res
-
             this.admi_empresa.nombre_usuario = this.aux[0].nombre_usuario
             this.admi_empresa.contrasena = this.aux[0].contrasena
             this.admi_empresa.tipo = this.aux[0].tipo
@@ -58,21 +60,25 @@ export class AdmiEmpresaComponent {
     
   }
 
+  //Función que nos lleva a la ruta para editar el perfil del administrador de la empresa
   editarPerfil(){
     let ruta = this.router.url + '/editar'
     this.router.navigate([ruta])
   }
 
+  //Función que nos lleva a la ruta que nos muestra la lista de usuarios de la empresa 
   verUsuarios(){
     let ruta = this.router.url + '/' + this.admi_empresa.id_empresa + '/lista_usuarios'
     this.router.navigate([ruta])
   }
 
+  //Función que nos lleva a la ruta que nos muestra la lista de recursos y servicios que hay en la empresa
   verListaRecurosAe(){
     let ruta = this.router.url + '/' + this.admi_empresa.id_empresa + '/lista_recursos'
     this.router.navigate([ruta])
   }
 
+  //Función que nos lleva a la ruta que nos muestra la lista de reservas que han hecho los usuarios de la empresa
   verReservasAe(){
     let ruta = this.router.url + '/' + this.admi_empresa.id_empresa + '/lista_reservas'
     this.router.navigate([ruta])

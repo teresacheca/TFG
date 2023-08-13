@@ -39,22 +39,22 @@
   color: #333;
 }
   
-  /*Le damos formato a todos los botones*/
-  button {
-    background-color: #ccc; 
-    color: black; /*Color del texto del botón*/
-    border: none; /*Eliminamos el borde del botón*/
-    padding: 10px; /*Agregamos espacio arededor del contenido del botón para que se vea mejor*/
-    cursor: pointer; /*Cambiamos el ratón a puntero cuando este pasa por encima*/
-    font-weight: normal; /*Establecemos el grosor de las letras del texto*/
-    border-radius: 4px; 
-    transition: background-color 0.3s ease; /*Agragamos una transición leve para el cambio del color de fondo*/
-    width: 100%; /*Ancho del botón*/
-    margin-top: 10px; /* Márgenes para separar los botones */
-  }
-  
-  /*Usamos hover para cambiar el color de los botones cuando el cursor se pone encima de estos*/
-  button:hover {
-    background-color: #999;
-  }
+/*Le damos formato a todos los botones*/
+button {
+  background-color: #ccc; 
+  color: black; /*Color del texto del botón*/
+  border: none; /*Eliminamos el borde del botón*/
+  padding: 10px; /*Agregamos espacio arededor del contenido del botón para que se vea mejor*/
+  cursor: pointer; /*Cambiamos el ratón a puntero cuando este pasa por encima*/
+  font-weight: normal; /*Establecemos el grosor de las letras del texto*/
+  border-radius: 4px; 
+  transition: background-color 0.3s ease; /*Agragamos una transición leve para el cambio del color de fondo*/
+  width: 100%; /*Ancho del botón*/
+  margin-top: 10px; /* Márgenes para separar los botones */
+}
+
+/*Usamos hover para cambiar el color de los botones cuando el cursor se pone encima de estos*/
+button:hover {
+  background-color: #999;
+}
   

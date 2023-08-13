@@ -12,6 +12,7 @@ export class UsuariosComponent {
 
   constructor(private reservaServices: ReservasService, private router: Router, private activeRoute: ActivatedRoute ){}
 
+  //Objeto de tipo usuario donde guardaremos los datos del usuario con el que estamos operando
   usuario: Usuario = {
     nombre_usuario: '',
     contrasena: '',
@@ -25,22 +26,22 @@ export class UsuariosComponent {
   aux: any = []
 
   ngOnInit(){
+    //Cogemos los parámetros que se leen en la url
     const params = this.activeRoute.snapshot.params;
-    
     this.usuario.nombre_usuario = params["nombre_usuario"]
 
+    //Comprobamos que el usuario haya iniciado sesión
     this.reservaServices.getLogin(params["nombre_usuario"], params["contrasena"]).subscribe(
       res => {
-        //this.reserva = res; //no funciona -> tiene que aparecer la información antigua para editar sobre ella
-        //this.reservaServices.getUsuarioag().subscribe
+        //Guardamos los datos que nos interesan del usuario
         this.usuario.nombre_usuario = params["nombre_usuario"]
         this.usuario.contrasena = params["contrasena"]
         this.usuario.id_empresa = params["id_empresa"]
+        //Obtenemos todos los datos del usuario para poder operar con estos a partir de su nombre
         this.reservaServices.getUsuarioNombre(this.usuario.nombre_usuario).subscribe(
           res => {
-            //this.reserva = res; //no funciona -> tiene que aparecer la información antigua para editar sobre ella
+            //Copiamos todos los datos que nos devuelve la función en un objeto de tipo usuario que hemos llamado usuario
             this.aux = res
-
             this.usuario.nombre_usuario = this.aux[0].nombre_usuario
             this.usuario.contrasena = this.aux[0].contrasena
             this.usuario.tipo = this.aux[0].tipo
@@ -60,16 +61,19 @@ export class UsuariosComponent {
     
   }
 
+  //Función que nos lleva a la ruta para editar el perfil del usuario
   editarPerfil(){
     let ruta = this.router.url + '/editar'
     this.router.navigate([ruta])
   }
 
+  //Función que nos lleva a la ruta que nos muestra la lista de reservas que se han realizado
   usuarioVeReservas(){
     let ruta = this.router.url + '/reservas'
     this.router.navigate([ruta])
   }
 
+  //Función que nos lleva a la ruta que permite al usuario realizar una reserva de un recurso
   usuarioRealizaReserva(){
     let ruta = this.router.url + '/realiza_reserva'
     this.router.navigate([ruta])

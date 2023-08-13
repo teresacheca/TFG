@@ -1,38 +1,38 @@
 
-  /*Le damos formato a la "tarjeta"*/
-  .card {
-    background-color: white; /*Color de fondo*/
-    border-radius: 10px; /*Creamos un racio en los border para crear esquinas redondeadas*/
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /*Ponemos una sombra alrededor de l "tarjeta"*/
-    width: 300px;
-    padding: 20px;
-    text-align: center;
+/*Le damos formato a la "tarjeta"*/
+.card {
+  background-color: white; /*Color de fondo*/
+  border-radius: 10px; /*Creamos un racio en los border para crear esquinas redondeadas*/
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /*Ponemos una sombra alrededor de l "tarjeta"*/
+  width: 300px;
+  padding: 20px;
+  text-align: center;
 
-    /*para posicionarlo en el centro de la pantalla aunque se cambie esta de tamaño*/
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+  /*para posicionarlo en el centro de la pantalla aunque se cambie esta de tamaño*/
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
   
-  /*Le damos formato a la foto de perfil*/
-  .card-img-top {
-    display: block;
-    margin: 0 auto;
-    width: 120px; /* Ancho de la foto */
-    height: 120px; /* Largo de la foto */
-    border-radius: 50%; /* Para que se vea dentro de un círculo*/
-    object-fit: cover; /* Para que la foto de perfil se recorte con el borde circular */
-  }
-  
-  /*Le damos formato a los elementos que se encuentran dentro de la "tarjeta"*/
-  .card-body {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
+/*Le damos formato a la foto de perfil*/
+.card-img-top {
+  display: block;
+  margin: 0 auto;
+  width: 120px; /* Ancho de la foto */
+  height: 120px; /* Largo de la foto */
+  border-radius: 50%; /* Para que se vea dentro de un círculo*/
+  object-fit: cover; /* Para que la foto de perfil se recorte con el borde circular */
+}
 
-  /*Le damos formato a las letras que muestran el nombre del usuario*/
+/*Le damos formato a los elementos que se encuentran dentro de la "tarjeta"*/
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/*Le damos formato a las letras que muestran el nombre del usuario*/
 .form-group p {
   font-size: 18px;
   margin: 0;

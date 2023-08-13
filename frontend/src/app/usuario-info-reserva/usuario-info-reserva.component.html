@@ -1,33 +1,31 @@
+
 <p *ngIf="mia then esMia else otras">
 </p>
 
 <ng-template #esMia>
-    <div class="col-md-4 offset-md-2"> <!--para que esté centrado-->
-
-        <div class="card">
-            <div class="card-body">
-                <form>
-                    <div>
-                        Recurso o servicio reservado: {{reserva.nombre_rs}}
-                    </div>
-                    <div>
-                        Usuarios: {{reserva.nombre_usuario}}
-                    </div>
-                    <div>
-                        Fecha: {{fecha}}
-                    </div>
-                    <div>
-                        Hora: {{reserva.hora}}
-                    </div>
-                </form>
-                
-                <button (click)="editarReserva()">
-                    Editar
-                </button>
-            </div>
+    <div class="card">
+        <div class="card-body">
+            <form>
+                <div>
+                    Recurso o servicio reservado: {{reserva.nombre_rs}}
+                </div>
+                <div>
+                    Usuarios: {{reserva.nombre_usuario}}
+                </div>
+                <div>
+                    Fecha: {{fecha}}
+                </div>
+                <div>
+                    Hora: {{reserva.hora}}
+                </div>
+            </form>
+            
+            <button (click)="editarReserva()">
+                Editar
+            </button>
         </div>
     </div>
-    <button (click)="volver(0)">Volver</button>
+    <button class="back-button" (click)="volver(0)"><i class="fas fa-chevron-circle-left"></i> Volver</button>
 </ng-template>
 
 
@@ -35,8 +33,6 @@
 
 
 <ng-template #otras>
-    <div class="col-md-4 offset-md-2">
-
         <div class="card">
             <div class="card-body">
                 <form>
@@ -55,6 +51,5 @@
                 </form>
             </div>
         </div>
-    </div>
-    <button (click)="volver(1)">Volver</button>
+    <button class="back-button" (click)="volver(1)"><i class="fas fa-chevron-circle-left"></i> Volver</button>
 </ng-template>

@@ -1,32 +1,33 @@
-<div class="col-md-4 offset-md-2"> <!--para que esté centrado-->
 
-    <div class="card">
-        <div class="card-body">
-            <form>
-                <div>
-                    Recurso:
-                    <input type="text" name="nombre_rs" [(ngModel)]="reserva.nombre_rs">
-                </div>
-                <div>
-                    Usuarios: {{reserva.nombre_usuario}}
-                </div>
-                <div>
-                    Fecha:
-                    <input type="text" name="fecha" [(ngModel)]="fecha">
-                </div>
-                <div>
-                    Hora:
-                    <input type="text" name="hora" [(ngModel)]="reserva.hora">
-                </div>
-                <button (click)="eliminaReservaUsu(reserva.id_reserva)"> 
-                    Eliminar reserva
+<button class="back-button" (click)="volver()"><i class="fas fa-chevron-circle-left"></i> Volver</button>
+<div class="card">
+    <div class="card-body">
+        <form>
+            <div>
+                Recurso:
+                <input type="text" name="nombre_rs" [(ngModel)]="reserva.nombre_rs">
+            </div>
+            <div>
+                Usuarios: {{reserva.nombre_usuario}}
+            </div>
+            <div>
+                Fecha:
+                <input type="text" name="fecha" [(ngModel)]="fecha">
+            </div>
+            <div>
+                Hora:
+                <input type="text" name="hora" [(ngModel)]="reserva.hora">
+            </div>
+            <div class="card-buttons">
+                <button class="deleteButton" (click)="eliminaReservaUsu(reserva.id_reserva)">
+                    <i class="fas fa-trash"></i> Eliminar reserva
                 </button>
-                <button (click)="guardaCambiosReservaUsu(reserva.id_reserva, reserva, fecha)"> 
-                    Guardar cambios
+                <button class="saveButton" (click)="guardaCambiosReservaUsu(reserva.id_reserva, reserva, fecha)" style="float: right;">
+                    <i class="fas fa-save"></i> Guardar cambios
                 </button>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
-    <button (click)="volver()">Volver</button>
 </div>
+
 

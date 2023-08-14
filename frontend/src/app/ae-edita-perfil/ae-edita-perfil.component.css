@@ -128,7 +128,7 @@ button {
 
 /*Usamos hover para cambiar el color de los botones cuando el cursor se pone encima de estos*/
 .deleteButton:hover {
-  background-color: #990000; /* Cambia el color del hover si lo deseas */
+  background-color: #990000;
 }
 
 /*Le damos formato al botón "guardar cambios"*/

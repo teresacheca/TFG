@@ -39,22 +39,22 @@ export class AeEditaRecursoComponent {
     this.admi = params["nombre_usuario"]
     this.id = params["id_recursoservicio"]
 
-    //Obtenemos los datos del recurso que editar mostrar a partir de su id
+    //Obtenemos los datos del recurso que editar a partir de su identificador
     //Necesitamos el nombre del administrador y de la empresa para llamarlo en la url
     this.reservaServices.getDatosRecursoAe(this.admi, this.empresa, this.id).subscribe(
       res =>{
         //Guardamos los datos obtenidos en recurso
-       this.aux = res
-       this.recurso.nombre_rs = this.aux[0].nombre_rs
-       this.recurso.descripcion = this.aux[0].descripcion
-       this.recurso.foto = this.aux[0].foto
-       this.recurso.datos = this.aux[0].datos
-       this.recurso.aforo = this.aux[0].aforo
-       this.recurso.nombre_empresa = this.aux[0].nombre_empresa
-       this.recurso.id_recursoservicio = this.aux[0].id_recursoservicio
-       this.recurso.id_empresa = this.aux[0].id_empresa
-       //Guardamos a parte el nombre del recurso para saber el antiguo nombre si este se modifica
-       this.nombre_recurso = this.recurso.nombre_rs
+        this.aux = res
+        this.recurso.nombre_rs = this.aux[0].nombre_rs
+        this.recurso.descripcion = this.aux[0].descripcion
+        this.recurso.foto = this.aux[0].foto
+        this.recurso.datos = this.aux[0].datos
+        this.recurso.aforo = this.aux[0].aforo
+        this.recurso.nombre_empresa = this.aux[0].nombre_empresa
+        this.recurso.id_recursoservicio = this.aux[0].id_recursoservicio
+        this.recurso.id_empresa = this.aux[0].id_empresa
+        //Guardamos a parte el nombre del recurso para saber el antiguo nombre si este se modifica
+        this.nombre_recurso = this.recurso.nombre_rs
       },
       err => console.error(err)
     );
@@ -184,7 +184,7 @@ export class AeEditaRecursoComponent {
   }
 
 
-  //Función que nos permite volver a la página anterior, es decir, a la página que nos muestra la lista de los recursoso de la empresa
+  //Función que nos permite volver a la página anterior, es decir, a la página que nos muestra la lista de los recurso de la empresa
   volver(){
     let ruta = '/reservas/admi_empresa/' + this.admi + '/' + this.empresa + '/lista_recursos'
     this.router.navigate([ruta])

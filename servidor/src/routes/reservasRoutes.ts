@@ -10,7 +10,7 @@ class ReservasRoutes{
     }
 
     config(): void{
-        
+        //Rutas del administrador de la empresa (ver app-routing.component.css)
         this.router.get('/admi_empresa/:nombre_usuario/get', reservasController.getUsuarioNombre); 
         this.router.get('/admi_empresa/:nombre_usuario/editar', reservasController.getDatosAdministradorEmpresa); 
         this.router.put('/admi_empresa/:nombre_usuario/editar/guardar', reservasController.guardarCambiosUsuario);
@@ -38,6 +38,7 @@ class ReservasRoutes{
         this.router.put('/admi_empresa/:nombre_usuario/:id_empresa/lista_reservas/:id_reserva/editar/guardar', reservasController.guardaCambiosReserva);
         this.router.delete('/admi_empresa/:nombre_usuario/:id_empresa/lista_reservas/:id_reserva/eliminar', reservasController.eliminaReserva);
 
+        //Rutas del usuario (ver app-routing.component.css)
         this.router.get('/usuario/:nombre_usuario/editar', reservasController.getUsuario); 
         this.router.put('/usuario/:nombre_usuario/editar/guardar', reservasController.guardarCambiosUsuarioUsu);
         this.router.delete('/usuario/:nombre_usuario/eliminar', reservasController.eliminarCuentaUsuarioUsu);
@@ -51,6 +52,7 @@ class ReservasRoutes{
         this.router.get('/usuario/:nombre_usuario/realiza_reserva/recurso/:id_recursoservicio/get', reservasController.getDatosRecurso);
         this.router.post('/usuario/:nombre_usuario/realiza_reserva/recurso/:id_recursoservicio/reserva', reservasController.crearReserva);
 
+        //Rutas del administrador general (ver app-routing.component.css)
         this.router.get('/:nombre_usuario/empresas', reservasController.getEmpresas); 
         this.router.put('/:nombre_usuario/empresas/cambiar/:id_empresa', reservasController.guardarCambios); 
         this.router.get('/:nombre_usuario/empresas/:nombre_empresa', reservasController.getEmpresa); 
@@ -75,7 +77,7 @@ class ReservasRoutes{
         this.router.post('/:nombre_usuario/lista_solicitudes/:id_solicitud/:nombre_empresa', reservasController.nuevaEmpresa); 
         this.router.get('/:nombre_usuario/lista_solicitudes', reservasController.getSolicitudes); 
 
-
+        //Rutas para comprobar las credenciales de los usuarios (ver app-routing.component.css)
         this.router.get('/:nombre/:contrasena', reservasController.getUsuarioLogin); //mostrar una reserva
         this.router.post('/:nombre_usuario/empresas/:nombre_empresa', reservasController.crearEmpresa); 
         

@@ -11,6 +11,7 @@ class ReservasRoutes {
         this.config();
     }
     config() {
+        //Rutas del administrador de la empresa (ver app-routing.component.css)
         this.router.get('/admi_empresa/:nombre_usuario/get', reservasController_1.default.getUsuarioNombre);
         this.router.get('/admi_empresa/:nombre_usuario/editar', reservasController_1.default.getDatosAdministradorEmpresa);
         this.router.put('/admi_empresa/:nombre_usuario/editar/guardar', reservasController_1.default.guardarCambiosUsuario);
@@ -32,6 +33,7 @@ class ReservasRoutes {
         this.router.get('/admi_empresa/:nombre_usuario/:id_empresa/lista_reservas/:id_reserva', reservasController_1.default.getReservaId);
         this.router.put('/admi_empresa/:nombre_usuario/:id_empresa/lista_reservas/:id_reserva/editar/guardar', reservasController_1.default.guardaCambiosReserva);
         this.router.delete('/admi_empresa/:nombre_usuario/:id_empresa/lista_reservas/:id_reserva/eliminar', reservasController_1.default.eliminaReserva);
+        //Rutas del usuario (ver app-routing.component.css)
         this.router.get('/usuario/:nombre_usuario/editar', reservasController_1.default.getUsuario);
         this.router.put('/usuario/:nombre_usuario/editar/guardar', reservasController_1.default.guardarCambiosUsuarioUsu);
         this.router.delete('/usuario/:nombre_usuario/eliminar', reservasController_1.default.eliminarCuentaUsuarioUsu);
@@ -43,6 +45,7 @@ class ReservasRoutes {
         this.router.get('/usuario/:nombre_usuario/realiza_reserva/:id_empresa', reservasController_1.default.getRecursos);
         this.router.get('/usuario/:nombre_usuario/realiza_reserva/recurso/:id_recursoservicio/get', reservasController_1.default.getDatosRecurso);
         this.router.post('/usuario/:nombre_usuario/realiza_reserva/recurso/:id_recursoservicio/reserva', reservasController_1.default.crearReserva);
+        //Rutas del administrador general (ver app-routing.component.css)
         this.router.get('/:nombre_usuario/empresas', reservasController_1.default.getEmpresas);
         this.router.put('/:nombre_usuario/empresas/cambiar/:id_empresa', reservasController_1.default.guardarCambios);
         this.router.get('/:nombre_usuario/empresas/:nombre_empresa', reservasController_1.default.getEmpresa);
@@ -64,6 +67,7 @@ class ReservasRoutes {
         this.router.delete('/:nombre_usuario/lista_solicitudes/:id_solicitud/eliminar', reservasController_1.default.eliminarSolicitud);
         this.router.post('/:nombre_usuario/lista_solicitudes/:id_solicitud/:nombre_empresa', reservasController_1.default.nuevaEmpresa);
         this.router.get('/:nombre_usuario/lista_solicitudes', reservasController_1.default.getSolicitudes);
+        //Rutas para comprobar las credenciales de los usuarios (ver app-routing.component.css)
         this.router.get('/:nombre/:contrasena', reservasController_1.default.getUsuarioLogin); //mostrar una reserva
         this.router.post('/:nombre_usuario/empresas/:nombre_empresa', reservasController_1.default.crearEmpresa);
     }

@@ -11,15 +11,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AeListaUsuariosComponent {
 
+  constructor(private reservasServices: ReservasService, private router: Router, private activeRoute: ActivatedRoute){}
+
   //Variables que usaremos en el resto del código
   usuarios: any = []
   vacio = false
   empresa: number = 0
   nombre_admi: string = ""
-
-  constructor(private reservasServices: ReservasService, private router: Router, private activeRoute: ActivatedRoute){}
-
-
+  
   ngOnInit(){
     //Cogemos los parámetros que se leen en la url
     const params = this.activeRoute.snapshot.params;

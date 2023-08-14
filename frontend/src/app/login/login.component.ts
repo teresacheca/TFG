@@ -12,22 +12,29 @@ export class LoginComponent {
 
   constructor(private router: Router, private activeRoute: ActivatedRoute, private reservasServices: ReservasService){}
 
+  //Variables que usaremos en el resto del código
   usuario: any = {}
 
+  //Función que nos permite ir a la página donde podremos hacer una nueva solicutd de una emrpesa
   irNuevaSolicitud(){
     this.router.navigate(['/reservas/solicitud'])
   }
 
+  //Función que comprobará el nombre de usuario y la contraseña y nos moverá a una patalla de perfil
+  //dependiendo del tipo que sea el usuario
   inicioSesion(nombreUsuario: any, contrasenaUsuario: any){
-    //Usuario o contraseña vacios
+    //Si el nombre usuario o la contraseña están vacios saltará un mensaje de error
     if(nombreUsuario==''){
       confirm("Faltan parámetros");
     }else if(contrasenaUsuario==''){
       confirm("Faltan parámetros");
     }else{
+      //En caso contrario comprobaremos que el usuario y la contraseña existen y pertenecen a un usuario
+      //con la función getLogin
       this.reservasServices.getLogin(nombreUsuario, contrasenaUsuario).subscribe(
         res => {
           this.usuario = res;
+          //Dependiendo del tipo de usuario iremos a un perfil u otro
           if(this.usuario[0]!=null){
             if(this.usuario[0].tipo == '0'){
               this.router.navigate(['/reservas/admi_general', this.usuario[0].nombre_usuario]);
@@ -38,6 +45,7 @@ export class LoginComponent {
             }
             
           }else{
+            //Si el usuario y la contraseña no coinciden ni pertenecen aun usuario, mostrará un mensaje de error
             confirm("Error en login");
           }
         },

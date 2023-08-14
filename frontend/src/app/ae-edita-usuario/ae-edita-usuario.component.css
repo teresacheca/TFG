@@ -19,6 +19,7 @@ h2 {
   text-align: center;
 }
 
+/*Le damos formato a la foto de perfil del usuario*/
 .card img {
   display: block;
   margin: 0 auto;

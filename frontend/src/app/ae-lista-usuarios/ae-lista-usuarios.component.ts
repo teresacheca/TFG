@@ -10,6 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./ae-lista-usuarios.component.css']
 })
 export class AeListaUsuariosComponent {
+
+  //Variables que usaremos en el resto del código
   usuarios: any = []
   vacio = false
   empresa: number = 0

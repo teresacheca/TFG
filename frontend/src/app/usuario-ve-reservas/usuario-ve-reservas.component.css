@@ -91,3 +91,15 @@ button {
 .back-button:hover {
   background-color: #999;
 }
+
+/*Le damos formato a los botones "mis reservas" y "todas las reservas"*/
+#elegir{
+  background: none;
+  border: none;
+  font-size: 10px;
+  cursor: pointer;
+  background-color: #f2f2f2;
+  color: black;
+  border-radius: 4px;
+  margin: 10px 10px 10px 10px ;
+}

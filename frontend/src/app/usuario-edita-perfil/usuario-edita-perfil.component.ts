@@ -77,8 +77,16 @@ export class UsuarioEditaPerfilComponent {
                     console.log(nuevoUsuario)
                     this.reservaServices.guardarCambiosUsuario(nombre_usuario, nuevoUsuario).subscribe(
                       res => {
-                        let ruta = '/reservas/usuario/' + nombre_usuario
-                        this.router.navigate([ruta]);
+                        if(nuevoUsuario.tipo == 0){
+                          let ruta = '/reservas/admi_general/' + nombre_usuario
+                          this.router.navigate([ruta]);
+                        }else if(nuevoUsuario.tipo == 1){
+                          let ruta = '/reservas/admi_empresa/' + nombre_usuario
+                          this.router.navigate([ruta]);
+                        }else if(nuevoUsuario.tipo == 2){
+                          let ruta = '/reservas/usuario/' + nombre_usuario
+                          this.router.navigate([ruta]);
+                        }
                       },
                       err=> console.error(err)
                     )
@@ -88,8 +96,16 @@ export class UsuarioEditaPerfilComponent {
               }else{
                 this.reservaServices.guardarCambiosUsuario(nombre_usuario, nuevoUsuario).subscribe(
                   res => {
-                    let ruta = '/reservas/usuario/' + nombre_usuario
-                    this.router.navigate([ruta]);
+                    if(nuevoUsuario.tipo == 0){
+                      let ruta = '/reservas/admi_general/' + nombre_usuario
+                      this.router.navigate([ruta]);
+                    }else if(nuevoUsuario.tipo == 1){
+                      let ruta = '/reservas/admi_empresa/' + nombre_usuario
+                      this.router.navigate([ruta]);
+                    }else if(nuevoUsuario.tipo == 2){
+                      let ruta = '/reservas/usuario/' + nombre_usuario
+                      this.router.navigate([ruta]);
+                    }
                   },
                   err=> console.error(err)
                 )

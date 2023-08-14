@@ -3,7 +3,7 @@
 .card {
     background-color: white; /*Color de fondo*/
     border-radius: 10px; /*Creamos un racio en los border para crear esquinas redondeadas*/
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /*Ponemos una sombra alrededor de l "tarjeta"*/
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /*Ponemos una sombra alrededor de la "tarjeta"*/
     width: 400px;
 
     /*para posicionarlo en el centro de la pantalla aunque se cambie esta de tamaño*/
@@ -32,7 +32,7 @@ h2 {
     gap: 15px;
 }
 
-/*Le damos formato a los recuadros donde modificaremos la información del administrador*/
+/*Le damos formato a los recuadros donde modificaremos la información del recurso*/
 .card-body input {
     padding: 8px;
     border: 1px solid #ccc;

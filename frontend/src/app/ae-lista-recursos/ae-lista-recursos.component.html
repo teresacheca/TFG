@@ -8,7 +8,7 @@
     <h2>Lista de recursos y servicios</h2>
     <div *ngFor="let recurso of recursos">
         
-        <div class="card-text-center">
+        <div class="card">
             <img [src]="recurso.foto == '' ? '/assets/img/camara.png' : recurso.foto" class="card-img-top">
             <div class="card-body">
                <p><strong>Nombre:</strong> {{recurso.nombre_rs}}</p> 

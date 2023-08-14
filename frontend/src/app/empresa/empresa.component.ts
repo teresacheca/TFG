@@ -11,8 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class EmpresaComponent {
   constructor(private reservaServices: ReservasService, private router: Router, private activeRoute: ActivatedRoute){}
 
-  aux: any = {  }
-
+  //Objeto de tipo emrpesa donde guardaremos los datos de la empresa con el que estamos operando
   empresa: Empresa={
     nombre_empresa: '',
     datos_de_contacto: '',
@@ -23,13 +22,17 @@ export class EmpresaComponent {
   }
 
   nombre_admi: string =""
+  aux: any = {  }
 
   ngOnInit(){
+    //Cogemos los parámetros que se leen en la url
     const params = this.activeRoute.snapshot.params;
     this.nombre_admi = params["nombre_usuario"]
+
+    //Obtenemos los datos de la empresa a partir de su id (también necesitamos saber el nombre del administrador para usar la url correspondiente)
     this.reservaServices.getEmpresaId(this.nombre_admi, params["id_empresa"]).subscribe(
       res => {
-        //this.reserva = res; //no funciona -> tiene que aparecer la información antigua para editar sobre ella
+        //Guardamos los datos de la empresa
         this.aux = res
         this.empresa.nombre_empresa = this.aux[0].nombre_empresa
         this.empresa.datos_de_contacto = this.aux[0].datos_de_contacto
@@ -42,21 +45,25 @@ export class EmpresaComponent {
     )
   }
 
+  //Función que nos lleva a la ruta para ver la lista de los administradores de la empresa
   getAdministradoresEmpresa(){
     let ruta = '/reservas/' + this.nombre_admi + '/empresas/'+ this.empresa.id_empresa + '/lista_administradores'
     this.router.navigate([ruta]);
   }
 
+  //Función que nos lleva a la ruta para ver la lista de los usuario de la empresa
   getUsuariosEmpresa(){
     let ruta = '/reservas/' + this.nombre_admi + '/empresas/' + this.empresa.id_empresa + '/lista_usuarios'
     this.router.navigate([ruta]);
   }
 
+  //Función que nos lleva a la ruta para editar el perfil de la empresa
   editarPerfil(){
     let ruta = '/reservas/' + this.nombre_admi + '/empresas/'+ this.empresa.id_empresa + '/editar_pefil'
     this.router.navigate([ruta]);
   }
 
+  //Función que nos permite volver a la página anterior, es decir, a la página que muestra la lista de las empresas
   volver(){
     let ruta = '/reservas/' + this.nombre_admi + '/empresas/'
     this.router.navigate([ruta]);

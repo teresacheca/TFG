@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AeEditaRecursoComponent {
   constructor(private reservaServices: ReservasService, private router: Router, private activeRoute: ActivatedRoute){}
 
-  //Objeto de tipo recurso donde guardaremos los datos del usuario con el que estamos operando
+  //Objeto de tipo recurso donde guardaremos los datos del recurso con el que estamos operando
   recurso: Recurso = {
     nombre_rs: '',
     descripcion: '',
@@ -125,7 +125,7 @@ export class AeEditaRecursoComponent {
 
           //Antes de guardar los cambios, tendremos que modificar todas las reservas ya creadas de este recurso
           //siempre que se le haya cmabiado el nombre ya el resto de información no afecta a la reserva
-          //POor ello, primero comprobamos si se ha modificado el nombre del recurso
+          //Por ello, primero comprobamos si se ha modificado el nombre del recurso
           if(this.nombre_recurso != recurso.nombre_rs){
             //Luego obtenemos todas las reservas que haya en la empresa
             this.reservaServices.getReservasAe(this.admi, this.empresa).subscribe(

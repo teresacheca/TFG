@@ -65,10 +65,8 @@ class ReservasController {
     }
     getEmpresa(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(req.params.nombre_empresa);
             const empresa = yield basedatos_1.default.promise().query('SELECT * FROM Empresas WHERE nombre_empresa = ?', [req.params.nombre_empresa]);
             const rows = empresa[0]; // Accede a los resultados utilizando la posición 0
-            console.log(rows);
             res.json(rows);
         });
     }
@@ -106,7 +104,6 @@ class ReservasController {
     }
     getUsuariosEmpresa(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(req.params);
             const usuarios = yield basedatos_1.default.promise().query('SELECT * FROM Usuarios WHERE id_empresa = ? and tipo = 2', [req.params.id_empresa]);
             const rows = usuarios[0]; // Accede a los resultados utilizando la posición 0
             res.json(rows);
@@ -121,14 +118,12 @@ class ReservasController {
     }
     eliminarCuentaAdmiEmpresa(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log("hhhh");
             const aux = yield basedatos_1.default.promise().query('DELETE FROM Usuarios WHERE id = ?', [req.params.id]);
             res.json({ message: 'el usuario fue eliminado' });
         });
     }
     guardarCambiosAdmiEmpresa(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(req.body);
             yield basedatos_1.default.promise().query('UPDATE Usuarios set ? WHERE id = ?', [req.body, req.params.id]);
             res.json({ message: 'La reserva fue actualizada' });
         });
@@ -219,7 +214,6 @@ class ReservasController {
     }
     AgAniadeAdmi(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log("hola");
             basedatos_1.default.query('INSERT INTO Usuarios (nombre_usuario, contrasena, fecha_nacimiento, puesto_trabajo, empresa, tipo, id_empresa, foto) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [req.body.nombre_usuario, req.body.contrasena, req.body.fecha_nacimiento, req.body.puesto_trabajo, req.body.empresa, 1, req.body.id_empresa, req.body.foto]);
             res.json({ message: 'el usuario se ha creado' });
         });
@@ -311,7 +305,6 @@ class ReservasController {
     }
     getReservasDelUsuario(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(req.params.nombre_usuario);
             const usuario = yield basedatos_1.default.promise().query('SELECT * FROM Reservas WHERE nombre_usuario = ? order by fecha', [req.params.nombre_usuario]);
             const rows = usuario[0]; // Accede a los resultados utilizando la posición 0
             res.json(rows);

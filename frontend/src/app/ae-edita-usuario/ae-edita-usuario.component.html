@@ -1,17 +1,22 @@
-
+  <!--Le añadimos un icono de flecha al botón "volver"-->
 <button class="back-button" (click)="volver()"><i class="fas fa-chevron-circle-left"></i> Volver</button>
-    <div class="card">
+<h2>Editar usuario</h2>
+    <div class="card"> <!--Hacemos que la vista se vea como una "tarjeta"-->
         <div class="card-body">
             <form>
                 <div>
+                    <!--Mostramos la foto de perfil del usuario-->
                     <img [src]="usuario.foto === '' ? '/assets/img/camara.png' : usuario.foto" class="card-img-top">
                 </div>
+                <!--Mostramos las etiquetas de la información que va en cada hueco y las casillas para que se rellene con la nueva información del usuario-->
                 <div>
                     Nombre:
                     <input type="text" name="nombre_usuario" [(ngModel)]="usuario.nombre_usuario">
                 </div>
                 <div>
                     Contraseña:
+                    <!--Llamamos a la función togglePasswordVisibility cada vez que pulsamos el botón, que cambia el valor de mostrarContrasena
+                    si mostrarContrasena vale True, veremos la contraseña como un texto, si no veremos puntos-->
                     <input [type]="mostrarContrasena ? 'text' : 'password'" name="contrasena" [(ngModel)]="usuario.contrasena" id="passwordInput">
                     <button (click)="togglePasswordVisibility()">
                         <i [class]="mostrarContrasena ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
@@ -37,6 +42,7 @@
                     Tipo:
                     <input type="text" name="tipo" [(ngModel)]="usuario.tipo">
                 </div>
+                <!--Le ponemos clases a los botones para poder modificarlos mejor-->
                 <div class="card-buttons">
                     <button class="deleteButton" (click)="eliminarCuentaUsuarioAe(usuario.id)">
                         <i class="fas fa-trash"></i> Eliminar cuenta

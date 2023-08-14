@@ -158,7 +158,6 @@ export class ReservasService {
   }
 
   eliminarReservasUsuario(nombre_usuario: string, id_empresa: number){
-    console.log("entrs")
     return this.http.delete(`${this.API_URI}/reservas/admi_empresa/${nombre_usuario}/${id_empresa}/eliminar_reservas_usuario`)
   }
 

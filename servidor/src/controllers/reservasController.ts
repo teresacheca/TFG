@@ -47,10 +47,8 @@ class ReservasController{
     }
 
     public async getEmpresa(req: Request, res: Response) { 
-        console.log(req.params.nombre_empresa)
         const empresa = await pool.promise().query('SELECT * FROM Empresas WHERE nombre_empresa = ?', [req.params.nombre_empresa]);
         const rows = empresa[0]; // Accede a los resultados utilizando la posición 0
-        console.log(rows)
         res.json(rows);
     } 
 
@@ -84,7 +82,6 @@ class ReservasController{
     } 
 
     public async getUsuariosEmpresa(req: Request, res: Response) { 
-        console.log(req.params)
         const usuarios = await pool.promise().query('SELECT * FROM Usuarios WHERE id_empresa = ? and tipo = 2', [req.params.id_empresa]);
         const rows = usuarios[0]; // Accede a los resultados utilizando la posición 0
         res.json(rows);
@@ -97,13 +94,11 @@ class ReservasController{
     }
 
     public async eliminarCuentaAdmiEmpresa(req: Request, res: Response) { 
-        console.log("hhhh")
         const aux = await pool.promise().query('DELETE FROM Usuarios WHERE id = ?', [req.params.id]);
         res.json({message: 'el usuario fue eliminado'})
     }
 
     public async guardarCambiosAdmiEmpresa(req: Request, res: Response) { 
-        console.log(req.body)
         await pool.promise().query('UPDATE Usuarios set ? WHERE id = ?', [req.body, req.params.id]);
         res.json({message: 'La reserva fue actualizada'})
     }
@@ -179,7 +174,6 @@ class ReservasController{
     }
 
     public async AgAniadeAdmi(req: Request, res: Response) { 
-        console.log("hola")
         pool.query('INSERT INTO Usuarios (nombre_usuario, contrasena, fecha_nacimiento, puesto_trabajo, empresa, tipo, id_empresa, foto) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [req.body.nombre_usuario, req.body.contrasena, req.body.fecha_nacimiento, req.body.puesto_trabajo, req.body.empresa, 1, req.body.id_empresa, req.body.foto]);
         res.json({message: 'el usuario se ha creado'});
     }
@@ -257,7 +251,6 @@ class ReservasController{
     }
 
     public async getReservasDelUsuario(req: Request, res: Response) { 
-        console.log(req.params.nombre_usuario)
         const usuario = await pool.promise().query('SELECT * FROM Reservas WHERE nombre_usuario = ? order by fecha', [req.params.nombre_usuario]);
         const rows = usuario[0]; // Accede a los resultados utilizando la posición 0
         res.json(rows);

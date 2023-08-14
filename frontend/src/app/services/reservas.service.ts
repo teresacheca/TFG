@@ -149,6 +149,10 @@ export class ReservasService {
     return this.http.delete(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${id_empresa}/lista_usuarios/${id}/eliminar`)
   }
 
+  actualizarReserva(nombre_admi: string, id_empresa: number, id_reserva:number, nuevaReserva: Reserva){
+    return this.http.put(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${id_empresa}/lista_recursos/${id_reserva}/actualizar`, nuevaReserva)
+  }
+
   eliminarReservas(nombre_admi: string, id_empresa: number, id_reserva:number){
     return this.http.delete(`${this.API_URI}/reservas/admi_empresa/${nombre_admi}/${id_empresa}/lista_usuarios/${id_reserva}/eliminar_reserva`)
   }

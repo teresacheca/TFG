@@ -111,7 +111,7 @@ button {
 
 /*Le damos formato al botón "Eliminar cuenta"*/
 .deleteButton {
-  background-color: #cc0000; /* Cambia el color si lo deseas */
+  background-color: #cc0000;
   color: white;
   border: none;
   padding: 5px 10px;

@@ -201,6 +201,11 @@ class ReservasController{
         res.json({message: 'El recurso fue actualizada'})
     }
 
+    public async actualizarReserva(req: Request, res: Response) { 
+        await pool.promise().query('UPDATE Reservas set ? WHERE id_reserva = ?', [req.body, req.params.id_reserva]);
+        res.json({message: 'La reserva fue actualizada'})
+    }
+
     public async eliminarRescursoAe(req: Request, res: Response){
         const aux = await pool.promise().query('DELETE FROM RecursoServicio WHERE id_recursoservicio= ?', [req.params.id_recursoservicio]);
         await pool.promise().query('DELETE FROM Reservas WHERE id_recursoservicio= ?', [req.params.id_recursoservicio]);

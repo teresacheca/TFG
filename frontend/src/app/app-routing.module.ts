@@ -208,6 +208,10 @@ const routes: Routes = [
     component: AeDatosRecursoComponent
   },
   {
+    path: 'reservas/admi_empresa/:nombre_usuario/:id_empresa/lista_recursos/:id_reserva/actualizar',
+    component: AeDatosRecursoComponent
+  },
+  {
     path: 'reservas/admi_empresa/:nombre_usuario/:id_empresa/lista_recursos/:id_recursoservicio/editar',
     component: AeEditaRecursoComponent
   },

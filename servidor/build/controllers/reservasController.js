@@ -244,6 +244,12 @@ class ReservasController {
             res.json({ message: 'El recurso fue actualizada' });
         });
     }
+    actualizarReserva(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield basedatos_1.default.promise().query('UPDATE Reservas set ? WHERE id_reserva = ?', [req.body, req.params.id_reserva]);
+            res.json({ message: 'La reserva fue actualizada' });
+        });
+    }
     eliminarRescursoAe(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const aux = yield basedatos_1.default.promise().query('DELETE FROM RecursoServicio WHERE id_recursoservicio= ?', [req.params.id_recursoservicio]);

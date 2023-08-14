@@ -31,7 +31,7 @@ export class AeListaUsuariosComponent {
     this.reservasServices.getUsuariosEmpresaAe(params["nombre_usuario"], params["id_empresa"]).subscribe(
       res =>{
         this.usuarios = res;
-        //Si no devuelve ningún usuario es porque esa empresa no tiene usuario 
+        //Si no devuelve ningún usuario es porque esa empresa no tiene usuarios 
         //de forma que indicaremos que la lista de usuarios está vacía
         if(this.usuarios.length == 0){
           this.vacio = true

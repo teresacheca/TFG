@@ -38,7 +38,7 @@ button {
 }
 
 /*Usamos hover para cambiar el color de los botones cuando el cursor se pone encima de estos*/
-.button-container button:hover {
+button:hover {
     background-color: #999;
 }
 

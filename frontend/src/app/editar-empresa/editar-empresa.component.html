@@ -1,8 +1,10 @@
 
-<button class="back-button" (click)="volver()"><i class="fas fa-chevron-circle-left"></i> Volver</button>
-<div class="card">
+<button class="back-button" (click)="volver()"><i class="fas fa-chevron-circle-left"></i> Volver</button> <!--Le añadimos un icono de flecha al botón "volver"-->
+<h2>Editar empresa</h2>
+<div class="card"> <!--Hacemos que la vista se vea como una "tarjeta"-->
     <div class="card-body">
         <form>
+             <!--Mostramos las etiquetas de la información que va en cada hueco y las casillas con los valores actuales que se pueden modificar con la nueva información de la empresa-->
             <div>
                 Nombre empresa:
                 <input type="text" name="nombre_empresa" [(ngModel)]="empresa.nombre_empresa">
@@ -16,7 +18,7 @@
                 <input type="text" name="descripcion" [(ngModel)]="empresa.descripcion">
             </div>
             <div>
-                Logo: (inserta el enlace url)
+                Logo:
                 <img [src]="empresa.logo === '' ? '/assets/img/upload.png' : empresa.logo" class="card-img-top">
                 <input type="text" name="foto" [(ngModel)]="empresa.logo">
             </div>

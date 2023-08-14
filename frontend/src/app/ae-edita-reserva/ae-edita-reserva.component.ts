@@ -13,7 +13,7 @@ export class AeEditaReservaComponent {
 
   constructor(private reservasServices: ReservasService, private router: Router, private activeRoute: ActivatedRoute){}
 
-  //Objeto de tipo reserva donde guardaremos los datos del usuario con el que estamos operando
+  //Objeto de tipo reserva donde guardaremos los datos de la reserva con el que estamos operando
   reserva: Reserva = {
     fecha: '',
     hora: '',

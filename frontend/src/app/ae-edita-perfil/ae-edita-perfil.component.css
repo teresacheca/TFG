@@ -150,5 +150,5 @@ button {
 
 /*Usamos hover para cambiar el color de los botones cuando el cursor se pone encima de estos*/
 .saveButton:hover {
-  background-color:  #ccc;
+  background-color:  #999;
 }

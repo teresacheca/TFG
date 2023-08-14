@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AeDatosRecursoComponent {
   constructor(private reservasServices: ReservasService, private router: Router, private activeRoute: ActivatedRoute){}
 
-  //Objeto de tipo usuario donde guardaremos los datos del recurso con el que estamos operando
+  //Objeto de tipo recurso donde guardaremos los datos del recurso con el que estamos operando
   recurso: Recurso = {
     nombre_rs: '',
     descripcion: '',

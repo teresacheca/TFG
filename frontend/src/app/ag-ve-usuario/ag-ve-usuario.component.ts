@@ -12,8 +12,7 @@ import * as moment from 'moment';
 export class AgVeUsuarioComponent {
   constructor(private reservaServices: ReservasService, private router: Router, private activeRoute: ActivatedRoute){}
 
-  aux: any = {  }
-
+  //Objeto de tipo usuario donde guardaremos los datos del usuario con el que estamos operando
   usuario: Usuario={
     nombre_usuario: '',
     contrasena: '',
@@ -29,14 +28,19 @@ export class AgVeUsuarioComponent {
   empresa: number = 0
   fecha_nacimiento: string = ""
   nombre_admi: string = ""
+  aux: any = {  }
+
   ngOnInit(){
+    //Cogemos los parámetros que se leen en la url
     const params = this.activeRoute.snapshot.params;
     this.empresa = params["id_empresa"]
     this.nombre_admi = params["nombre_usuario"]
-    console.log(params)
+    
+    //Obtenemos la información del usuario a partir su identificador usando la función getUsuarioId
+    //necesitaremos el nombre del administrador y el identificador de la empresa para poder acceder a la url correspondiente
     this.reservaServices.getUsuarioId(params["nombre_usuario"], this.empresa, params["id"] ).subscribe(
       res => {
-        //this.reserva = res; //no funciona -> tiene que aparecer la información antigua para editar sobre ella
+       //Copiamos todos los datos que nos devuelve la función en el objeto usuario
         this.aux = res
         this.usuario.nombre_usuario = this.aux[0].nombre_usuario
         this.usuario.contrasena = this.aux[0].contrasena
@@ -46,12 +50,14 @@ export class AgVeUsuarioComponent {
         this.usuario.empresa = this.aux[0].empresa
         this.usuario.id = this.aux[0].id
         this.usuario.foto = this.aux[0].foto
+        //Guardamos la fecha de la reserva con el formato que mejor nos convenga
         this.fecha_nacimiento = moment(this.usuario.fecha_nacimiento).format('YYYY-MM-DD')
       },
       err=> console.error(err)
     )
   }
 
+  //Función que nos permite volver a la página anterior, es decir, a la página que muestra la lista de reservas de la empresa
   volver(){
     console.log(this.empresa)
     let ruta = '/reservas/' + this.nombre_admi + '/empresas/'+ this.empresa + '/lista_usuarios'

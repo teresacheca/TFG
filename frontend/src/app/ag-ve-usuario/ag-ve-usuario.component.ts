@@ -25,6 +25,7 @@ export class AgVeUsuarioComponent {
     id_empresa: 0
   }
 
+  //Inicializamos el resto de variables que usaremos
   empresa: number = 0
   fecha_nacimiento: string = ""
   nombre_admi: string = ""

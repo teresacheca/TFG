@@ -18,8 +18,8 @@ export class AeListaReservasComponent {
 
   //Variables que usaremos para crear el calendario
   currentMonth: any;
-  semenas: number[][] = [];
-  daysOfWeek: string[] = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+  semanas: number[][] = [];
+  diasDeLaSemana: string[] = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
   aux: any = []
   fechasExistentes: string[] = [];
   horas: string[][] = [];
@@ -148,8 +148,8 @@ export class AeListaReservasComponent {
     const primerDia = this.currentMonth.clone().startOf('month').day();
     //Obtenemos la cantidad de días que tiene el mes
     const diasDelMes = this.currentMonth.daysInMonth();
-    //El vector semenas será la matriz que contendrá las semanas con los días
-    const semenas = [];
+    //El vector semanas será la matriz que contendrá las semanas con los días
+    const semanas = [];
     
     //Llenamos un vector con siete 0s que será nuestra primera semana, donde los 0s significa que no existe el día
     let semana = new Array(7).fill(0);
@@ -163,7 +163,7 @@ export class AeListaReservasComponent {
     }
     
     //Añadimos la primera semana ya creada enla matriz "semanas"
-    semenas.push(semana);
+    semanas.push(semana);
     
     //Iremos avanzandodías hasta llegar al último días del mes
     while (diaActual <= diasDelMes) {
@@ -175,12 +175,12 @@ export class AeListaReservasComponent {
         diaActual++;
       }
       //Añadiremos este vector a la matriz "semanas"
-      semenas.push(semana);
+      semanas.push(semana);
       //Se repetirá esto hasta llegar al último día del mes
     }
     
     //Copiaremos la matriz en una variable externa para poder manipularla fuera de la función
-    this.semenas = semenas;
+    this.semanas = semanas;
   
   }
   

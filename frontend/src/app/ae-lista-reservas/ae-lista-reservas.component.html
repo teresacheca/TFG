@@ -9,9 +9,9 @@
     </div>
     <div class="calendar-grid"> <!--En el cuerpo del calendario pondremos los días-->
         <!--Primero mostraremos el nombre de los días de la semana-->
-        <div class="calendar-day" *ngFor="let dayOfWeek of daysOfWeek">{{ dayOfWeek }}</div>
-        <!--Luego nos moveremos por la matriz s"semanas" y recorreremos cada semana mostrando día a día-->
-        <ng-container *ngFor="let semana of semenas">
+        <div class="calendar-day" *ngFor="let dia of diasDeLaSemana">{{ dia }}</div>
+        <!--Luego nos moveremos por la matriz "semanas" y recorreremos cada semana mostrando día a día-->
+        <ng-container *ngFor="let semana of semanas">
         <div class="calendar-date" *ngFor="let date of semana">   
             <span *ngIf="date !== 0">
                 {{date}}      

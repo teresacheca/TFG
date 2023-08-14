@@ -108,7 +108,7 @@ export class AgEditaAdmiEmpresaComponent {
   mostrarContrasena = false;
   
 
-  togglePasswordVisibility() {
+  verContrasena() {
     this.mostrarContrasena = !this.mostrarContrasena;
   }
 

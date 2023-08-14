@@ -96,7 +96,7 @@ export class AeAniadeUsuarioComponent {
 
   
   //Función que cambia el valor de mostrarContrasena (cada vez que pulsamos el botón de ver) que nos permite ver la contraseña o verla cifrada
-  togglePasswordVisibility() {
+  verContrasena() {
     this.mostrarContrasena = !this.mostrarContrasena;
   }
   

@@ -142,7 +142,7 @@ export class UsuarioEditaPerfilComponent {
 
   mostrarContrasena = false;
   
-  togglePasswordVisibility() {
+  verContrasena() {
     this.mostrarContrasena = !this.mostrarContrasena;
   }
 

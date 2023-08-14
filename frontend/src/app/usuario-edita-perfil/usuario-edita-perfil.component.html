@@ -14,7 +14,7 @@
                 <div>
                     Contraseña:
                     <input [type]="mostrarContrasena ? 'text' : 'password'" name="contrasena" [(ngModel)]="usuario.contrasena" id="passwordInput">
-                    <button (click)="togglePasswordVisibility()">
+                    <button (click)="verContrasena()">
                         <i [class]="mostrarContrasena ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
                     </button>
                 </div>

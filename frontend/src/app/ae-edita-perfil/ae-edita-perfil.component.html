@@ -15,10 +15,10 @@
             </div>
             <div>
                 Contraseña:
-                <!--Llamamos a la función togglePasswordVisibility cada vez que pulsamos el botón, que cambia el valor de mostrarContrasena
+                <!--Llamamos a la función verContrasena cada vez que pulsamos el botón, que cambia el valor de mostrarContrasena
               si mostrarContrasena vale True, veremos la contraseña como un texto, si no veremos puntos-->
                 <input [type]="mostrarContrasena ? 'text' : 'password'" name="contrasena" [(ngModel)]="admi_empresa.contrasena" id="passwordInput">
-                <button (click)="togglePasswordVisibility()">
+                <button (click)="verContrasena()">
                     <i [class]="mostrarContrasena ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
                 </button>
             </div>

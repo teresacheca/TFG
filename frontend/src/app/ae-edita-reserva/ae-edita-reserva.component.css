@@ -104,7 +104,7 @@ button {
     transition: background-color 0.3s ease;
     font-size: 12px;
     width: fit-content;
-    align-self: flex-start; /* Alinea el botón a la izquierda del contenedor */
+    align-self: flex-start;
 }
 
 /*Usamos hover para cambiar el color de los botones cuando el cursor se pone encima de estos*/
@@ -129,6 +129,6 @@ button {
 
 /*Usamos hover para cambiar el color de los botones cuando el cursor se pone encima de estos*/
 .saveButton:hover {
-    background-color:  #ccc;
+    background-color:  #999;
 }
 

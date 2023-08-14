@@ -237,7 +237,7 @@ VALUES ('Recurso 7', 'Descripción del recurso 7','/assets/img/foto7.png', 'Dato
 
 
 INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id_recursoservicio, id_empresa)
-VALUES ('2023-07-20', '10:00:00', 'Apple', 'Mia', 'Recurso 2', 2, 1);   
+VALUES ('2023-07-20', '10:00:00', 'Apple', 'Tom', 'Recurso 2', 2, 1);   
 
 INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id_recursoservicio, id_empresa)
 VALUES ('2023-07-21', '15:30:00', 'Bic', 'Carlk', 'Recurso 3', 3, 2);
@@ -246,7 +246,7 @@ INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id
 VALUES ('2023-07-22', '14:45:00', 'Disney', 'Halle', 'Recurso 5', 5, 3);
 
 INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id_recursoservicio, id_empresa)
-VALUES ('2023-07-23', '09:15:00', 'Apple', 'Mia', 'Recurso 2', 2, 1);
+VALUES ('2023-07-23', '09:15:00', 'Apple', 'Tom', 'Recurso 2', 2, 1);
 
 INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id_recursoservicio, id_empresa)
 VALUES ('2023-07-24', '12:00:00', 'Bic', 'Carlk', 'Recurso 3',3, 2);

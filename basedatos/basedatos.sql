@@ -3,10 +3,10 @@ CREATE DATABASE base_datos_reservas;
 USE base_datos_reservas;
 
 DROP TABLE IF EXISTS solicitud;
-DROP TABLE IF EXISTS consulta_usuario;
+DROP TABLE IF EXISTS consulta;
 DROP TABLE IF EXISTS hace;
 DROP TABLE IF EXISTS pertenece;
-DROP TABLE IF EXISTS consulta_admi;
+DROP TABLE IF EXISTS consultaA;
 DROP TABLE IF EXISTS perteneceA;
 DROP TABLE IF EXISTS tiene;
 DROP TABLE IF EXISTS crea;
@@ -15,31 +15,11 @@ DROP TABLE IF EXISTS añade;
 DROP TABLE IF EXISTS crea_instancia;
 DROP TABLE IF EXISTS Reservas;
 DROP TABLE IF EXISTS RecursoServicio;
-DROP TABLE IF EXISTS Usuarios;
 DROP TABLE IF EXISTS Administradores_empresa;
 DROP TABLE IF EXISTS Empresas;
 DROP TABLE IF EXISTS Administrador_general;
+DROP TABLE IF EXISTS Usuarios;
 
-CREATE TABLE Administrador_general (
-    nombre_admi_general VARCHAR(100) NOT NULL PRIMARY KEY,
-    contrasena VARCHAR(100) NOT NULL
-);
-
-CREATE TABLE Empresas (
-    nombre_empresa VARCHAR(100) NOT NULL UNIQUE,
-    datos_de_contacto VARCHAR(100),
-    descripcion VARCHAR(100), 
-    logo VARCHAR(100), 
-    direccion VARCHAR(100),
-    id_empresa INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY
-);
-
-CREATE TABLE Administradores_empresa (
-    nombre_admi_empresa VARCHAR(100) NOT NULL PRIMARY KEY,
-    contrasena VARCHAR(100),
-    empresa VARCHAR(100),
-    id_empresa INT (10)
-);
 
 CREATE TABLE Usuarios (
     nombre_usuario VARCHAR(100) NOT NULL PRIMARY KEY,
@@ -52,6 +32,30 @@ CREATE TABLE Usuarios (
     foto VARCHAR(1000),
     id INT(10) AUTO_INCREMENT UNIQUE
 );
+
+CREATE TABLE Administrador_general (
+    nombre_usuario VARCHAR(100) NOT NULL PRIMARY KEY,
+    id INT(10),
+    FOREIGN KEY (nombre_usuario) REFERENCES Usuarios(nombre_usuario),
+    FOREIGN KEY (id) REFERENCES Usuarios(id)
+);
+
+CREATE TABLE Administradores_empresa (
+    nombre_usuario VARCHAR(100) NOT NULL PRIMARY KEY,
+    id INT(10),
+    FOREIGN KEY (nombre_usuario) REFERENCES Usuarios(nombre_usuario),
+    FOREIGN KEY (id) REFERENCES Usuarios(id)
+);
+
+CREATE TABLE Empresas (
+    nombre_empresa VARCHAR(100) NOT NULL UNIQUE,
+    datos_de_contacto VARCHAR(100),
+    descripcion VARCHAR(100), 
+    logo VARCHAR(100), 
+    direccion VARCHAR(100),
+    id_empresa INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY
+);
+
 
 CREATE TABLE RecursoServicio (
     nombre_rs VARCHAR(100) NOT NULL,
@@ -76,35 +80,47 @@ CREATE TABLE Reservas (
 );
 
 CREATE TABLE crea_instancia (
-    nombre_empresa VARCHAR(100),
-    nombre_admi_general VARCHAR(100),
-    FOREIGN KEY (nombre_empresa) REFERENCES Empresas(nombre_empresa),
-    FOREIGN KEY (nombre_admi_general) REFERENCES Administrador_general(nombre_admi_general),
-    PRIMARY KEY (nombre_empresa, nombre_admi_general)
+    id_empresa INT(100),
+    nombre_usuario VARCHAR(100),
+    id INT(10),
+    FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa),
+    FOREIGN KEY (nombre_usuario) REFERENCES Administrador_general(nombre_usuario),
+    FOREIGN KEY (id) REFERENCES Administrador_general(id),
+    PRIMARY KEY (nombre_usuario, id)
 );
 
 CREATE TABLE añade (
-    nombre_admi_empresa VARCHAR(100),
     nombre_admi_general VARCHAR(100),
-    FOREIGN KEY (nombre_admi_empresa) REFERENCES Administradores_empresa(nombre_admi_empresa),
-    FOREIGN KEY (nombre_admi_general) REFERENCES Administrador_general(nombre_admi_general),
-    PRIMARY KEY (nombre_admi_empresa, nombre_admi_general)
+    nombre_admi_empresa VARCHAR(100),
+    id_admi_general INT(10),
+    id_admi_empresa INT(10),
+    FOREIGN KEY (nombre_admi_empresa) REFERENCES Administradores_empresa(nombre_usuario),
+    FOREIGN KEY (id_admi_empresa) REFERENCES Administradores_empresa(id),
+    FOREIGN KEY (nombre_admi_general) REFERENCES Administrador_general(nombre_usuario),
+    FOREIGN KEY (id_admi_general) REFERENCES Administrador_general(id),    
+    PRIMARY KEY (nombre_admi_general, id_admi_general)
 );
 
 CREATE TABLE alta (
     nombre_usuario VARCHAR(100),
     nombre_admi_empresa VARCHAR(100),
+    id_usuario INT(10),
+    id_admi_empresa INT(10),
+    FOREIGN KEY (nombre_admi_empresa) REFERENCES Administradores_empresa(nombre_usuario),
+    FOREIGN KEY (id_admi_empresa) REFERENCES Administradores_empresa(id),
     FOREIGN KEY (nombre_usuario) REFERENCES Usuarios(nombre_usuario),
-    FOREIGN KEY (nombre_admi_empresa) REFERENCES Administradores_empresa(nombre_admi_empresa),
-    PRIMARY KEY (nombre_usuario, nombre_admi_empresa)
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id),    
+    PRIMARY KEY (nombre_admi_empresa, id_admi_empresa)
 );
 
 CREATE TABLE crea (
-    nombre_rs VARCHAR(100),
-    nombre_admi_empresa VARCHAR(100),
-    FOREIGN KEY (nombre_rs) REFERENCES RecursoServicio(nombre_rs),
-    FOREIGN KEY (nombre_admi_empresa) REFERENCES Administradores_empresa(nombre_admi_empresa),
-    PRIMARY KEY (nombre_rs, nombre_admi_empresa)
+    id_recursoservicio INT(10),
+    nombre_usuario VARCHAR(100),
+    id INT(10),
+    FOREIGN KEY (id_recursoservicio) REFERENCES RecursoServicio(id_recursoservicio),
+    FOREIGN KEY (nombre_usuario) REFERENCES Administradores_empresa(nombre_usuario),
+    FOREIGN KEY (id) REFERENCES Administradores_empresa(id),
+    PRIMARY KEY (id_recursoservicio)
 );
 
 CREATE TABLE tiene (
@@ -112,55 +128,63 @@ CREATE TABLE tiene (
     id_reserva INT(10),
     FOREIGN KEY (id_recursoservicio) REFERENCES RecursoServicio(id_recursoservicio),
     FOREIGN KEY (id_reserva) REFERENCES Reservas(id_reserva),
-    PRIMARY KEY (id_recursoservicio, id_reserva)
+    PRIMARY KEY (id_reserva)
 );
 
 CREATE TABLE perteneceA (
-    nombre_admi_empresa VARCHAR(100),
-    nombre_empresa VARCHAR(100),
-    FOREIGN KEY (nombre_admi_empresa) REFERENCES Administradores_empresa(nombre_admi_empresa),
-    FOREIGN KEY (nombre_empresa) REFERENCES Empresas(nombre_empresa),
-    PRIMARY KEY (nombre_admi_empresa, nombre_empresa)
+    id_empresa INT(100),
+    nombre_usuario VARCHAR(100),
+    id INT(10),
+    FOREIGN KEY (nombre_usuario) REFERENCES Administradores_empresa(nombre_usuario),
+    FOREIGN KEY (id) REFERENCES Administradores_empresa(id),
+    FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa),
+    PRIMARY KEY (nombre_usuario, id)
 );
 
-CREATE TABLE consulta_admi (
-    nombre_admi_empresa VARCHAR(100),
-    nombre_rs VARCHAR(100),
-    fecha DATE,
-    hora TIME,
-    FOREIGN KEY (nombre_admi_empresa) REFERENCES Administradores_empresa(nombre_admi_empresa),
-    FOREIGN KEY (nombre_rs) REFERENCES RecursoServicio(nombre_rs),
-    FOREIGN KEY (fecha, hora) REFERENCES Reservas(fecha, hora),
-    PRIMARY KEY (nombre_admi_empresa, nombre_rs, fecha, hora)
+CREATE TABLE consultaA (
+    nombre_usuario VARCHAR(100),
+    id INT(10),
+    id_recursoservicio INT(100),
+    id_reserva INT(100),    
+    FOREIGN KEY (nombre_usuario) REFERENCES Administradores_empresa(nombre_usuario),
+    FOREIGN KEY (id) REFERENCES Administradores_empresa(id),
+    FOREIGN KEY (id_recursoservicio) REFERENCES RecursoServicio(id_recursoservicio),
+    FOREIGN KEY (id_reserva) REFERENCES Reservas(id_reserva),
+    PRIMARY KEY (nombre_usuario, id, id_recursoservicio, id_reserva)
 );
 
 CREATE TABLE pertenece (
     nombre_usuario VARCHAR(100),
-    nombre_empresa VARCHAR(100),
+    id INT(10),
+    id_empresa INT(100),
     FOREIGN KEY (nombre_usuario) REFERENCES Usuarios(nombre_usuario),
-    FOREIGN KEY (nombre_empresa) REFERENCES Empresas(nombre_empresa),
-    PRIMARY KEY (nombre_usuario, nombre_empresa)
+    FOREIGN KEY (id) REFERENCES Usuarios(id),
+    FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa),
+    PRIMARY KEY (nombre_usuario, id)
 );
 
 CREATE TABLE hace (
     nombre_usuario VARCHAR(100),
-    fecha DATE,
-    hora TIME,
+    id INT(10),
+    id_reserva INT(100), 
     FOREIGN KEY (nombre_usuario) REFERENCES Usuarios(nombre_usuario),
-    FOREIGN KEY (fecha, hora) REFERENCES Reservas(fecha, hora),
-    PRIMARY KEY (nombre_usuario, fecha, hora)
+    FOREIGN KEY (id) REFERENCES Usuarios(id),
+    FOREIGN KEY (id_reserva) REFERENCES Reservas(id_reserva),
+    PRIMARY KEY (nombre_usuario, id, id_reserva)
 );
 
-CREATE TABLE consulta_usuario (
+CREATE TABLE consulta (
     nombre_usuario VARCHAR(100),
-    fecha DATE,
-    hora TIME,
-    nombre_rs VARCHAR(100),
+    id INT(10),
+    id_recursoservicio INT(100),
+    id_reserva INT(100),    
     FOREIGN KEY (nombre_usuario) REFERENCES Usuarios(nombre_usuario),
-    FOREIGN KEY (fecha, hora) REFERENCES Reservas(fecha, hora),
-    FOREIGN KEY (nombre_rs) REFERENCES RecursoServicio(nombre_rs),
-    PRIMARY KEY (nombre_usuario, nombre_rs, fecha, hora)
+    FOREIGN KEY (id) REFERENCES Usuarios(id),
+    FOREIGN KEY (id_recursoservicio) REFERENCES RecursoServicio(id_recursoservicio),
+    FOREIGN KEY (id_reserva) REFERENCES Reservas(id_reserva),
+    PRIMARY KEY (nombre_usuario, id, id_recursoservicio, id_reserva)
 );
+
 
 CREATE TABLE solicitud (
     nombre_empresa VARCHAR(100),
@@ -207,8 +231,6 @@ VALUES ('Pepsi', 'contacto@empresa-d.com', 'Descripción de la Empresa D', '/ass
        ('Android', 'contacto@empresa-g.com', 'Descripción de la Empresa G', '/assets/img/android.png', 'Luisa', 0, ' ',  'Aceptada'),
        ('Amazon', 'contacto@empresa-h.com', 'Descripción de la Empresa H', '/assets/img/amazon.png',  'Luisa', 0, ' ', 'Pendiente'),
        ('Coca-Cola', 'contacto@empresa-i.com', 'Descripción de la Empresa I', '/assets/img/Coca-Cola.png', 'Luisa', 0, ' ',  'Aceptada'),
-       ('McDonalds', 'contacto@empresa-j.com', 'Descripción de la Empresa J', '/assets/img/McDonalds.png',  'Luisa', 0, ' ', 'Pendiente'),
-       ('Warner', 'contacto@empresa-k.com', 'Descripción de la Empresa K', '/assets/img/warner.png', 'Luisa', 0, ' ',  'Aceptada'),
        ('Facebook', 'contacto@empresa-l.com', 'Descripción de la Empresa L', '/assets/img/facebook.png', 'Luisa', 0, ' ', 'Rechazada'),
        ('Carrefour', 'contacto@empresa-m.com', 'Descripción de la Empresa M', '/assets/img/carrefour.png', 'Luisa', 0, ' ', 'Rechazada');
 
@@ -253,5 +275,3 @@ VALUES ('2023-07-24', '12:00:00', 'Bic', 'Carlk', 'Recurso 3',3, 2);
 
 INSERT INTO Reservas (fecha, hora, nombre_empresa, nombre_usuario, nombre_rs, id_recursoservicio, id_empresa)
 VALUES ('2023-07-24', '16:00:00', 'Bic', 'Carlk', 'Recurso 3', 3, 2);
-
-

@@ -68,7 +68,7 @@ class ReservasRoutes {
         this.router.post('/:nombre_usuario/lista_solicitudes/:id_solicitud/:nombre_empresa', reservasController_1.default.nuevaEmpresa);
         this.router.get('/:nombre_usuario/lista_solicitudes', reservasController_1.default.getSolicitudes);
         //Rutas para comprobar las credenciales de los usuarios (ver app-routing.component.css)
-        this.router.get('/:nombre/:contrasena', reservasController_1.default.getUsuarioLogin); //mostrar una reserva
+        this.router.get('/:nombre/:contrasena', reservasController_1.default.getUsuarioLogin);
         this.router.post('/:nombre_usuario/empresas/:nombre_empresa', reservasController_1.default.crearEmpresa);
     }
 }

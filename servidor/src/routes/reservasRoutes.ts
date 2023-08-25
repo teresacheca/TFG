@@ -78,7 +78,7 @@ class ReservasRoutes{
         this.router.get('/:nombre_usuario/lista_solicitudes', reservasController.getSolicitudes); 
 
         //Rutas para comprobar las credenciales de los usuarios (ver app-routing.component.css)
-        this.router.get('/:nombre/:contrasena', reservasController.getUsuarioLogin); //mostrar una reserva
+        this.router.get('/:nombre/:contrasena', reservasController.getUsuarioLogin);
         this.router.post('/:nombre_usuario/empresas/:nombre_empresa', reservasController.crearEmpresa); 
         
     }

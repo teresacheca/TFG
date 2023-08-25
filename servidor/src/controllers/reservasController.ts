@@ -137,7 +137,7 @@ class ReservasController{
     //eliminarSolicitud: elimina una solicitud dado su identificador
     public async eliminarSolicitud(req: Request, res: Response) { 
         const aux = await pool.promise().query('DELETE FROM Solicitud WHERE id_solicitud = ?', [req.params.id_solicitud]);
-        res.json({message: 'el usuario fue eliminada'})
+        res.json({message: 'la solicitud fue eliminada'})
     }
 
     //getUsuarioNombre: obtiene los datos de un usuario dado su nombre
@@ -157,13 +157,13 @@ class ReservasController{
     //guardarCambiosUsuario: guarda los cambios en los datods de un usuario dado su nombre
     public async guardarCambiosUsuario(req: Request, res: Response) { 
         await pool.promise().query('UPDATE Usuarios set ? WHERE nombre_usuario = ?', [req.body, req.params.nombre_usuario]);
-        res.json({message: 'La reserva fue actualizada'})
+        res.json({message: 'el usuario fue actuaizado'})
     }
 
     //eliminarCuentaAdmiEmpresaAe: elimina la cuenta de un administrador de una empresa dado su nombre
     public async eliminarCuentaAdmiEmpresaAe(req: Request, res: Response){
         const aux = await pool.promise().query('DELETE FROM Usuarios WHERE nombre_usuario= ?', [req.params.nombre_usuario]);
-        res.json({message: 'la reserva fue eliminada'}) 
+        res.json({message: 'el usuario fue eliminado'})
     }
 
     //getUsuariosEmpresaAe: obtiene los usuario de una empresa dado el identificador de la empresa

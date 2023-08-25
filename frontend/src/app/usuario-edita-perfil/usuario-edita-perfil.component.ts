@@ -103,7 +103,7 @@ export class UsuarioEditaPerfilComponent {
                    
                     //Una vez comprobado todo, ya podemos cambiar los datos del usuario
                     //Llamamos a la función que actualiza los datos de una usuario a partir de su nombre y los nuevo datos
-                    this.reservaServices.guardarCambiosUsuario(nombre_usuario, nuevoUsuario).subscribe(
+                    this.reservaServices.guardarCambiosUsuario(this.nombre, nuevoUsuario).subscribe(
                       res => {
                         //Por último, nos movemos a la página que nos muestra la página principal de usuario
                         //Comprobamos el tipo de usuario por si ha cambiado, ya que deependidendo del tipo nos moveremos a una dirección o a otra
@@ -126,7 +126,7 @@ export class UsuarioEditaPerfilComponent {
               }else{
                 //Si no cambia la empresa, no tenemos que borrar el resto de datos y por tanto podemos actualizar directamente los 
                 //datos del usuario llamando a la misma función 
-                this.reservaServices.guardarCambiosUsuario(nombre_usuario, nuevoUsuario).subscribe(
+                this.reservaServices.guardarCambiosUsuario(this.nombre, nuevoUsuario).subscribe(
                   res => {
                     //Por último, nos movemos a la página que nos muestra la página principal de usuario
                     //Comprobamos el tipo de usuario por si ha cambiado, ya que deependidendo del tipo nos moveremos a una dirección o a otra

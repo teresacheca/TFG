@@ -67,7 +67,10 @@ class ReservasController{
     //eliminarEmpresa: elimina la instancia de una empresa
     public async eliminarEmpresa(req: Request, res: Response){
         const aux = await pool.promise().query('DELETE FROM Empresas WHERE id_empresa = ?', [req.params.id_empresa]);
-        res.json({message: 'la reserva fue eliminada'}) 
+        await pool.promise().query('DELETE FROM Usuarios WHERE id_empresa = ?', [req.params.id_empresa]);
+        await pool.promise().query('DELETE FROM Reservas WHERE id_empresa = ?', [req.params.id_empresa]);
+        await pool.promise().query('DELETE FROM RecursoServicio WHERE id_empresa = ?', [req.params.id_empresa]);
+        res.json({message: 'la empresa fue eliminada'}) 
     }
 
     //eliminarReservasUsuario: elimina las reservas de una usuario según su nombre de usuario
@@ -79,7 +82,7 @@ class ReservasController{
     //guardarCambios: guarda los cambios en los datos de la instacia de una emrpesa
     public async guardarCambios(req: Request, res: Response){
         await pool.promise().query('UPDATE Empresas set ? WHERE id_empresa = ?', [req.body, req.params.id_empresa]);
-        res.json({message: 'La reserva fue actualizada'})
+        res.json({message: 'La empresa fue actualizada'})
     }
 
     //getAdministradoresEmpresa: devuelve los administradores de una empresa en función del identificador de la empresa

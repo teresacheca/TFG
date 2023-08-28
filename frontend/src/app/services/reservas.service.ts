@@ -18,6 +18,7 @@ export class ReservasService {
 
   //getLogin: función que nos lleva a la ruta adecuada para comprobar las credenciales del usuario
   getLogin(nombre: string, contrasena: string){  
+    console.log("Hey")
     return this.http.get(`${this.API_URI}/reservas/${nombre}/${contrasena}`);
   }
 

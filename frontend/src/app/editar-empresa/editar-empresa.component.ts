@@ -26,6 +26,7 @@ export class EditarEmpresaComponent {
   id_empresa: number = 0
   nombre_admi:string = ""
   aux: any = {  }
+  nombre_empresa = ""
 
   ngOnInit(){
     //Cogemos los parámetros que se leen en la url
@@ -45,6 +46,7 @@ export class EditarEmpresaComponent {
         this.empresa.logo = this.aux[0].logo
         this.empresa.direccion = this.aux[0].direccion
         this.empresa.id_empresa = this.aux[0].id_empresa
+        this.nombre_empresa = this.empresa.nombre_empresa
       },
       err=> console.error(err)
     )
@@ -67,6 +69,87 @@ export class EditarEmpresaComponent {
   guardarCambios(id_empresa: number, empresa : Empresa){
     this.reservaServices.guardarCambios(this.nombre_admi, id_empresa, empresa).subscribe(
       res => {
+        //Si el nombre de la empresa cambia, tenemos que cambiar los datos que se vean afectados el resto de entidades
+        if(this.nombre_empresa != empresa.nombre_empresa){
+          //Actualizamos los datos de los administradores de la empresa
+          this.reservaServices.getAdministradoresEmpresa(this.nombre_admi, id_empresa).subscribe(
+            res => {
+              this.aux =res
+              for(const admi of this.aux){
+                let nuevoAdmi = admi
+                nuevoAdmi.empresa = empresa.nombre_empresa
+                this.reservaServices.guardarCambiosAdmiEmpresa(this.nombre_admi, nuevoAdmi.id, id_empresa, nuevoAdmi).subscribe(
+                  res => {
+                   //No hacemos nada cuando se actualiza el administrador
+            
+                  },
+                  err=> console.error(err)
+                )
+              }
+            },
+            err=> console.error(err)
+          )
+          //Actualizamos los datos de los usaurios de la empresa
+          this.reservaServices.getUsuariosEmpresa(this.nombre_admi, id_empresa).subscribe(
+            res => {
+              this.aux =res
+              for(const usuario of this.aux){
+                let nuevoUsuario = usuario
+                nuevoUsuario.empresa = empresa.nombre_empresa
+                this.reservaServices.guardarCambiosUsuarioAe(this.nombre_admi, id_empresa, nuevoUsuario.id, nuevoUsuario).subscribe(
+                  res => {
+                   //No hacemos nada cuando se actualiza el usuario
+            
+                  },
+                  err=> console.error(err)
+                )
+              }
+              
+      
+            },
+            err=> console.error(err)
+          )
+          //Actualizamos los datos de las reservas
+          this.reservaServices.getReservasEmpresa(this.nombre_admi, id_empresa).subscribe(
+            res => {
+              this.aux =res
+              for(const reserva of this.aux){
+                let nuevaReserva = reserva
+                nuevaReserva.nombre_empresa = empresa.nombre_empresa
+                this.reservaServices.actualizarReserva(this.nombre_admi, id_empresa, nuevaReserva.id_reserva, nuevaReserva).subscribe(
+                  res => {
+                   //No hacemos nada cuando se actualiza la reserva
+            
+                  },
+                  err=> console.error(err)
+                )
+              }
+              
+      
+            },
+            err=> console.error(err)
+          )
+          //Actualizamos los datos de los recursos o servicio
+          this.reservaServices.getRecursosAe(this.nombre_admi, id_empresa).subscribe(
+            res => {
+              this.aux =res
+              for(const recurso of this.aux){
+                let nuevoRecurso = recurso
+                nuevoRecurso.nombre_empresa = empresa.nombre_empresa
+                this.reservaServices.guardarCambiosRecursoAe(this.nombre_admi, id_empresa, nuevoRecurso.id_recursoservicio, nuevoRecurso).subscribe(
+                  res => {
+                   //No hacemos nada cuando se actualiza el recurso o servicio
+            
+                  },
+                  err=> console.error(err)
+                )
+              }
+              
+      
+            },
+            err=> console.error(err)
+          )
+        }
         //Nos movemos a la página que muestra la pantalla principal de la empresa
         let ruta = '/reservas/' + this.nombre_admi + '/empresas/'+ this.empresa.id_empresa
         this.router.navigate([ruta ]);

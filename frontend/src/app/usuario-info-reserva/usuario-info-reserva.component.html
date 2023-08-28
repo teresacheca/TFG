@@ -3,6 +3,7 @@
 <p *ngIf="mia then esMia else otras">
 </p>
 
+
 <!--Si pertenece al usuario que la está consultando, mostraremos los datos de la reserva y añadiremos un botón para que pueda editar la reserva-->
 <ng-template #esMia>
     <div class="card">
@@ -22,10 +23,14 @@
                     Hora: {{reserva.hora}}
                 </div>
             </form>
-            <!--Añadimos un botón que nos llevará a la página que nos permite editar los datos de la reserva-->
-            <button (click)="editarReserva()"><i class="fas fa-pencil-alt"></i>
-                Editar
-            </button>
+            <div *ngIf="futuro"> <!--Para que sólo se puedan editar las reservas del futuro-->
+                
+                 <!--Añadimos un botón que nos llevará a la página que nos permite editar los datos de la reserva-->
+                <button (click)="editarReserva()"><i class="fas fa-pencil-alt"></i>
+                  Editar
+                </button>
+            </div>
+           
         </div>
     </div>
     <button class="back-button" (click)="volver(0)"><i class="fas fa-chevron-circle-left"></i> Volver</button>  <!--Le añadimos un icono de flecha al botón "volver"-->

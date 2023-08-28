@@ -32,6 +32,7 @@ export class UsuarioEditaReservaComponent {
   aux: any= []
   fecha: any
   id_reserva: number = 0
+  pasado = false
   ngOnInit(){
     //Cogemos los parámetros que se leen en la url
     const params = this.activeRoute.snapshot.params;
@@ -56,13 +57,49 @@ export class UsuarioEditaReservaComponent {
         this.reserva.id_recursoservicio = this.aux[0].id_recursoservicio
         this.reserva.id_empresa = this.aux[0].id_empresa
         this.id_reserva = this.reserva.id_reserva
+
       },
       err => console.error(err)
     );
   }
 
+    //fechaPasado: Esta función devuelve "true" si la fecha y horas pasadas por parámetro son del pasado, y "false" en caso contrario
+    fechaPasado(fecha: string, hora: string){
+      let pasado = false;
+  
+      const fechaHoraActual = new Date();
+      const dia = fechaHoraActual.getDate().toString();
+      let mes = fechaHoraActual.getMonth() + 1; //le sumamos 1 porque devuelve los días del 0 al 11
+      const anio = fechaHoraActual.getFullYear().toString();
+      const horas = fechaHoraActual.getHours().toString();
+      const min = fechaHoraActual.getMinutes().toString();
+  
+      let mesString = mes.toString()
+      if(mes !=10){
+        mesString = '0' + mesString
+      }
+  
+      const fechaActual = anio + '-' + mesString + '-' + dia;
+      const horaActual = horas + ':' + min + ':00';
+  
+      if(fechaActual > fecha){
+        pasado =true;
+      }else if(fechaActual == fecha){
+        if(horaActual > hora){
+          pasado = true;
+        }
+      }
+      return pasado
+  
+    }
+
   //Función que guarda los datos modificados de la reserva
   guardaCambiosReservaUsu(id_reserva: number, nuevaReserva: Reserva, fecha:string){
+    if(this.fechaPasado(fecha, nuevaReserva.hora)){
+      confirm("Las reservas no se pueden hacer en el pasado")
+    }else{
+
+      
     const faux = new Date(fecha)
    
     //Cogemos la fecha y la modificamos para que esté en el formato que queremos
@@ -242,6 +279,9 @@ export class UsuarioEditaReservaComponent {
       },
       err => console.error(err)
     );
+      
+    }
+
 
     
   }

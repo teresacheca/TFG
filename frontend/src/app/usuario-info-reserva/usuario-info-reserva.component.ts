@@ -32,7 +32,9 @@ export class UsuarioInfoReservaComponent {
   aux: any= []
   mia = false
   fecha: any
-  
+  futuro = true
+  pasado = false
+
   ngOnInit(){
     //Cogemos los parámetros que se leen en la url
     const params = this.activeRoute.snapshot.params;
@@ -59,9 +61,43 @@ export class UsuarioInfoReservaComponent {
         if (this.reserva.nombre_usuario == this.usuario){
           this.mia = true
         }
+        console.log(this.fecha, this.reserva.hora)
+        this.pasado = this.fechaPasado(this.fecha, this.reserva.hora)
+        this.futuro = !this.pasado
       },
       err => console.error(err)
     );
+  }
+
+  //fechaPasado: Esta función devuelve "true" si la fecha y horas pasadas por parámetro son del pasado, y "false" en caso contrario
+  fechaPasado(fecha: string, hora: string){
+    let pasado = false;
+
+    const fechaHoraActual = new Date();
+    const dia = fechaHoraActual.getDate().toString();
+    let mes = fechaHoraActual.getMonth() + 1; //le sumamos 1 porque devuelve los días del 0 al 11
+    const anio = fechaHoraActual.getFullYear().toString();
+    const horas = fechaHoraActual.getHours().toString();
+    const min = fechaHoraActual.getMinutes().toString();
+
+    let mesString = mes.toString()
+    if(mes !=10){
+      mesString = '0' + mesString
+    }
+
+    const fechaActual = anio + '-' + mesString + '-' + dia;
+    const horaActual = horas + ':' + min + ':00';
+
+    if(fechaActual > fecha){
+      pasado =true;
+    }else if(fechaActual == fecha){
+      if(horaActual > hora){
+        pasado = true;
+      }
+    }
+    console.log("pasado", pasado)
+    return pasado
+
   }
 
   //Función que mos permite movernos a la página donde podremos editar los datos de la reserva

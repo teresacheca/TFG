@@ -28,6 +28,8 @@ export class AeListaReservasComponent {
   constructor(private reservasServices: ReservasService, private router: Router, private activeRoute: ActivatedRoute){}
 
   ngOnInit(){
+    moment.locale('es');  //Para ver los nombres de los meses del calendario en español
+    
     //Inicializaremos la variable usando momento, que nos dará el mes actual
     this.currentMonth = moment();
 

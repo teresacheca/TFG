@@ -88,7 +88,10 @@ class ReservasController {
     eliminarEmpresa(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const aux = yield basedatos_1.default.promise().query('DELETE FROM Empresas WHERE id_empresa = ?', [req.params.id_empresa]);
-            res.json({ message: 'la reserva fue eliminada' });
+            yield basedatos_1.default.promise().query('DELETE FROM Usuarios WHERE id_empresa = ?', [req.params.id_empresa]);
+            yield basedatos_1.default.promise().query('DELETE FROM Reservas WHERE id_empresa = ?', [req.params.id_empresa]);
+            yield basedatos_1.default.promise().query('DELETE FROM RecursoServicio WHERE id_empresa = ?', [req.params.id_empresa]);
+            res.json({ message: 'la empresa fue eliminada' });
         });
     }
     //eliminarReservasUsuario: elimina las reservas de una usuario según su nombre de usuario
@@ -102,7 +105,7 @@ class ReservasController {
     guardarCambios(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             yield basedatos_1.default.promise().query('UPDATE Empresas set ? WHERE id_empresa = ?', [req.body, req.params.id_empresa]);
-            res.json({ message: 'La reserva fue actualizada' });
+            res.json({ message: 'La empresa fue actualizada' });
         });
     }
     //getAdministradoresEmpresa: devuelve los administradores de una empresa en función del identificador de la empresa

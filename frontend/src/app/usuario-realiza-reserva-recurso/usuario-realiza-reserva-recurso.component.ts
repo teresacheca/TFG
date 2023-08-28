@@ -52,6 +52,7 @@ export class UsuarioRealizaReservaRecursoComponent {
   }
 
   ngOnInit(){
+    moment.locale('es');  //Para ver los nombres de los meses del calendario en español
     this.currentMonth = moment();
     this.generateCalendar();
     const params = this.activeRoute.snapshot.params;
@@ -420,7 +421,6 @@ export class UsuarioRealizaReservaRecursoComponent {
 
   seleccionDia(date: any){
     
-    
     const fecha = this.currentMonth.clone().date(date);
     const fechaFormateada = fecha.format('YYYY-MM-DD');
     let reservado: any = []
@@ -435,7 +435,38 @@ export class UsuarioRealizaReservaRecursoComponent {
     return resultado
   }
 
+  //fechaPasado: Esta función devuelve "true" si la fecha y horas pasadas por parámetro son del pasado, y "false" en caso contrario
+  fechaPasado(fecha: string, hora: string){
+    let pasado = false;
+
+    const fechaHoraActual = new Date();
+    const dia = fechaHoraActual.getDate().toString();
+    let mes = fechaHoraActual.getMonth() + 1; //le sumamos 1 porque devuelve los días del 0 al 11
+    const anio = fechaHoraActual.getFullYear().toString();
+    const horas = fechaHoraActual.getHours().toString();
+    const min = fechaHoraActual.getMinutes().toString();
+
+    let mesString = mes.toString()
+    if(mes !=10){
+      mesString = '0' + mesString
+    }
+
+    const fechaActual = anio + '-' + mesString + '-' + dia;
+    const horaActual = horas + ':' + min + ':00';
+
+    if(fechaActual > fecha){
+      pasado =true;
+    }else if(fechaActual == fecha){
+      if(horaActual > hora){
+        pasado = true;
+      }
+    }
+    return pasado
+
+  }
+
   hacerReserva(hora: string, date: number, month: string){
+
     let fecha = "";
     if(date < 10){
       fecha = month + '-0' + date;
@@ -443,18 +474,22 @@ export class UsuarioRealizaReservaRecursoComponent {
       fecha = month + '-' + date;
     }
 
-    //const fechaFormateada = fecha.format('YYYY-MM-DD');
-    let nuevaReserva: Reserva ={
-      fecha: fecha,
-      hora: hora,
-      nombre_empresa: this.recurso.nombre_empresa, 
-      nombre_usuario: this.usuario,
-      nombre_rs: this.reserva.nombre_rs,
-      id_reserva: 0,
-      id_recursoservicio: this.recurso.id_recursoservicio,
-      id_empresa: this.recurso.id_empresa
+    if(this.fechaPasado(fecha, hora)){
+      confirm("No se pueden realizar reservas en el pasado");
+    }else{
+      let nuevaReserva: Reserva ={
+        fecha: fecha,
+        hora: hora,
+        nombre_empresa: this.recurso.nombre_empresa, 
+        nombre_usuario: this.usuario,
+        nombre_rs: this.reserva.nombre_rs,
+        id_reserva: 0,
+        id_recursoservicio: this.recurso.id_recursoservicio,
+        id_empresa: this.recurso.id_empresa
+      }
+      this.crearReserva(nuevaReserva)
     }
-    this.crearReserva(nuevaReserva)
+
   }
 
   

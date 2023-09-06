@@ -68,18 +68,22 @@ export class UsuarioEditaReservaComponent {
       let pasado = false;
   
       const fechaHoraActual = new Date();
-      const dia = fechaHoraActual.getDate().toString();
+      let diaN = fechaHoraActual.getDate();
+      let dia = fechaHoraActual.getDate().toString();
       let mes = fechaHoraActual.getMonth() + 1; //le sumamos 1 porque devuelve los días del 0 al 11
       const anio = fechaHoraActual.getFullYear().toString();
       const horas = fechaHoraActual.getHours().toString();
       const min = fechaHoraActual.getMinutes().toString();
-  
+
       let mesString = mes.toString()
-      if(mes !=10){
+      if(mes < 10){
         mesString = '0' + mesString
       }
-  
-      const fechaActual = anio + '-' + mesString + '-' + dia;
+
+      if(diaN < 10){
+        dia = '0' + dia
+      }
+        const fechaActual = anio + '-' + mesString + '-' + dia;
       const horaActual = horas + ':' + min + ':00';
   
       if(fechaActual > fecha){

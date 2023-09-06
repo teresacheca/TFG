@@ -321,8 +321,6 @@ export class UsuarioRealizaReservaRecursoComponent {
                 nuevaReserva.fecha = fechaAuxiliar
                 this.reservaServices.crearReserva(this.usuario, this.id, nuevaReserva).subscribe(
                   res =>{
-                    /*let ruta= '/reservas/usuario/' + this.usuario + '/realiza_reserva'
-                    this.router.navigate([ruta])*/
                     window.location.reload();
                   },
                   err => console.error(err)
@@ -440,16 +438,22 @@ export class UsuarioRealizaReservaRecursoComponent {
     let pasado = false;
 
     const fechaHoraActual = new Date();
-    const dia = fechaHoraActual.getDate().toString();
+    let diaN = fechaHoraActual.getDate();
+    let dia = fechaHoraActual.getDate().toString();
     let mes = fechaHoraActual.getMonth() + 1; //le sumamos 1 porque devuelve los días del 0 al 11
     const anio = fechaHoraActual.getFullYear().toString();
     const horas = fechaHoraActual.getHours().toString();
     const min = fechaHoraActual.getMinutes().toString();
 
     let mesString = mes.toString()
-    if(mes !=10){
+    if(mes < 10){
       mesString = '0' + mesString
     }
+
+    if(diaN < 10){
+      dia = '0' + dia
+    }
+
 
     const fechaActual = anio + '-' + mesString + '-' + dia;
     const horaActual = horas + ':' + min + ':00';

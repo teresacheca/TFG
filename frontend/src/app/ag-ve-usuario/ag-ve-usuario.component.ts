@@ -60,7 +60,6 @@ export class AgVeUsuarioComponent {
 
   //Función que nos permite volver a la página anterior, es decir, a la página que muestra la lista de reservas de la empresa
   volver(){
-    console.log(this.empresa)
     let ruta = '/reservas/' + this.nombre_admi + '/empresas/'+ this.empresa + '/lista_usuarios'
     this.router.navigate([ruta])
   }

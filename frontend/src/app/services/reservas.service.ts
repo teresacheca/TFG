@@ -18,7 +18,6 @@ export class ReservasService {
 
   //getLogin: función que nos lleva a la ruta adecuada para comprobar las credenciales del usuario
   getLogin(nombre: string, contrasena: string){  
-    console.log("Hey")
     return this.http.get(`${this.API_URI}/reservas/${nombre}/${contrasena}`);
   }
 
@@ -54,7 +53,6 @@ export class ReservasService {
 
   //getEmpresas: función que nos lleva a la ruta adecuada para obtener las empresas que hay en la base de datos
   getEmpresas(nombre_usuario: string){ 
-    console.log(nombre_usuario)
     return this.http.get(`${this.API_URI}/reservas/${nombre_usuario}/empresas`);
   }
 

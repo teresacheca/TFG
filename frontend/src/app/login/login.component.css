@@ -4,6 +4,16 @@ body {
 }
 
 /*Le damos formato al título*/
+h1{
+    text-align: center; 
+    font-family: Arial Black; 
+    font-weight: bold; 
+    font-size: 30px; 
+    color: #000000; 
+    text-shadow: 0 3px 5px rgba(0,0,0,0.2),0 10px 10px rgba(0,0,0,0.2), 0 20px 20px rgba(0,0,0,0.15);
+}
+
+/*Le damos formato al título*/
 h2 {
     text-align: center;
     transform: translate(0%, 100px);
